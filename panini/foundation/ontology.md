@@ -138,6 +138,19 @@ symbol/type/tag/metadata/scope у мовах програмування — ок
 яке досліджується без наперед визначеної відповіді в `samjna.md`,
 `it.md`, `pratyahara.md`, `anuvrtti.md` відповідно.
 
+## Відомі прогалини
+
+- Рівень 3 вище фіксує лише `saMjYA`, `it`, `pratyAhAra`,
+  `anuvftti`/`aDikAra`. Звірка з `reference-from-engineer-1/PANINI-GRAMMAR-REFERENCE.md`
+  (`PANINI-GRAMMAR-REFERENCE-CROSSCHECK`, див.
+  [`research/grammar-reference-crosscheck.md`](../research/grammar-reference-crosscheck.md))
+  показала, що традиційна класифікація типів правил Aṣṭādhyāyī ширша:
+  `vidhi` (операційне правило), `niyama` (обмеження), `atideSa`
+  (розширення "X як Y"), `paribhASA` (метаправило-максима) — жодне з
+  них ще не досліджене й не додане до цієї мапи. `paribhASA` виглядає
+  особливо цікаво (правило про застосування правил — метарівень над
+  метарівнем). Задача для дослідження: `PANINI-RULE-KINDS-VIDHI-ETC`.
+
 ## Відкриті питання для наступних задач
 
 - Чи `prAtipadika`-визначення через виключення (не dhātu, не pratyaya)
