@@ -1,0 +1,9 @@
+canonical: vac
+display: { iast: vac, devanagari: वच् }
+class: dhatu
+gana: 2
+pada: parasmaipada
+set_anit: aniT
+source: { dhatupatha: "adAdi (gaRa 2)" }
+traditional_meaning: "говорити"
+notes: "gaRa 2 — атематичний клас, без голосного vikaraRa між коренем і закінченням."

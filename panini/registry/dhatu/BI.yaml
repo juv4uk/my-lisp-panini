@@ -1,0 +1,11 @@
+canonical: BI
+display: { iast: bhī, devanagari: भी }
+class: dhatu
+gana: 3
+pada: parasmaipada
+set_anit: seT
+source: { dhatupatha: "juhotyAdi (gaRa 3)" }
+traditional_meaning: "боятися"
+notes: >
+  Класичний приклад для apAdAna kAraka ("боятися ЧОГОСЬ" — джерело
+  страху виражається аблативом) — місток до PANINI-DHATU-KARAKA-RELATION.

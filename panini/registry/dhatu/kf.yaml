@@ -1,0 +1,11 @@
+canonical: kf
+display: { iast: kṛ, devanagari: कृ }
+class: dhatu
+gana: 8
+pada: ubhayapada
+set_anit: seT
+source: { dhatupatha: "tanAdi (gaRa 8)" }
+traditional_meaning: "робити"
+notes: >
+  Один з найуживаніших коренів; irregular/суплетивна поведінка в ряді
+  форм — потребує окремої перевірки при переході до derivation.md.

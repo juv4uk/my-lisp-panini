@@ -1,0 +1,12 @@
+canonical: as
+display: { iast: as, devanagari: अस् }
+class: dhatu
+gana: 2
+pada: parasmaipada
+set_anit: aniT
+source: { dhatupatha: "adAdi (gaRa 2)" }
+traditional_meaning: "бути (дієслово-зв'язка)"
+notes: >
+  Один з найнерегулярніших коренів (суплетивна форма bhū в ряді часів);
+  критично важливий для копулятивних конструкцій без явного "дієслова
+  дії".

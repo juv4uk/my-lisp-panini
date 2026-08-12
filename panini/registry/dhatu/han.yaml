@@ -1,0 +1,11 @@
+canonical: han
+display: { iast: han, devanagari: हन् }
+class: dhatu
+gana: 2
+pada: parasmaipada
+set_anit: aniT
+source: { dhatupatha: "adAdi (gaRa 2)" }
+traditional_meaning: "вбивати, вражати"
+notes: >
+  Сильно нерегулярний атематичний корінь (значні звукові зміни основи
+  залежно від закінчення) — stress-test для майбутньої derivation-моделі.

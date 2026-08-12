@@ -1,0 +1,11 @@
+canonical: paca
+display: { iast: pac, devanagari: पच् }
+class: dhatu
+gana: 1
+pada: ubhayapada
+set_anit: seT
+source: { dhatupatha: "bhvAdi (gaRa 1)" }
+traditional_meaning: "варити, готувати їжу"
+notes: >
+  Стандартний приклад у підручниках для ілюстрації kAraka
+  (pacati — хто варить, що варить, чим варить).

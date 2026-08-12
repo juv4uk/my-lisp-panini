@@ -1,0 +1,11 @@
+canonical: yuj
+display: { iast: yuj, devanagari: युज् }
+class: dhatu
+gana: 7
+pada: ubhayapada
+set_anit: seT
+source: { dhatupatha: "rudhAdi (gaRa 7)" }
+traditional_meaning: "з'єднувати, запрягати"
+notes: >
+  Історично важливий для лінгвістичної термінології (від нього —
+  "yoga"), приклад інфіксного vikaraRa класу 7.

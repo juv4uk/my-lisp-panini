@@ -1,0 +1,9 @@
+canonical: Sru
+display: { iast: śru, devanagari: श्रु }
+class: dhatu
+gana: 5
+pada: parasmaipada
+set_anit: seT
+source: { dhatupatha: "svAdi (gaRa 5)" }
+traditional_meaning: "чути"
+notes: "gaRa 5 — vikaraRa nu/no, окремий морфологічний патерн."

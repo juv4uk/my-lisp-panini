@@ -1,0 +1,11 @@
+canonical: BUj
+display: { iast: bhuj, devanagari: भुज् }
+class: dhatu
+gana: 7
+pada: ubhayapada
+set_anit: seT
+source: { dhatupatha: "rudhAdi (gaRa 7)" }
+traditional_meaning: "їсти; насолоджуватися (залежно від pada)"
+notes: >
+  Значення систематично залежить від parasmaipada/ātmanepada вибору —
+  pada-вибір несе семантичне навантаження, не лише морфологічне.
