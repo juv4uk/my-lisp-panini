@@ -1,0 +1,9 @@
+canonical: aDikaraRa
+iast: adhikaraṇa
+class: karaka
+definition: "вмістище/опора [дії]"
+defined_by:
+  - sutra: "1.4.45"
+    text: "ADAro 'DikaraRam"
+extending_sutras: ["1.4.46-1.4.48 (уточнення підтипів)"]
+caveats: "\"Location\" — розумне наближення, підрозділи 1.4.46-48 деталізують кілька підтипів, тут не розгорнуто."

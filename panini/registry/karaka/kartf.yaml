@@ -1,0 +1,11 @@
+canonical: kartf
+iast: kartṛ
+class: karaka
+definition: "той, хто незалежний [у виконанні дії]"
+defined_by:
+  - sutra: "1.4.54"
+    text: "svataMtraH kartA"
+relations: "Незалежність (svataMtra) визначається відносно конкретного дієслова й конструкції, не абсолютно."
+caveats: >
+  У каузативі "справжній" фізичний виконавець стає prayojya-kartf/hetu,
+  а не простим kartf.

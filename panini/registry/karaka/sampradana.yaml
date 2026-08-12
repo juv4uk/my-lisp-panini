@@ -1,0 +1,9 @@
+canonical: sampradAna
+iast: sampradāna
+class: karaka
+definition: "той, кого агент має на меті досягти за допомогою [прямого] об'єкта"
+defined_by:
+  - sutra: "1.4.32"
+    text: "karmaRA yam aBipraiti sa saMpradAnam"
+relations: "Означення посилається на karman — залежна категорія."
+caveats: "\"Recipient\" — зручне, але означення сформульоване через відношення до karman."

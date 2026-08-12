@@ -1,0 +1,12 @@
+canonical: apAdAna
+iast: apādāna
+class: karaka
+definition: "нерухома (фіксована) точка при відділенні [чогось від неї]"
+defined_by:
+  - sutra: "1.4.24"
+    text: "Druvam apAye 'pAdAnam"
+extending_sutras: ["1.4.25 (BIitrARAM Bayahetuh — джерело страху)"]
+caveats: >
+  "Source"/"ablative" працює для просторових випадків, але ламається
+  без спеціальних розширень (1.4.25 і подібні) для дієслів страху,
+  заборони, приховування тощо.

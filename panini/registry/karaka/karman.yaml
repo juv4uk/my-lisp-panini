@@ -1,0 +1,11 @@
+canonical: karman
+iast: karma
+class: karaka
+definition: "те, чого агент найбільше прагне досягти дією; або граматично так само пов'язане, навіть якщо не бажане"
+defined_by:
+  - sutra: "1.4.49"
+    text: "kartur IpsitatamaM karma"
+  - sutra: "1.4.51"
+    text: "taTAyuktaM cAnIpsitam"
+relations: "sampradAna (1.4.32) визначається через karman."
+caveats: "\"Прямий об'єкт\"/\"patient\" — спрощення; 1.4.51 виходить за межі \"бажаного результату\"."

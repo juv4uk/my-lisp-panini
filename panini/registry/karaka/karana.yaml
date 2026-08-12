@@ -1,0 +1,9 @@
+canonical: karaRa
+iast: karaṇa
+class: karaka
+definition: "найбільш ефективний засіб [досягнення дії]"
+defined_by:
+  - sutra: "1.4.42"
+    text: "sADakatamaM karaRam"
+relations: "Критерій — найефективніший серед можливих засобів."
+caveats: "\"Instrument\" — прийнятне наближення, але критерій вужчий за побутове поняття інструмента."
