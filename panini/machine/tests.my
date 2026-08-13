@@ -1,0 +1,46 @@
+;; Panini Machine Model v0.1 — Test Suite
+;; Formal tests for the Inference Engine and compiled rules.
+;; 
+;; To run these tests in the eventual My Lisp environment:
+;; (load "compiler.my")
+;; (load "meta.my")
+;; (load "rules.my")
+;; (run-tests)
+
+(defun assert-equal (expected actual msg)
+  (if (equal expected actual)
+      (print (concat "[PASS] " msg))
+      (print (concat "[FAIL] " msg " | Expected: " expected " | Got: " actual))))
+
+(defun test-eco-sandhi ()
+  (assert-equal '(a y) (apply-eco-sandhi 'e 'a) "eco sandhi: e + a -> ay")
+  (assert-equal '(a v) (apply-eco-sandhi 'o 'a) "eco sandhi: o + a -> av")
+  (assert-equal '(A y) (apply-eco-sandhi 'E 'a) "eco sandhi: E + a -> Ay")
+  (assert-equal '(A v) (apply-eco-sandhi 'O 'a) "eco sandhi: O + a -> Av"))
+
+(defun test-guna ()
+  (assert-equal 'o (apply-guRa 'u) "guna of u is o")
+  (assert-equal 'o (apply-guRa 'U) "guna of U is o")
+  (assert-equal 'e (apply-guRa 'i) "guna of i is e")
+  (assert-equal 'ar (apply-guRa 'f) "guna of f is ar"))
+
+(defun test-bavati-derivation ()
+  (let* ((final-prakriya (derive-Bavati))
+         (final-terms (prakriya-terms final-prakriya))
+         ;; The final text should be B + av + a + t + i = Bavati
+         (final-string (concat-terms final-terms)))
+    (assert-equal "Bavati" final-string "Bavati derivation matches expected output")))
+
+;; Future test: dadAti derivation
+;; Tests the conflict resolution (apavAda) for Class 3 reduplication (Slu).
+(defun test-dadati-derivation ()
+  (let* ((final-prakriya (derive-dadAti))
+         (final-string (concat-terms (prakriya-terms final-prakriya))))
+    (assert-equal "dadAti" final-string "dadAti derivation handles Slu reduplication")))
+
+(defun run-tests ()
+  (print "Running Panini Machine Tests...")
+  (test-eco-sandhi)
+  (test-guna)
+  (test-bavati-derivation)
+  (print "Tests complete."))
