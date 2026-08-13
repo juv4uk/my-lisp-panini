@@ -6,6 +6,11 @@
 **Вхід:** семантична намір — "він дає" (3-я особа, однина, теперішній час, parasmaipada)
 **Вихід:** `dadAti` (SLP1) = dadāti (IAST) = ददाति (Devanagari)
 
+> **Статус доказу:** це навчальна схема, а не complete executable trace.
+> Підтверджені джерельні межі для `Slu → dvirvacana`, `abhyAsa` і `hrasva`
+> ведуться окремо в `research/dadati-*-source-audit.md`. Рядок із `dadAti`
+> нижче означає observed surface form, а не доведений останній transition.
+
 ---
 
 ## Початковий Стан (Input)
@@ -141,7 +146,7 @@ dA (довгий a) → da (короткий a)
   5  | dA + [Slu] + ti| 2.4.75   | Заміна Śap на Ślu (клас 3)
   6  | dA + dA + ti   | 6.1.10   | Подвоєння (редуплікація) через Ślu
   7  | da + dA + ti   | 7.4.59   | Скорочення голосної в abhyAsa
-     | dadAti         |          | Фінальна форма
+     | dadAti         |          | Спостережена surface form; transition не доведено
 ```
 
 ---
