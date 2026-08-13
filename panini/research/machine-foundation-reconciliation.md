@@ -2,115 +2,120 @@
 
 ## English
 
-### Purpose and boundary
+### Status — reconciled with an explicit boundary (2026-08-14)
 
-This read-only reconciliation compares the committed Panini-machine model with
-the completed `panini-foundation-v0.1` materials. It does not change machine
-code, My Lisp, or the status of a historical claim.
+`panini/machine/` is an executable **machine-fixture** prototype. It is not a
+certified implementation of Pāṇini, and it is not an approved My Lisp language
+integration.
 
-### Findings on 2026-08-13
+### Observed machine facts
 
-1. `rules.my` now contains a semantic bridge with `make-semantic-call`,
-   `semantic-to-prakriya`, and `DHATU_DA` / `KARAKA_KARTR` identifiers.
-2. The bridge is labelled as compatible with My Lisp `karaka.rs`, but the My
-   Lisp migration materials state that parser transformation and evaluator
-   semantics are P5 work and require the foundation gate review.
-3. The bridge uses the three-part shorthand `(def name (parameters) ...)`.
-   Independent WSL execution established that the current My Lisp runtime
-   accepts two-part `(def name expression)` and rejects this shorthand.
-4. `tests.my` still begins with a checkout-specific Windows loader path, so
-   the new dadAti and kArayati assertions are not executable evidence in WSL.
+- The WSL acceptance entry point loads a local macro-free prelude and then the
+  machine modules. It completed 22 assertions in the current My Lisp VM.
+- The `dadAti` fixture records an explicit machine relation: 2.4.75 names
+  2.4.72 as `utsarga`; the resolver emits `resolved-by / apavAda / 2.4.75`.
+- The fixture makes Slu-related state tags observable. It does not claim that
+  this short trace is a complete historical derivation.
+- Current executable modules do not expose the earlier `SemanticCall`,
+  `DHATU_DA`, or `KARAKA_KARTR` bridge described by a previous review. Those
+  statements must not be used as a description of the current executable path.
 
-### Reconciliation result
+### Three-level boundary
 
-The model is a useful **machine-design experiment**, but it cannot currently
-be described as either an executable My Lisp integration or an approved
-representation of Pāṇini. It must be documented as `[MY-LISP HYPOTHESIS]`
-until both independent gates pass:
+- **[PANINI]** The corpus and its commentarial traditions remain the source for
+  the meaning, applicability, and interaction of sūtra.
+- **[INTERPRETATION]** An `utsarga`/`apavAda` relation can be represented as an
+  explicit implementation relation; this is not by itself an exhaustive
+  account of conflict resolution.
+- **[MY-LISP HYPOTHESIS]** Immutable terms, tags, and a small selection trace
+  are useful machine experiments. They are not My Lisp primitives and must not
+  be promoted merely because the fixture runs.
 
-- `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW`; and
-- `PANINI-MACHINE-TEST-EXECUTION-COMPAT`.
+### Gate result
 
-### Required next handoff
-
-The machine maintainer should either isolate the bridge as a non-executed
-design fixture or, after the two gates, implement it against My Lisp's
-confirmed parser/evaluator surface. The verification owner must then record a
-real WSL/Guix command that loads the suite and reaches both derivation tests.
-The durable dependent task is
-`PANINI-MACHINE-SEMANTIC-BRIDGE-GATE-CORRECTION`.
+`PANINI-MACHINE-TEST-EXECUTION-COMPAT` is now supported by real WSL execution.
+It does **not** close `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW`: parser and
+evaluator integration remain separate work. A future end-to-end derivation
+must supply sūtra/commentary provenance, candidate-rule evidence, visibility,
+conflict evidence, each state transition, and an explicit unresolved result
+where the sources do not decide.
 
 ## Українська
 
-### Мета й межа
+### Статус — звірено з явною межею (2026-08-14)
 
-Це read-only звірка committed Panini-machine з завершеними матеріалами
-`panini-foundation-v0.1`. Вона не змінює machine-код, My Lisp або статус
-історичного твердження.
+`panini/machine/` є виконуваним прототипом **machine-fixture**. Це не
+сертифікована реалізація Паніні й не затверджена мовна інтеграція My Lisp.
 
-### Знахідки станом на 2026-08-13
+### Спостережувані факти машини
 
-1. У `rules.my` тепер є semantic bridge: `make-semantic-call`,
-   `semantic-to-prakriya` та ідентифікатори `DHATU_DA` / `KARAKA_KARTR`.
-2. Bridge позначено як сумісний з My Lisp `karaka.rs`, але матеріали міграції
-   My Lisp відносять parser transform і evaluator semantics до P5, що потребує
-   foundation gate review.
-3. Bridge використовує тричастинний shorthand `(def name (parameters) ...)`.
-   Незалежне виконання у WSL встановило: поточний My Lisp приймає двочастинний
-   `(def name expression)` і відхиляє цей shorthand.
-4. `tests.my` все ще починається з Windows loader path конкретного checkout,
-   тому нові dadAti та kArayati assertions не є executable evidence у WSL.
+- WSL acceptance entrypoint завантажує локальний macro-free prelude, а потім
+  machine-модулі. У поточній My Lisp VM він завершив 22 assertions.
+- Fixture `dadAti` фіксує явне машинне відношення: 2.4.75 називає 2.4.72 як
+  `utsarga`; resolver видає `resolved-by / apavAda / 2.4.75`.
+- Fixture робить Slu-пов'язані state tags спостережуваними. Він не стверджує,
+  що цей короткий trace є повною історичною деривацією.
+- Поточні виконувані модулі не містять раніше описаного bridge `SemanticCall`,
+  `DHATU_DA` або `KARAKA_KARTR`. Ті попередні твердження не можна вживати як
+  опис нинішнього виконуваного шляху.
 
-### Результат звірки
+### Трирівнева межа
 
-Модель корисна як **експеримент машинного дизайну**, але нині її не можна
-описувати ані як виконувану інтеграцію My Lisp, ані як затверджене представлення
-Паніні. До проходження обох незалежних gate вона має бути позначена
-`[MY-LISP HYPOTHESIS]`:
+- **[PANINI]** Корпус і традиції коментарів лишаються джерелом значення,
+  застосовності та взаємодії sūtra.
+- **[INTERPRETATION]** Відношення `utsarga`/`apavAda` можна подавати як явне
+  відношення реалізації; само по собі воно не є вичерпним описом вирішення
+  конфліктів.
+- **[MY-LISP HYPOTHESIS]** Незмінні terms, tags і малий selection trace —
+  корисні машинні експерименти. Це не primitives My Lisp, і їх не можна
+  підвищувати до такого статусу лише тому, що fixture запускається.
 
-- `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW`; і
-- `PANINI-MACHINE-TEST-EXECUTION-COMPAT`.
+### Результат gate
 
-### Наступний handoff
-
-Власник machine має або ізолювати bridge як невиконуваний design fixture, або
-після двох gate реалізувати його за підтвердженою parser/evaluator-поверхнею
-My Lisp. Власник верифікації після того фіксує реальну WSL/Guix команду, що
-завантажує suite та доходить до обох derivation tests. Створена durable задача:
-`PANINI-MACHINE-SEMANTIC-BRIDGE-GATE-CORRECTION`.
+`PANINI-MACHINE-TEST-EXECUTION-COMPAT` тепер підтверджено реальним виконанням
+у WSL. Це **не** закриває `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW`: інтеграція
+parser і evaluator лишається окремою роботою. Майбутня end-to-end деривація
+мусить подати provenance sūtra/коментаря, evidence кандидатних правил,
+visibility, conflict evidence, кожен state transition і явний unresolved
+результат там, де джерела не дають відповіді.
 
 ## Deutsch
 
-### Zweck und Grenze
+### Status — mit expliziter Grenze abgeglichen (2026-08-14)
 
-Dieser Read-only-Abgleich vergleicht das commitete Panini-Machine-Modell mit
-`panini-foundation-v0.1`. Er ändert weder Machine-Code noch My Lisp oder den
-Status einer historischen Behauptung.
+`panini/machine/` ist ein ausführbarer **Machine-Fixture**-Prototyp. Es ist
+weder eine zertifizierte Pāṇini-Implementierung noch eine bestätigte
+My-Lisp-Sprachintegration.
 
-### Befunde vom 2026-08-13
+### Beobachtete Maschinenfakten
 
-1. `rules.my` enthält nun `make-semantic-call`, `semantic-to-prakriya` sowie
-   `DHATU_DA` / `KARAKA_KARTR`.
-2. Die Bridge wird als kompatibel mit My Lisp `karaka.rs` bezeichnet; die
-   My-Lisp-Migration ordnet Parser-Transformation und Evaluator-Semantik jedoch
-   P5 nach dem Foundation-Gate zu.
-3. Die Bridge nutzt `(def name (parameters) ...)`, obwohl das aktuelle My Lisp
-   nur `(def name expression)` akzeptiert.
-4. `tests.my` nutzt weiterhin einen checkout-spezifischen Windows-Laderpfad;
-   daher sind dadAti- und kArayati-Assertions in WSL kein ausführbarer Beleg.
+- Der WSL-Acceptance-Einstiegspunkt lädt ein lokales makrofreies Prelude und
+  danach die Machine-Module. In der aktuellen My-Lisp-VM liefen 22 Assertions.
+- Das `dadAti`-Fixture hält eine explizite Maschinenrelation fest: 2.4.75
+  benennt 2.4.72 als `utsarga`; der Resolver liefert
+  `resolved-by / apavAda / 2.4.75`.
+- Das Fixture macht Slu-bezogene Zustands-Tags sichtbar. Es behauptet nicht,
+  dass dieser kurze Trace eine vollständige historische Derivation sei.
+- Die aktuellen ausführbaren Module enthalten nicht die früher beschriebene
+  `SemanticCall`-/`DHATU_DA`-/`KARAKA_KARTR`-Bridge. Jene Aussagen dürfen den
+  heutigen ausführbaren Pfad nicht beschreiben.
 
-### Ergebnis
+### Dreiebenengrenze
 
-Das Modell ist ein nützliches **Machine-Design-Experiment**, derzeit aber
-weder eine ausführbare My-Lisp-Integration noch eine bestätigte Pāṇini-
-Repräsentation. Bis beide Gates bestanden sind, gehört es unter
-`[MY-LISP HYPOTHESIS]`: `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW` und
-`PANINI-MACHINE-TEST-EXECUTION-COMPAT`.
+- **[PANINI]** Korpus und Kommentierungstraditionen bleiben die Quelle für
+  Bedeutung, Anwendbarkeit und Wechselwirkung der sūtra.
+- **[INTERPRETATION]** Eine `utsarga`/`apavAda`-Relation kann als explizite
+  Implementierungsrelation dargestellt werden; sie ist allein keine
+  vollständige Konfliktauflösung.
+- **[MY-LISP HYPOTHESIS]** Unveränderliche Terms, Tags und ein kleiner
+  Auswahltrace sind nützliche Maschinenexperimente. Sie sind keine My-Lisp-
+  Primitives und werden nicht allein durch ein laufendes Fixture dazu.
 
-### Nächster Handoff
+### Gate-Ergebnis
 
-Der Machine-Verantwortliche soll die Bridge entweder als nicht ausführbare
-Design-Fixture isolieren oder sie nach beiden Gates gegen die bestätigte
-My-Lisp-Parser/Evaluator-Oberfläche implementieren. Danach muss eine echte
-WSL/Guix-Ausführung beide Derivationstests erreichen. Die abhängige Aufgabe
-heißt `PANINI-MACHINE-SEMANTIC-BRIDGE-GATE-CORRECTION`.
+`PANINI-MACHINE-TEST-EXECUTION-COMPAT` wird nun durch echte WSL-Ausführung
+gestützt. Dies schließt `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW` **nicht**:
+Parser- und Evaluatorintegration bleiben getrennte Arbeit. Eine spätere
+End-to-End-Derivation muss Sūtra-/Kommentarprovenienz, Kandidatenregeln,
+Sichtbarkeit, Konfliktevidenz, jeden Zustandsübergang und ein explizites
+`unresolved` bei unentscheidbaren Quellen liefern.
