@@ -141,6 +141,14 @@
 ;; ==========================================
 
 ;; Rule 7.3.84 — sArvaDAtukarDADAtukayoH (Guṇa)
+;; provenance (see specs/rule-provenance-schema.md):
+;;   id (7.3.84)  = sutra — verified in PANINI-SUTRA-CITATION-VERIFICATION
+;;   :type 'vidhi = my-lisp-hypothesis (our own vidhi/niyama/atidesa/
+;;                  paribhasa classification, ontology.md #6 — the sutra
+;;                  text itself does not label itself "vidhi")
+;;   :scope 'antaraMga = traditional-principle (paribhasha.md P3, from
+;;                  commentarial tradition, not from 7.3.84's own text)
+;;   :match/:action     = implementation-convenience
 (def-panini-rule "7.3.84"
   :type 'vidhi
   :scope 'antaraMga
@@ -157,6 +165,11 @@
         (if mapped (cdr mapped) sound))
       sound))
 
+;; provenance (see specs/rule-provenance-schema.md):
+;;   id (6.1.78) = sutra — verified in PANINI-EXAMPLES-DERIVATIONS-VERIFY
+;;   :type 'vidhi = my-lisp-hypothesis (same caveat as 7.3.84 above)
+;;   :scope 'bAhiraMga = traditional-principle (paribhasha.md P3)
+;;   eco-map/apply-eco-sandhi = implementation-convenience
 (def-panini-rule "6.1.78"
   :type 'vidhi
   :scope 'bAhiraMga

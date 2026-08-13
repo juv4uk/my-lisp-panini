@@ -36,7 +36,25 @@
 ;; ==========================================
 ;; A rule is an a-list:
 ;;   id      — SLP1 sutra reference, e.g. "7.3.84"
-;;   source  — azwADyAyI | DAtupAWaH | vArttika | ...
+;;   source  — provenance category, per specs/rule-provenance-schema.md
+;;             (PANINI-RULE-PROVENANCE-SCHEMA). One of:
+;;               sutra                    — direct Astadhyayi citation
+;;               dhatupatha               — Dhatupatha entry, not Astadhyayi
+;;               varttika                 — Katyayana's addendum (unused so far)
+;;               commentary               — Kasika/Mahabhasya/etc (unused so far)
+;;               traditional-principle    — inferred from commentarial
+;;                                           tradition, not from a single
+;;                                           sutra's own text (e.g. the
+;;                                           antaraMga/bAhiraMga scope
+;;                                           classification below, from
+;;                                           paribhasha.md P3)
+;;               implementation-convenience — our own engineering choice
+;;               my-lisp-hypothesis       — our own architectural hypothesis
+;;             IMPORTANT: an `id` being a real sutra number (source=sutra)
+;;             does NOT make every other field on the same rule also
+;;             `source=sutra` -- `scope`/`type` on a rule typically have
+;;             their OWN, different provenance (see the annotated examples
+;;             in rules.my for "7.3.84"/"6.1.78").
 ;;   scope   — antaraMga | bAhiraMga (default: bAhiraMga)
 ;;   type    — viDi | paribhAzA (default: viDi)
 ;;   nitya   — t | () (is this rule obligatory regardless of competition?)
