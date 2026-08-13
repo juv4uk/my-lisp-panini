@@ -57,12 +57,14 @@ TENSE: vartamAna (теперішній час)
 "It зникає."
 
 ```
-METADATA на вузлі: (p-it t)    ← залишається як тег!
+Designations у trace: `it(final-p)` за 1.3.3; lopa за 1.3.9.
 Стан: BU + ti
 ```
 
 > [!NOTE]
-> **Ключовий момент:** `p` зникає з тексту, але залишає інформацію у метаданих. Це підтверджує нашу Гіпотезу №1: `it` = Compiler Metadata.
+> **Ключовий момент:** `p` зникає із surface form, але факт його
+> `it`-designation і застосування lopa мають лишитися окремими
+> provenance-bearing trace records. Це не ототожнює `it` із compiler metadata.
 
 ---
 
@@ -80,20 +82,22 @@ METADATA на вузлі: (p-it t)    ← залишається як тег!
 
 ## Крок 5 — It-видалення з `Sap`
 
-**Сутра: 1.3.7** `cutuS ca`
-"Звуки `cu~` та `wu~` (тобто `c j J` та `w Q T D`) є `it`, якщо вони на початку суфікса."
+**Сутра: 1.3.8** `laSakvatadDite`
+"Початкові `l`, `S` і звуки ka-варги в нетаддгіта-суфіксі є `it`."
 
-`Sap`: початковий `S` — це `S`, що належить до `Sar`-класу; за правилом 1.3.7 він є it → залишає тег `S-it` (позначка sārvadhātuka).
+`Sap`: початковий `S` є `it` за 1.3.8. Кінцевий `p` окремо є `it` за
+1.3.3 `halantyam`.
 
-**Сутра: 1.3.3** `halantyam`
-`p` — кінцевий приголосний → it.
+**Сутра: 3.4.113** `tiNSitsArvaDAtukam`
+Tiṅ- і `Sit`-суфікси отримують designation `sArvaDAtuka`. Це designation
+належить affix occurrence, а не буквальному surface `a`.
 
 **Сутра: 1.3.9** `tasya lopaH`
 
 ```
-METADATA на вузлі Sap:
-  (S-it t)    ← позначає суфікс як sArvaDAtukaM (важливо для крок 6!)
-  (p-it t)
+Trace records для affix occurrence `Sap`:
+  it(initial-S), it(final-p), sArvaDAtuka
+  ← кожен із власним sutra/provenance record
 Стан: BU + a + ti
 ```
 
@@ -101,11 +105,13 @@ METADATA на вузлі Sap:
 
 ## Крок 6 — Гуна-заміна (Guṇa)
 
-**Сутра: 7.3.84** `sArvaDAtukarDADAtukayoH`
+**Сутра: 7.3.84** `sArvaDAtukArDaDAtukayoH`
 
 "Перед sārvadhātuka або ārdhadhātuka суфіксом — кінцевий голосний основи (aṅga) отримує guṇa-заміну."
 
-Суфікс `a` (що залишився від Sap) є sārvadhātuka (бо він успадкував тег `S-it`). Тому до `BU` застосовується guṇa:
+Affix occurrence, чия surface form тепер `a`, має designation
+`sArvaDAtuka` за 3.4.113 через початковий `S` у `Sap`. Тому для цього
+окремо простеженого interpretation path до `BU` застосовується guṇa:
 
 **Сутра: 1.1.2** `adeng guRaH`
 "Замінники `a`, `e`, `o` є guṇa."
@@ -146,9 +152,9 @@ Bo + a + ti
 -----|----------------|----------|----------------------------------
   1  | BU + laT       | 3.2.123  | Вибір лакари теперішнього часу
   2  | BU + tip       | 3.4.78   | Вибір особового закінчення
-  3  | BU + ti        | 1.3.3    | it-видалення з tip (p → тег)
+  3  | BU + ti        | 1.3.3, 1.3.9 | it-designation і lopa з tip
   4  | BU + Sap + ti  | 3.1.68   | Додавання вікарани Śap (клас 1)
-  5  | BU + a + ti    | 1.3.9    | it-видалення з Sap (S,p → теги)
+  5  | BU + a + ti    | 1.3.8, 1.3.3, 1.3.9, 3.4.113 | it/lopa та sArvaDAtuka-designation Sap
   6  | Bo + a + ti    | 7.3.84   | Гуна: U → o (перед sArvaDAtukaM)
   7  | Bavati         | 6.1.78   | Сандгі: o + a → av + a
 ```
@@ -174,23 +180,24 @@ Bo + a + ti
     (select-tin tip))
 
   (step 3 :sutra "1.3.3 + 1.3.9"
-    (mark-it tip :sounds '(p))
-    (remove-it tip)
-    ;; Залишається тег: (p-it t) на вузлі
+    (record-designation tip :it 'p)
+    (remove-marked-sound tip 'p)
+    ;; machine record, не визначення it як metadata
     )
 
   (step 4 :sutra "3.1.68"
     (add-vikarana Sap :between dhAtu tin))
 
-  (step 5 :sutra "1.3.7 + 1.3.3 + 1.3.9"
-    (mark-it Sap :sounds '(S p))
-    (remove-it Sap)
-    ;; Залишається тег: (sArvaDAtukaM t)
+  (step 5 :sutra "1.3.8 + 1.3.3 + 1.3.9 + 3.4.113"
+    (record-designation Sap :it 'S :basis "1.3.8")
+    (record-designation Sap :it 'p :basis "1.3.3")
+    (remove-marked-sounds Sap '(S p))
+    (record-designation Sap :sArvaDAtuka :basis "3.4.113")
     )
 
   (step 6 :sutra "7.3.84"
-    ;; Перевіряємо: чи суфікс є sArvaDAtukaM?
-    (when (has-tag next-suffix :sArvaDAtukaM)
+    ;; Перевіряємо evidence-bound designation affix occurrence, не tag surface `a`.
+    (when (has-designation next-suffix :sArvaDAtuka)
       (apply-guRa dhAtu)))   ;; U → o
 
   (step 7 :sutra "6.1.78"
@@ -201,7 +208,12 @@ Bo + a + ti
 
 ## Важливі спостереження для Rule Engine
 
-1. **Порядок є критичним:** Кроки 3 і 5 (видалення it) **повинні відбуватись** до кроку 6 (guṇa), бо guṇa залежить від тегу `sArvaDAtukaM`, який встановлюється при it-видаленні.
-2. **Теги — це анотації між кроками:** `p-it` і `S-it` — це не фінальний результат, а канал передачі інформації між правилами. Саме тому простого `if-else` недостатньо.
+1. **Порядок є критичним:** Кроки 3 і 5 (`it`-designations і lopa)
+   **повинні відбуватись** до кроку 6 (guṇa), бо цей шлях guṇa залежить
+   від окремо простеженого `sArvaDAtuka` designation affix occurrence.
+2. **Designations мають окремий evidence trace:** `it(initial-S)`,
+   `it(final-p)` і `sArvaDAtuka` — не фінальний результат і не готові VM
+   tags. Вони є окремими claims між кроками, тому простого `if-else`
+   недостатньо.
 3. **Upadesha vs Text:** `BU` (upadesha) незмінний протягом всієї деривації. Мутує лише `text` поле: `BU → Bo → Bav`.
 4. **Кожне правило — незалежний об'єкт:** Жодне з правил "не знає" про інші — воно лише перевіряє поточний стан і застосовує трансформацію.
