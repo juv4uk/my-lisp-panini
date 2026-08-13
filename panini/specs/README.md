@@ -7,6 +7,8 @@ The current Foundation milestone is
 [panini-foundation-v0.1.md](panini-foundation-v0.1.md); the bridge to a machine
 model remains explicitly provisional in [bridge-to-my-lisp.md](bridge-to-my-lisp.md).
 Read [gate-review.md](gate-review.md) before widening implementation scope.
+The [specification map](specification-map.md) is the trilingual route through
+the full contract set.
 
 ## Українська
 
@@ -15,6 +17,8 @@ Read [gate-review.md](gate-review.md) before widening implementation scope.
 [panini-foundation-v0.1.md](panini-foundation-v0.1.md); міст до машинної моделі
 залишається явно попереднім у [bridge-to-my-lisp.md](bridge-to-my-lisp.md).
 Перед розширенням обсягу реалізації прочитайте [gate-review.md](gate-review.md).
+Тримовний маршрут повного набору контрактів — у
+[specification map](specification-map.md).
 
 ## Deutsch
 
@@ -24,3 +28,5 @@ Verträge. Der aktuelle Foundation-Meilenstein ist
 Maschinenmodell bleibt in [bridge-to-my-lisp.md](bridge-to-my-lisp.md)
 ausdrücklich vorläufig. Lies [gate-review.md](gate-review.md), bevor der
 Umfang der Implementierung erweitert wird.
+Die [Spezifikationskarte](specification-map.md) ist der dreisprachige Weg
+durch den vollständigen Vertragssatz.
