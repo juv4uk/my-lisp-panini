@@ -1,6 +1,19 @@
 # Pāṇini Grammar Reference
 ## A working reference for the Sanskrit semantic migration (SANSKRIT-P1..P9)
 
+> **Erratum (added 2026-08-13, PANINI-SLP1-LEXICON-ALIGNMENT / cross-referenced
+> against `my-lisp-panini`'s `panini/research/dhatupatha-verification.md` and
+> `panini/foundation/terminology.md#знайдені-й-виправлені-розбіжності`):**
+> §8.2 below states the sibilant convention as `ś=z, ṣ=S`. This is backwards.
+> Verified against `vidyut-prakriya/src/sounds.rs` (articulation-place
+> classification, the most authoritative source checked) and independently
+> matching `my-lisp`'s own `crates/my-lisp/src/semantic/transliteration.rs`
+> (verified 2026-08-12 against Wikipedia's SLP1 article): the correct mapping
+> is **`ś = S`, `ṣ = z`**. `my-lisp-panini` already found and corrected this
+> (3 dhātu were briefly mis-transliterated under the wrong rule before being
+> caught and reverted). This copy is left otherwise unedited — treat §8.2's
+> sibilant line as superseded by this note, not as a live claim.
+
 Author: engineer-1
 Date: 2026-08-12
 Audience: my-lisp-1 (Sanskrit phases), cml (IR/backend), swarm at large.
