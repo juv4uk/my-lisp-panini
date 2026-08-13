@@ -1,5 +1,28 @@
 # kAraka counterexamples: why not subject/object, agent/patient
 
+## English
+
+**Status:** v0.1 (`PANINI-KARAKA-COUNTEREXAMPLES`). These verified examples
+show why kāraka cannot be reduced to subject/object or agent/patient. Passive
+voice separates `kartf` from grammatical subject; causatives split intuitive
+agency; `karman` can cover unintended objects and distinct double-accusative
+relations; and `apAdAna` extends beyond physical separation. Modern role labels
+may be explanatory glosses only, never unconditional equivalents. The detailed
+Ukrainian examples retain their sūtra-evidence limits.
+
+## Deutsch
+
+**Status:** v0.1 (`PANINI-KARAKA-COUNTEREXAMPLES`). Diese geprüften Beispiele
+zeigen, warum kāraka nicht auf Subjekt/Objekt oder Agent/Patient reduziert
+werden kann. Das Passiv trennt `kartf` vom grammatischen Subjekt; Kausative
+spalten intuitive Agency; `karman` kann unbeabsichtigte Objekte und
+verschiedene Doppelakkusativ-Relationen umfassen; `apAdAna` reicht über
+physische Trennung hinaus. Moderne Rollenbezeichnungen dürfen nur erklärende
+Glossen sein, niemals uneingeschränkte Entsprechungen. Die ukrainischen
+Detailbeispiele bewahren ihre Grenzen der Sūtra-Evidenz.
+
+## Українська
+
 Статус: v0.1 (`PANINI-KARAKA-COUNTEREXAMPLES`). Компактний реєстр —
 доповнює [`karaka.md`](karaka.md), не повторює його.
 
