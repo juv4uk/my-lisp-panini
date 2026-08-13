@@ -308,17 +308,25 @@
 
 (def semantic-call-predicate (call) (cdr (assoc 'predicate call)))
 
+;; Helper to fetch dhatu metadata from the central registry
+(def get-dhatu-entry (dhatu-id)
+  (cdr (assoc dhatu-id *test-dhatu-registry*)))
+
 ;; Maps a semantic DHATU_* predicate to its canonical initial terms
 (def semantic-to-prakriya (call)
   (let ((pred (semantic-call-predicate call)))
     (cond
       ((eq pred 'DHATU_DA)
-       (let* ((dhatu    (make-term '(d A) 'dhAtu))
-              (dhatu-c3 (term-add-tag dhatu 'juhotyAdi))
+       ;; Look up structural properties from the single-source-of-truth registry
+       (let* ((entry    (get-dhatu-entry 'dA))
+              (d-class  (cdr (assoc 'class entry)))
+              (dhatu    (make-term '(d A) 'dhAtu))
+              ;; Dynamically tag juhotyAdi if class 3
+              (dhatu-tagged (if (eq d-class 3) (term-add-tag dhatu 'juhotyAdi) dhatu))
               (vikarana (make-term '(S a p) 'vikarana))
               (vk-tagged (term-add-tag (term-add-tag vikarana 'Sap) 'sArvaDAtukaM))
               (tin       (make-term '(t i) 'tiN)))
-         (make-prakriya (list dhatu-c3 vk-tagged tin))))
+         (make-prakriya (list dhatu-tagged vk-tagged tin))))
       (t (error "Unknown semantic predicate")))))
 
 (def derive-dadAti ()
