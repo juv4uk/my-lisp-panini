@@ -1,131 +1,128 @@
 # Machine-rule provenance schema
 
-Статус: v0.1 (`PANINI-RULE-PROVENANCE-SCHEMA`).
+Status: v0.1 (`PANINI-RULE-PROVENANCE-SCHEMA`).
 
-## Проблема
+## English — reference translation
 
-`panini/machine/rules.my` визначає правила через `def-panini-rule` з
-полями `:type 'vidhi` і `:scope 'antaraMga`/`'bAhiraMga` поряд із
-рядковим sūtra-ID (напр. `"7.3.84"`). `panini/machine/meta.my` окремо
-має ще недороблене поле `source` у `make-rule` (коментар: `azwADyAyI |
-DAtupAWaH | vArttika | ...`, три крапки — таксономія неповна) — і жоден
-реальний виклик `make-rule` в кодовій базі його не заповнює.
+### Problem and rule
 
-Наслідок: sūtra-ID (`"7.3.84"`) — це реальна, перевірювана цитата з
-Aṣṭādhyāyī. Але `:scope 'antaraMga` на цьому ж правилі — це **наша
-власна класифікація** за критерієм `paribhasha.md` (P3), не щось, що
-sūtra 7.3.84 сам стверджує про себе. Без явного розрізнення обидва
-типи тверджень виглядають однаково авторитетно в коді — саме той
-ризик, проти якого `AGENTS.md` §21 попереджає на рівні документації,
-але який досі не мав відповідника на рівні коду.
+`panini/machine/rules.my` records a sūtra identifier alongside fields such as
+`:type`, `:scope`, `:match`, and `:action`. A verified identifier, for example
+`"7.3.84"`, is a claim about a textual citation; it does **not** automatically
+make every neighbouring field a sūtra claim. Each field has separate provenance.
+Without that separation, implementation choices and interpretive classifications
+look as authoritative as the cited text.
 
-## Схема: 7 категорій походження
+### Seven provenance categories
 
-Розширює `Rule`-enum Vidyut (`Ashtadhyayi`/`Varttika`/`Dhatupatha`/
-`Unadipatha`/`Linganushasana`/`Phit`/`Kashika`/`Kaumudi`/`Anyatra` —
-див. [`research/vidyut-analysis.md`](../research/vidyut-analysis.md))
-трьома категоріями, яких Vidyut не потребує (бо не документує власні
-архітектурні рішення як окремий тип твердження), але які прямо потрібні
-нашій методології (`AGENTS.md` §21):
-
-| Категорія | Що це | Приклад |
+| Category | Meaning | Example |
 |---|---|---|
-| `sutra` | Пряма цитата з тексту Aṣṭādhyāyī, з номером | `"7.3.84"` |
-| `dhatupatha` | Запис із Dhātupāṭha (окремий традиційний текст, не сама Aṣṭādhyāyī) | `"01.0001"` (BU) |
-| `varttika` | Доповнення Кātyāyana до sūtra | *(поки не використано)* |
-| `commentary` | Коментар (Kāśikā, Mahābhāṣya, Kaumudī тощо) | *(поки не використано)* |
-| `traditional-principle` | Метапринцип, виведений з традиції коментаторства, не сама sūtra напряму — напр. `antaraNga > bAhiraNga`, `nitya > anitya` з `paribhasha.md` | `antaraMga`-класифікація P3 |
-| `implementation-convenience` | Інженерне рішення заради реалізації — не Paninian факт і не традиційний принцип | вибір структури даних, формат a-list |
-| `my-lisp-hypothesis` | Наша власна архітектурна гіпотеза, явно позначена як така | "kāraka = типізовані ребра графа" |
+| `sutra` | Direct Aṣṭādhyāyī citation with identifier | `"7.3.84"` |
+| `dhatupatha` | Dhātupāṭha record, distinct from Aṣṭādhyāyī | `"01.0001"` |
+| `varttika` | Kātyāyana supplement to a sūtra | not yet used |
+| `commentary` | Kāśikā, Mahābhāṣya, Kaumudī, or similar | not yet used |
+| `traditional-principle` | Traditional metaprinciple, not a direct sūtra claim | `antaraMga > bAhiraMga` |
+| `implementation-convenience` | Engineering choice | a-list representation |
+| `my-lisp-hypothesis` | Explicit project architecture hypothesis | kāraka as typed graph edges |
 
-**Ключове правило:** правило з `sutra`-ID **не отримує автоматично**
-статус `sutra` для *кожного* свого поля. `:type`/`:scope`/`:action` —
-кожне з них має власне походження, яке потрібно перевіряти окремо, а
-не наслідувати від номера sūtra в тому самому виразі.
+The first four categories describe external traditions; the last three describe
+interpretation or project machinery. The classification itself is a
+`my-lisp-hypothesis`: it extends Vidyut's source enum to make our own decisions
+visible. Its completeness remains open.
 
-## Застосування до наявних правил (анотації, не переробка)
+### Applied examples
 
-### `rules.my`, правило `"7.3.84"`
+For `rules.my` rule `"7.3.84"`, the identifier is `sutra`; its `:type` is a
+`my-lisp-hypothesis`; `:scope 'antaraMga` is a `traditional-principle`; and
+the `:match`/`:action` notation is `implementation-convenience`. For `"6.1.78"`
+the same distinction applies: the verified identifier is `sutra`, while
+`bAhiraMga` scope and `eco-map` machinery have their own provenance.
 
-```lisp
-;; Rule 7.3.84 — sArvaDAtukarDADAtukayoH (Guṇa)
-;; provenance:
-;;   id     = sutra        (7.3.84, звірено — PANINI-SUTRA-CITATION-VERIFICATION,
-;;                           хоча сам текст цитати в rules.my не перевірявся окремо)
-;;   :type  = my-lisp-hypothesis (vidhi/niyama/atideSa/paribhAzA —
-;;                           класифікація типів sūtra з ontology.md §6,
-;;                           САМЕ це правило не позначене в первинному
-;;                           тексті як "vidhi" явним словом — це наша
-;;                           типологічна класифікація)
-;;   :scope = traditional-principle (antaraMga — критерій з paribhasha.md
-;;                           P3, який спирається на коментаторську
-;;                           традицію (Unive.it/Kiparsky), не на сам
-;;                           текст sūtra 7.3.84)
-;;   :match/:action = implementation-convenience (форма запису умови й
-;;                           дії — наше архітектурне рішення)
-(def-panini-rule "7.3.84"
-  :type 'vidhi
-  :scope 'antaraMga
-  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sArvaDAtukaM)))
-  :action '(replace-last ?t1 (apply-guRa (last-char ?t1))))
-```
+`meta.my::make-rule` may eventually expose a `source` field using precisely
+these category names. This document does **not** alter that macro, its callers,
+or `compiler.my`; a signature change requires a separate, compatibility-aware
+task.
 
-### `rules.my`, правило `"6.1.78"`
+## Українська — нормативна
 
-```lisp
-;; Rule 6.1.78 — eco 'yavāyāvaḥ (Sandhi)
-;; provenance:
-;;   id     = sutra (6.1.78, звірено — PANINI-EXAMPLES-DERIVATIONS-VERIFY,
-;;                    текст sūtra точно збігається з першоджерелом)
-;;   :type  = my-lisp-hypothesis (те саме застереження, що й вище)
-;;   :scope = traditional-principle (bAhiraMga — той самий P3-критерій)
-;;   eco-map, apply-eco-sandhi = implementation-convenience
-(def-panini-rule "6.1.78" ...)
-```
+### Проблема та правило
 
-### `meta.my`, `make-rule` — уточнена таксономія `source`
+`panini/machine/rules.my` записує ідентифікатор sūtra поруч із полями `:type`,
+`:scope`, `:match` і `:action`. Перевірений ідентифікатор, наприклад `"7.3.84"`,
+є твердженням про текстову цитату; він **не** надає автоматично статус sūtra
+кожному сусідньому полю. Кожне поле має окреме provenance. Без такого
+розрізнення інженерні рішення та інтерпретаційні класифікації виглядають так
+само авторитетно, як цитований текст.
 
-Було: `source  — azwADyAyI | DAtupAWaH | vArttika | ...` (неповний
-список, три крапки). Стало (без зміни коду в цій задачі — лише
-документація очікуваних значень, реалізація полишена для окремої
-задачі):
+### Сім категорій походження
 
-```lisp
-;; source — одне з:
-;;   'sutra                     — sutra-id (напр. "7.3.84")
-;;   'dhatupatha                — dhatupatha-код (напр. "01.0001")
-;;   'varttika                  — ще не використовується
-;;   'commentary                — ще не використовується
-;;   'traditional-principle     — напр. 'antaraMga-scope, паребгаза P1-P5
-;;   'implementation-convenience — наше інженерне рішення
-;;   'my-lisp-hypothesis        — наша архітектурна гіпотеза
-```
+| Категорія | Значення | Приклад |
+|---|---|---|
+| `sutra` | Пряма цитата Aṣṭādhyāyī з ідентифікатором | `"7.3.84"` |
+| `dhatupatha` | Запис Dhātupāṭha, окремий від Aṣṭādhyāyī | `"01.0001"` |
+| `varttika` | Доповнення Kātyāyana до sūtra | ще не використано |
+| `commentary` | Kāśikā, Mahābhāṣya, Kaumudī чи подібний коментар | ще не використано |
+| `traditional-principle` | Традиційний метапринцип, не пряма sūtra-цитата | `antaraMga > bAhiraMga` |
+| `implementation-convenience` | Інженерне рішення | a-list представлення |
+| `my-lisp-hypothesis` | Явна архітектурна гіпотеза проєкту | kāraka як типізовані graph edge |
 
-## [MY-LISP HYPOTHESIS] щодо самої схеми
+Перші чотири категорії описують зовнішні традиції; останні три — інтерпретацію
+або механіку проєкту. Сама класифікація є `my-lisp-hypothesis`: вона розширює
+source enum Vidyut, щоб робити видимими наші власні рішення. Її повнота лишається
+відкритим питанням.
 
-Ця 7-категорійна схема сама є нашою гіпотезою, не Paninian фактом —
-вона узагальнює Vidyut'ів `Rule`-enum (перевірена, робоча модель) під
-наші додаткові потреби прозорості. Питання, чи ці 7 категорій
-достатні, чи потрібні ще (напр. окрема категорія для "неперевіреного
-цитування з пам'яті", яку `PANINI-SUTRA-CITATION-VERIFICATION` уже де-факто
-використовувала) — відкрите, не вирішується тут.
+### Приклади застосування
 
-## Не зроблено в цій задачі
+Для правила `"7.3.84"` у `rules.my` ідентифікатор має `sutra`; його `:type`
+має `my-lisp-hypothesis`; `:scope 'antaraMga` — `traditional-principle`; а
+нотація `:match`/`:action` — `implementation-convenience`. Для `"6.1.78"`
+діє те саме розрізнення: перевірений ідентифікатор є `sutra`, тоді як scope
+`bAhiraMga` й механіка `eco-map` мають власне provenance.
 
-- Поле `source`/провенанс **не додано як реальний параметр**
-  `def-panini-rule`/`make-rule` у коді `panini/machine/` — лише
-  задокументовано очікувану таксономію й показано, як вона
-  застосовувалась би до двох наявних правил через коментарі. Реальна
-  зміна сигнатури макроса — окрема задача (потребує узгодження з
-  `panini/machine/compiler.my`, який компілює `def-panini-rule`, не
-  прочитаний у цій задачі).
+У майбутньому `meta.my::make-rule` може відкрити поле `source` саме з цими
+назвами категорій. Цей документ **не** змінює macro, його виклики чи
+`compiler.my`; зміна сигнатури потребує окремої задачі з перевіркою сумісності.
 
-## Джерела
+## Deutsch — Referenzübersetzung
 
-- [`research/vidyut-analysis.md`](../research/vidyut-analysis.md) —
-  `Rule`-enum Vidyut, основа для розширення.
-- `panini/machine/rules.my`, `panini/machine/meta.my` — прочитано
-  напряму для цієї задачі.
-- [`foundation/rule-system.md`](../foundation/rule-system.md),
-  [`foundation/paribhasha.md`](../foundation/paribhasha.md) — джерело
-  категорії `traditional-principle`.
+### Problem und Regel
+
+`panini/machine/rules.my` führt eine Sūtra-Kennung neben Feldern wie `:type`,
+`:scope`, `:match` und `:action`. Eine geprüfte Kennung wie `"7.3.84"` ist eine
+Behauptung über eine Textzitation; sie macht **nicht** jedes benachbarte Feld
+automatisch zu einer Sūtra-Behauptung. Jedes Feld hat eigene Provenance. Ohne
+diese Trennung erscheinen Implementierungsentscheidungen und interpretative
+Klassifikationen so autoritativ wie der zitierte Text.
+
+### Sieben Herkunftskategorien
+
+| Kategorie | Bedeutung | Beispiel |
+|---|---|---|
+| `sutra` | Direkte Aṣṭādhyāyī-Zitation mit Kennung | `"7.3.84"` |
+| `dhatupatha` | Dhātupāṭha-Eintrag, getrennt von Aṣṭādhyāyī | `"01.0001"` |
+| `varttika` | Kātyāyana-Ergänzung zu einem Sūtra | noch unbenutzt |
+| `commentary` | Kāśikā, Mahābhāṣya, Kaumudī oder Kommentar | noch unbenutzt |
+| `traditional-principle` | Traditionelles Metaprinzip, keine direkte Sūtra-Aussage | `antaraMga > bAhiraMga` |
+| `implementation-convenience` | Technische Entscheidung | a-list-Darstellung |
+| `my-lisp-hypothesis` | Explizite Architekturhypothese | kāraka als typisierte Graphkanten |
+
+Die ersten vier Kategorien beschreiben äußere Traditionen, die letzten drei
+Interpretation oder Projektmechanik. Die Klassifikation selbst ist eine
+`my-lisp-hypothesis`: Sie erweitert Vidyuts Source-Enum, damit unsere eigenen
+Entscheidungen sichtbar bleiben. Ihre Vollständigkeit ist offen.
+
+### Anwendungsbeispiele
+
+Bei `rules.my` Regel `"7.3.84"` ist die Kennung `sutra`, `:type` eine
+`my-lisp-hypothesis`, `:scope 'antaraMga` ein `traditional-principle` und
+`:match`/`:action` `implementation-convenience`. Für `"6.1.78"` gilt dieselbe
+Trennung. `meta.my::make-rule` kann später ein `source` Feld mit diesen Namen
+anbieten; dieses Dokument ändert weder Macro noch Aufrufer oder `compiler.my`.
+Eine Signaturänderung braucht eine eigene Kompatibilitätsaufgabe.
+
+## Sources
+
+- [`research/vidyut-analysis.md`](../research/vidyut-analysis.md)
+- `panini/machine/rules.my`, `panini/machine/meta.my`
+- [`foundation/rule-system.md`](../foundation/rule-system.md)
+- [`foundation/paribhasha.md`](../foundation/paribhasha.md)
