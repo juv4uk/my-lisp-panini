@@ -24,6 +24,15 @@ guix shell -m manifest.scm -- python3 panini/tests/test_registry_provenance.py
 A nonzero exit code means errors were found. Warnings do not change data status
 and are not permission for an automatic correction.
 
+`check_documentation_languages.py` inventories English, Ukrainian, and German
+section markers in repository-owned Markdown. It excludes vendor/reference
+trees and never changes documentation. Its default report is informational;
+use `--strict` only when every remaining migration item is intended to block:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py
+```
+
 ## Українська
 
 `validate_registry.py` — offline, read-only validator малих YAML-реєстрів.
@@ -47,6 +56,16 @@ guix shell -m manifest.scm -- python3 panini/tests/test_registry_provenance.py
 
 Ненульовий exit code означає знайдені помилки. Попередження не змінюють
 статус даних і не є дозволом на автоматичне виправлення.
+
+`check_documentation_languages.py` інвентаризує маркери секцій English,
+Українська та Deutsch у Markdown, що належить репозиторію. Він виключає
+vendor/reference-дерева й ніколи не змінює документацію. Звіт у звичайному
+режимі лише інформаційний; застосовуйте `--strict`, лише коли всі решта
+пунктів міграції повинні блокувати:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py
+```
 
 ## Deutsch
 
@@ -72,3 +91,13 @@ guix shell -m manifest.scm -- python3 panini/tests/test_registry_provenance.py
 
 Ein Exit-Code ungleich null bedeutet, dass Fehler gefunden wurden. Warnungen
 ändern den Datenstatus nicht und erlauben keine automatische Korrektur.
+
+`check_documentation_languages.py` inventarisiert die Abschnittsmarker
+English, Українська und Deutsch in Markdown-Dateien, die zum Repository
+gehören. Vendor-/Referenzbäume werden ausgeschlossen und die Dokumentation
+wird nie verändert. Der normale Bericht ist nur informativ; `--strict` nur
+verwenden, wenn alle übrigen Migrationspunkte blockieren sollen:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py
+```
