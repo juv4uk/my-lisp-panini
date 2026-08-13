@@ -1,0 +1,149 @@
+# Source-path record for Bavati. This deliberately stops before assigning a
+# source-proof to the guna and sandhi transitions.
+# Contracts:
+# - ../../research/bavati-derivation-machine-readiness.md
+# - ../../tests/trace-fixtures/bavati-sap-designation-partial-v0.1.yaml
+# - ../../specs/derivation-ir-trace-events-v0.1.md
+
+fixture_id: trace-fixture:bhavati-source-path-partial-v0.1
+fixture_status: partial
+ir_version: panini-derivation-ir/0.1
+derivation_id: drv:fixture:bhavati-source-path
+result:
+  status: partial
+  state: state:fixture:bhavati:sap-a-ti
+  note: >-
+    This records the source-facing prefix through the independently bounded
+    Sap designation fixture. Bavati is an observed surface form, not proof
+    that guna or sandhi has been completely reconstructed.
+
+terms:
+  - id: term:root-BU
+    kind: dhAtu
+    source_form: BU
+    surface_form: BU
+    designations:
+      - id: dhAtu
+        provenance: [prov:fixture:bhavati-root-needs-check]
+    metadata: { namespace: fixture, values: { gana: BvAdi } }
+  - id: term:lakara-laT
+    kind: opaque
+    source_form: laT
+    surface_form: laT
+    designations: []
+    metadata: { namespace: fixture, values: { role: lakara-candidate } }
+  - id: term:tin-tip
+    kind: pratyaya
+    source_form: tip
+    surface_form: tip
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:tin-ti
+    kind: pratyaya
+    source_form: tip
+    surface_form: ti
+    designations: []
+    metadata: { namespace: fixture, values: { surface-lopa: p } }
+  - id: term:vikarana-Sap-raw
+    kind: pratyaya
+    source_form: Sap
+    surface_form: Sap
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:vikarana-Sap-a
+    kind: pratyaya
+    source_form: Sap
+    surface_form: a
+    designations: []
+    metadata: { namespace: fixture, values: { derived_by: bounded-Sap-fixture } }
+
+states:
+  - id: state:fixture:bhavati:input
+    schema: panini-state/0.1
+    terms: [term:root-BU]
+    relations: []
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:lat
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:lakara-laT]
+    relations:
+      - { kind: implementation, from: term:root-BU, to: term:lakara-laT, provenance: [prov:fixture:bhavati-3.2.123-needs-check] }
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:tip
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:tin-tip]
+    relations:
+      - { kind: implementation, from: term:lakara-laT, to: term:tin-tip, provenance: [prov:fixture:bhavati-3.4.78-needs-check] }
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:tip-pit
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:tin-tip]
+    relations:
+      - { kind: implementation, from: term:lakara-laT, to: term:tin-tip, provenance: [prov:fixture:bhavati-3.4.78-needs-check] }
+      - { kind: implementation, from: term:tin-tip, to: designation:it:final-p, provenance: [prov:fixture:bhavati-tip-it-needs-check] }
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:ti
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:tin-ti]
+    relations:
+      - { kind: implementation, from: term:tin-tip, to: designation:it:final-p, provenance: [prov:fixture:bhavati-tip-it-needs-check] }
+      - { kind: implementation, from: term:tin-tip, to: term:tin-ti, provenance: [prov:fixture:bhavati-tip-lopa-needs-check] }
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:ti
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:tin-ti]
+    relations:
+      - { kind: implementation, from: term:tin-tip, to: term:tin-ti, provenance: [prov:fixture:bhavati-tip-lopa-needs-check] }
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:sap-raw-ti
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:vikarana-Sap-raw, term:tin-ti]
+    relations:
+      - { kind: implementation, from: term:root-BU, to: term:vikarana-Sap-raw, provenance: [prov:fixture:bhavati-3.1.68-needs-check] }
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bhavati:sap-a-ti
+    schema: panini-state/0.1
+    terms: [term:root-BU, term:vikarana-Sap-a, term:tin-ti]
+    relations:
+      - { kind: implementation, from: term:vikarana-Sap-raw, to: term:vikarana-Sap-a, provenance: [prov:fixture:bhavati-Sap-subtrace] }
+      - { kind: implementation, from: term:vikarana-Sap-a, to: designation:sArvaDAtuka, provenance: [prov:fixture:sap-sarvadhatuka-3.4.113] }
+    serialization: fixture-sexpr-not-hashed
+
+rules:
+  - { id: rule:sutra:3.2.123, kind: sutra-reference, canonical_ref: "3.2.123", machine_ref: null, conditions: [condition:fixture:present-intent], operation: null, provenance: [prov:fixture:bhavati-3.2.123-needs-check] }
+  - { id: rule:sutra:3.4.78, kind: sutra-reference, canonical_ref: "3.4.78", machine_ref: null, conditions: [condition:fixture:third-singular-parasmaipada], operation: null, provenance: [prov:fixture:bhavati-3.4.78-needs-check] }
+  - { id: rule:sutra:3.1.68, kind: sutra-reference, canonical_ref: "3.1.68", machine_ref: null, conditions: [condition:fixture:kartari-BvAdi], operation: null, provenance: [prov:fixture:bhavati-3.1.68-needs-check] }
+  - { id: rule:sutra:1.3.3, kind: sutra-reference, canonical_ref: "1.3.3", machine_ref: null, conditions: [condition:fixture:tip-final-p-is-hal], operation: null, provenance: [prov:fixture:bhavati-tip-it-needs-check] }
+  - { id: rule:sutra:1.3.9, kind: sutra-reference, canonical_ref: "1.3.9", machine_ref: null, conditions: [condition:fixture:marked-tip-final-p], operation: null, provenance: [prov:fixture:bhavati-tip-lopa-needs-check] }
+  - { id: rule:sutra:7.3.84, kind: sutra-reference, canonical_ref: "7.3.84", machine_ref: null, conditions: [condition:fixture:source-accounted-sarvadhatuka-precondition], operation: null, provenance: [prov:fixture:bhavati-guna-precondition-unknown] }
+  - { id: rule:sutra:6.1.78, kind: sutra-reference, canonical_ref: "6.1.78", machine_ref: null, conditions: [condition:fixture:typed-eco-sandhi-input], operation: null, provenance: [prov:fixture:bhavati-sandhi-operation-unknown] }
+
+events:
+  - { event_id: evt:01, kind: state-observed, depends_on: [], provenance: [prov:fixture:bhavati-input-needs-check], verification: needs-check, payload: { state: state:fixture:bhavati:input, serialization: fixture-sexpr-not-hashed } }
+  - { event_id: evt:02, kind: applicability-check, depends_on: [evt:01], provenance: [prov:fixture:bhavati-3.2.123-needs-check], verification: needs-check, payload: { rule: "3.2.123", state: state:fixture:bhavati:input, outcome: applicable, conditions: [present-intent] } }
+  - { event_id: evt:03, kind: rule-decision, depends_on: [evt:02], provenance: [prov:fixture:bhavati-3.2.123-needs-check], verification: derived, payload: { rule: "3.2.123", decision: selected, policy: declared-fixture-intent, reason: present-intent } }
+  - { event_id: evt:04, kind: state-transition, depends_on: [evt:03], provenance: [prov:fixture:bhavati-3.2.123-needs-check], verification: derived, payload: { rule: "3.2.123", before: state:fixture:bhavati:input, after: state:fixture:bhavati:lat, operation: attach-lakara-candidate } }
+  - { event_id: evt:05, kind: applicability-check, depends_on: [evt:04], provenance: [prov:fixture:bhavati-3.4.78-needs-check], verification: needs-check, payload: { rule: "3.4.78", state: state:fixture:bhavati:lat, outcome: applicable, conditions: [third-singular-parasmaipada] } }
+  - { event_id: evt:06, kind: rule-decision, depends_on: [evt:05], provenance: [prov:fixture:bhavati-3.4.78-needs-check], verification: derived, payload: { rule: "3.4.78", decision: selected, policy: declared-fixture-intent, reason: third-singular-parasmaipada } }
+  - { event_id: evt:07, kind: state-transition, depends_on: [evt:06], provenance: [prov:fixture:bhavati-3.4.78-needs-check], verification: derived, payload: { rule: "3.4.78", before: state:fixture:bhavati:lat, after: state:fixture:bhavati:tip, operation: select-tip-occurrence } }
+  - { event_id: evt:08, kind: applicability-check, depends_on: [evt:07], provenance: [prov:fixture:bhavati-tip-it-needs-check], verification: needs-check, payload: { rule: "1.3.3", state: state:fixture:bhavati:tip, outcome: applicable, conditions: [tip-final-p-is-hal] } }
+  - { event_id: evt:09, kind: rule-decision, depends_on: [evt:08], provenance: [prov:fixture:bhavati-tip-it-needs-check], verification: derived, payload: { rule: "1.3.3", decision: selected, policy: single-source-backed-designation, reason: final-p-of-tip-is-hal } }
+  - { event_id: evt:10, kind: state-transition, depends_on: [evt:09], provenance: [prov:fixture:bhavati-tip-it-needs-check], verification: derived, payload: { rule: "1.3.3", before: state:fixture:bhavati:tip, after: state:fixture:bhavati:tip-pit, operation: attach-final-p-it-designation } }
+  - { event_id: evt:11, kind: applicability-check, depends_on: [evt:10], provenance: [prov:fixture:bhavati-tip-lopa-needs-check], verification: needs-check, payload: { rule: "1.3.9", state: state:fixture:bhavati:tip-pit, outcome: applicable, conditions: [marked-tip-final-p] } }
+  - { event_id: evt:12, kind: rule-decision, depends_on: [evt:11], provenance: [prov:fixture:bhavati-tip-lopa-needs-check], verification: derived, payload: { rule: "1.3.9", decision: selected, policy: marked-sound-lopa, reason: final-p-of-tip-has-it-designation } }
+  - { event_id: evt:13, kind: state-transition, depends_on: [evt:12], provenance: [prov:fixture:bhavati-tip-lopa-needs-check], verification: derived, payload: { rule: "1.3.9", before: state:fixture:bhavati:tip-pit, after: state:fixture:bhavati:ti, operation: remove-marked-final-p } }
+  - { event_id: evt:14, kind: applicability-check, depends_on: [evt:13], provenance: [prov:fixture:bhavati-3.1.68-needs-check], verification: needs-check, payload: { rule: "3.1.68", state: state:fixture:bhavati:ti, outcome: unknown, conditions: [kartari-BvAdi] } }
+  - { event_id: evt:15, kind: rule-decision, depends_on: [evt:14], provenance: [prov:fixture:bhavati-3.1.68-needs-check], verification: needs-check, payload: { rule: "3.1.68", decision: deferred, policy: unknown-precondition-blocks-source-proof, reason: complete-applicability-conditions-for-kartari-Sap-are-not-recorded } }
+  - { event_id: evt:16, kind: trace-observation, depends_on: [evt:15], provenance: [prov:fixture:bhavati-example-observation-needs-check], verification: needs-check, payload: { source: teaching-example, value: Bavati, representation: SLP1, note: observed-form-is-not-a-proof-of-the-unrecorded-Sap-guna-or-sandhi-path } }
+  - { event_id: evt:17, kind: trace-terminated, depends_on: [evt:16], provenance: [prov:fixture:bhavati-input-needs-check], verification: needs-check, payload: { outcome: partial, reason: Sap-insertion-and-the-later-guna-sandhi-preconditions-remain-unresolved } }
+
+unknowns:
+  - bridge-from-Sap-designation-subtrace-to-guna-precondition
+  - complete-applicability-conditions-for-3.1.68
+  - typed-state-operation-for-7.3.84
+  - typed-state-operation-for-6.1.78
+
+non_assertions:
+  - no-conflict-resolved-event-is-present
+  - tripadi-visibility-is-not-applicable-to-this-recorded-prefix
+  - observed-Bavati-does-not-prove-a-complete-derivation
