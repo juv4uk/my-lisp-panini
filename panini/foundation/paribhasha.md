@@ -1,5 +1,32 @@
 # Paribhāṣā — Мета-Правила Граматики Паніні
 
+## English
+
+This note examines `paribhAzA` as a meta-level category concerned with reading,
+applying, and reconciling other rules. It distinguishes this research subject
+from object-level `viDi` rules and records a proposed priority sequence using
+`antaraMga`, `nitya`, `apavAda`, and `vipratiSeDa`. The detailed canonical
+discussion below is Ukrainian and must be read with its labels intact:
+`[PANINI]` records claims about the grammatical tradition, `[INTERPRETATION]`
+records scholarly framing, and `[MY-LISP HYPOTHESIS]` proposes an explicitly
+provisional dispatch architecture. In particular, the Lisp-like code is a
+hypothesis, not a reconstruction of Pāṇini.
+
+## Deutsch
+
+Diese Notiz untersucht `paribhAzA` als Metaebene für das Lesen, Anwenden und
+Abgleichen anderer Regeln. Sie unterscheidet diesen Forschungsgegenstand von
+objektsprachlichen `viDi`-Regeln und hält eine vorgeschlagene Prioritätsfolge
+mit `antaraMga`, `nitya`, `apavAda` und `vipratiSeDa` fest. Die untenstehende
+kanonische Detaildiskussion ist Ukrainisch und muss mit ihren Kennzeichnungen
+gelesen werden: `[PANINI]` hält Behauptungen über die grammatische Tradition
+fest, `[INTERPRETATION]` die wissenschaftliche Einordnung und
+`[MY-LISP HYPOTHESIS]` eine ausdrücklich vorläufige Dispatch-Architektur.
+Insbesondere ist der Lisp-ähnliche Code eine Hypothese, keine Rekonstruktion
+Pāṇinis.
+
+## Українська
+
 Цей документ досліджує `paribhAzA` як клас особливих правил, що керують
 застосуванням інших правил. Це найважливіший концептуальний фундамент для
 побудови нашого Inference Engine.
