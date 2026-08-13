@@ -12,6 +12,26 @@
 ;;   4. vipratiSeDe paraM kAryam (1.4.2) — DEFAULT
 
 ;; ==========================================
+;; Anuvṛtti / Adhikāra Context Engine
+;; ==========================================
+;; We use a global context variable to simulate dynamic binding 
+;; (fluid-let) for the duration of a grammatical scope.
+(def *anuvrtti-context* '())
+
+;; with-adhikara defines a block of rules that share a common context.
+(defmacro with-adhikara (bindings body)
+  `(let ((old-context *anuvrtti-context*))
+     (setq *anuvrtti-context* (append ,bindings old-context))
+     (let ((result ,body))
+       (setq *anuvrtti-context* old-context)
+       result)))
+
+;; Helper to retrieve a value from the current anuvrtti context
+(def get-context
+  (lambda (key)
+    (cdr (assoc key *anuvrtti-context*))))
+
+;; ==========================================
 ;; Rule Object Structure
 ;; ==========================================
 ;; A rule is an a-list:

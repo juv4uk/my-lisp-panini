@@ -176,24 +176,28 @@
            (p3 (prakriya-record p1 "1.3.3+1.3.9" (list dhatu tin-after-it))))
 
       ;; Step 4: add vikarana Sap between dhatu and tiN
-      (let* ((vikarana (make-term '(S a p) 'vikarana))
-             (p4 (prakriya-record p3 "3.1.68"
-                   (list dhatu vikarana tin-after-it))))
+      ;; Here we use with-adhikara to simulate being inside the adhikara of:
+      ;; 3.1.1 pratyayaH and 3.1.91 DAtoH
+      (with-adhikara '((:scope . "pratyaya") (:base . "dhatu"))
+        (let* ((vikarana (make-term '(S a p) 'vikarana))
+               ;; We can theoretically read (get-context :scope) inside the rule engine here
+               (p4 (prakriya-record p3 "3.1.68"
+                     (list dhatu vikarana tin-after-it))))
 
-        ;; Step 5: it-removal from Sap (S,p → tags, text → a, adds sArvaDAtukaM)
-        (let* ((vk-after-it (apply-it-samjna vikarana))
-               (p5 (prakriya-record p4 "1.3.7+1.3.9"
-                     (list dhatu vk-after-it tin-after-it))))
+          ;; Step 5: it-removal from Sap (S,p → tags, text → a, adds sArvaDAtukaM)
+          (let* ((vk-after-it (apply-it-samjna vikarana))
+                 (p5 (prakriya-record p4 "1.3.7+1.3.9"
+                       (list dhatu vk-after-it tin-after-it))))
 
-          ;; Step 6: Guṇa on dhātu (U → o) because vikarana has sArvaDAtukaM
-          (let* ((dhatu-guna (rule-7-3-84 dhatu vk-after-it))
-                 (p6 (prakriya-record p5 "7.3.84"
-                       (list dhatu-guna vk-after-it tin-after-it))))
+            ;; Step 6: Guṇa on dhātu (U → o) because vikarana has sArvaDAtukaM
+            (let* ((dhatu-guna (rule-7-3-84 dhatu vk-after-it))
+                   (p6 (prakriya-record p5 "7.3.84"
+                         (list dhatu-guna vk-after-it tin-after-it))))
 
-            ;; Step 7: Sandhi o+a → av+a
-            ;; (dhatu ends in 'o', vikarana starts with 'a')
-            ;; Result: (B av a t i) = Bavati
-            (prakriya-record p6 "6.1.78"
-              (list (term-set-text dhatu-guna '(B a v))
-                    vk-after-it
-                    tin-after-it))))))))
+              ;; Step 7: Sandhi o+a → av+a
+              ;; (dhatu ends in 'o', vikarana starts with 'a')
+              ;; Result: (B av a t i) = Bavati
+              (prakriya-record p6 "6.1.78"
+                (list (term-set-text dhatu-guna '(B a v))
+                      vk-after-it
+                      tin-after-it)))))))))
