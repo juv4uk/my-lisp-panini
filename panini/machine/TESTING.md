@@ -8,7 +8,8 @@ in Lisp.
 
 ### Test-suite location
 
-Tests are in [tests.my](tests.my).
+The executable entry point is [machine-acceptance.my](../tests/machine-acceptance.my).
+The machine assertions themselves are in [tests.my](tests.my).
 
 ### Running tests
 
@@ -65,7 +66,8 @@ Pāṇinian derivations.
 
 ### Розташування набору тестів
 
-Тести містяться у [tests.my](tests.my).
+Виконувана точка входу — [machine-acceptance.my](../tests/machine-acceptance.my).
+Самі machine assertions містяться у [tests.my](tests.my).
 
 ### Запуск тестів
 
@@ -127,7 +129,8 @@ geschrieben.
 
 ### Ort der Testsuite
 
-Die Tests liegen in [tests.my](tests.my).
+Der ausführbare Einstiegspunkt ist [machine-acceptance.my](../tests/machine-acceptance.my).
+Die Machine-Assertions liegen in [tests.my](tests.my).
 
 ### Tests ausführen
 
