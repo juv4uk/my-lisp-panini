@@ -69,7 +69,7 @@ Saṃjñā — це технічні (метамовні) терміни гра�
 
 ---
 
-## 6. Типи sūtra: `viDi`/`niyama`/`atideSa`/`paribhASA`
+## 6. Типи sūtra: `viDi`/`niyama`/`atideSa`/`paribhAzA`
 
 Прогалина, знайдена в `PANINI-GRAMMAR-REFERENCE-CROSSCHECK` і закрита
 в `PANINI-RULE-KINDS-VIDHI-ETC`: `saMjYA`/`aDikAra`/`anuvftti` — не
@@ -87,7 +87,7 @@ Saṃjñā — це технічні (метамовні) терміни гра�
   класу об'єктів на інший, формально відмінний. Приклад: `sTAnivad-
   bhAva` (1.1.56) — замінник розглядається як оригінал для подальших
   правил.
-- **`paribhASA`** — метаправило-максима про застосування інших
+- **`paribhAzA`** — метаправило-максима про застосування інших
   правил (див. [`paribhasha.md`](paribhasha.md) для повної ієрархії
   пріоритету конфліктів: `antaraNga`>`bAhiraNga`>`nitya`>`anitya`>
   `apavAda`>`utsarga`>`vipratiSeDa` як останній fallback).

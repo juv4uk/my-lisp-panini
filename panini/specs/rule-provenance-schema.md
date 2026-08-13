@@ -52,7 +52,7 @@ sūtra 7.3.84 сам стверджує про себе. Без явного р�
 ;; provenance:
 ;;   id     = sutra        (7.3.84, звірено — PANINI-SUTRA-CITATION-VERIFICATION,
 ;;                           хоча сам текст цитати в rules.my не перевірявся окремо)
-;;   :type  = my-lisp-hypothesis (vidhi/niyama/atideSa/paribhASA —
+;;   :type  = my-lisp-hypothesis (vidhi/niyama/atideSa/paribhAzA —
 ;;                           класифікація типів sūtra з ontology.md §6,
 ;;                           САМЕ це правило не позначене в первинному
 ;;                           тексті як "vidhi" явним словом — це наша
