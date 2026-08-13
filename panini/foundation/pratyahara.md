@@ -1,4 +1,23 @@
-# Śiva Sūtras та Pratyāhāra
+# Śiva Sūtras та Pratyāhāra · Śiva Sūtras and Pratyāhāra · Śiva Sūtras und Pratyāhāra
+
+## English summary
+
+This note documents the Paninian `pratyAhAra` mechanism: a compact symbolic
+reference formed from the Śiva Sūtras and their `it` markers. The canonical
+internal notation is SLP1. A compact sound set is a Paninian mechanism;
+bitsets, enums, and FPGA representations remain My Lisp implementation
+hypotheses and require independently versioned source data and tests.
+
+## Deutsche Zusammenfassung
+
+Diese Notiz dokumentiert den paninischen `pratyAhAra`-Mechanismus: eine
+kompakte symbolische Referenz, die aus den Śiva Sūtras und ihren `it`-Markern
+gebildet wird. Die kanonische interne Notation ist SLP1. Ein kompaktes
+Lautset ist ein paninischer Mechanismus; Bitsets, Enums und FPGA-
+Repräsentationen bleiben My-Lisp-Implementierungshypothesen und benötigen
+unabhängig versionierte Quelldaten und Tests.
+
+## Український повний текст
 
 Цей документ досліджує механізм побудови множин фонем у граматиці Паніні.
 
