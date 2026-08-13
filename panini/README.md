@@ -1,6 +1,6 @@
 # panini
 
-[English](#english) · [Ukrainian (ASCII)](#ukrainian-ascii) · [Deutsch](#deutsch)
+[English](#english) · [Українська](#українська) · [Deutsch](#deutsch)
 
 ## English
 
@@ -12,16 +12,15 @@ model. Its governing methodology is [AGENTS.md](../AGENTS.md).
 foundation notes, machine-readable registries, research audits, derivation
 examples, specifications, and read-only validation tools.
 
-## Ukrainian (ASCII)
+## Українська
 
-Doslidnytskyy fundament hramatyky Panini dlya mozhlyvoho maybutnoho
-vykorystannya v My Lisp. Proyekt rekonstruyuye hramatyku pered tym, yak
-proponuvaty machine model. Yoho holovna metodolohiya mistytsya v
-[AGENTS.md](../AGENTS.md).
+Дослідницький фундамент граматики Паніні для можливого майбутнього
+використання в My Lisp. Проєкт реконструює граматику перед тим, як пропонувати
+machine model. Його головна методологія міститься в [AGENTS.md](../AGENTS.md).
 
-Potochnyy milestone — `panini-foundation-v0.1`. Vin mistyt foundation notes z
-urakhuvannyam dokaziv, mashynno-chytani registry, research audits, pryklady
-deryvatsiyi, spetsyfikatsiyi ta read-only instrumenty perevirky.
+Поточний milestone — `panini-foundation-v0.1`. Він містить foundation notes з
+урахуванням доказів, машинно-читані registry, research audits, приклади
+деривації, специфікації та read-only інструменти перевірки.
 
 ## Deutsch
 
@@ -34,21 +33,21 @@ evidenzbewusste Foundation-Notizen, maschinenlesbare Register,
 Forschungsaudits, Ableitungsbeispiele, Spezifikationen und schreibgeschützte
 Validierungswerkzeuge.
 
-## Structure · Struktura · Struktur
+## Structure · Структура · Struktur
 
-- `foundation/` — conceptual foundation · kontseptualnyy fundament · konzeptuelle Grundlage;
-- `registry/` — machine-readable records · mashynno-chytani zapysy · maschinenlesbare Einträge;
-- `research/` — source audits · audyty dzherel · Quellenaudits;
-- `examples/derivations/` — traced examples · prostezheni pryklady · nachvollzogene Beispiele;
-- `specs/` — project boundaries · mezhi proyektu · Projektgrenzen.
+- `foundation/` — conceptual foundation · концептуальний фундамент · konzeptuelle Grundlage;
+- `registry/` — machine-readable records · машинно-читані записи · maschinenlesbare Einträge;
+- `research/` — source audits · аудити джерел · Quellenaudits;
+- `examples/derivations/` — traced examples · простежені приклади · nachvollzogene Beispiele;
+- `specs/` — project boundaries · межі проєкту · Projektgrenzen.
 
 For WSL2, Guix, and swarm-node coordination, see
-[swarm-agent-guide.md](swarm-agent-guide.md) · Instruktsiya dlya WSL2,
-Guix i koordynatsiyi swarm-node — u [swarm-agent-guide.md](swarm-agent-guide.md)
+[swarm-agent-guide.md](swarm-agent-guide.md) · Інструкція для WSL2,
+Guix і координації swarm-node — у [swarm-agent-guide.md](swarm-agent-guide.md)
 · Anleitung für WSL2, Guix und die Koordination mit swarm-node:
 [swarm-agent-guide.md](swarm-agent-guide.md).
 
 See [documentation-languages.md](documentation-languages.md) for the
-translation policy · Pravyla perekladu — u
+translation policy · Правила перекладу — у
 [documentation-languages.md](documentation-languages.md) · Die
 Übersetzungsregeln stehen in [documentation-languages.md](documentation-languages.md).

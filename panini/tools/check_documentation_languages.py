@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Report the project's English -> Ukrainian ASCII -> German document contract.
+"""Report the project's English -> Ukrainian -> German document contract.
 
 The Ukrainian section is the normative, full version. English and German are
 parallel translations or summaries, but their *section order* is deliberately
@@ -16,7 +16,7 @@ from pathlib import Path
 
 LANGUAGE_MARKERS = {
     "English": ("## English", "## English summary"),
-    "Ukrainian": ("## Ukrainian (ASCII)",),
+    "Ukrainian": ("## Українська", "## Український повний текст"),
     "German": ("## Deutsch", "## German summary"),
 }
 
