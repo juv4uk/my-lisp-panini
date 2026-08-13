@@ -1,0 +1,55 @@
+# External comparison plan; not a recorded oracle result.
+# Contract: ../../specs/external-oracle-fixture-policy-v0.1.md
+
+id: oracle:indic-transliteration:slp1-roundtrip-v2.3.82
+fixture_status: planned
+tool:
+  name: indic_transliteration
+  revision: "2.3.82"
+  source: https://pypi.org/project/indic-transliteration/2.3.82/
+  license: MIT
+  invocation: >-
+    guix shell -m manifest.scm -- python3
+    panini/tools/run_indic_transliteration_fixture.py
+    panini/tests/external-oracles/indic-transliteration-slp1-roundtrip-v2.3.82.yaml
+  availability: pending-guix-package
+data:
+  artifacts: []
+  license_status: verified
+input_contract:
+  source_scheme: SLP1
+  targets: [IAST, DEVANAGARI]
+  round_trip_required: true
+  normalization: none
+cases:
+  - id: dhatu-dA
+    slp1: dA
+    expected_iast: dā
+    expected_devanagari: दा
+  - id: karaka-kartf
+    slp1: kartf
+    expected_iast: kartṛ
+    expected_devanagari: कर्तृ
+  - id: sibilant-palatal-Sru
+    slp1: Sru
+    expected_iast: śru
+    expected_devanagari: श्रु
+  - id: sibilant-retroflex-BAz
+    slp1: BAz
+    expected_iast: bhāṣ
+    expected_devanagari: भाष्
+  - id: mark-and-vocalic-r-saMskftam
+    slp1: saMskftam
+    expected_iast: saṃskṛtam
+    expected_devanagari: संस्कृतम्
+comparison:
+  result: pending
+  compared_on: null
+  notes: >-
+    The repository's Guix manifest currently has Python and PyYAML but no
+    packaged indic_transliteration. This plan must not be reported as an
+    oracle match until a pinned, license-reviewed Guix package and a recorded
+    command output exist.
+provenance:
+  - prov:tool:indic-transliteration-pypi-2.3.82
+  - prov:slp1:conformance-fixtures-v0.1
