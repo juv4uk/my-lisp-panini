@@ -1,4 +1,20 @@
-# dhAtu
+# dhAtu · dhātu · dhātu
+
+## English summary
+
+`dhAtu` is researched as a Paninian root category with independent
+Dhātupāṭha provenance, not simply as the modern notion of a verb. Registry
+records retain canonical SLP1, source identity, properties, and evidence
+status before any computational interpretation.
+
+## Deutsche Zusammenfassung
+
+`dhAtu` wird als paninische Wurzelkategorie mit eigenständiger
+Dhātupāṭha-Provenienz erforscht, nicht einfach als moderne Verbkategorie.
+Registereinträge bewahren kanonisches SLP1, Quellenidentität, Eigenschaften
+und Evidenzstatus vor jeder rechnerischen Interpretation.
+
+## Український повний текст
 
 Статус: чернетка v0.1 (`PANINI-DHATU-REGISTRY-20`).
 

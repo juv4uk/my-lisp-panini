@@ -1,4 +1,20 @@
-# Pāṇini Foundation Ontology
+# Pāṇini Foundation Ontology · Онтологія фундаменту Паніні · Ontologie des Panini-Fundaments
+
+## English summary
+
+This document maps the main entities of Pāṇini's grammar and distinguishes
+grammar objects, technical designations, rule mechanisms, and project-only
+machine interpretations. SLP1 is canonical; an entity is never made a My Lisp
+primitive merely because its name is useful.
+
+## Deutsche Zusammenfassung
+
+Dieses Dokument ordnet die wichtigsten Entitäten von Pāṇinis Grammatik und
+unterscheidet Grammatikobjekte, technische Bezeichnungen, Regelmechanismen und
+reine Projektinterpretationen für Maschinen. SLP1 ist kanonisch; keine
+Entität wird allein wegen eines nützlichen Namens zu einem My-Lisp-Primitiv.
+
+## Український повний текст
 
 Цей документ визначає фундаментальні сутності (ontology) граматики Паніні (Aṣṭādhyāyī).
 Усі імена наведено у форматі SLP1 (для машинної обробки) та IAST (для людей).

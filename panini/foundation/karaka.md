@@ -1,4 +1,18 @@
-# Kāraka: Semantic Roles in Pāṇini's Grammar
+# Kāraka: semantic roles in Pāṇini's grammar · Kāraka: семантичні ролі в граматиці Паніні · Kāraka: semantische Rollen in Pāṇinis Grammatik
+
+## English summary
+
+This note studies `kAraka` without reducing it to case marking, subject, or
+object. It keeps Paninian role designations separate from vibhakti and from
+project-only semantic graph representations.
+
+## Deutsche Zusammenfassung
+
+Diese Notiz untersucht `kAraka`, ohne es auf Kasusmarkierung, Subjekt oder
+Objekt zu reduzieren. Sie trennt paninische Rollenbezeichnungen von vibhakti
+und von projektinternen Repräsentationen als semantischen Graphen.
+
+## Український повний текст
 
 Цей документ досліджує систему **Kāraka** (семантичних ролей) згідно з вимогами `AGENTS.md` (пункти 7 та 8). Наша мета — показати, як Паніні розділяє абстрактну семантику (kāraka) від морфологічного синтаксису (відмінків/vibhakti), і як це відношення `dhātu ↔ kāraka` може лягти в основу графа абстрактного синтаксису для Symbolic AI.
 

@@ -1,4 +1,19 @@
-# pratyaya / деривація
+# pratyaya / деривація · pratyaya / derivation · pratyaya / Derivation
+
+## English summary
+
+`pratyaya` is studied as a derivational category whose application depends on
+bases, conditions, scope, ordering, and exceptions. A rewrite-system model is
+a hypothesis to be tested, not a description imposed on Pāṇini.
+
+## Deutsche Zusammenfassung
+
+`pratyaya` wird als Derivationskategorie untersucht, deren Anwendung von
+Basen, Bedingungen, Geltungsbereich, Reihenfolge und Ausnahmen abhängt. Ein
+Modell als Umschreibesystem ist eine zu prüfende Hypothese, keine Pāṇini
+aufgezwungene Beschreibung.
+
+## Український повний текст
 
 Статус: чернетка v0.1 (`PANINI-PRATYAYA-DERIVATION`).
 

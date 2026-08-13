@@ -1,4 +1,20 @@
-# saMjYA
+# saMjYA · saṃjñā · saṃjñā
+
+## English summary
+
+`saMjYA` is a technical designation used by later rules. This note separates
+the bearer of a designation, its SLP1 label, its rule conditions, and any
+modern type/tag/AST interpretation. It does not equate `saMjYA` with a
+programming-language type.
+
+## Deutsche Zusammenfassung
+
+`saMjYA` ist eine technische Bezeichnung, auf die spätere Regeln verweisen.
+Diese Notiz trennt den Träger einer Bezeichnung, ihr SLP1-Label, ihre
+Regelbedingungen und jede moderne Typ-/Tag-/AST-Interpretation. Sie setzt
+`saMjYA` nicht mit einem Programmiersprachentyp gleich.
+
+## Український повний текст
 
 Статус: чернетка v0.1 (`PANINI-SAMJNA-RESEARCH`).
 
