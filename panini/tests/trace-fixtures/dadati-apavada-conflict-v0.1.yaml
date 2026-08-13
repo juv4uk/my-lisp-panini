@@ -1,0 +1,161 @@
+# Bounded machine-model trace fixture; not a complete historical derivation.
+# Contracts:
+# - ../../specs/derivation-ir-v0.1.md
+# - ../../specs/derivation-ir-trace-events-v0.1.md
+# - ../../research/dadati-conflict-review.md
+
+fixture_id: trace-fixture:dadati-apavada-conflict-v0.1
+fixture_status: partial
+ir_version: panini-derivation-ir/0.1
+derivation_id: drv:fixture:dadati-apavada
+result:
+  status: partial
+  state: state:fixture:dadati:slu
+  note: >-
+    This fixture checks the declared machine conflict relation only. It does
+    not execute My Lisp, reconstruct the complete dadAti derivation, or prove
+    a historical priority rule from the final form.
+
+terms:
+  - id: term:root-dA
+    kind: dhAtu
+    source_form: dA
+    surface_form: dA
+    designations:
+      - id: dhAtu
+        provenance: [prov:fixture:dadati-root-designation-needs-check]
+    metadata:
+      namespace: fixture
+      values: { gana: juhotyAdi }
+  - id: term:vikarana-Sap
+    kind: pratyaya
+    source_form: Sap
+    surface_form: Sap
+    designations:
+      - id: pratyaya
+        provenance: [prov:fixture:dadati-sap-designation-needs-check]
+    metadata:
+      namespace: fixture
+      values: {}
+  - id: term:tin-ti
+    kind: pratyaya
+    source_form: tip
+    surface_form: ti
+    designations:
+      - id: pratyaya
+        provenance: [prov:fixture:dadati-tin-designation-needs-check]
+    metadata:
+      namespace: fixture
+      values: { it_lopa: p }
+
+states:
+  - id: state:fixture:dadati:sap
+    schema: panini-state/0.1
+    terms: [term:root-dA, term:vikarana-Sap, term:tin-ti]
+    relations: []
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:dadati:slu
+    schema: panini-state/0.1
+    terms: [term:root-dA, term:tin-ti]
+    relations:
+      - kind: implementation
+        from: term:root-dA
+        to: term:tin-ti
+        provenance: [prov:machine:dadati-apavada-choice]
+    serialization: fixture-sexpr-not-hashed
+
+rules:
+  - id: rule:machine:2.4.72
+    kind: machine-rule
+    canonical_ref: null
+    machine_ref: machine:2.4.72
+    conditions: [condition:fixture:sap-present]
+    operation: operation:fixture:luk-sap
+    provenance: [prov:fixture:machine-2.4.72-needs-check]
+  - id: rule:machine:2.4.75
+    kind: machine-rule
+    canonical_ref: null
+    machine_ref: machine:2.4.75
+    conditions: [condition:fixture:sap-present, condition:fixture:juhotyadi]
+    operation: operation:fixture:slu-sap
+    provenance: [prov:machine:dadati-apavada-choice]
+
+events:
+  - event_id: evt:01
+    kind: state-observed
+    depends_on: []
+    provenance: [prov:fixture:dadati-input-needs-check]
+    verification: needs-check
+    payload:
+      state: state:fixture:dadati:sap
+      serialization: fixture-sexpr-not-hashed
+
+  - event_id: evt:02
+    kind: applicability-check
+    depends_on: [evt:01]
+    provenance: [prov:fixture:machine-2.4.72-needs-check]
+    verification: needs-check
+    payload:
+      rule: machine:2.4.72
+      state: state:fixture:dadati:sap
+      outcome: applicable
+      conditions: [sap-present]
+
+  - event_id: evt:03
+    kind: applicability-check
+    depends_on: [evt:01]
+    provenance: [prov:machine:dadati-apavada-choice]
+    verification: needs-check
+    payload:
+      rule: machine:2.4.75
+      state: state:fixture:dadati:sap
+      outcome: applicable
+      conditions: [sap-present, juhotyAdi-class]
+
+  - event_id: evt:04
+    kind: conflict-resolved
+    depends_on: [evt:02, evt:03]
+    provenance: [prov:machine:dadati-apavada-choice]
+    verification: needs-check
+    payload:
+      candidates:
+        - { rule: machine:2.4.72, applicability: applicable }
+        - { rule: machine:2.4.75, applicability: applicable }
+      winner: machine:2.4.75
+      policy: declared-apavada-over-utsarga
+      reason: >-
+        The local machine model declares 2.4.75 as an exception of 2.4.72.
+        This is an implementation relation, not a historical proof.
+
+  - event_id: evt:05
+    kind: rule-decision
+    depends_on: [evt:04]
+    provenance: [prov:machine:dadati-apavada-choice]
+    verification: derived
+    payload:
+      rule: machine:2.4.75
+      decision: selected
+      policy: declared-apavada-over-utsarga
+      reason: selected-after-explicit-machine-conflict-event
+
+  - event_id: evt:06
+    kind: state-transition
+    depends_on: [evt:05]
+    provenance: [prov:machine:dadati-apavada-choice]
+    verification: derived
+    payload:
+      rule: machine:2.4.75
+      before: state:fixture:dadati:sap
+      after: state:fixture:dadati:slu
+      operation: replace-Sap-with-Slu-marker-and-elide-surface
+
+  - event_id: evt:07
+    kind: trace-terminated
+    depends_on: [evt:06]
+    provenance: [prov:fixture:dadati-input-needs-check]
+    verification: needs-check
+    payload:
+      outcome: partial
+      reason: >-
+        Portable machine execution, complete provenance, and the remainder of
+        the dadAti derivation are outside this bounded fixture.
