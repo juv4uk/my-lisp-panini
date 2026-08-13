@@ -7,8 +7,9 @@ documentation. It excludes source code, SLP1, sūtra text, YAML data, URLs,
 verbatim quotations, `scratch/` vendor trees, and external reference copies.
 
 Ukrainian is the normative language and is written in Cyrillic in documentation.
-Executable code, command names, and identifiers that use Ukrainian use Latin
-ASCII; SLP1 remains reserved for Sanskrit vocabulary and identifiers.
+Ukrainian comments in executable code use Latin ASCII; identifiers are not
+artificially Ukrainianized. SLP1 remains reserved for Sanskrit vocabulary and
+identifiers.
 
 | Area | Current canonical content | Migration state |
 | --- | --- | --- |
@@ -27,9 +28,9 @@ ASCII; SLP1 remains reserved for Sanskrit vocabulary and identifiers.
 дослівні цитати, vendor-дерева `scratch/` та зовнішні reference copies.
 
 Українська є нормативною мовою й записується кирилицею в документації.
-Виконуваний код, команди й ідентифікатори з українськими словами
-використовують латиницю ASCII; SLP1 зарезервовано для санскритської лексики
-та ідентифікаторів.
+Українські коментарі у виконуваному коді використовують латиницю ASCII;
+ідентифікатори штучно не українізуються. SLP1 зарезервовано для санскритської
+лексики та ідентифікаторів.
 
 | Ділянка | Поточний канонічний зміст | Стан міграції |
 | --- | --- | --- |
@@ -49,8 +50,8 @@ YAML-Daten, URLs, wörtliche Zitate, eingebundene `scratch/`-Bäume und externe
 Referenzkopien.
 
 Ukrainisch ist die normative Sprache und wird in der Dokumentation kyrillisch
-geschrieben. Ausführbarer Code, Befehle und Bezeichner mit ukrainischem Text
-verwenden Latin ASCII; SLP1 bleibt für Sanskrit-Vokabular reserviert.
+geschrieben. Ukrainische Kommentare in ausführbarem Code verwenden Latin
+ASCII; SLP1 bleibt für Sanskrit-Vokabular reserviert.
 
 | Bereich | Aktueller kanonischer Inhalt | Migrationsstand |
 | --- | --- | --- |

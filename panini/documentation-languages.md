@@ -11,10 +11,11 @@ Section order is always English → Ukrainian → German. Ukrainian is the
 normative project language and is written in Cyrillic in human-facing
 documentation.
 
-Executable code, command names, and identifiers that intentionally use
-Ukrainian must use Latin ASCII. SLP1 remains the canonical ASCII notation
+Ukrainian comments in executable code use Latin ASCII. Identifiers should not
+be artificially Ukrainianized: they remain language-neutral or belong to a
+separate vocabulary contract. SLP1 remains the canonical ASCII notation
 **only for Sanskrit** vocabulary, identifiers, and cited grammatical forms;
-Ukrainian code transliteration is not SLP1.
+Ukrainian Latin in comments is not SLP1.
 
 Do not translate code, SLP1 identifiers, sūtra text, YAML field names, URLs,
 verbatim quotations, or vendored third-party content. Translation must not
@@ -31,10 +32,11 @@ raise the evidence status of a claim.
 Порядок секцій завжди English → Ukrainian → German. Українська є нормативною
 мовою проєкту й записується кирилицею в документації.
 
-Виконуваний код, команди та ідентифікатори, які навмисно використовують
-українську, записуються латиницею ASCII. SLP1 лишається канонічним ASCII-
+Українські коментарі у виконуваному коді записуються латиницею ASCII.
+Ідентифікатори не слід штучно українізувати: вони лишаються мовно-нейтральними
+або належать до окремого vocabulary contract. SLP1 лишається канонічним ASCII
 записом **лише для санскритської** лексики, ідентифікаторів і цитованих
-граматичних форм; українська латиниця в коді не є SLP1.
+граматичних форм; українська латиниця в коментарях не є SLP1.
 
 Не перекладати код, SLP1-ідентифікатори, текст sūtra, YAML-поля, URL,
 дослівні цитати та vendor-матеріали третіх сторін. Переклад не може підвищити
@@ -50,10 +52,10 @@ wenn eine Verdopplung die Quellendetails verdecken würde.
 
 Die Abschnittsreihenfolge ist immer Englisch → Ukrainisch → Deutsch.
 Ukrainisch ist die normative Projektsprache und wird in menschenlesbarer
-Dokumentation kyrillisch geschrieben. Ausführbarer Code, Befehlsnamen und
-Bezeichner mit ukrainischem Text verwenden Latin ASCII. SLP1 bleibt
-ausschließlich die kanonische ASCII-Notation für Sanskrit-Vokabular,
-Identifikatoren und zitierte Formen.
+Dokumentation kyrillisch geschrieben. Ukrainische Kommentare in ausführbarem
+Code verwenden Latin ASCII. Bezeichner werden nicht künstlich ukrainisiert.
+SLP1 bleibt ausschließlich die kanonische ASCII-Notation für
+Sanskrit-Vokabular, Identifikatoren und zitierte Formen.
 
 Code, SLP1-Bezeichner, Sūtra-Text, YAML-Feldnamen, URLs, wörtliche Zitate und
 eingebundene Inhalte Dritter werden nicht übersetzt. Eine Übersetzung darf den
