@@ -10,4 +10,4 @@
 ;; tooling (parsers, Rust, etc.).
 
 (specifications->manifest
- (list "git"))
+ (list "git" "python" "python-pyyaml"))
