@@ -1,3 +1,8 @@
+;; DEPRECATED as a live task registry (PANINI-TASKS-MY-RECONCILE, 2026-08-13).
+;; Coordination for this repo now happens exclusively through swarm-node
+;; (port 9106, PANINI-* task ids) -- see (status)/(next-best-action ...)
+;; there, and panini/research/tasks-reconciliation.md for the full mapping
+;; and rationale. This file is kept as a historical record only, not updated.
 ((tasks . (
   ("build-ontology-map" . (
     (priority . 10.0)
