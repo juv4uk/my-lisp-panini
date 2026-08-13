@@ -63,6 +63,17 @@ three derivation outputs and the `dadAti` conflict fields are deliberately
 `machine-fixture` records: this proves VM compatibility and declared fixture
 behavior, not complete historical Pāṇinian derivations.
 
+### Current evidence note
+
+The 22-assertion result above predates loading `panini-core.my` in the
+canonical entry point and is retained as historical local evidence. Panini 1
+reported a later **62/62 PASS** run against My Lisp source revision `4a98639`
+with an executable that contains `sha256-hex`; this is peer-reported evidence
+until independently reproduced. Before recording any new acceptance number,
+run [the runtime capability probe](../tests/probe_mylisp_runtime.py), then the
+loader-negative suite, then acceptance. A source revision alone does not prove
+that the executable has the required primitive surface.
+
 ## Українська
 
 Цей документ описує стратегію тестування `panini-machine-model-v0.1`.
@@ -131,6 +142,17 @@ Entrypoint використовує `runtime-prelude.my`, а не спільни
 `machine-fixture` records: це доводить сумісність із VM і оголошену поведінку
 fixture, а не complete історичні деривації Паніні.
 
+### Примітка про поточний evidence
+
+Наведений вище результат із 22 assertions передує завантаженню
+`panini-core.my` у canonical entrypoint і зберігається як історичний локальний
+evidence. Panini 1 повідомив пізніший запуск **62/62 PASS** проти My Lisp
+source revision `4a98639` із executable, що має `sha256-hex`; це peer-reported
+evidence до незалежного відтворення. Перед фіксацією будь-якого нового числа
+acceptance запускайте [runtime capability probe](../tests/probe_mylisp_runtime.py),
+потім loader-negative suite, а потім acceptance. Сам source revision не
+доводить, що executable має потрібну primitive surface.
+
 ## Deutsch
 
 Dieses Dokument beschreibt die Teststrategie für `panini-machine-model-v0.1`.
@@ -197,3 +219,14 @@ gemeinsamen Core. Die drei Derivationsausgaben und die `dadAti`-Konfliktfelder
 sind absichtlich `machine-fixture`-Records: Der Test belegt VM-Kompatibilität
 und deklariertes Fixture-Verhalten, keine vollständigen historischen
 Pāṇini-Ableitungen.
+
+### Hinweis zur aktuellen Evidenz
+
+Das obige Ergebnis mit 22 Assertions liegt vor dem Laden von `panini-core.my`
+im kanonischen Einstiegspunkt und bleibt historische lokale Evidenz. Panini 1
+meldete einen späteren Lauf mit **62/62 PASS** gegen My-Lisp-Source-Revision
+`4a98639` und ein Executable mit `sha256-hex`; dies bleibt peer-reported
+Evidenz bis zur unabhängigen Reproduktion. Vor jeder neuen Acceptance-Zahl
+zuerst [den Runtime-Capability-Probe](../tests/probe_mylisp_runtime.py), dann
+die Loader-Negativsuite und danach Acceptance ausführen. Eine Source-Revision
+allein beweist nicht die erforderliche Primitive-Oberfläche des Executables.
