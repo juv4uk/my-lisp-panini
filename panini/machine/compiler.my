@@ -1,0 +1,78 @@
+;; Panini Machine Model v0.1 — Rule Compiler DSL
+;; Translates declarative Paninian rules into the Inference Engine formats.
+;; All identifiers strictly use SLP1 encoding.
+
+;; Global registry of compiled machine rules
+(def *machine-rules* '())
+
+;; Helper: pattern matching engine for conditions
+(defun eval-match (pattern prakriya)
+  ;; In a real Lisp implementation, this would unify the `pattern` against
+  ;; the `prakriya` terms (e.g. matching `?anga` to a dhAtu term).
+  ;; For v0.1, we simulate it by calling a specialized predicate if it matches.
+  ;; If pattern is a list of term conditions:
+  ;; e.g., '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sArvaDAtukaM)))
+  
+  ;; Mock implementation for the architectural prototype:
+  ;; We check if the current prakriya terms satisfy the specific conditions.
+  (cond
+    ;; Rule 7.3.84 Matcher
+    ((equal pattern '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sArvaDAtukaM))))
+     (and (eq (term-type (car (prakriya-terms prakriya))) 'dhAtu)
+          (> (length (prakriya-terms prakriya)) 1)
+          (term-has-tag (second (prakriya-terms prakriya)) 'sArvaDAtukaM)))
+          
+    ;; Rule 6.1.78 Matcher
+    ((equal pattern '((term ?t1 (ends-with EC)) (term ?t2 (starts-with AC))))
+     (let* ((terms (prakriya-terms prakriya))
+            (t1 (car terms))
+            (t2 (if (> (length terms) 1) (second terms) nil)))
+       (and t2
+            (member (last (term-text t1)) '(e o E O))
+            (member (car (term-text t2)) AC))))
+            
+    (t '()))) ;; Default fail
+
+;; Helper: executing the action on the prakriya
+(defun eval-action (action prakriya rule-id)
+  ;; Executes the declarative action on the prakriya, returning a new prakriya state.
+  (cond
+    ;; Rule 7.3.84 Action
+    ((equal action '(replace-last ?t1 (apply-guRa (last-char ?t1))))
+     (let* ((terms (prakriya-terms prakriya))
+            (dhatu-term (car terms))
+            (rest-terms (cdr terms))
+            (dtext (term-text dhatu-term))
+            (last-v (last dtext))
+            (guna-v (apply-guRa last-v))
+            (new-text (append (butlast dtext) (list guna-v)))
+            (new-dhatu (term-set-text dhatu-term new-text)))
+       (prakriya-record prakriya rule-id (cons new-dhatu rest-terms))))
+       
+    ;; Rule 6.1.78 Action
+    ((equal action '(replace-last ?t1 (apply-eco-sandhi (last-char ?t1))))
+     (let* ((terms (prakriya-terms prakriya))
+            (t1 (car terms))
+            (t2 (second terms))
+            (sandhi-v (apply-eco-sandhi (last (term-text t1)) (car (term-text t2))))
+            (new-t1-text (append (butlast (term-text t1)) (list sandhi-v)))
+            (new-t1 (term-set-text t1 new-t1-text)))
+       (prakriya-record prakriya rule-id (list new-t1 t2 (third terms)))))
+       
+    (t prakriya))) ;; Default no-op
+
+;; The Core Macro: def-panini-rule
+;; Translates a high-level declarative syntax into a standard meta.my rule.
+(defmacro def-panini-rule (id &key type scope match action)
+  `(let ((new-rule
+          (make-rule ,id 'azwADyAyI
+                     (if ,scope ,scope 'bAhiraMga)
+                     '() '() ;; nitya, utsarga defaults
+                     ;; Condition lambda
+                     (lambda (prakriya)
+                       (eval-match ,match prakriya))
+                     ;; Action lambda
+                     (lambda (prakriya)
+                       (eval-action ,action prakriya ,id)))))
+     (setq *machine-rules* (append *machine-rules* (list new-rule)))
+     new-rule))

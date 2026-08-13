@@ -135,24 +135,18 @@
     trimmed-start))
 
 ;; ==========================================
-;; Rule 7.3.84 — sArvaDAtukarDADAtukayoH (Guṇa)
-;; If the next suffix has tag sArvaDAtukaM,
-;; apply guṇa to the final vowel of the dhātu.
+;; Declarative Rules (compiled via compiler.my)
 ;; ==========================================
-(defun rule-7-3-84 (dhatu-term next-suffix-term)
-  (if (term-has-tag next-suffix-term 'sArvaDAtukaM)
-      ;; Apply guṇa to last vowel of dhātu text
-      (let* ((dtext (term-text dhatu-term))
-             (last-v (last dtext))
-             (guna-v (apply-guRa last-v))
-             (new-text (append (butlast dtext) (list guna-v))))
-        (term-set-text dhatu-term new-text))
-      dhatu-term))  ;; no change if not sArvaDAtukaM
 
-;; ==========================================
+;; Rule 7.3.84 — sArvaDAtukarDADAtukayoH (Guṇa)
+(def-panini-rule "7.3.84"
+  :type 'vidhi
+  :scope 'antaraMga
+  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sArvaDAtukaM)))
+  :action '(replace-last ?t1 (apply-guRa (last-char ?t1))))
+
 ;; Rule 6.1.78 — eco 'yavāyāvaḥ (Sandhi)
 ;; o before vowel → av
-;; ==========================================
 (setq eco-map '((e . ay) (o . av) (E . Ay) (O . Av)))
 
 (defun apply-eco-sandhi (sound next-sound)
@@ -161,43 +155,27 @@
         (if mapped (cdr mapped) sound))
       sound))
 
+(def-panini-rule "6.1.78"
+  :type 'vidhi
+  :scope 'bAhiraMga
+  :match '((term ?t1 (ends-with EC)) (term ?t2 (starts-with AC)))
+  :action '(replace-last ?t1 (apply-eco-sandhi (last-char ?t1))))
+
 ;; ==========================================
-;; Full Bavati Derivation (Step-by-Step)
-;; Follows Bavati.md exactly.
+;; Full Bavati Derivation (Step-by-Step via Engine)
+;; Follows Bavati.md exactly, but now using run-inference.
 ;; ==========================================
 (defun derive-Bavati ()
-  ;; Step 1-2: BU + laT → BU + tip
-  (let* ((dhatu  (make-term '(B U) 'dhAtu))
-         (tin    (make-term '(t i p) 'tiN))
-         (p1 (make-prakriya (list dhatu tin))))
-
-    ;; Step 3: it-removal from tip (p → tag, text → ti)
-    (let* ((tin-after-it (apply-it-samjna tin))
-           (p3 (prakriya-record p1 "1.3.3+1.3.9" (list dhatu tin-after-it))))
-
-      ;; Step 4: add vikarana Sap between dhatu and tiN
-      ;; Here we use with-adhikara to simulate being inside the adhikara of:
-      ;; 3.1.1 pratyayaH and 3.1.91 DAtoH
-      (with-adhikara '((:scope . "pratyaya") (:base . "dhatu"))
-        (let* ((vikarana (make-term '(S a p) 'vikarana))
-               ;; We can theoretically read (get-context :scope) inside the rule engine here
-               (p4 (prakriya-record p3 "3.1.68"
-                     (list dhatu vikarana tin-after-it))))
-
-          ;; Step 5: it-removal from Sap (S,p → tags, text → a, adds sArvaDAtukaM)
-          (let* ((vk-after-it (apply-it-samjna vikarana))
-                 (p5 (prakriya-record p4 "1.3.7+1.3.9"
-                       (list dhatu vk-after-it tin-after-it))))
-
-            ;; Step 6: Guṇa on dhātu (U → o) because vikarana has sArvaDAtukaM
-            (let* ((dhatu-guna (rule-7-3-84 dhatu vk-after-it))
-                   (p6 (prakriya-record p5 "7.3.84"
-                         (list dhatu-guna vk-after-it tin-after-it))))
-
-              ;; Step 7: Sandhi o+a → av+a
-              ;; (dhatu ends in 'o', vikarana starts with 'a')
-              ;; Result: (B av a t i) = Bavati
-              (prakriya-record p6 "6.1.78"
-                (list (term-set-text dhatu-guna '(B a v))
-                      vk-after-it
-                      tin-after-it)))))))))
+  ;; Step 1-4: Setup BU + Sap + tip (with it-markers removed manually for now)
+  ;; Future: The rule engine will handle vikaranas and it-markers fully automatically.
+  (let* ((dhatu    (make-term '(B U) 'dhAtu))
+         (vikarana (make-term '(a) 'vikarana))
+         (vikarana-tagged (term-add-tag vikarana 'sArvaDAtukaM))
+         (tin      (make-term '(t i) 'tiN))
+         (initial-prakriya (make-prakriya (list dhatu vikarana-tagged tin))))
+         
+    ;; Step 5+: Run Inference Engine
+    ;; The engine will evaluate all rules in *machine-rules*.
+    ;; It should detect that 7.3.84 is applicable (dhatu + sArvaDAtukaM) and apply Guṇa.
+    ;; Then it will detect 6.1.78 is applicable (EC + AC) and apply Sandhi.
+    (run-inference *machine-rules* initial-prakriya 10)))
