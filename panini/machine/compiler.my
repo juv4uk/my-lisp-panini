@@ -6,7 +6,7 @@
 (def *machine-rules* '())
 
 ;; Helper: pattern matching engine for conditions
-(defun eval-match (pattern prakriya)
+(def eval-match (pattern prakriya)
   ;; In a real Lisp implementation, this would unify the `pattern` against
   ;; the `prakriya` terms (e.g. matching `?anga` to a dhAtu term).
   ;; For v0.1, we simulate it by calling a specialized predicate if it matches.
@@ -34,7 +34,7 @@
     (t '()))) ;; Default fail
 
 ;; Helper: executing the action on the prakriya
-(defun eval-action (action prakriya rule-id)
+(def eval-action (action prakriya rule-id)
   ;; Executes the declarative action on the prakriya, returning a new prakriya state.
   (cond
     ;; Rule 7.3.84 Action
