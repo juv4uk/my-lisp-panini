@@ -1,4 +1,19 @@
-# it
+# it · it · it
+
+## English summary
+
+This note treats `it` as a Paninian designation with rule-specific triggers
+and a separate `lopa` consequence. It is not automatically compiler metadata;
+any tag-based implementation must preserve source and designation provenance.
+
+## Deutsche Zusammenfassung
+
+Diese Notiz behandelt `it` als paninische Bezeichnung mit regelspezifischen
+Auslösern und einer getrennten `lopa`-Folge. `it` ist nicht automatisch
+Compiler-Metadaten; jede tag-basierte Implementierung muss Quelle und
+Provenienz der Bezeichnung erhalten.
+
+## Український повний текст
 
 Статус: v0.1 (`PANINI-IT-MARKERS`).
 

@@ -1,4 +1,19 @@
-# anuvftti / aDikAra
+# anuvftti / aDikAra · anuvṛtti and rule scope · anuvṛtti und Regelbereich
+
+## English summary
+
+`anuvftti` and `aDikAra` carry context across sūtra without repeated text.
+Their scope must be recorded explicitly or marked inferred/unresolved in a
+derivation trace; they are not ordinary lexical tokens or AST inheritance.
+
+## Deutsche Zusammenfassung
+
+`anuvftti` und `aDikAra` tragen Kontext über Sūtras hinweg, ohne den Text zu
+wiederholen. Ihr Geltungsbereich muss in einem Ableitungstrace ausdrücklich
+erfasst oder als erschlossen/ungeklärt markiert werden; sie sind weder
+gewöhnliche lexikalische Tokens noch AST-Vererbung.
+
+## Український повний текст
 
 Статус: чернетка v0.1 (`PANINI-ANUVRTTI-SCOPE`).
 
