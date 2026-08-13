@@ -44,6 +44,15 @@ guix shell -m manifest.scm -- python3 panini/tools/validate_trace_fixtures.py
 guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.py
 ```
 
+For an executable My Lisp integration check, use the supplied runtime path
+explicitly. This acceptance harness fails on REPL diagnostics even when the
+process exits with code 0:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tests/run_machine_acceptance.py \
+  --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
+```
+
 ## Українська
 
 `validate_registry.py` — offline, read-only validator малих YAML-реєстрів.
@@ -87,6 +96,15 @@ fixture:
 ```sh
 guix shell -m manifest.scm -- python3 panini/tools/validate_trace_fixtures.py
 guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.py
+```
+
+Для виконуваної інтеграційної перевірки My Lisp передайте шлях до runtime
+явно. Цей acceptance harness провалюється на REPL diagnostics, навіть якщо
+process завершується з кодом 0:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tests/run_machine_acceptance.py \
+  --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
 ```
 
 ## Deutsch
@@ -133,4 +151,13 @@ fehlenden sprachlichen Fakten ab und schreibt keine Fixtures um:
 ```sh
 guix shell -m manifest.scm -- python3 panini/tools/validate_trace_fixtures.py
 guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.py
+```
+
+Für einen ausführbaren My-Lisp-Integrationstest wird der Runtime-Pfad explizit
+übergeben. Dieser Acceptance-Harness schlägt auch bei REPL-Diagnosen fehl,
+selbst wenn der Prozess mit Code 0 endet:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tests/run_machine_acceptance.py \
+  --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
 ```
