@@ -2,29 +2,34 @@
 ;; Formal tests for the Inference Engine and compiled rules.
 ;; 
 ;; To run these tests in the eventual My Lisp environment:
-;; (load "compiler.my")
-;; (load "meta.my")
-;; (load "rules.my")
-;; (run-tests)
+(load "c:/GitHub/my-lisp-panini/panini/machine/compiler.my")
+(load "c:/GitHub/my-lisp-panini/panini/machine/meta.my")
+(load "c:/GitHub/my-lisp-panini/panini/machine/siva-sutras.my")
+(load "c:/GitHub/my-lisp-panini/panini/machine/rules.my")
 
-(defun assert-equal (expected actual msg)
+(def assert-equal (expected actual msg)
   (if (equal expected actual)
       (print (concat "[PASS] " msg))
       (print (concat "[FAIL] " msg " | Expected: " expected " | Got: " actual))))
 
-(defun test-eco-sandhi ()
+(def test-pratyahara ()
+  (assert-equal '(a i u f x e o E O) AC "AC generates all vowels")
+  (assert-equal '(i u f x) IK "IK generates close vowels")
+  (assert-equal '(e o E O) EC "EC generates diphthongs"))
+
+(def test-eco-sandhi ()
   (assert-equal '(a y) (apply-eco-sandhi 'e 'a) "eco sandhi: e + a -> ay")
   (assert-equal '(a v) (apply-eco-sandhi 'o 'a) "eco sandhi: o + a -> av")
   (assert-equal '(A y) (apply-eco-sandhi 'E 'a) "eco sandhi: E + a -> Ay")
   (assert-equal '(A v) (apply-eco-sandhi 'O 'a) "eco sandhi: O + a -> Av"))
 
-(defun test-guna ()
+(def test-guna ()
   (assert-equal 'o (apply-guRa 'u) "guna of u is o")
   (assert-equal 'o (apply-guRa 'U) "guna of U is o")
   (assert-equal 'e (apply-guRa 'i) "guna of i is e")
   (assert-equal 'ar (apply-guRa 'f) "guna of f is ar"))
 
-(defun test-bavati-derivation ()
+(def test-bavati-derivation ()
   (let* ((final-prakriya (derive-Bavati))
          (final-terms (prakriya-terms final-prakriya))
          ;; The final text should be B + av + a + t + i = Bavati
@@ -33,13 +38,14 @@
 
 ;; Future test: dadAti derivation
 ;; Tests the conflict resolution (apavAda) for Class 3 reduplication (Slu).
-(defun test-dadati-derivation ()
+(def test-dadati-derivation ()
   (let* ((final-prakriya (derive-dadAti))
          (final-string (concat-terms (prakriya-terms final-prakriya))))
     (assert-equal "dadAti" final-string "dadAti derivation handles Slu reduplication")))
 
-(defun run-tests ()
+(def run-tests ()
   (print "Running Panini Machine Tests...")
+  (test-pratyahara)
   (test-eco-sandhi)
   (test-guna)
   (test-bavati-derivation)
