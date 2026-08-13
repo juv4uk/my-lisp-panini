@@ -66,6 +66,14 @@ terms:
     metadata:
       namespace: fixture
       values: { role: abhyasa-candidate }
+  - id: term:reduplicated-dA
+    kind: opaque
+    source_form: dA
+    surface_form: dA
+    designations: []
+    metadata:
+      namespace: fixture
+      values: { role: reduplicated-occurrence }
   - id: term:abhyasa-da
     kind: opaque
     source_form: dA
@@ -107,6 +115,19 @@ states:
         to: designation:abhyAsa
         provenance: [prov:fixture:dadati-6.1.4-needs-check]
     serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:dadati:dvirvacana
+    schema: panini-state/0.1
+    terms: [term:reduplicated-dA, term:root-dA, term:slu-marker, term:tin-ti]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap
+        to: term:slu-marker
+        provenance: [prov:fixture:dadati-2.4.75-source-path]
+      - kind: implementation
+        from: term:root-dA
+        to: term:reduplicated-dA
+        provenance: [prov:fixture:dadati-6.1.10-dvirvacana]
+    serialization: fixture-sexpr-not-hashed
   - id: state:fixture:dadati:abhyasa-hrasva
     schema: panini-state/0.1
     terms: [term:abhyasa-da, term:root-dA, term:slu-marker, term:tin-ti]
@@ -143,7 +164,7 @@ rules:
     machine_ref: null
     conditions: [condition:fixture:slu-to-reduplication-precondition]
     operation: null
-    provenance: [prov:fixture:dadati-6.1.10-needs-check]
+    provenance: [prov:fixture:dadati-6.1.10-dvirvacana]
   - id: rule:sutra:6.1.4
     kind: sutra-reference
     canonical_ref: "6.1.4"
@@ -207,28 +228,61 @@ events:
   - event_id: evt:05
     kind: applicability-check
     depends_on: [evt:04]
-    provenance: [prov:fixture:dadati-6.1.10-needs-check]
-    verification: needs-check
+    provenance: [prov:fixture:dadati-6.1.10-dvirvacana]
+    verification: verified
     payload:
       rule: "6.1.10"
       state: state:fixture:dadati:slu
-      outcome: unknown
+      outcome: applicable
       conditions: [Slu-to-reduplication-precondition]
 
   - event_id: evt:06
     kind: rule-decision
     depends_on: [evt:05]
-    provenance: [prov:fixture:dadati-6.1.10-needs-check]
-    verification: needs-check
+    provenance: [prov:fixture:dadati-6.1.10-dvirvacana]
+    verification: derived
     payload:
       rule: "6.1.10"
-      decision: deferred
-      policy: unknown-precondition-blocks-source-proof
-      reason: provenance-backed-Slu-to-reduplication-precondition-is-not-yet-recorded
+      decision: selected
+      policy: source-backed-Slu-dvirvacana-path
+      reason: 2.4.75-commentary-connects-Slu-to-6.1.10-dvirvacana
 
   - event_id: evt:07
-    kind: trace-observation
+    kind: state-transition
     depends_on: [evt:06]
+    provenance: [prov:fixture:dadati-6.1.10-dvirvacana]
+    verification: derived
+    payload:
+      rule: "6.1.10"
+      before: state:fixture:dadati:slu
+      after: state:fixture:dadati:dvirvacana
+      operation: create-reduplicated-root-occurrence
+
+  - event_id: evt:08
+    kind: applicability-check
+    depends_on: [evt:07]
+    provenance: [prov:fixture:dadati-6.1.4-needs-check]
+    verification: needs-check
+    payload:
+      rule: "6.1.4"
+      state: state:fixture:dadati:dvirvacana
+      outcome: unknown
+      conditions: [reduplicated-occurrence]
+
+  - event_id: evt:09
+    kind: rule-decision
+    depends_on: [evt:08]
+    provenance: [prov:fixture:dadati-6.1.4-needs-check]
+    verification: needs-check
+    payload:
+      rule: "6.1.4"
+      decision: deferred
+      policy: unknown-precondition-blocks-source-proof
+      reason: abhyAsa-designation-is-not-yet-independently-recorded
+
+  - event_id: evt:10
+    kind: trace-observation
+    depends_on: [evt:09]
     provenance: [prov:fixture:dadati-example-observation-needs-check]
     verification: needs-check
     payload:
@@ -240,21 +294,20 @@ events:
         state. It is not evidence that 6.1.10, 6.1.4, 7.4.59, or a later
         surface operation has been fully established.
 
-  - event_id: evt:08
+  - event_id: evt:11
     kind: trace-terminated
-    depends_on: [evt:07]
+    depends_on: [evt:10]
     provenance: [prov:fixture:dadati-input-needs-check]
     verification: needs-check
     payload:
       outcome: partial
       reason: >-
-        The source path stops before reduplication, abhyAsa designation,
+        The source path stops after dvirvacana and before abhyAsa designation,
         hrasva, and the final surface operation because their required
         preconditions and typed transitions remain unresolved.
 
 unknowns:
   - complete-source-account-of-the-2.4.72-to-2.4.75-conflict-relation-for-dA
-  - provenance-backed-Slu-to-reduplication-precondition
   - typed-state-operation-for-abhyasa-designation-and-hrasva
   - typed-state-operation-from-abhyasa-representation-to-surface-dadAti
   - portable-execution-and-provenance-trace-of-the-existing-machine-harness
