@@ -1,8 +1,8 @@
 # my-lisp-panini
 
-**A formal foundation before a hypothesis · Формальний фундамент перед гіпотезою · Ein formales Fundament vor einer Hypothese**
+**A formal foundation before a hypothesis · Formalnyy fundament pered hipotezoyu · Ein formales Fundament vor einer Hypothese**
 
-[English](#english) · [Українська](#українська) · [Deutsch](#deutsch)
+[English](#english) · [Ukrainian (ASCII)](#ukrainian-ascii) · [Deutsch](#deutsch)
 
 ## English
 
@@ -22,24 +22,24 @@ and evidence-bound examples — no parser, complete NLP system, or My Lisp
 change. `panini-machine-model-v0.1` begins only after that foundation
 stabilizes.
 
-## Українська
+## Ukrainian (ASCII)
 
-`my-lisp-panini` досліджує граматику Паніні (*Aṣṭādhyāyī*) як самостійну
-формальну систему, а не як вправу з перекладу Lisp санскритом. Спершу
-встановлюємо, якою є система Паніні; лише потім перевіряємо, які
-обчислювальні конструкції можуть із неї випливати. Відповідності
-`cons`/`car`/`cdr`/`lambda` до санскритських термінів ніколи не припускаються
-наперед.
+`my-lisp-panini` doslidzhuye hramatyku Panini (*Aṣṭādhyāyī*) yak samostiynu
+formalnu systemu, a ne yak vpravu z perekladu Lisp sanskrytom. Spershu
+vstanovlyuyemo, yakoyu ye systema Panini; lyshe potim pereviryayemo, yaki
+obchyslyuvalni konstruktsiyi mozhut iz neyi vyplyvaty. Vidpovidnosti
+`cons`/`car`/`cdr`/`lambda` do sanskrytskykh terminiv nikoly ne prypuskayutsya
+napered.
 
-Повний мандат і методологія — в [AGENTS.md](AGENTS.md). Внутрішні
-ідентифікатори використовують ASCII SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST і
-деванаґарі є лише presentation forms. Кожен дослідницький документ розділяє
-`[PANINI]`, `[INTERPRETATION]` і `[MY-LISP HYPOTHESIS]`.
+Povnyy mandat i metodolohiya — v [AGENTS.md](AGENTS.md). Vnutrishni
+identyfikatory vykorystovuyut ASCII SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST i
+devanahari ye lyshe presentation forms. Kozhen doslidnytskyy dokument rozdilyaye
+`[PANINI]`, `[INTERPRETATION]` i `[MY-LISP HYPOTHESIS]`.
 
-Перший milestone, `panini-foundation-v0.1`, містить онтологію, джерела й
-доказово простежені приклади — без parser-а, повної NLP-системи чи змін My
-Lisp. `panini-machine-model-v0.1` починається лише після стабілізації цього
-фундаменту.
+Pershyy milestone, `panini-foundation-v0.1`, mistyt ontolohiyu, dzherela y
+dokazovo prostezheni pryklady — bez parser-a, povnoyi NLP-systemy chy zmin My
+Lisp. `panini-machine-model-v0.1` pochynayetsya lyshe pislya stabilizatsiyi
+tsoho fundamentu.
 
 ## Deutsch
 
@@ -60,35 +60,35 @@ und beweisgebundene Beispiele — ohne Parser, vollständiges NLP-System oder
 Änderung an My Lisp. `panini-machine-model-v0.1` beginnt erst nach der
 Stabilisierung dieses Fundaments.
 
-## Repository structure · Структура репозиторію · Repository-Struktur
+## Repository structure · Struktura repozytoriyu · Repository-Struktur
 
 - [panini/foundation/](panini/foundation) — ontology and terminology ·
-  онтологія й термінологія · Ontologie und Terminologie;
+  ontolohiya y terminolohiya · Ontologie und Terminologie;
 - [panini/registry/](panini/registry) — machine-readable records ·
-  машинно-читані записи · maschinenlesbare Einträge;
+  mashynno-chytani zapysy · maschinenlesbare Einträge;
 - [panini/research/](panini/research) — source and hypothesis audits ·
-  аудити джерел і гіпотез · Quellen- und Hypothesenaudits;
+  audyty dzherel i hipotez · Quellen- und Hypothesenaudits;
 - [panini/examples/derivations/](panini/examples/derivations) — traced examples ·
-  простежені приклади · nachvollzogene Beispiele;
-- [panini/specs/](panini/specs) — specifications · специфікації · Spezifikationen.
+  prostezheni pryklady · nachvollzogene Beispiele;
+- [panini/specs/](panini/specs) — specifications · spetsyfikatsiyi · Spezifikationen.
 
 Agents connect through WSL2 and use the declared Guix environment for project
 commands; the exact swarm procedure is in
-[panini/swarm-agent-guide.md](panini/swarm-agent-guide.md) · Агенти
-підключаються через WSL2 і використовують задеклароване Guix-оточення для
-команд проєкту; точна процедура рою — у
+[panini/swarm-agent-guide.md](panini/swarm-agent-guide.md) · Ahenty
+pidklyuchayutsya cherez WSL2 i vykorystovuyut zadeklarovane Guix-otochennya dlya
+komand proyektu; tochna protsedura royiu — u
 [panini/swarm-agent-guide.md](panini/swarm-agent-guide.md) · Agenten verbinden
 sich über WSL2 und verwenden die deklarierte Guix-Umgebung für
 Projektbefehle; das genaue Schwarmverfahren steht in
 [panini/swarm-agent-guide.md](panini/swarm-agent-guide.md).
 
-## Documentation languages · Мови документації · Dokumentationssprachen
+## Documentation languages · Movy dokumentatsiyi · Dokumentationssprachen
 
 Human-facing project documentation is maintained in English, Ukrainian, and
 German. Code, SLP1, sūtra text, machine-readable data, quotations, URLs, and
 vendored third-party material are not translated. See
 [panini/documentation-languages.md](panini/documentation-languages.md).
 
-## License · Ліцензія · Lizenz
+## License · Litsenziya · Lizenz
 
 [MIT](LICENSE)
