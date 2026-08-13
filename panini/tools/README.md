@@ -33,6 +33,17 @@ use `--strict` only when every remaining migration item is intended to block:
 guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py
 ```
 
+`validate_trace_fixtures.py` validates the structural evidence contract of
+Derivation IR fixtures: event dependencies, declared states, selected-rule
+transitions, provenance, and matching termination status. It scans only files
+that contain `events`; it never infers missing linguistic facts or rewrites a
+fixture:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/validate_trace_fixtures.py
+guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.py
+```
+
 ## Українська
 
 `validate_registry.py` — offline, read-only validator малих YAML-реєстрів.
@@ -65,6 +76,17 @@ vendor/reference-дерева й ніколи не змінює документ
 
 ```sh
 guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py
+```
+
+`validate_trace_fixtures.py` перевіряє structural evidence contract
+Derivation IR-fixture: залежності подій, оголошені стани, переходи після
+selected rule, provenance і відповідність termination status. Він сканує лише
+файли з `events`, ніколи не виводить відсутніх мовних фактів і не переписує
+fixture:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/validate_trace_fixtures.py
+guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.py
 ```
 
 ## Deutsch
@@ -100,4 +122,15 @@ verwenden, wenn alle übrigen Migrationspunkte blockieren sollen:
 
 ```sh
 guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py
+```
+
+`validate_trace_fixtures.py` prüft den strukturellen Evidenzvertrag der
+Derivation-IR-Fixtures: Ereignisabhängigkeiten, deklarierte Zustände,
+Übergänge nach einer selected rule, Provenienz und passenden
+Abschlussstatus. Es durchsucht nur Dateien mit `events`, leitet keine
+fehlenden sprachlichen Fakten ab und schreibt keine Fixtures um:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/validate_trace_fixtures.py
+guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.py
 ```
