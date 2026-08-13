@@ -1,0 +1,44 @@
+# Canonical serialization fixture. Verifies content-addressed state via the
+# trace-canonical-serialization-v0.1 contract (specs/trace-canonical-serialization-v0.1.md).
+# The state id is the SHA-256 digest of the canonical bytes; the validator
+# recomputes it and rejects on mismatch.
+
+fixture_id: trace-fixture:canonical-empty-state-v0.1
+fixture_status: partial
+ir_version: panini-derivation-ir/0.1
+derivation_id: drv:fixture:canonical-empty-state
+
+result:
+  status: partial
+  state: state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854
+  note: Empty content-addressed state, canonical bytes per contract vector A.
+
+terms: []
+
+states:
+  - id: state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854
+    schema: panini-state/0.1
+    terms: []
+    relations: []
+    serialization: canonical-json-sha256-v0.1
+
+events:
+  - event_id: ev:canonical-empty:1
+    kind: state-observed
+    depends_on: []
+    provenance:
+      - source: fixture
+        reference: specs/trace-canonical-serialization-v0.1.md#vector-a
+    payload:
+      state: state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854
+      serialization: canonical-json-sha256-v0.1
+      observed_at_state: initial
+  - event_id: ev:canonical-empty:2
+    kind: trace-terminated
+    depends_on: [ev:canonical-empty:1]
+    provenance:
+      - source: fixture
+        reference: specs/trace-canonical-serialization-v0.1.md#test-vectors
+    payload:
+      outcome: partial
+      reason: This fixture demonstrates content addressing only; no derivation is attempted.

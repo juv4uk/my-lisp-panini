@@ -4,8 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +20,50 @@ DEFAULT_FIXTURES = PANINI / "tests" / "trace-fixtures"
 SUTRA_ID = re.compile(r"^\d+\.\d+\.\d+$")
 MACHINE_ID = re.compile(r"^machine:[A-Za-z0-9_.:-]+$")
 STATUSES = {"success", "partial", "blocked", "invalid"}
+CANONICAL_SERIALIZATION = "canonical-json-sha256-v0.1"
+SHA256_STATE_ID = re.compile(r"^state:sha256:[0-9a-f]{64}$")
+NON_CANONICAL = {"fixture-sexpr-not-hashed", "canonical-json-sha256-v0.1"}
+
+
+def canonical_bytes(state: dict[str, Any]) -> bytes:
+    """Canonical bytes per trace-canonical-serialization-v0.1.md.
+
+    NFC-normalize every string, emit compact JSON with keys sorted by UTF-8
+    byte order, native UTF-8, a single trailing newline, no BOM, no
+    presentation fields.
+    """
+
+    def normalize(value: Any) -> Any:
+        if isinstance(value, str):
+            return unicodedata.normalize("NFC", value)
+        if isinstance(value, list):
+            return [normalize(item) for item in value]
+        if isinstance(value, dict):
+            return {normalize(key): normalize(item) for key, item in value.items()}
+        return value
+
+    body = {"schema": state.get("schema"), "serialization": state.get("serialization"),
+            "terms": state.get("terms"), "relations": state.get("relations")}
+    payload = json.dumps(normalize(body), ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return payload.encode("utf-8") + b"\n"
+
+
+def validate_canonical_states(path: Path, document: dict[str, Any], reporter: Reporter) -> None:
+    for index, state in enumerate(document.get("states", [])):
+        if not isinstance(state, dict):
+            continue
+        serialization = state.get("serialization")
+        if serialization not in NON_CANONICAL:
+            reporter.error(path, f"state[{index}]: unknown serialization {serialization!r}")
+            continue
+        state_id = state.get("id")
+        if serialization == CANONICAL_SERIALIZATION:
+            if not isinstance(state_id, str) or not SHA256_STATE_ID.fullmatch(state_id):
+                reporter.error(path, f"state[{index}]: canonical state id must be state:sha256:<64 lowercase hex>")
+                continue
+            expected = "state:sha256:" + hashlib.sha256(canonical_bytes(state)).hexdigest()
+            if state_id != expected:
+                reporter.error(path, f"state[{index}]: digest mismatch, got {state_id!r} expected {expected!r}")
 
 
 class Reporter:
@@ -88,6 +135,7 @@ def validate_trace(path: Path, document: dict[str, Any], reporter: Reporter) -> 
         reporter.error(path, "every event must be a mapping")
         return
 
+    validate_canonical_states(path, document, reporter)
     validate_dependencies(path, events, reporter)
     state_ids = {state.get("id") for state in document.get("states", []) if isinstance(state, dict)}
     selected_by_event: dict[str, str] = {}

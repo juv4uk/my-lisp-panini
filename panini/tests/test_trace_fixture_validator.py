@@ -50,4 +50,10 @@ def rejects(name: str, document: str) -> None:
 rejects("missing selected dependency", BASE.replace("depends_on: [evt:01]", "depends_on: []", 1))
 rejects("unknown state", BASE.replace("state:fixture:after", "state:fixture:missing", 1))
 rejects("cyclic dependencies", BASE.replace("depends_on: []", "depends_on: [evt:03]", 1))
+
+bad_digest = BASE.replace(
+    "states:\n  - {id: state:fixture:before}\n  - {id: state:fixture:after}\n",
+    "states:\n  - {id: state:fixture:before}\n  - {id: state:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, serialization: canonical-json-sha256-v0.1}\n",
+)
+rejects("mismatched canonical digest", bad_digest)
 print("trace fixture validator negative fixtures: PASS")
