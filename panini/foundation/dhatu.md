@@ -159,7 +159,7 @@ notes: "Регулярний корінь, зручний як baseline-прик
 ```
 
 ```yaml
-canonical: likh
+canonical: liK
 display: { iast: likh, devanagari: लिख् }
 class: dhatu
 gana: 6
@@ -186,7 +186,7 @@ notes: >
 ```
 
 ```yaml
-canonical: BUj
+canonical: Buj
 display: { iast: bhuj, devanagari: भुज् }
 class: dhatu
 gana: 7
@@ -201,7 +201,7 @@ notes: >
 ```
 
 ```yaml
-canonical: paca
+canonical: pac
 display: { iast: pac, devanagari: पच् }
 class: dhatu
 gana: 1
@@ -278,7 +278,7 @@ notes: >
 ```
 
 ```yaml
-canonical: iz
+canonical: iS
 display: { iast: iṣ, devanagari: इष् }
 class: dhatu
 gana: 6
