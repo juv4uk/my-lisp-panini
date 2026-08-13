@@ -1,5 +1,32 @@
 # Dhātu homonym disambiguation policy
 
+## English
+
+**Status:** v0.1 (`PANINI-DHATU-REGISTRY-PROVENANCE-FIELDS`). Canonical SLP1
+spelling is a human-friendly citation form, not a guaranteed unique key for a
+complete Dhātupāṭha. The verified `jYA` case has three distinct source records;
+only `09.0043` matches this registry’s gaṇa-9 “know” entry. Consequently,
+`dhatupatha_code` identifies a concrete source record, while optional
+`homonyms` records known alternatives. Source prefixes such as `qu-` cannot
+be discarded as merely decorative without checking whether they distinguish
+different roots. The detailed Ukrainian policy below defines file naming and
+registry handling; it does not claim every current root has been checked.
+
+## Deutsch
+
+**Status:** v0.1 (`PANINI-DHATU-REGISTRY-PROVENANCE-FIELDS`). Die kanonische
+SLP1-Schreibweise ist eine menschenfreundliche Zitierform, aber kein garantiert
+eindeutiger Schlüssel für einen vollständigen Dhātupāṭha. Der geprüfte Fall
+`jYA` besitzt drei verschiedene Quelleneinträge; nur `09.0043` entspricht dem
+Registereintrag der gaṇa 9 mit „wissen“. Daher bezeichnet `dhatupatha_code`
+einen konkreten Quelleneintrag, während das optionale Feld `homonyms` bekannte
+Alternativen festhält. Quellpräfixe wie `qu-` dürfen nicht ohne Prüfung als
+rein dekorativ verworfen werden, wenn sie verschiedene Wurzeln unterscheiden.
+Die ukrainische Detailrichtlinie unten legt Dateinamen und Registerbehandlung
+fest; sie behauptet nicht, dass bereits jede Wurzel geprüft wurde.
+
+## Українська
+
 Статус: v0.1 (`PANINI-DHATU-REGISTRY-PROVENANCE-FIELDS`).
 
 Доповнює [`dhatupatha-disambiguation.md`](dhatupatha-disambiguation.md)
