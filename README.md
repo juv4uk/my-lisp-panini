@@ -72,6 +72,16 @@ Stabilisierung dieses Fundaments.
   простежені приклади · nachvollzogene Beispiele;
 - [panini/specs/](panini/specs) — specifications · специфікації · Spezifikationen.
 
+Agents connect through WSL2 and use the declared Guix environment for project
+commands; the exact swarm procedure is in
+[panini/swarm-agent-guide.md](panini/swarm-agent-guide.md) · Агенти
+підключаються через WSL2 і використовують задеклароване Guix-оточення для
+команд проєкту; точна процедура рою — у
+[panini/swarm-agent-guide.md](panini/swarm-agent-guide.md) · Agenten verbinden
+sich über WSL2 und verwenden die deklarierte Guix-Umgebung für
+Projektbefehle; das genaue Schwarmverfahren steht in
+[panini/swarm-agent-guide.md](panini/swarm-agent-guide.md).
+
 ## Documentation languages · Мови документації · Dokumentationssprachen
 
 Human-facing project documentation is maintained in English, Ukrainian, and

@@ -41,6 +41,12 @@ Validierungswerkzeuge.
 - `examples/derivations/` — traced examples · простежені приклади · nachvollzogene Beispiele;
 - `specs/` — project boundaries · межі проєкту · Projektgrenzen.
 
+For WSL2, Guix, and swarm-node coordination, see
+[swarm-agent-guide.md](swarm-agent-guide.md) · Інструкція для WSL2,
+Guix і координації swarm-node — у [swarm-agent-guide.md](swarm-agent-guide.md)
+· Anleitung für WSL2, Guix und die Koordination mit swarm-node:
+[swarm-agent-guide.md](swarm-agent-guide.md).
+
 See [documentation-languages.md](documentation-languages.md) for the
 translation policy · Правила перекладу — у
 [documentation-languages.md](documentation-languages.md) · Die
