@@ -1,5 +1,32 @@
 # Dhātupāṭha disambiguation policy
 
+## English
+
+**Status:** v0.1 (`PANINI-DHATUPATHA-DISAMBIGUATION-POLICY`). A Dhātupāṭha
+`aupadeSika` source form and the project’s canonical citation form serve
+different purposes. Preserve the literal source in `source_form` with its
+`dhatupatha_code`; retain canonical SLP1 for interoperable citation. Purely
+decorative markers may be normalized only under the documented rule. A change
+of consonant, such as `zWA` versus `sTA`, requires independent confirmation;
+otherwise the record must remain explicitly uncertain. Homonymy and gaṇa
+disagreement are source-identity issues, not spelling fixes. The detailed
+Ukrainian policy gives the full evidence boundaries.
+
+## Deutsch
+
+**Status:** v0.1 (`PANINI-DHATUPATHA-DISAMBIGUATION-POLICY`). Eine
+`aupadeSika`-Quellform des Dhātupāṭha und die kanonische Zitierform des
+Projekts erfüllen verschiedene Zwecke. Die wörtliche Quelle ist mit
+`source_form` und `dhatupatha_code` zu bewahren; kanonisches SLP1 bleibt für
+interoperables Zitieren erhalten. Rein dekorative Marker dürfen nur nach der
+dokumentierten Regel normalisiert werden. Eine Konsonantenänderung wie
+`zWA` gegenüber `sTA` braucht unabhängige Bestätigung; andernfalls muss der
+Datensatz ausdrücklich unsicher bleiben. Homonymie und gaṇa-Abweichungen sind
+Fragen der Quellidentität, keine Schreibkorrekturen. Die ukrainische
+Detailrichtlinie enthält die vollständigen Evidenzgrenzen.
+
+## Українська
+
 Статус: v0.1 (`PANINI-DHATUPATHA-DISAMBIGUATION-POLICY`).
 
 ## Проблема
