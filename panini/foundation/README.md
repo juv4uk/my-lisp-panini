@@ -16,6 +16,7 @@ accepted. Detailed notes preserve `[PANINI]`, `[INTERPRETATION]`, and
 - [Context inheritance: anuvftti](anuvrtti.md)
 - [Rule conflicts](rule-system.md)
 - [Terminology](terminology.md)
+- [Advanced foundation notes](advanced-notes.md)
 
 ## Українська
 
@@ -33,6 +34,7 @@ accepted. Detailed notes preserve `[PANINI]`, `[INTERPRETATION]`, and
 - [Наслідування контексту: anuvftti](anuvrtti.md)
 - [Конфлікти правил](rule-system.md)
 - [Термінологія](terminology.md)
+- [Розширені нотатки фундаменту](advanced-notes.md)
 
 ## Deutsch
 
@@ -51,3 +53,4 @@ interne Schreibweise ist SLP1.
 - [Kontextvererbung: anuvftti](anuvrtti.md)
 - [Regelkonflikte](rule-system.md)
 - [Terminologie](terminology.md)
+- [Erweiterte Foundation-Notizen](advanced-notes.md)
