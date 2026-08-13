@@ -51,6 +51,12 @@ citations:
   "1.4.55": { text_ref: "index.yaml#sutras.1.4.55", status: corpus-checked, used_by: [foundation/anuvrtti.md] }
   "1.4.56": { text_ref: "index.yaml#sutras.1.4.56", status: corpus-checked, used_by: [foundation/anuvrtti.md] }
   "1.4.110": { text_ref: "index.yaml#sutras.1.4.110", status: needs-check, used_by: [foundation/samjna.md] }
+  "2.3.2": { text_ref: "index.yaml#sutras.2.3.2", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
+  "2.3.13": { text_ref: "index.yaml#sutras.2.3.13", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
+  "2.3.18": { text_ref: "index.yaml#sutras.2.3.18", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
+  "2.3.28": { text_ref: "index.yaml#sutras.2.3.28", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
+  "2.3.36": { text_ref: "index.yaml#sutras.2.3.36", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
+  "2.3.46": { text_ref: "index.yaml#sutras.2.3.46", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
   "2.4.72": { text_ref: "index.yaml#sutras.2.4.72", status: corpus-checked, used_by: [examples/derivations/dadAti.md] }
   "2.4.75": { text_ref: "index.yaml#sutras.2.4.75", status: corpus-checked, used_by: [examples/derivations/dadAti.md] }
   "3.1.1": { text_ref: "index.yaml#sutras.3.1.1", status: corpus-checked, used_by: [foundation/pratyaya.md, foundation/anuvrtti.md, foundation/ontology.md] }
