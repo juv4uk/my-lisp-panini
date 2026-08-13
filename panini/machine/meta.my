@@ -14,22 +14,10 @@
 ;; ==========================================
 ;; Anuvṛtti / Adhikāra Context Engine
 ;; ==========================================
-;; We use a global context variable to simulate dynamic binding 
-;; (fluid-let) for the duration of a grammatical scope.
-(def *anuvrtti-context* '())
-
-;; with-adhikara defines a block of rules that share a common context.
-(defmacro with-adhikara (bindings body)
-  `(let ((old-context *anuvrtti-context*))
-     (setq *anuvrtti-context* (append ,bindings old-context))
-     (let ((result ,body))
-       (setq *anuvrtti-context* old-context)
-       result)))
-
-;; Helper to retrieve a value from the current anuvrtti context
-(def get-context
-  (lambda (key)
-    (cdr (assoc key *anuvrtti-context*))))
+;; DEPRECATED: dynamic binding (`with-adhikara`) was removed.
+;; Anuvṛtti is now modeled as a static dependency graph via rule properties
+;; `inherits-from` and `inherits-words`.
+;; See: research/anuvrtti-graph-vs-dynamic-binding.md
 
 ;; ==========================================
 ;; Rule Object Structure
@@ -59,27 +47,33 @@
 ;;   type    — viDi | paribhAzA (default: viDi)
 ;;   nitya   — t | () (is this rule obligatory regardless of competition?)
 ;;   utsarga — nil or id of general rule this is exception to
+;;   inherits-from  — sutra ID of the adhikara this rule inherits from (static graph)
+;;   inherits-words — specific words inherited (anuvrtti)
 ;;   action  — lambda: prakriya → new-prakriya
 ;;   condition — lambda: prakriya → t | ()
 ;;
 (def make-rule
-  (lambda (id source scope nitya utsarga-id condition action)
+  (lambda (id source scope nitya utsarga-id inherits-from inherits-words condition action)
     (list
-      (cons 'id        id)
-      (cons 'source    source)
-      (cons 'scope     scope)
-      (cons 'nitya     nitya)
-      (cons 'utsarga   utsarga-id)
-      (cons 'condition condition)
-      (cons 'action    action))))
+      (cons 'id             id)
+      (cons 'source         source)
+      (cons 'scope          scope)
+      (cons 'nitya          nitya)
+      (cons 'utsarga        utsarga-id)
+      (cons 'inherits-from  inherits-from)
+      (cons 'inherits-words inherits-words)
+      (cons 'condition      condition)
+      (cons 'action         action))))
 
-(def rule-id        (lambda (r) (cdr (assoc 'id        r))))
-(def rule-source    (lambda (r) (cdr (assoc 'source    r))))
-(def rule-scope     (lambda (r) (cdr (assoc 'scope     r))))
-(def rule-nitya     (lambda (r) (cdr (assoc 'nitya     r))))
-(def rule-utsarga   (lambda (r) (cdr (assoc 'utsarga   r))))
-(def rule-condition (lambda (r) (cdr (assoc 'condition r))))
-(def rule-action    (lambda (r) (cdr (assoc 'action    r))))
+(def rule-id             (lambda (r) (cdr (assoc 'id             r))))
+(def rule-source         (lambda (r) (cdr (assoc 'source         r))))
+(def rule-scope          (lambda (r) (cdr (assoc 'scope          r))))
+(def rule-nitya          (lambda (r) (cdr (assoc 'nitya          r))))
+(def rule-utsarga        (lambda (r) (cdr (assoc 'utsarga        r))))
+(def rule-inherits-from  (lambda (r) (cdr (assoc 'inherits-from  r))))
+(def rule-inherits-words (lambda (r) (cdr (assoc 'inherits-words r))))
+(def rule-condition      (lambda (r) (cdr (assoc 'condition      r))))
+(def rule-action         (lambda (r) (cdr (assoc 'action         r))))
 
 ;; ==========================================
 ;; Sutra ID Comparison (for vipratiSeDa)

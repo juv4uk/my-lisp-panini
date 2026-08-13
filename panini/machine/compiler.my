@@ -63,11 +63,14 @@
 
 ;; The Core Macro: def-panini-rule
 ;; Translates a high-level declarative syntax into a standard meta.my rule.
-(defmacro def-panini-rule (id &key type scope match action)
+(defmacro def-panini-rule (id &key type scope utsarga inherits-from inherits-words match action)
   `(let ((new-rule
           (make-rule ,id 'azwADyAyI
                      (if ,scope ,scope 'bAhiraMga)
-                     '() '() ;; nitya, utsarga defaults
+                     '()     ;; nitya defaults to nil
+                     ,utsarga
+                     ,inherits-from
+                     ,inherits-words
                      ;; Condition lambda
                      (lambda (prakriya)
                        (eval-match ,match prakriya))
