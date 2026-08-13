@@ -3,7 +3,7 @@
 ## Висновок
 
 У Foundation v0.1 можна документувати механізм `pratyAhAra` і приклади на
-кшталт `aC`, але не можна вважати наявні pre-generated machine sets
+кшталт `ac`, але не можна вважати наявні pre-generated machine sets
 authoritative. Перш ніж будь-який set стане machine input, потрібен
 versioned Śiva Sūtra source і окрема перевірка алгоритму розгортання.
 
@@ -18,7 +18,7 @@ status `corpus-checked`, але локальний `index.yaml` загалом �
 Отже, у trace слід зберігати не лише результат set, а й:
 
 ```yaml
-pratyahara: aC
+pratyahara: ac
 start_sound: a
 end_marker: c
 siva_source_id: "..."
@@ -53,8 +53,8 @@ independent_check: "..."
 
 | Рядок | Foundation SLP1 | Machine запис | Ризик |
 | --- | --- | --- | --- |
-| 9 | `G q D [S]` | `G Q D S` | `Q` не збігається з foundation `q`. |
-| 10 | `j b g q d [z]` | `j b g q d S` | marker `S` не збігається з `z`. |
+| 9 | `G Q D [z]` | `G Q D S` | marker `S` не збігається з canonical `z`. |
+| 10 | `j b g q d [S]` | `j b g q d S` | рядок збігається; попередня розбіжність була помилкою Foundation. |
 | 11 | `K P C W T c w t [v]` | `K P C W T c w t V` | marker `V` не збігається з `v`. |
 
 Це audit finding, не дозвіл переписати machine model без окремої
@@ -63,7 +63,7 @@ source-level звірки. Воно показує, чому compiled set не �
 
 ## [INTERPRETATION]
 
-Розгортання `aC` у набір голосних — корисний пояснювальний приклад. Але
+Розгортання `ac` у набір голосних — корисний пояснювальний приклад. Але
 «почати з першого символу й зупинитися на першому відповідному marker» є
 вже формалізацією алгоритму. Її треба тестувати на повторюваних звуках та
 повторюваних marker-значеннях, а не вважати очевидною через строкове
@@ -79,7 +79,7 @@ Bitset, enum, таблиця або FPGA mask можуть бути ефекти
 ## Наступні дії
 
 1. Вибрати один versioned Śiva Sūtra source і додати manifest з hash.
-2. Додати незалежні fixtures для `aC`, `haL`, `iK`, `eC`, `yaR` та
+2. Додати незалежні fixtures для `ac`, `hal`, `ik`, `ec`, `yaR` та
    негативні випадки з неоднозначним marker lookup.
 3. Лише після 1–2 виправляти або приймати `siva-sutras.my` як похідний
    machine artifact; до того позначати його experimental.

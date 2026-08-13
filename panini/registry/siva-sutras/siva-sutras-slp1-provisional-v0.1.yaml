@@ -1,0 +1,19 @@
+# Project transcription for review, not an imported edition or machine input.
+id: siva-sutras-slp1-provisional-v0.1
+representation: SLP1
+status: provisional-independent-transcription
+rows:
+  - { ordinal: 1, sounds: [a, i, u], marker: R }
+  - { ordinal: 2, sounds: [f, x], marker: k }
+  - { ordinal: 3, sounds: [e, o], marker: N }
+  - { ordinal: 4, sounds: [E, O], marker: c }
+  - { ordinal: 5, sounds: [h, y, v, r], marker: w }
+  - { ordinal: 6, sounds: [l], marker: R }
+  - { ordinal: 7, sounds: [Y, m, N, R, n], marker: m }
+  - { ordinal: 8, sounds: [J, B], marker: Y }
+  - { ordinal: 9, sounds: [G, Q, D], marker: z }
+  - { ordinal: 10, sounds: [j, b, g, q, d], marker: S }
+  - { ordinal: 11, sounds: [K, P, C, W, T, c, w, t], marker: v }
+  - { ordinal: 12, sounds: [k, p], marker: y }
+  - { ordinal: 13, sounds: [S, z, s], marker: r }
+  - { ordinal: 14, sounds: [h], marker: l }

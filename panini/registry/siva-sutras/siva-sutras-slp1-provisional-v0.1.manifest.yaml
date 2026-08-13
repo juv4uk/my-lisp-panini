@@ -1,0 +1,33 @@
+# Provenance manifest for the project transcription, not for an imported edition.
+id: source-manifest:siva-sutras-slp1-provisional-v0.1
+artifact: siva-sutras-slp1-provisional-v0.1.yaml
+artifact_sha256: bb0e59aad88ac8a73b27008ab2eceb55cd45a4d8f1f8f6029cf37c93bb02d304
+representation: SLP1
+artifact_status: provisional-independent-transcription
+machine_input_status: prohibited-pending-source-rights-and-revision
+cross_checks:
+  - role: textual-cross-check-only
+    url: https://www.vidyavrikshah.org/VEDANGA.pdf
+    observed: 2026-08-13
+    license_status: unresolved
+    notes: >-
+      The displayed 14-row IAST table independently agrees with the critical
+      row-9/10/11 sequence; no text was imported from this PDF.
+  - role: textual-cross-check-only
+    url: https://www.booksfact.com/mantra-sastra/sanskrit-alphabets-origin-maheswara-sutras.html
+    observed: 2026-08-13
+    license_status: unresolved
+    notes: >-
+      The displayed transliteration independently agrees with the critical
+      row-9/10/11 sequence; no web-page text was imported.
+conversion:
+  method: manual-checked-IAST-to-SLP1-transcription
+  revision: panini-slp1-conformance-v0.1
+  caveat: >-
+    This is a project assertion under review, not a claim that either external
+    source is a versioned machine-readable canonical edition.
+admission_requirements:
+  - identify-one-source-artifact-with-permitted-reuse-rights
+  - pin-immutable-revision-or-content-hash-of-that-source
+  - preserve-source-and-conversion-provenance-separately
+  - independently-check-all-14-rows-before-machine-import
