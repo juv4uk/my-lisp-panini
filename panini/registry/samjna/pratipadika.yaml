@@ -1,0 +1,30 @@
+canonical: prAtipadika
+display:
+  iast: prātipadika
+  devanagari: प्रातिपदिक
+
+class: samjna
+scope: grammatical-form-category
+
+defined_by:
+  - sutra: "1.2.45"
+    slp1: "arTavad aDAtur apratyayaH prAtipadikam"
+    evidence_status: corpus-checked
+  - sutra: "1.2.46"
+    slp1: "kfttaddhitasamAsAS ca"
+    evidence_status: corpus-checked
+
+ontology:
+  object_language_status: "designation applies to grammatical forms"
+  metalanguage_status: "technical category used by further rules"
+  is_rule: false
+  machine_representation: "permitted only with source provenance"
+
+caveats:
+  - "Do not collapse prAtipadika into a modern noun, symbol, or lexical headword."
+  - "Do not infer that 1.2.45 alone explains krt/taddhita/samasa membership."
+  - "Edge cases require a cited commentary or edition."
+
+sources:
+  - "panini/foundation/pratipadika.md"
+  - "panini/registry/sutras/citation-provenance.yaml"
