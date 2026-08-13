@@ -15,6 +15,8 @@ evidence and retain the three-layer labeling there.
 - [rule-provenance-schema.md](rule-provenance-schema.md) and
   [derivation-trace-template.md](derivation-trace-template.md) define
   auditable machine-facing record shapes.
+- [provenance-type-schema-v0.1.md](provenance-type-schema-v0.1.md) defines a
+  common typed record for source claims, interpretations, and hypotheses.
 - [anuvrtti-representation-boundary.md](anuvrtti-representation-boundary.md)
   and [karaka-role-cardinality.md](karaka-role-cardinality.md) document
   explicit representation constraints.
@@ -36,6 +38,8 @@ evidence and retain the three-layer labeling there.
 - [rule-provenance-schema.md](rule-provenance-schema.md) та
   [derivation-trace-template.md](derivation-trace-template.md) задають форми
   записів, придатні для аудиту й машинного використання.
+- [provenance-type-schema-v0.1.md](provenance-type-schema-v0.1.md) задає
+  спільний типізований запис для джерельних тверджень, інтерпретацій і гіпотез.
 - [anuvrtti-representation-boundary.md](anuvrtti-representation-boundary.md)
   та [karaka-role-cardinality.md](karaka-role-cardinality.md) документують
   явні обмеження представлення.
@@ -58,6 +62,9 @@ Dreiebenen-Kennzeichnung.
 - [rule-provenance-schema.md](rule-provenance-schema.md) und
   [derivation-trace-template.md](derivation-trace-template.md) definieren
   auditierbare, maschinenbezogene Datensatzformen.
+- [provenance-type-schema-v0.1.md](provenance-type-schema-v0.1.md) definiert
+  einen gemeinsamen typisierten Datensatz für Quellenbehauptungen,
+  Interpretationen und Hypothesen.
 - [anuvrtti-representation-boundary.md](anuvrtti-representation-boundary.md)
   und [karaka-role-cardinality.md](karaka-role-cardinality.md) dokumentieren
   explizite Repräsentationsgrenzen.
