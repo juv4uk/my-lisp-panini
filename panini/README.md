@@ -1,29 +1,47 @@
 # panini
 
-Дослідницький фундамент граматики Pāṇini для майбутнього використання в My Lisp.
+[English](#english) · [Українська](#українська) · [Deutsch](#deutsch)
 
-Правила роботи, місія та методологія — див. [`AGENTS.md`](../AGENTS.md) у корені
-репозиторію. Це джерело істини для будь-якого агента чи дослідника, що працює в
-цій директорії.
+## English
 
-## Статус
+Research foundation for Pāṇini's grammar, intended for possible future use in
+My Lisp. The project reconstructs the grammar before proposing a machine
+model. Its governing methodology is [AGENTS.md](../AGENTS.md).
 
-`panini-foundation-v0.1` — не розпочато.
+`panini-foundation-v0.1` is the current milestone. It contains evidence-aware
+foundation notes, machine-readable registries, research audits, derivation
+examples, specifications, and read-only validation tools.
 
-## Структура
+## Українська
 
-- `foundation/` — онтологія та термінологія системи Паніні (концептуальні документи).
-- `registry/` — машинно-читані записи (dhātu, kāraka, saṃjñā, правила).
-- `research/` — аналіз зовнішніх джерел (Vidyut, Sanskrit Heritage, Panini-NLP тощо).
-- `examples/derivations/` — повністю простежені приклади derivation.
-- `specs/` — формальні специфікації milestone'ів.
+Дослідницький фундамент граматики Паніні для можливого майбутнього
+використання в My Lisp. Проєкт реконструює граматику перед тим, як пропонувати
+machine model. Його головна методологія міститься в [AGENTS.md](../AGENTS.md).
 
-## Правило трьох рівнів
+Поточний milestone — `panini-foundation-v0.1`. Він містить foundation notes з
+урахуванням доказів, машинно-читані registry, research audits, приклади
+деривації, специфікації та read-only інструменти перевірки.
 
-Кожен дослідницький документ розділяє:
+## Deutsch
 
-- `[PANINI]` — що фактично визначає система Паніні.
-- `[INTERPRETATION]` — як це трактують дослідники/реалізації.
-- `[MY-LISP HYPOTHESIS]` — як це потенційно може бути використано нами.
+Forschungsgrundlage für Pāṇinis Grammatik zur möglichen späteren Verwendung in
+My Lisp. Das Projekt rekonstruiert die Grammatik, bevor es ein Maschinenmodell
+vorschlägt. Die maßgebliche Methodik steht in [AGENTS.md](../AGENTS.md).
 
-Ніколи не змішувати ці рівні в одному твердженні.
+Der aktuelle Meilenstein ist `panini-foundation-v0.1`. Er enthält
+evidenzbewusste Foundation-Notizen, maschinenlesbare Register,
+Forschungsaudits, Ableitungsbeispiele, Spezifikationen und schreibgeschützte
+Validierungswerkzeuge.
+
+## Structure · Структура · Struktur
+
+- `foundation/` — conceptual foundation · концептуальний фундамент · konzeptuelle Grundlage;
+- `registry/` — machine-readable records · машинно-читані записи · maschinenlesbare Einträge;
+- `research/` — source audits · аудити джерел · Quellenaudits;
+- `examples/derivations/` — traced examples · простежені приклади · nachvollzogene Beispiele;
+- `specs/` — project boundaries · межі проєкту · Projektgrenzen.
+
+See [documentation-languages.md](documentation-languages.md) for the
+translation policy · Правила перекладу — у
+[documentation-languages.md](documentation-languages.md) · Die
+Übersetzungsregeln stehen in [documentation-languages.md](documentation-languages.md).
