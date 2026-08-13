@@ -192,6 +192,17 @@
                   (ambiguous-apavada? incorrect-priority-pair-a incorrect-priority-pair-b)
                   "mutual apavAda declarations rejected as ambiguous")))
 
+(def test-panini-core-syntax
+  (lambda ()
+    (assert-equal "1.4.54" (get-karaka 'kartf 'sutra) "core get-karaka sutra")
+    (assert-equal 'agent (get-karaka 'kartf 'semantic-role) "core get-karaka role")
+    (assert-equal 'gam (cdr (assoc 'dhAtu example-gam)) "core example-gam dhatu")
+    (assert-equal 'sTAlI
+                  (cdr (assoc 'aDikaraRa (cdr (assoc 'kAraka-args example-pac-full))))
+                  "core example-pac-full aDikaraRa")
+    (assert-equal 8 (cdr (assoc 'class (cdr (assoc 'kf dhatu-registry))))
+                  "core dhatu-registry kf class")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -206,4 +217,5 @@
     (test-negative-derivation-fixtures)
     (test-trace-canonical-serialization)
     (test-explanation-boundary)
+    (test-panini-core-syntax)
     (print "Tests complete.")))

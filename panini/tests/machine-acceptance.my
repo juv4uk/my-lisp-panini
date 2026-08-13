@@ -9,5 +9,6 @@
 (load "panini/machine/meta.my")
 (load "panini/machine/siva-sutras.my")
 (load "panini/machine/rules.my")
+(load "panini/machine/panini-core.my")
 (load "panini/machine/tests.my")
 (run-tests)

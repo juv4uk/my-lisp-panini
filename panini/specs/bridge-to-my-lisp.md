@@ -116,3 +116,32 @@ mutable state          — всі трансформації повертают�
 - Rule Engine: [`machine/rules.my`](../machine/rules.my)
 - My Lisp core: [`C:/GitHub/my-lisp/lib/core.my`](file:///C:/GitHub/my-lisp/lib/core.my)
 - My Lisp contract: [`C:/GitHub/my-lisp/language-contract.my`](file:///C:/GitHub/my-lisp/language-contract.my)
+
+## 7. Статус синтаксичної конверсії (2026-08-14)
+
+Задача `PANINI-BRIDGE-MY-LISP-SYNTAX-CONVERSION` виконана. Усі файли
+`panini/machine/` тепер у документованій My Lisp формі
+`(def name (lambda (...) ...))`:
+
+| Файл | Стан |
+|------|------|
+| `runtime-prelude.my` | `def`-форма, без `defun`/`setq` |
+| `compiler.my`, `meta.my`, `siva-sutras.my` | `def`-форма |
+| `rules.my` | `def`-форма (45 визначень) |
+| `panini-core.my` | конвертовано: `defun`→`def`+`lambda`, `setq`→`def`, `'()`→`list` |
+| `tests.my` | `def`-форма (18 тест-функцій) |
+
+Синтаксичні правила, яких дотримано:
+
+1. Заборонені форми у файлах `machine/`: `defun`, `setq`, `let*` (поза
+   prelude), bare-`defmacro`. Перевірено grep-ом: 0 збігів.
+2. `assoc` повертає саму пару і ламається на ведучому голому символі списку;
+   тому alist-и будуються як `(list (cons 'key val) ...)`, а action-graph
+   має `(cons 'action-id ...)` замість голих `action-gam` на першому місці.
+3. Data-реєстри у `panini-core.my` подано через `(def name (list ...))` без
+   `setq` і без `'(...)`.
+
+Перевірка: `panini-core.my` завантажується в реальному My Lisp runtime і
+проходить 5 нових smoke-асерцій (`test-panini-core-syntax`); повний acceptance
+— 62/62 PASS.
+

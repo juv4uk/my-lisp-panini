@@ -6,19 +6,19 @@
 ;; Kāraka (Semantic Roles / Edges)
 ;; ==========================================
 ;; These represent the typed edges in our semantic graph AST.
-(setq karaka-registry
-  '(
-    (apAdAna    . ((sutra . "1.4.24") (semantic-role . "source")))
-    (sampradAna . ((sutra . "1.4.32") (semantic-role . "recipient")))
-    (karaRa     . ((sutra . "1.4.42") (semantic-role . "instrument")))
-    (aDikaraRa  . ((sutra . "1.4.45") (semantic-role . "location")))
-    (karman     . ((sutra . "1.4.49") (semantic-role . "patient")))
-    (kartf      . ((sutra . "1.4.54") (semantic-role . "agent")))
-  ))
+(def karaka-registry
+  (list
+    (cons 'apAdAna    (list (cons 'sutra "1.4.24") (cons 'semantic-role 'source)))
+    (cons 'sampradAna (list (cons 'sutra "1.4.32") (cons 'semantic-role 'recipient)))
+    (cons 'karaRa     (list (cons 'sutra "1.4.42") (cons 'semantic-role 'instrument)))
+    (cons 'aDikaraRa  (list (cons 'sutra "1.4.45") (cons 'semantic-role 'location)))
+    (cons 'karman     (list (cons 'sutra "1.4.49") (cons 'semantic-role 'patient)))
+    (cons 'kartf      (list (cons 'sutra "1.4.54") (cons 'semantic-role 'agent)))))
 
 ;; Helper to fetch a karaka's property
-(defun get-karaka (k-id prop)
-  (cdr (assoc prop (cdr (assoc k-id karaka-registry)))))
+(def get-karaka
+  (lambda (k-id prop)
+    (cdr (assoc prop (cdr (assoc k-id karaka-registry))))))
 
 ;; ==========================================
 ;; Dhātu (Action / Operator Nodes)
@@ -33,24 +33,23 @@
 ;; It is NOT an authoritative source. Do NOT add entries here;
 ;; add them to registry/dhatu/*.yaml instead.
 ;; See: PANINI-MACHINE-DHATU-REGISTRY-SINGLE-SOURCE
-(setq *test-dhatu-registry*
-  '(
+(def *test-dhatu-registry*
+  (list
     ;; SLP1         meaning (SLP1)   gana  pada            anit/seT
-    (BU   . ((meaning . "sattAyAm")    (class . 1) (properties . (parasmaipadin seT))))
-    (eD   . ((meaning . "vfdDau")      (class . 1) (properties . (Atmanepadin seT))))
-    (dA   . ((meaning . "dAne")        (class . 3) (properties . (uBayapadin aniT))))
-    (kf   . ((meaning . "karaRe")      (class . 8) (properties . (uBayapadin aniT))))
-    (gam  . ((meaning . "gatau")       (class . 1) (properties . (parasmaipadin aniT))))
-    (sTA  . ((meaning . "gatinivfttau") (class . 1) (properties . (parasmaipadin aniT))))
+    (cons 'BU   (list (cons 'meaning "sattAyAm")    (cons 'class 1) (cons 'properties (list 'parasmaipadin 'seT))))
+    (cons 'eD   (list (cons 'meaning "vfdDau")      (cons 'class 1) (cons 'properties (list 'Atmanepadin 'seT))))
+    (cons 'dA   (list (cons 'meaning "dAne")        (cons 'class 3) (cons 'properties (list 'uBayapadin 'aniT))))
+    (cons 'kf   (list (cons 'meaning "karaRe")      (cons 'class 8) (cons 'properties (list 'uBayapadin 'aniT))))
+    (cons 'gam  (list (cons 'meaning "gatau")       (cons 'class 1) (cons 'properties (list 'parasmaipadin 'aniT))))
+    (cons 'sTA  (list (cons 'meaning "gatinivfttau") (cons 'class 1) (cons 'properties (list 'parasmaipadin 'aniT))))
     ;; Additional verified entries from registry/dhatu/
-    (pac  . ((meaning . "pAke")        (class . 1) (properties . (uBayapadin seT))))
-    (vac  . ((meaning . "paribhASaRe") (class . 2) (properties . (parasmaipadin aniT))))
-    (han  . ((meaning . "hiMsAgatyoH") (class . 2) (properties . (parasmaipadin aniT))))
-  ))
+    (cons 'pac  (list (cons 'meaning "pAke")        (cons 'class 1) (cons 'properties (list 'uBayapadin 'seT))))
+    (cons 'vac  (list (cons 'meaning "paribhASaRe") (cons 'class 2) (cons 'properties (list 'parasmaipadin 'aniT))))
+    (cons 'han  (list (cons 'meaning "hiMsAgatyoH") (cons 'class 2) (cons 'properties (list 'parasmaipadin 'aniT))))))
 
 ;; Alias for compatibility: dhatu-registry → *test-dhatu-registry*
 ;; Remove once file-based loading is implemented.
-(setq dhatu-registry *test-dhatu-registry*)
+(def dhatu-registry *test-dhatu-registry*)
 
 ;; ==========================================
 ;; Graph Modeling (Action Instantiation)
@@ -67,25 +66,27 @@
 ;;   kartf, karman, karaRa, sampradAna, apAdAna, aDikaraRa
 ;;
 ;; [MY-LISP HYPOTHESIS] — graph edge model, see hypothesis-ledger.md H1
-(defun make-action-graph (action-id dhatu karaka-pairs)
-  (list action-id
-        (cons 'dhAtu dhatu)
-        (cons 'kAraka-args karaka-pairs)))
+(def make-action-graph
+  (lambda (action-id dhatu karaka-pairs)
+    (list (cons 'action-id action-id)
+          (cons 'dhAtu dhatu)
+          (cons 'kAraka-args karaka-pairs))))
 
 ;; Helper: get a kāraka entity from an action-graph
-(defun action-get-karaka (ag k-id)
-  (cdr (assoc k-id (cdr (assoc 'kAraka-args ag)))))
+(def action-get-karaka
+  (lambda (ag k-id)
+    (cdr (assoc k-id (cdr (assoc 'kAraka-args ag))))))
 
 ;; Example 1: "devadatta goes to the village" — kartf + karman only
-(setq example-gam
+(def example-gam
   (make-action-graph 'action-gam 'gam
-    '((kartf  . devadatta)
-      (karman . grAma))))
+    (list (cons 'kartf 'devadatta)
+          (cons 'karman 'grAma))))
 
 ;; Example 2: "devadatta cooks rice in the pot" — kartf + karman + aDikaraRa
 ;; (sTAlyAM pacati odanam — the canonical 3-kAraka pac example)
-(setq example-pac-full
+(def example-pac-full
   (make-action-graph 'action-pac 'pac
-    '((kartf      . devadatta)
-      (karman     . odana)
-      (aDikaraRa  . sTAlI))))
+    (list (cons 'kartf 'devadatta)
+          (cons 'karman 'odana)
+          (cons 'aDikaraRa 'sTAlI))))
