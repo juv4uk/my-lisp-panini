@@ -167,6 +167,31 @@
     (assert-equal t (dag-edges-resolve? anuvrtti-graph-rules)
                   "all anuvRtti edges resolve to existing rules")))
 
+(def test-negative-derivation-fixtures
+  (lambda ()
+    (assert-equal t
+                  (it-deletable? (term-add-tag (make-term '(s) '(s) 'it '()) 'it-marker))
+                  "it deletion allowed only on marked it")
+    (assert-equal '()
+                  (it-deletable? (make-term '(s) '(s) 'it '()))
+                  "unmarked it is rejected")
+    (assert-equal t (guNa-eligible? 'i) "guNa eligible on short i")
+    (assert-equal '() (guNa-eligible? 'a) "guNa rejected on a (no eligible condition)")
+    (assert-equal t (slp1-r-vowel? 'f) "SLP1 f recognized as R vowel")
+    (assert-equal '() (slp1-r-vowel? 'r) "bare r spelling rejected")
+    (assert-equal t
+                  (sap-eligible? (make-term '(d A) '(d A) 'dhAtu '(class-1)))
+                  "Sap eligible on non-juhotyAdi")
+    (assert-equal '()
+                  (sap-eligible? (make-term '(d A) '(d A) 'dhAtu '(juhotyAdi)))
+                  "Sap rejected on juhotyAdi without Slu")
+    (assert-equal '()
+                  (ambiguous-apavada? dadati-rule-2-4-72 dadati-rule-2-4-75)
+                  "declared dadAti priority is unambiguous")
+    (assert-equal t
+                  (ambiguous-apavada? incorrect-priority-pair-a incorrect-priority-pair-b)
+                  "mutual apavAda declarations rejected as ambiguous")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -178,6 +203,7 @@
     (test-karoti-derivation)
     (test-pacati-derivation)
     (test-anuvrtti-dag-edges)
+    (test-negative-derivation-fixtures)
     (test-trace-canonical-serialization)
     (test-explanation-boundary)
     (print "Tests complete.")))

@@ -232,3 +232,48 @@
     (cond
       ((atom edges) t)
       (t '()))))
+
+;; Negative / counterfactual fixtures (PANINI-MACHINE-NEGATIVE-TESTS).
+;; Each predicate returns t when the operation is eligible, otherwise '().
+;; The tests assert that ineligible or invalid cases are rejected; a passing
+;; final string alone is not sufficient evidence.
+
+;; 1. it-deletion order: an it marker may be deleted only when marked.
+(def it-deletable?
+  (lambda (term)
+    (member? 'it-marker (term-tags term))))
+
+;; 2. guNa eligibility: only short/long i u f x are eligible; a, A and the
+;;    guNa results e o E O are not.
+(def guNa-eligible?
+  (lambda (sound)
+    (member? sound '(i I u U f F x))))
+
+;; 3. SLP1 r-vowel spelling: f = R, F = RR; a bare r is not a vowel glyph.
+(def slp1-r-vowel?
+  (lambda (sound)
+    (member? sound '(f F))))
+
+;; 4. Sap eligibility: a juhotyAdi dhAtu requires Slu first; Sap is not
+;;    eligible while the dhAtu still carries the juhotyAdi tag.
+(def sap-eligible?
+  (lambda (dhatu)
+    (not (member? 'juhotyAdi (term-tags dhatu)))))
+
+;; 5. Conflict priority: mutual apavAda declarations are ambiguous and must be
+;;    rejected; the declared pair must be unambiguous.
+(def ambiguous-apavada?
+  (lambda (a b)
+    (cond
+      ((apavada-of? a b) (apavada-of? b a))
+      (t '()))))
+
+(def incorrect-priority-pair-a
+  (list (cons 'id "2.4.72")
+        (cons 'utsarga "2.4.75")
+        (cons 'kind 'machine-fixture)))
+
+(def incorrect-priority-pair-b
+  (list (cons 'id "2.4.75")
+        (cons 'utsarga "2.4.72")
+        (cons 'kind 'machine-fixture)))
