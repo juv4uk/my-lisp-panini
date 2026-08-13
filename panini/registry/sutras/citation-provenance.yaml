@@ -23,6 +23,8 @@ citations:
   "1.1.2": { text_ref: "index.yaml#sutras.1.1.2", status: corpus-checked, used_by: [foundation/samjna.md, examples/derivations/Bavati.md] }
   "1.1.20": { text_ref: "index.yaml#sutras.1.1.20", status: corpus-checked, used_by: [foundation/samjna.md] }
   "1.1.27": { text_ref: "index.yaml#sutras.1.1.27", status: corpus-checked, used_by: [foundation/samjna.md] }
+  "1.1.37": { text_ref: "index.yaml#sutras.1.1.37", status: corpus-checked, used_by: [foundation/nipata-avyaya.md, research/avyaya-nipata-boundary.md] }
+  "1.1.38": { text_ref: "index.yaml#sutras.1.1.38", status: corpus-checked, used_by: [foundation/nipata-avyaya.md, research/avyaya-nipata-boundary.md] }
   "1.1.56": { text_ref: "index.yaml#sutras.1.1.56", status: corpus-checked, used_by: [foundation/ontology.md, foundation/paribhasha.md] }
   "1.1.68": { text_ref: "index.yaml#sutras.1.1.68", status: corpus-checked, used_by: [foundation/samjna.md] }
   "1.1.71": { text_ref: "index.yaml#sutras.1.1.71", status: corpus-checked, used_by: [foundation/pratyahara.md] }
@@ -51,6 +53,9 @@ citations:
   "1.4.54": { text_ref: "index.yaml#sutras.1.4.54", status: corpus-checked, used_by: [foundation/karaka.md] }
   "1.4.55": { text_ref: "index.yaml#sutras.1.4.55", status: corpus-checked, used_by: [foundation/anuvrtti.md] }
   "1.4.56": { text_ref: "index.yaml#sutras.1.4.56", status: corpus-checked, used_by: [foundation/anuvrtti.md] }
+  "1.4.57": { text_ref: "index.yaml#sutras.1.4.57", status: corpus-checked, used_by: [foundation/nipata-avyaya.md, research/avyaya-nipata-boundary.md] }
+  "1.4.58": { text_ref: "index.yaml#sutras.1.4.58", status: corpus-checked, used_by: [foundation/nipata-avyaya.md, research/avyaya-nipata-boundary.md] }
+  "1.4.59": { text_ref: "index.yaml#sutras.1.4.59", status: corpus-checked, used_by: [foundation/nipata-avyaya.md, research/avyaya-nipata-boundary.md] }
   "1.4.110": { text_ref: "index.yaml#sutras.1.4.110", status: needs-check, used_by: [foundation/samjna.md] }
   "2.3.2": { text_ref: "index.yaml#sutras.2.3.2", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }
   "2.3.13": { text_ref: "index.yaml#sutras.2.3.13", status: local-index, used_by: [foundation/karaka-vibhakti-matrix.md] }

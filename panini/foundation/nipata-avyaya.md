@@ -1,6 +1,7 @@
 # nipAta / avyaya
 
-Статус: v0.1 (`PANINI-NIPATA-AVYAYA-ONTOLOGY`).
+Статус: v0.1 (`PANINI-NIPATA-AVYAYA-ONTOLOGY`). Важливі межі категорій і
+виправлення надто сильних формулювань: [`../research/avyaya-nipata-boundary.md`](../research/avyaya-nipata-boundary.md).
 
 ## [PANINI]
 
