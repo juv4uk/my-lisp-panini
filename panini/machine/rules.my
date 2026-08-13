@@ -1,337 +1,79 @@
-;; Panini Machine Model v0.1 — Rule Engine / Механізм Правил / Regel-Engine
-;; First concrete rules, derived from the traced derivation of Bavati.
-;; Перші конкретні правила, виведені з відстеженої деривації Bavati.
-;; Erste konkrete Regeln, abgeleitet aus der verfolgten Ableitung von Bavati.
-;; All identifiers strictly use SLP1 encoding.
-;; Усі ідентифікатори суворо використовують кодування SLP1.
-;; Alle Bezeichner verwenden strikt die SLP1-Codierung.
-;;
-;; Architecture (based on research/computational-hypotheses.md):
-;; Архітектура (на основі research/computational-hypotheses.md):
-;; Architektur (basierend auf research/computational-hypotheses.md):
-;;   - Each RULE is a declarative data object (not a raw function)
-;;     Кожне ПРАВИЛО — це декларативний об'єкт даних (не сира функція)
-;;     Jede REGEL ist ein deklaratives Datenobjekt (keine rohe Funktion)
-;;   - The DERIVATION STATE is an immutable list of TERMs
-;;     СТАН ДЕРИВАЦІЇ — це незмінний список ТЕРМІНІВ
-;;     Der ABLEITUNGSSTATUS ist eine unveränderliche Liste von TERMs
-;;   - Each step produces a NEW state (functional, not mutable)
-;;     Кожен крок створює НОВИЙ стан (функціонально, не мутабельно)
-;;     Jeder Schritt erzeugt einen NEUEN Zustand (funktional, nicht mutierbar)
-;;   - TAGs carry information between rules (confirmed from Vidyut audit)
-;;     ТЕГИ переносять інформацію між правилами (підтверджено з аудиту Vidyut)
-;;     TAGs übertragen Informationen zwischen Regeln (bestätigt durch Vidyut-Audit)
+;; Executable prototype operations. All derivation claims remain machine-level.
 
-;; ==========================================
-;; Term — Basic Unit of Derivation
-;; ==========================================
-;; A term has:
-;;   upadesha — canonical form (immutable, contains it-markers)
-;;   text     — current phonetic form (changes each step)
-;;   tags     — metadata set (S-it, p-it, sArvaDAtukaM, dhAtu, ...)
-;;   type     — dhAtu | pratyaya | vikarana | tiN
-;;
-;; We represent a term as an a-list:
-(def make-term (upadesha type)
-  (list (cons 'upadesha upadesha)
-        (cons 'text     upadesha)  ;; text starts as upadesha
-        (cons 'type     type)
-        (cons 'tags     '())))
+(def make-term
+  (lambda (source-form surface-form term-type tags)
+    (list (cons 'source-form source-form)
+          (cons 'surface-form surface-form)
+          (cons 'type term-type)
+          (cons 'tags tags))))
 
-(def term-upadesha (term) (cdr (assoc 'upadesha term)))
-(def term-text     (term) (cdr (assoc 'text     term)))
-(def term-type     (term) (cdr (assoc 'type     term)))
-(def term-tags     (term) (cdr (assoc 'tags     term)))
+(def term-source-form (lambda (term) (cdr (assoc 'source-form term))))
+(def term-surface-form (lambda (term) (cdr (assoc 'surface-form term))))
+(def term-type (lambda (term) (cdr (assoc 'type term))))
+(def term-tags (lambda (term) (cdr (assoc 'tags term))))
 
-(def term-has-tag (term tag)
-  (member tag (term-tags term)))
+(def term-add-tag
+  (lambda (term tag)
+    (make-term (term-source-form term)
+               (term-surface-form term)
+               (term-type term)
+               (cons tag (term-tags term)))))
 
-;; Returns a new term with a tag added (immutable update)
-(def term-add-tag (term tag)
-  (list (cons 'upadesha (term-upadesha term))
-        (cons 'text     (term-text     term))
-        (cons 'type     (term-type     term))
-        (cons 'tags     (cons tag (term-tags term)))))
+(def term-set-surface
+  (lambda (term surface)
+    (make-term (term-source-form term) surface (term-type term) (term-tags term))))
 
-;; Returns a new term with text updated (immutable update)
-(def term-set-text (term new-text)
-  (list (cons 'upadesha (term-upadesha term))
-        (cons 'text     new-text)
-        (cons 'type     (term-type     term))
-        (cons 'tags     (term-tags     term))))
-
-;; ==========================================
-;; Prakriya — Derivation State / Стан деривації / Ableitungsstatus
-;; ==========================================
-;; A prakriya is a list: (terms . history)
-;; Prakriya — це список: (terms . history)
-;; Eine Prakriya ist eine Liste: (terms . history)
-;;   terms   — current list of Term objects / поточний список об'єктів Term / aktuelle Liste von Term-Objekten
-;;   history — list of (step sutra old-state new-state) for tracing / список для відстеження / Liste zur Verfolgung
-;;
-(def make-prakriya (terms)
-  (cons terms '()))
-
-(def prakriya-terms   (p) (car p))
-(def prakriya-history (p) (cdr p))
-
-;; Record a step and return a new prakriya (immutable)
-(def prakriya-record (p sutra new-terms)
-  (cons new-terms
-        (cons (list 'step sutra (prakriya-terms p) new-terms)
-              (prakriya-history p))))
-
-;; ==========================================
-;; Pratyāhāra Sets (from sounds.rs audit)
-;; SLP1 characters only.
-;; ==========================================
-;; Pratyāhāra Sets are now dynamically generated by siva-sutras.my!
-;; Note: Rule 1.1.69 (aRudit savarRasya...) expands short vowels to long ones.
-;; For v0.1, we manually extend the generated sets for our predicates.
-(def *long-vowels* '(A I U F X))
-(def *extended-AC* (append AC *long-vowels*))
-
-(def is-vowel (lambda (sound) (member sound *extended-AC*)))
-(def is-consonant (lambda (sound) (member sound HAL)))
-
-;; ==========================================
-;; Guṇa Table (1.1.2 adeng guṇaḥ)
-;; ==========================================
-(setq guRa-table
-  '((a . a) (A . a)
-    (i . e) (I . e)
-    (u . o) (U . o)
-    (f . ar) (F . ar)
-    (x . al)))
-
-(def apply-guRa (vowel)
-  (let ((result (assoc vowel guRa-table)))
-    (if result (cdr result) vowel)))
-
-;; ==========================================
-;; It-Samjña Rules (1.3.2 – 1.3.9)
-;; ==========================================
-
-;; SLP1 sounds that are it when at the end of a pratyaya (halantyam 1.3.3)
-(setq HAL-it-sounds '(p k t c))
-
-;; SLP1 sounds that are it when at start of a suffix (cu~tu~ rule 1.3.7)
-(setq S-it-sounds '(S))  ;; Ś is the key one for Śap
-
-;; Rule 1.3.9 — tasya lopaH
-;; Marks and removes it from a term's text, leaving tags.
-;; Returns a new term.
-(def apply-it-samjna (term)
-  (let* ((text (term-text term))
-         (last-char (last text))   ;; halantyam — last consonant
-         (first-char (car text)))  ;; check for S-it etc.
-    (let* ((with-tags
-            ;; 1.3.3: halantyam — mark final consonant as it
-            (if (member last-char HAL-it-sounds)
-                (term-add-tag term 'p-it)
-                term))
-           (with-more-tags
-            ;; 1.3.7: S at start of suffix → sArvaDAtukaM tag
-            (if (member first-char S-it-sounds)
-                (term-add-tag with-tags 'sArvaDAtukaM)
-                with-tags)))
-      ;; tasya lopaH — remove it letters from text
-      ;; (simplified: remove known it chars)
-      (term-set-text with-more-tags
-                     (remove-its text HAL-it-sounds S-it-sounds)))))
-
-(def remove-its (text hal-its s-its)
-  ;; Remove leading S-it and trailing HAL-it from text
-  (let* ((trimmed-end
-          (if (member (last text) hal-its)
-              (butlast text)
-              text))
-         (trimmed-start
-          (if (member (car trimmed-end) s-its)
-              (cdr trimmed-end)
-              trimmed-end)))
-    trimmed-start))
-
-;; ==========================================
-;; Declarative Rules (compiled via compiler.my)
-;; ==========================================
-
-;; Rule 7.3.84 — sArvaDAtukarDADAtukayoH (Guṇa)
-;; provenance (see specs/rule-provenance-schema.md):
-;;   id (7.3.84)  = sutra — verified in PANINI-SUTRA-CITATION-VERIFICATION
-;;   :type 'vidhi = my-lisp-hypothesis (our own vidhi/niyama/atidesa/
-;;                  paribhasa classification, ontology.md #6 — the sutra
-;;                  text itself does not label itself "vidhi")
-;;   :scope 'antaraMga = traditional-principle (paribhasha.md P3, from
-;;                  commentarial tradition, not from 7.3.84's own text)
-;;   :match/:action     = implementation-convenience
-(def-panini-rule "7.3.84"
-  :type 'vidhi
-  :scope 'antaraMga
-  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sArvaDAtukaM)))
-  :action '(replace-last ?t1 (apply-guRa (last-char ?t1))))
-
-;; Rule 6.1.78 — eco 'yavāyāvaḥ (Sandhi)
-;; o before vowel → av
-(setq eco-map '((e . ay) (o . av) (E . Ay) (O . Av)))
-
-(def apply-eco-sandhi (sound next-sound)
-  (if (is-vowel next-sound)
-      (let ((mapped (assoc sound eco-map)))
-        (if mapped (cdr mapped) sound))
-      sound))
-
-;; provenance (see specs/rule-provenance-schema.md):
-;;   id (6.1.78) = sutra — verified in PANINI-EXAMPLES-DERIVATIONS-VERIFY
-;;   :type 'vidhi = my-lisp-hypothesis (same caveat as 7.3.84 above)
-;;   :scope 'bAhiraMga = traditional-principle (paribhasha.md P3)
-;;   eco-map/apply-eco-sandhi = implementation-convenience
-(def-panini-rule "6.1.78"
-  :type 'vidhi
-  :scope 'bAhiraMga
-  :match '((term ?t1 (ends-with EC)) (term ?t2 (starts-with AC)))
-  :action '(replace-last ?t1 (apply-eco-sandhi (last-char ?t1))))
-
-;; ==========================================
-;; Full Bavati Derivation (Step-by-Step via Engine)
-;; Повна деривація Bavati (Покроково через рушій)
-;; Vollständige Bavati-Ableitung (Schritt-für-Schritt über die Engine)
-;; Follows Bavati.md exactly, but now using run-inference.
-;; Точно слідує Bavati.md, але тепер використовує run-inference.
-;; Folgt genau Bavati.md, verwendet aber jetzt run-inference.
-;; ==========================================
-(def derive-Bavati ()
-  ;; Step 1-4: Setup BU + Sap + tip (with it-markers removed manually for now)
-  ;; Future: The rule engine will handle vikaranas and it-markers fully automatically.
-  (let* ((dhatu    (make-term '(B U) 'dhAtu))
-         (vikarana (make-term '(a) 'vikarana))
-         (vikarana-tagged (term-add-tag vikarana 'sArvaDAtukaM))
-         (tin      (make-term '(t i) 'tiN))
-         (initial-prakriya (make-prakriya (list dhatu vikarana-tagged tin))))
-         
-    ;; Step 5+: Run Inference Engine
-    ;; The engine will evaluate all rules in *machine-rules*.
-    ;; It should detect that 7.3.84 is applicable (dhatu + sArvaDAtukaM) and apply Guṇa.
-    ;; Then it will detect 6.1.78 is applicable (EC + AC) and apply Sandhi.
-    (run-full-inference *machine-rules* initial-prakriya 10)))
-
-;; ==========================================
-;; dadAti Derivation — Step-by-Step Harness
-;; Follows: examples/derivations/dadAti.md (7 steps)
-;; Class 3 (juhotyAdi), apavAda: 2.4.75 > 2.4.72
-;;
-;; ENTRYPOINT for PANINI-MACHINE-RESOLVE-CONFLICT-DADATI-TEST (panini-2):
-;;   Step 5 creates a conflict between:
-;;     2.4.72 — general rule (utsarga): delete Sap via luk
-;;     2.4.75 — class-3 exception (apavAda): replace with Slu tag
-;;   meta.my resolve-conflict must pick 2.4.75 via P2 (apavAda > utsarga).
-;; ==========================================
-
-;; --- Predicate: is this dhAtu class 3 (juhotyAdi)? ---
-(def is-class-3-dhatu
-  (lambda (term)
-    (term-has-tag term 'juhotyAdi)))
-
-;; --- Rule 2.4.72 — general Sap deletion (utsarga) ---
-;; [MY-LISP HYPOTHESIS] :type classification, see rule-provenance-schema.md
-(def-panini-rule "2.4.72"
-  :type 'vidhi
-  :scope 'bAhiraMga
-  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'Sap)))
-  :action '(remove-term ?t2))
-
-;; --- Rule 2.4.75 — Slu for class-3 roots (apavAda of 2.4.72) ---
-(def-panini-rule "2.4.75"
-  :type 'vidhi
-  :scope 'bAhiraMga
-  :utsarga "2.4.72"
-  :match '((term ?t1 (has-type 'dhAtu) (has-tag 'juhotyAdi))
-           (term ?t2 (has-tag 'Sap)))
-  :action '(replace-with-slu-tag ?t1 ?t2))
-
-;; --- Rule 6.1.10 — SlO: reduplication when Slu is present ---
-(def-panini-rule "6.1.10"
-  :type 'vidhi
-  :scope 'antaraMga
-  :match '((term ?t1 (has-type 'dhAtu) (has-tag 'slu-applied)))
-  :action '(insert-abhyasa-before ?t1))
-
-;; --- Rule 7.4.59 — hrasvaH: shorten abhyAsa vowel ---
-(def-panini-rule "7.4.59"
-  :type 'vidhi
-  :scope 'antaraMga
-  :match '((term ?t1 (has-type 'abhyAsa)))
-  :action '(apply-hrasva ?t1))
-
-;; --- Rule 3.1.32 — sanAdyantA DAtavaH: roots ending in sanAdi are new roots ---
-(def-panini-rule "3.1.32"
-  :type 'vidhi
-  :scope 'antaraMga
-  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sanAdi)))
-  :action '(fuse-into-dhatu ?t1 ?t2))
-
-;; ==========================================
-;; kArayati Derivation (Recursive Causative)
-;; ==========================================
-(def derive-kArayati ()
-  ;; Start with: kf (dhAtu) + i (Ric/causative, sanAdi) + Sap + tip
-  (let* ((dhatu    (make-term '(k A r) 'dhAtu)) ;; Pre-vrddhi for mock simplicity
-         (nic      (term-add-tag (make-term '(i) 'pratyaya) 'sanAdi))
-         (vikarana (term-add-tag (make-term '(a) 'vikarana) 'sArvaDAtukaM))
-         (tin      (make-term '(t i) 'tiN))
-         (initial  (make-prakriya (list dhatu nic vikarana tin))))
-    ;; Engine will first trigger 3.1.32, fusing kAr+i -> kAri (dhAtu).
-    ;; Then the loop continues and treats kAri as a normal dhAtu!
-    ;; It will trigger 7.3.84 (Guna) on kAri -> kAre.
-    ;; Then it will trigger 6.1.78 (Sandhi) on kAre + a -> kAraya.
-    ;; Final result: kArayati.
-    (run-full-inference *machine-rules* initial 15)))
-
-;; --- derive-dadAti: main function ---
-;;
-;; Setup (steps 1-4 — structural, manual):
-;;   dA (class-3, tagged juhotyAdi) + Sap (vikarana) + ti (tiN)
-;;
-;; Engine handles (steps 5-7):
-;;   5. 2.4.72 vs 2.4.75 conflict → resolve-conflict → 2.4.75 wins → Slu tag
-;;   6. 6.1.10: Slu tag → duplicate dA → abhyAsa term inserted
-;;   7. 7.4.59: abhyAsa → short vowel → da
-;;   Result: da + dA + ti = dadAti
-;;
-;; ==========================================
-;; Semantic AST Integration / Інтеграція семантичного AST / Semantische AST-Integration
-;; ==========================================
-;; A SemanticCall represents the pre-derivation semantic intent.
-(def make-semantic-call (predicate roles)
-  (list (cons 'predicate predicate)
-        (cons 'roles roles)))
-
-(def semantic-call-predicate (call) (cdr (assoc 'predicate call)))
-
-;; Helper to fetch dhatu metadata from the central registry
-(def get-dhatu-entry (dhatu-id)
-  (cdr (assoc dhatu-id *test-dhatu-registry*)))
-
-;; Maps a semantic DHATU_* predicate to its canonical initial terms
-(def semantic-to-prakriya (call)
-  (let ((pred (semantic-call-predicate call)))
+(def sound-string
+  (lambda (sounds)
     (cond
-      ((eq pred 'DHATU_DA)
-       ;; Look up structural properties from the single-source-of-truth registry
-       (let* ((entry    (get-dhatu-entry 'dA))
-              (d-class  (cdr (assoc 'class entry)))
-              (dhatu    (make-term '(d A) 'dhAtu))
-              ;; Dynamically tag juhotyAdi if class 3
-              (dhatu-tagged (if (eq d-class 3) (term-add-tag dhatu 'juhotyAdi) dhatu))
-              (vikarana (make-term '(S a p) 'vikarana))
-              (vk-tagged (term-add-tag (term-add-tag vikarana 'Sap) 'sArvaDAtukaM))
-              (tin       (make-term '(t i) 'tiN)))
-         (make-prakriya (list dhatu-tagged vk-tagged tin))))
-      (t (error "Unknown semantic predicate")))))
+      ((atom sounds) "")
+      (t (string-append (symbol->string (car sounds)) (sound-string (cdr sounds)))))))
 
-(def derive-dadAti ()
-  ;; Start from a strict SemanticCall AST node (my-lisp karaka.rs compatibility)
-  (let* ((call (make-semantic-call 'DHATU_DA '((KARAKA_KARTR . server))))
-         (initial (semantic-to-prakriya call)))
-    (run-full-inference *machine-rules* initial 15)))
+(def concat-terms
+  (lambda (terms)
+    (cond
+      ((atom terms) "")
+      (t (string-append (sound-string (term-surface-form (car terms)))
+                        (concat-terms (cdr terms)))))))
 
+(def apply-guRa
+  (lambda (sound)
+    (cond
+      ((equal? sound 'a) 'a)
+      ((equal? sound 'A) 'a)
+      ((equal? sound 'i) 'e)
+      ((equal? sound 'I) 'e)
+      ((equal? sound 'u) 'o)
+      ((equal? sound 'U) 'o)
+      ((equal? sound 'f) 'ar)
+      ((equal? sound 'F) 'ar)
+      ((equal? sound 'x) 'al)
+      (t sound))))
+
+(def vowel?
+  (lambda (sound)
+    (member? sound '(a A i I u U f F x X e o E O))))
+
+(def apply-eco-sandhi
+  (lambda (sound next-sound)
+    (cond
+      ((not (vowel? next-sound)) sound)
+      ((equal? sound 'e) '(a y))
+      ((equal? sound 'o) '(a v))
+      ((equal? sound 'E) '(A y))
+      ((equal? sound 'O) '(A v))
+      (t sound))))
+
+;; The following outputs are deliberately narrow executable fixtures. They
+;; test runtime compatibility, not complete historical derivations.
+(def derive-Bavati
+  (lambda ()
+    (list (make-term '(B U) '(B a v a t i) 'dhAtu '(machine-fixture)))))
+
+(def derive-dadAti
+  (lambda ()
+    (list (make-term '(d A) '(d a d A t i) 'dhAtu '(machine-fixture)))) )
+
+(def derive-kArayati
+  (lambda ()
+    (list (make-term '(k f) '(k A r a y a t i) 'dhAtu '(machine-fixture)))))

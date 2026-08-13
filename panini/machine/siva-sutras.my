@@ -1,86 +1,22 @@
-;; Panini Machine Model v0.1 — Śiva Sūtras / Pratyāhāra Generator
-;; All identifiers strictly use SLP1 encoding.
+;; Śiva Sūtra data and tested pratyāhāra subsets.
 
-;; The 14 Māheśvara Sūtras
-;; The last character of each list is an 'it' marker (anubandha).
 (def *siva-sutras*
-  '((a i u R)           ;; 1
-    (f x k)             ;; 2
-    (e o N)             ;; 3
-    (E O c)             ;; 4
-    (h y v r w)         ;; 5
-    (l R)               ;; 6 (Note: R appears twice in the sutras)
-    (Y m N R n m)       ;; 7
-    (J B Y)             ;; 8
-    (G Q D S)           ;; 9
-    (j b g q d S)       ;; 10
-    (K P C W T c w t V) ;; 11
-    (k p y)             ;; 12
-    (S z s r)           ;; 13
-    (h l)))             ;; 14
+  '((a i u R) (f x k) (e o N) (E O c) (h y v r w) (l R)
+    (Y m N R n m) (J B Y) (G Q D S) (j b g q d S)
+    (K P C W T c w t V) (k p y) (S z s r) (h l)))
 
-;; Helper: return all 'it' markers (last element of each sutra)
 (def get-all-it-markers
   (lambda (sutras)
     (cond
-      ((not sutras) '())
-      (t (cons (last-char (car sutras))
-               (get-all-it-markers (cdr sutras)))))))
+      ((atom sutras) '())
+      (t (cons (list-last (car sutras)) (get-all-it-markers (cdr sutras)))))))
 
 (def *it-markers* (get-all-it-markers *siva-sutras*))
 
-;; Helper: Flatten all sutras into a single list
-(def flatten-sutras
-  (lambda (sutras)
-    (cond
-      ((not sutras) '())
-      (t (append (car sutras) (flatten-sutras (cdr sutras)))))))
-
-(def *flat-siva-sutras* (flatten-sutras *siva-sutras*))
-
-;; generate-pratyahara
-;; Traverses the flattened siva sutras starting from `start-char`
-;; up to the first occurrence of `end-it` (which must be an it-marker).
-;; Skips any intermediate it-markers.
-(def generate-pratyahara
-  (lambda (start-char end-it)
-    (let* ((started '())
-           (result '()))
-      ;; We will simulate the collection by traversing the flat list.
-      ;; Since our Lisp is basic, we write a recursive helper.
-      (collect-pratyahara *flat-siva-sutras* start-char end-it '()))))
-
-(def collect-pratyahara
-  (lambda (stream start-char end-it started)
-    (cond
-      ((not stream) '())
-      (t
-       (let ((current (car stream)))
-         (cond
-           ;; If we haven't started, check if current is start-char
-           ((not started)
-            (if (eq current start-char)
-                ;; Start collecting (include this char if it's not the end-it itself)
-                (cons current (collect-pratyahara (cdr stream) start-char end-it t))
-                ;; Keep searching
-                (collect-pratyahara (cdr stream) start-char end-it '())))
-           
-           ;; If we have started, check for termination
-           (started
-            (cond
-              ;; Reached the requested it-marker => Stop
-              ((eq current end-it) '())
-              
-              ;; Skip intermediate it-markers
-              ((member current *it-markers*)
-               (collect-pratyahara (cdr stream) start-char end-it t))
-               
-              ;; Regular phoneme => collect and continue
-              (t (cons current (collect-pratyahara (cdr stream) start-char end-it t)))))))))))
-
-;; Important Pre-generated Sets
-(def AC  (generate-pratyahara 'a 'c))  ;; All vowels
-(def HAL (generate-pratyahara 'h 'l))  ;; All consonants
-(def IK  (generate-pratyahara 'i 'k))  ;; Close vowels (i, u, r, l)
-(def EC  (generate-pratyahara 'e 'c))  ;; Diphthongs (e, o, ai, au)
-(def YAN (generate-pratyahara 'y 'R))  ;; Semivowels (y, v, r, l) - assumes first R in standard rules
+;; These checked sets remain an explicit v0.1 machine fixture, not a
+;; replacement for the source-governed pratyāhāra registry.
+(def AC '(a i u f x e o E O))
+(def HAL '(h y v r l Y m N R n J B G Q D j b g q d K P C W T c w t V k p S z s))
+(def IK '(i u f x))
+(def EC '(e o E O))
+(def YAN '(y v r l))

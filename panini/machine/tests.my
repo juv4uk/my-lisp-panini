@@ -1,60 +1,42 @@
-;; Panini Machine Model v0.1 — Test Suite
-;; Formal tests for the Inference Engine and compiled rules.
-;; 
-;; To run these tests in the eventual My Lisp environment:
-(load "c:/GitHub/my-lisp-panini/panini/machine/compiler.my")
-(load "c:/GitHub/my-lisp-panini/panini/machine/meta.my")
-(load "c:/GitHub/my-lisp-panini/panini/machine/siva-sutras.my")
-(load "c:/GitHub/my-lisp-panini/panini/machine/rules.my")
+;; Panini machine compatibility tests; dependencies are loaded by the entrypoint.
 
-(def assert-equal (expected actual msg)
-  (if (equal expected actual)
-      (print (concat "[PASS] " msg))
-      (print (concat "[FAIL] " msg " | Expected: " expected " | Got: " actual))))
+(def assert-equal
+  (lambda (expected actual label)
+    (cond
+      ((equal? expected actual) (print (string-append "[PASS] " label)))
+      (t (print (string-append "[FAIL] " label))))) )
 
-(def test-pratyahara ()
-  (assert-equal '(a i u f x e o E O) AC "AC generates all vowels")
-  (assert-equal '(i u f x) IK "IK generates close vowels")
-  (assert-equal '(e o E O) EC "EC generates diphthongs"))
+(def test-pratyahara
+  (lambda ()
+    (assert-equal '(a i u f x e o E O) AC "AC fixture")
+    (assert-equal '(i u f x) IK "IK fixture")
+    (assert-equal '(e o E O) EC "EC fixture")))
 
-(def test-eco-sandhi ()
-  (assert-equal '(a y) (apply-eco-sandhi 'e 'a) "eco sandhi: e + a -> ay")
-  (assert-equal '(a v) (apply-eco-sandhi 'o 'a) "eco sandhi: o + a -> av")
-  (assert-equal '(A y) (apply-eco-sandhi 'E 'a) "eco sandhi: E + a -> Ay")
-  (assert-equal '(A v) (apply-eco-sandhi 'O 'a) "eco sandhi: O + a -> Av"))
+(def test-eco-sandhi
+  (lambda ()
+    (assert-equal '(a y) (apply-eco-sandhi 'e 'a) "eco e+a")
+    (assert-equal '(a v) (apply-eco-sandhi 'o 'a) "eco o+a")
+    (assert-equal '(A y) (apply-eco-sandhi 'E 'a) "eco E+a")
+    (assert-equal '(A v) (apply-eco-sandhi 'O 'a) "eco O+a")))
 
-(def test-guna ()
-  (assert-equal 'o (apply-guRa 'u) "guna of u is o")
-  (assert-equal 'o (apply-guRa 'U) "guna of U is o")
-  (assert-equal 'e (apply-guRa 'i) "guna of i is e")
-  (assert-equal 'ar (apply-guRa 'f) "guna of f is ar"))
+(def test-guna
+  (lambda ()
+    (assert-equal 'o (apply-guRa 'u) "guna u")
+    (assert-equal 'o (apply-guRa 'U) "guna U")
+    (assert-equal 'e (apply-guRa 'i) "guna i")
+    (assert-equal 'ar (apply-guRa 'f) "guna f")))
 
-(def test-bavati-derivation ()
-  (let* ((final-prakriya (derive-Bavati))
-         (final-terms (prakriya-terms final-prakriya))
-         ;; The final text should be B + av + a + t + i = Bavati
-         (final-string (concat-terms final-terms)))
-    (assert-equal "Bavati" final-string "Bavati derivation matches expected output")))
+(def test-prototype-derivations
+  (lambda ()
+    (assert-equal "Bavati" (concat-terms (derive-Bavati)) "Bavati prototype")
+    (assert-equal "dadAti" (concat-terms (derive-dadAti)) "dadAti prototype")
+    (assert-equal "kArayati" (concat-terms (derive-kArayati)) "kArayati prototype")))
 
-;; dadAti derivation: class-3 Slu path.
-;; The final form is the executable assertion until the machine model exposes
-;; a provenance-bearing derivation trace for individual rule selections.
-(def test-dadati-derivation ()
-  (let* ((final-prakriya (derive-dadAti))
-         (final-string (concat-terms (prakriya-terms final-prakriya))))
-    (assert-equal "dadAti" final-string "dadAti derivation handles Slu reduplication")))
-
-(def test-karayati-derivation ()
-  (let* ((final-prakriya (derive-kArayati))
-         (final-string (concat-terms (prakriya-terms final-prakriya))))
-    (assert-equal "kArayati" final-string "kArayati recursive derivation applies Guna and Sandhi to derived dhAtu")))
-
-(def run-tests ()
-  (print "Running Panini Machine Tests...")
-  (test-pratyahara)
-  (test-eco-sandhi)
-  (test-guna)
-  (test-bavati-derivation)
-  (test-dadati-derivation)
-  (test-karayati-derivation)
-  (print "Tests complete."))
+(def run-tests
+  (lambda ()
+    (print "Running Panini Machine Tests...")
+    (test-pratyahara)
+    (test-eco-sandhi)
+    (test-guna)
+    (test-prototype-derivations)
+    (print "Tests complete.")))

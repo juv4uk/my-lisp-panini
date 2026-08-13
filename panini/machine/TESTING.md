@@ -12,15 +12,11 @@ Tests are in [tests.my](tests.my).
 
 ### Running tests
 
-After bootstrapping the My Lisp VM, load the environment and run `(run-tests)`:
+Run the Lisp entry point from repository root. It loads the documented My Lisp
+core library before the machine modules and then invokes `(run-tests)`:
 
 ```lisp
-> (load "panini/machine/compiler.my")
-> (load "panini/machine/meta.my")
-> (load "panini/machine/siva-sutras.my")
-> (load "panini/machine/rules.my")
-> (load "panini/machine/tests.my")
-> (run-tests)
+$ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
 ```
 
 ### Test structure
@@ -31,11 +27,9 @@ The suite uses a small `assert-equal` helper to check state transitions.
    functions and phoneme operations: `test-eco-sandhi` checks Rule 6.1.78
    (`e/o/ai/au + vowel → ay/av/Ay/Av`); `test-guna` checks the Rule 1.1.2
    correspondence (`i → e`, `u → o`, `f → ar`).
-2. **Integration tests: derivation traces.** They check a complete
-   `prakriyA` and its final SLP1 output:
-   - `test-bavati-derivation` follows `BU + Sap + tip → Bavati`.
-   - `test-dadati-derivation` exercises an `apavAda` conflict between class 3 and the more general `Sap`-vikaraṇa (Rule 2.4.75 vs 2.4.72).
-   - `test-karayati-derivation` exercises recursive root derivation via Rule 3.1.32.
+2. **Integration tests: machine fixtures.** They check narrow executable
+   fixture outputs, not complete historical derivation traces:
+   - `test-prototype-derivations` checks the fixture outputs `Bavati`, `dadAti`, and `kArayati`.
 
 ### Adding a test
 
@@ -57,15 +51,11 @@ are also required.
 
 ### Запуск тестів
 
-Після bootstrap VM My Lisp завантажте середовище й виконайте `(run-tests)`:
+Запускайте Lisp entrypoint із кореня репозиторію. Він спершу завантажує
+документовану core-бібліотеку My Lisp, далі machine-модулі й `(run-tests)`:
 
 ```lisp
-> (load "panini/machine/compiler.my")
-> (load "panini/machine/meta.my")
-> (load "panini/machine/siva-sutras.my")
-> (load "panini/machine/rules.my")
-> (load "panini/machine/tests.my")
-> (run-tests)
+$ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
 ```
 
 ### Будова тестів
@@ -78,11 +68,10 @@ transition.
    - `test-eco-sandhi` — Rule 6.1.78 (`e/o/ai/au + vowel → ay/av/Ay/Av`);
    - `test-guna` — відповідність Rule 1.1.2 (`i → e`, `u → o`, `f → ar`).
 
-2. **Інтеграційні тести: traces деривації**
-   Перевіряють повну деривацію (`prakriyA`) та фінальний SLP1 output:
-   - `test-bavati-derivation` — ланцюг `BU + Sap + tip → Bavati`;
-   - `test-dadati-derivation` — тест конфлікту між класом 3 і загальнішим `Sap`-vikaraṇa через `apavAda` (Правила 2.4.75 проти 2.4.72).
-   - `test-karayati-derivation` — тестує рекурсивну генерацію кореня через Правило 3.1.32.
+2. **Інтеграційні тести: machine fixtures**
+Перевіряють вузькі виконувані fixture outputs, а не повні історичні traces
+деривації:
+- `test-prototype-derivations` — outputs `Bavati`, `dadAti`, `kArayati`.
 
 ### Додавання тесту
 
@@ -106,16 +95,12 @@ Die Tests liegen in [tests.my](tests.my).
 
 ### Tests ausführen
 
-Nach dem Bootstrap der My-Lisp-VM die Umgebung laden und `(run-tests)`
-ausführen:
+Den Lisp-Einstiegspunkt vom Repository-Stamm ausführen. Er lädt zuerst die
+dokumentierte My-Lisp-Core-Bibliothek, dann die Maschinenmodule und
+`(run-tests)`:
 
 ```lisp
-> (load "panini/machine/compiler.my")
-> (load "panini/machine/meta.my")
-> (load "panini/machine/siva-sutras.my")
-> (load "panini/machine/rules.my")
-> (load "panini/machine/tests.my")
-> (run-tests)
+$ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
 ```
 
 ### Struktur der Tests
@@ -127,11 +112,9 @@ Zustandsübergänge zu prüfen.
    Hilfsfunktionen und Phonemoperationen: `test-eco-sandhi` prüft Regel 6.1.78
    (`e/o/ai/au + vowel → ay/av/Ay/Av`); `test-guna` prüft die Entsprechung aus
    Regel 1.1.2 (`i → e`, `u → o`, `f → ar`).
-2. **Integrationstests: Ableitungstraces.** Sie prüfen eine vollständige
-   `prakriyA` und ihre finale SLP1-Ausgabe:
-   - `test-bavati-derivation` verfolgt `BU + Sap + tip → Bavati`.
-   - `test-dadati-derivation` prüft einen `apavAda`-Konflikt zwischen Klasse 3 und dem allgemeineren `Sap`-vikaraṇa (Regel 2.4.75 vs 2.4.72).
-   - `test-karayati-derivation` testet rekursive Wurzelableitung durch Regel 3.1.32.
+2. **Integrationstests: Machine-Fixtures.** Sie prüfen enge ausführbare
+   Fixture-Ausgaben, keine vollständigen historischen Ableitungstraces:
+   - `test-prototype-derivations` prüft `Bavati`, `dadAti` und `kArayati`.
 
 ### Einen Test hinzufügen
 
