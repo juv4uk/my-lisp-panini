@@ -5,7 +5,7 @@ definition: "те, чого агент найбільше прагне дося�
 defined_by:
   - sutra: "1.4.49"
     text: "kartur IpsitatamaM karma"
-  - sutra: "1.4.51"
-    text: "taTAyuktam cAnIpsitam"
+  - sutra: "1.4.50"
+    text: "taTAyuktaM cAnipsItam"
 relations: "sampradAna (1.4.32) визначається через karman."
-caveats: "\"Прямий об'єкт\"/\"patient\" — спрощення; 1.4.51 виходить за межі \"бажаного результату\"."
+caveats: "\"Прямий об'єкт\"/\"patient\" — спрощення; 1.4.50 виходить за межі \"бажаного результату\". Виправлено з помилкового \"1.4.51\" 2026-08-13 (PANINI-SUTRA-CITATION-VERIFICATION) — 1.4.51 akaTitaM ca це окреме правило про подвійний акузатив, не про taTAyuktam."
