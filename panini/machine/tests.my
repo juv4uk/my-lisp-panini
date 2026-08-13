@@ -44,6 +44,11 @@
          (final-string (concat-terms (prakriya-terms final-prakriya))))
     (assert-equal "dadAti" final-string "dadAti derivation handles Slu reduplication")))
 
+(def test-karayati-derivation ()
+  (let* ((final-prakriya (derive-kArayati))
+         (final-string (concat-terms (prakriya-terms final-prakriya))))
+    (assert-equal "kArayati" final-string "kArayati recursive derivation applies Guna and Sandhi to derived dhAtu")))
+
 (def run-tests ()
   (print "Running Panini Machine Tests...")
   (test-pratyahara)
@@ -51,4 +56,5 @@
   (test-guna)
   (test-bavati-derivation)
   (test-dadati-derivation)
+  (test-karayati-derivation)
   (print "Tests complete."))
