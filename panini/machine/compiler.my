@@ -21,7 +21,13 @@
      (and (eq (term-type (car (prakriya-terms prakriya))) 'dhAtu)
           (> (length (prakriya-terms prakriya)) 1)
           (term-has-tag (second (prakriya-terms prakriya)) 'sArvaDAtukaM)))
-          
+    ;; Rule 3.1.32 Matcher
+    ((equal pattern '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sanAdi))))
+     (let ((terms (prakriya-terms prakriya)))
+       (and (>= (length terms) 2)
+            (eq (term-type (car terms)) 'dhAtu)
+            (term-has-tag (second terms) 'sanAdi))))
+
     ;; Rule 6.1.78 Matcher
     ((equal pattern '((term ?t1 (ends-with EC)) (term ?t2 (starts-with AC))))
      (let* ((terms (prakriya-terms prakriya))
@@ -59,6 +65,16 @@
             (new-t1 (term-set-text t1 new-t1-text)))
        (prakriya-record prakriya rule-id (list new-t1 t2 (third terms)))))
        
+    ;; Rule 3.1.32 Action
+    ((equal action '(fuse-into-dhatu ?t1 ?t2))
+     (let* ((terms (prakriya-terms prakriya))
+            (t1 (car terms))
+            (t2 (second terms))
+            (rest (cddr terms))
+            (fused-text (append (term-text t1) (term-text t2)))
+            (new-dhatu (make-term fused-text 'dhAtu)))
+       (prakriya-record prakriya rule-id (cons new-dhatu rest))))
+
     (t prakriya))) ;; Default no-op
 
 ;; The Core Macro: def-panini-rule

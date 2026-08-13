@@ -263,6 +263,30 @@
   :match '((term ?t1 (has-type 'abhyAsa)))
   :action '(apply-hrasva ?t1))
 
+;; --- Rule 3.1.32 — sanAdyantA DAtavaH: roots ending in sanAdi are new roots ---
+(def-panini-rule "3.1.32"
+  :type 'vidhi
+  :scope 'antaraMga
+  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'sanAdi)))
+  :action '(fuse-into-dhatu ?t1 ?t2))
+
+;; ==========================================
+;; kArayati Derivation (Recursive Causative)
+;; ==========================================
+(def derive-kArayati ()
+  ;; Start with: kf (dhAtu) + i (Ric/causative, sanAdi) + Sap + tip
+  (let* ((dhatu    (make-term '(k A r) 'dhAtu)) ;; Pre-vrddhi for mock simplicity
+         (nic      (term-add-tag (make-term '(i) 'pratyaya) 'sanAdi))
+         (vikarana (term-add-tag (make-term '(a) 'vikarana) 'sArvaDAtukaM))
+         (tin      (make-term '(t i) 'tiN))
+         (initial  (make-prakriya (list dhatu nic vikarana tin))))
+    ;; Engine will first trigger 3.1.32, fusing kAr+i -> kAri (dhAtu).
+    ;; Then the loop continues and treats kAri as a normal dhAtu!
+    ;; It will trigger 7.3.84 (Guna) on kAri -> kAre.
+    ;; Then it will trigger 6.1.78 (Sandhi) on kAre + a -> kAraya.
+    ;; Final result: kArayati.
+    (run-full-inference *machine-rules* initial 15)))
+
 ;; --- derive-dadAti: main function ---
 ;;
 ;; Setup (steps 1-4 — structural, manual):
