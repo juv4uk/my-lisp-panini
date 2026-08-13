@@ -171,7 +171,7 @@ notes: "gaRa 6 — vikaraRa a з наголосом на ньому, а не н�
 ```
 
 ```yaml
-canonical: dfS
+canonical: dfz
 display: { iast: dṛś, devanagari: दृश् }
 class: dhatu
 gana: 1
@@ -180,9 +180,11 @@ set_anit: aniT
 source: { dhatupatha: "bhvAdi (gaRa 1)" }
 traditional_meaning: "бачити"
 notes: >
-  Сильно суплетивний у різних часах/способах (paS-, dadfS- тощо) —
+  Сильно суплетивний у різних часах/способах (paz-, dadfz- тощо) —
   класичний приклад того, що "один dhātu" ≠ "один регулярний патерн
-  форм".
+  форм". SLP1 виправлено з "dfS" на "dfz" 2026-08-13 — ś (palatal)
+  кодується `z`, не `S` (яка означає ṣ, retroflex) — виявлено при
+  дослідженні Śiva-sūtra таблиці глифів (`PANINI-SIVA-SUTRA-PRATYAHARA`).
 ```
 
 ```yaml
@@ -227,7 +229,7 @@ notes: "gaRa 2 — атематичний клас, без голосного vi
 ```
 
 ```yaml
-canonical: Sru
+canonical: zru
 display: { iast: śru, devanagari: श्रु }
 class: dhatu
 gana: 5
