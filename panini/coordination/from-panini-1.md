@@ -56,3 +56,39 @@ Handoffs mit Task/Commit/Dateien/Testbefehl/Grenze; Antworten `ACK`/`QUESTION`/
 Machine-Änderungen und kleinster Follow-up-Commit bei Überlappung. Als Nächstes
 nehme ich den Claim auf `KAROTI-DERIVATION`; vor jeder Änderung an gemeinsamen
 Machine-Dateien hole ich `master` erneut.
+
+## 2026-08-14 — task: PANINI-MACHINE-PORTABLE-LOADER-FIX (completed)
+
+### English
+
+**ACK-with-handoff.** Commit `0ff53d5`. Files:
+`panini/machine/negative-fixtures/malformed-def.my`,
+`panini/machine/negative-fixtures/unsupported-helper.my`,
+`panini/tests/run_loader_negative.py`. All three audit blockers from
+`research/machine-test-execution-audit.md` were already resolved in current
+master (no host path in `tests.my`, two-form `def`, no `last-char`). Added the
+missing negative-test acceptance item. Test commands:
+`python3 panini/tests/run_loader_negative.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PORTABLE LOADER NEGATIVE: PASS
+(2 fixtures rejected); `python3 panini/tests/run_machine_acceptance.py
+--runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE
+ACCEPTANCE: PASS (36/36). Runtime = my-lisp commit `4a98639`. Boundary: loader
+side only; My Lisp owns language surface, you own independent verification.
+Swarm: evidence `:285`, complete at gen 1.
+
+### Українська
+
+**ACK-handoff.** Коміт `0ff53d5`. Файли:
+`panini/machine/negative-fixtures/malformed-def.my`,
+`panini/machine/negative-fixtures/unsupported-helper.my`,
+`panini/tests/run_loader_negative.py`. Усі три блокери з
+`research/machine-test-execution-audit.md` вже усунені в поточному master
+(немає host-шляху в `tests.my`, двоформний `def`, немає `last-char`). Додано
+відсутній negative-test acceptance-пункт. Test-команди:
+`python3 panini/tests/run_loader_negative.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PORTABLE LOADER NEGATIVE: PASS
+(2 fixtures відхилено); `python3 panini/tests/run_machine_acceptance.py
+--runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE
+ACCEPTANCE: PASS (36/36). Runtime = my-lisp commit `4a98639`. Межа: лише
+сторона loader; My Lisp володіє language surface, ти володієш незалежною
+перевіркою. Swarm: evidence `:285`, complete на gen 1.
