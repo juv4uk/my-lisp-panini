@@ -1,0 +1,266 @@
+# Source-path fixture for dadAti.  It is deliberately separate from
+# dadati-apavada-conflict-v0.1.yaml: that fixture tests a declared machine
+# conflict, whereas this one records only the source-facing path through 2.4.75.
+# Contracts:
+# - ../../research/dadati-derivation-machine-readiness.md
+# - ../../specs/derivation-ir-v0.1.md
+# - ../../specs/derivation-ir-trace-events-v0.1.md
+
+fixture_id: trace-fixture:dadati-source-path-partial-v0.1
+fixture_status: partial
+ir_version: panini-derivation-ir/0.1
+derivation_id: drv:fixture:dadati-source-path
+result:
+  status: partial
+  state: state:fixture:dadati:slu
+  note: >-
+    This is a source-path record for dA through 2.4.75, an abhyAsa candidate,
+    and a possible later 7.4.59 stage. It does not assert that 2.4.72 is co-applicable, does not
+    resolve a conflict, and does not turn the observed surface dadAti into
+    proof of a complete derivation.
+
+terms:
+  - id: term:root-dA
+    kind: dhAtu
+    source_form: dA
+    surface_form: dA
+    designations:
+      - id: dhAtu
+        provenance: [prov:fixture:dadati-root-needs-check]
+    metadata:
+      namespace: fixture
+      values: { gana: juhotyAdi }
+  - id: term:vikarana-Sap
+    kind: pratyaya
+    source_form: Sap
+    surface_form: Sap
+    designations:
+      - id: pratyaya
+        provenance: [prov:fixture:dadati-sap-needs-check]
+    metadata: { namespace: fixture, values: {} }
+  - id: term:tin-ti
+    kind: pratyaya
+    source_form: tip
+    surface_form: ti
+    designations:
+      - id: pratyaya
+        provenance: [prov:fixture:dadati-tin-needs-check]
+    metadata:
+      namespace: fixture
+      values: { it_lopa: p }
+  - id: term:slu-marker
+    kind: opaque
+    source_form: Slu
+    surface_form: Slu
+    designations: []
+    metadata:
+      namespace: fixture
+      values:
+        role: source-path-marker
+        surface_claim: not-asserted
+  - id: term:abhyasa-dA
+    kind: opaque
+    source_form: dA
+    surface_form: dA
+    designations: []
+    metadata:
+      namespace: fixture
+      values: { role: abhyasa-candidate }
+  - id: term:abhyasa-da
+    kind: opaque
+    source_form: dA
+    surface_form: da
+    designations: []
+    metadata:
+      namespace: fixture
+      values: { role: abhyasa-candidate, operation: hrasva-candidate }
+
+states:
+  - id: state:fixture:dadati:sap
+    schema: panini-state/0.1
+    terms: [term:root-dA, term:vikarana-Sap, term:tin-ti]
+    relations: []
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:dadati:slu
+    schema: panini-state/0.1
+    terms: [term:root-dA, term:slu-marker, term:tin-ti]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap
+        to: term:slu-marker
+        provenance: [prov:fixture:dadati-2.4.75-source-path]
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:dadati:abhyasa
+    schema: panini-state/0.1
+    terms: [term:abhyasa-dA, term:root-dA, term:slu-marker, term:tin-ti]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap
+        to: term:slu-marker
+        provenance: [prov:fixture:dadati-2.4.75-source-path]
+      - kind: implementation
+        from: term:root-dA
+        to: term:abhyasa-dA
+        provenance: [prov:fixture:dadati-6.1.10-needs-check]
+      - kind: implementation
+        from: term:abhyasa-dA
+        to: designation:abhyAsa
+        provenance: [prov:fixture:dadati-6.1.4-needs-check]
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:dadati:abhyasa-hrasva
+    schema: panini-state/0.1
+    terms: [term:abhyasa-da, term:root-dA, term:slu-marker, term:tin-ti]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap
+        to: term:slu-marker
+        provenance: [prov:fixture:dadati-2.4.75-source-path]
+      - kind: implementation
+        from: term:root-dA
+        to: term:abhyasa-dA
+        provenance: [prov:fixture:dadati-6.1.10-needs-check]
+      - kind: implementation
+        from: term:abhyasa-dA
+        to: designation:abhyAsa
+        provenance: [prov:fixture:dadati-6.1.4-needs-check]
+      - kind: implementation
+        from: term:abhyasa-dA
+        to: term:abhyasa-da
+        provenance: [prov:fixture:dadati-7.4.59-needs-check]
+    serialization: fixture-sexpr-not-hashed
+
+rules:
+  - id: rule:sutra:2.4.75
+    kind: sutra-reference
+    canonical_ref: "2.4.75"
+    machine_ref: null
+    conditions: [condition:fixture:juhotyadi-dhatu, condition:fixture:Sap-present]
+    operation: null
+    provenance: [prov:fixture:dadati-2.4.75-source-path]
+  - id: rule:sutra:6.1.10
+    kind: sutra-reference
+    canonical_ref: "6.1.10"
+    machine_ref: null
+    conditions: [condition:fixture:slu-to-reduplication-precondition]
+    operation: null
+    provenance: [prov:fixture:dadati-6.1.10-needs-check]
+  - id: rule:sutra:6.1.4
+    kind: sutra-reference
+    canonical_ref: "6.1.4"
+    machine_ref: null
+    conditions: [condition:fixture:reduplicated-occurrence]
+    operation: null
+    provenance: [prov:fixture:dadati-6.1.4-needs-check]
+  - id: rule:sutra:7.4.59
+    kind: sutra-reference
+    canonical_ref: "7.4.59"
+    machine_ref: null
+    conditions: [condition:fixture:abhyasa-dA-occurrence]
+    operation: null
+    provenance: [prov:fixture:dadati-7.4.59-needs-check]
+
+events:
+  - event_id: evt:01
+    kind: state-observed
+    depends_on: []
+    provenance: [prov:fixture:dadati-input-needs-check]
+    verification: needs-check
+    payload:
+      state: state:fixture:dadati:sap
+      serialization: fixture-sexpr-not-hashed
+
+  - event_id: evt:02
+    kind: applicability-check
+    depends_on: [evt:01]
+    provenance: [prov:fixture:dadati-2.4.75-source-path]
+    verification: verified
+    payload:
+      rule: "2.4.75"
+      state: state:fixture:dadati:sap
+      outcome: applicable
+      conditions: [juhotyAdi-dhatu, Sap-present]
+
+  - event_id: evt:03
+    kind: rule-decision
+    depends_on: [evt:02]
+    provenance: [prov:fixture:dadati-2.4.75-source-path]
+    verification: derived
+    payload:
+      rule: "2.4.75"
+      decision: selected
+      policy: source-path-candidate-no-conflict-asserted
+      reason: >-
+        The source path treats 2.4.75 as the explicit juhotyAdi candidate;
+        it neither tests nor selects against 2.4.72.
+
+  - event_id: evt:04
+    kind: state-transition
+    depends_on: [evt:03]
+    provenance: [prov:fixture:dadati-2.4.75-source-path]
+    verification: derived
+    payload:
+      rule: "2.4.75"
+      before: state:fixture:dadati:sap
+      after: state:fixture:dadati:slu
+      operation: replace-Sap-with-opaque-Slu-source-path-marker
+
+  - event_id: evt:05
+    kind: applicability-check
+    depends_on: [evt:04]
+    provenance: [prov:fixture:dadati-6.1.10-needs-check]
+    verification: needs-check
+    payload:
+      rule: "6.1.10"
+      state: state:fixture:dadati:slu
+      outcome: unknown
+      conditions: [Slu-to-reduplication-precondition]
+
+  - event_id: evt:06
+    kind: rule-decision
+    depends_on: [evt:05]
+    provenance: [prov:fixture:dadati-6.1.10-needs-check]
+    verification: needs-check
+    payload:
+      rule: "6.1.10"
+      decision: deferred
+      policy: unknown-precondition-blocks-source-proof
+      reason: provenance-backed-Slu-to-reduplication-precondition-is-not-yet-recorded
+
+  - event_id: evt:07
+    kind: trace-observation
+    depends_on: [evt:06]
+    provenance: [prov:fixture:dadati-example-observation-needs-check]
+    verification: needs-check
+    payload:
+      source: teaching-example
+      value: dadAti
+      representation: SLP1
+      note: >-
+        The observed form is retained without a transition from the current
+        state. It is not evidence that 6.1.10, 6.1.4, 7.4.59, or a later
+        surface operation has been fully established.
+
+  - event_id: evt:08
+    kind: trace-terminated
+    depends_on: [evt:07]
+    provenance: [prov:fixture:dadati-input-needs-check]
+    verification: needs-check
+    payload:
+      outcome: partial
+      reason: >-
+        The source path stops before reduplication, abhyAsa designation,
+        hrasva, and the final surface operation because their required
+        preconditions and typed transitions remain unresolved.
+
+unknowns:
+  - complete-source-account-of-the-2.4.72-to-2.4.75-conflict-relation-for-dA
+  - provenance-backed-Slu-to-reduplication-precondition
+  - typed-state-operation-for-abhyasa-designation-and-hrasva
+  - typed-state-operation-from-abhyasa-representation-to-surface-dadAti
+  - portable-execution-and-provenance-trace-of-the-existing-machine-harness
+
+non_assertions:
+  - rule-2.4.72-is-not-a-candidate-in-this-source-path-fixture
+  - no-conflict-resolved-event-is-present
+  - tripadi-visibility-is-not-applicable-to-this-recorded-prefix
+  - observed-surface-form-does-not-prove-candidate-priority
