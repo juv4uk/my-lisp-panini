@@ -1,4 +1,9 @@
 canonical: jYA
+source_form: "jYA\\"
+dhatupatha_code: "09.0043"
+homonyms:
+  - { dhatupatha_code: "01.0923", meaning: "mAraRatozaRaniSAmanezu" }
+  - { dhatupatha_code: "10.0258", meaning: "niyoge" }
 display: { iast: jñā, devanagari: ज्ञा }
 class: dhatu
 gana: 9
@@ -6,7 +11,14 @@ pada: ubhayapada
 set_anit: aniT
 source: { dhatupatha: "kryAdi (gaRa 9)" }
 traditional_meaning: "знати"
-notes: "gaRa 9 — vikaraRa nA/nI, ще один окремий клас відмінювання."
+notes: >
+  gaRa 9 — vikaraRa nA/nI, ще один окремий клас відмінювання.
+  "jYA" — омонім (`PANINI-DHATU-REGISTRY-PROVENANCE-FIELDS`): три
+  різні dhātu з тим самим написанням у первинному Dhātupāṭha
+  (01.0923, 09.0043, 10.0258). Цей запис прив'язаний саме до
+  09.0043 (avaboDane, "розуміння") — семантично найближче до
+  "знати" й відповідає заявленому gaṇa 9; два інших див. у полі
+  `homonyms`.
 
 evidence:
   status: verified
