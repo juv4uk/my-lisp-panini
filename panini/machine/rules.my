@@ -1,12 +1,26 @@
-;; Panini Machine Model v0.1 — Rule Engine
+;; Panini Machine Model v0.1 — Rule Engine / Механізм Правил / Regel-Engine
 ;; First concrete rules, derived from the traced derivation of Bavati.
+;; Перші конкретні правила, виведені з відстеженої деривації Bavati.
+;; Erste konkrete Regeln, abgeleitet aus der verfolgten Ableitung von Bavati.
 ;; All identifiers strictly use SLP1 encoding.
+;; Усі ідентифікатори суворо використовують кодування SLP1.
+;; Alle Bezeichner verwenden strikt die SLP1-Codierung.
 ;;
 ;; Architecture (based on research/computational-hypotheses.md):
+;; Архітектура (на основі research/computational-hypotheses.md):
+;; Architektur (basierend auf research/computational-hypotheses.md):
 ;;   - Each RULE is a declarative data object (not a raw function)
+;;     Кожне ПРАВИЛО — це декларативний об'єкт даних (не сира функція)
+;;     Jede REGEL ist ein deklaratives Datenobjekt (keine rohe Funktion)
 ;;   - The DERIVATION STATE is an immutable list of TERMs
+;;     СТАН ДЕРИВАЦІЇ — це незмінний список ТЕРМІНІВ
+;;     Der ABLEITUNGSSTATUS ist eine unveränderliche Liste von TERMs
 ;;   - Each step produces a NEW state (functional, not mutable)
+;;     Кожен крок створює НОВИЙ стан (функціонально, не мутабельно)
+;;     Jeder Schritt erzeugt einen NEUEN Zustand (funktional, nicht mutierbar)
 ;;   - TAGs carry information between rules (confirmed from Vidyut audit)
+;;     ТЕГИ переносять інформацію між правилами (підтверджено з аудиту Vidyut)
+;;     TAGs übertragen Informationen zwischen Regeln (bestätigt durch Vidyut-Audit)
 
 ;; ==========================================
 ;; Term — Basic Unit of Derivation
@@ -47,11 +61,13 @@
         (cons 'tags     (term-tags     term))))
 
 ;; ==========================================
-;; Prakriya — Derivation State
+;; Prakriya — Derivation State / Стан деривації / Ableitungsstatus
 ;; ==========================================
 ;; A prakriya is a list: (terms . history)
-;;   terms   — current list of Term objects
-;;   history — list of (step sutra old-state new-state) for tracing
+;; Prakriya — це список: (terms . history)
+;; Eine Prakriya ist eine Liste: (terms . history)
+;;   terms   — current list of Term objects / поточний список об'єктів Term / aktuelle Liste von Term-Objekten
+;;   history — list of (step sutra old-state new-state) for tracing / список для відстеження / Liste zur Verfolgung
 ;;
 (def make-prakriya (terms)
   (cons terms '()))
@@ -178,7 +194,11 @@
 
 ;; ==========================================
 ;; Full Bavati Derivation (Step-by-Step via Engine)
+;; Повна деривація Bavati (Покроково через рушій)
+;; Vollständige Bavati-Ableitung (Schritt-für-Schritt über die Engine)
 ;; Follows Bavati.md exactly, but now using run-inference.
+;; Точно слідує Bavati.md, але тепер використовує run-inference.
+;; Folgt genau Bavati.md, verwendet aber jetzt run-inference.
 ;; ==========================================
 (def derive-Bavati ()
   ;; Step 1-4: Setup BU + Sap + tip (with it-markers removed manually for now)
@@ -194,3 +214,92 @@
     ;; It should detect that 7.3.84 is applicable (dhatu + sArvaDAtukaM) and apply Guṇa.
     ;; Then it will detect 6.1.78 is applicable (EC + AC) and apply Sandhi.
     (run-inference *machine-rules* initial-prakriya 10)))
+
+;; ==========================================
+;; dadAti Derivation — Step-by-Step Harness
+;; Follows: examples/derivations/dadAti.md (7 steps)
+;; Class 3 (juhotyAdi), apavAda: 2.4.75 > 2.4.72
+;;
+;; ENTRYPOINT for PANINI-MACHINE-RESOLVE-CONFLICT-DADATI-TEST (panini-2):
+;;   Step 5 creates a conflict between:
+;;     2.4.72 — general rule (utsarga): delete Sap via luk
+;;     2.4.75 — class-3 exception (apavAda): replace with Slu tag
+;;   meta.my resolve-conflict must pick 2.4.75 via P2 (apavAda > utsarga).
+;; ==========================================
+
+;; --- Predicate: is this dhAtu class 3 (juhotyAdi)? ---
+(def is-class-3-dhatu
+  (lambda (term)
+    (term-has-tag term 'juhotyAdi)))
+
+;; --- Rule 2.4.72 — general Sap deletion (utsarga) ---
+;; [MY-LISP HYPOTHESIS] :type classification, see rule-provenance-schema.md
+(def-panini-rule "2.4.72"
+  :type 'vidhi
+  :scope 'bAhiraMga
+  :match '((term ?t1 (has-type 'dhAtu)) (term ?t2 (has-tag 'Sap)))
+  :action '(remove-term ?t2))
+
+;; --- Rule 2.4.75 — Slu for class-3 roots (apavAda of 2.4.72) ---
+(def-panini-rule "2.4.75"
+  :type 'vidhi
+  :scope 'bAhiraMga
+  :utsarga "2.4.72"
+  :match '((term ?t1 (has-type 'dhAtu) (has-tag 'juhotyAdi))
+           (term ?t2 (has-tag 'Sap)))
+  :action '(replace-with-slu-tag ?t1 ?t2))
+
+;; --- Rule 6.1.10 — SlO: reduplication when Slu is present ---
+(def-panini-rule "6.1.10"
+  :type 'vidhi
+  :scope 'antaraMga
+  :match '((term ?t1 (has-type 'dhAtu) (has-tag 'slu-applied)))
+  :action '(insert-abhyasa-before ?t1))
+
+;; --- Rule 7.4.59 — hrasvaH: shorten abhyAsa vowel ---
+(def-panini-rule "7.4.59"
+  :type 'vidhi
+  :scope 'antaraMga
+  :match '((term ?t1 (has-type 'abhyAsa)))
+  :action '(apply-hrasva ?t1))
+
+;; --- derive-dadAti: main function ---
+;;
+;; Setup (steps 1-4 — structural, manual):
+;;   dA (class-3, tagged juhotyAdi) + Sap (vikarana) + ti (tiN)
+;;
+;; Engine handles (steps 5-7):
+;;   5. 2.4.72 vs 2.4.75 conflict → resolve-conflict → 2.4.75 wins → Slu tag
+;;   6. 6.1.10: Slu tag → duplicate dA → abhyAsa term inserted
+;;   7. 7.4.59: abhyAsa → short vowel → da
+;;   Result: da + dA + ti = dadAti
+;;
+;; ==========================================
+;; Semantic AST Integration / Інтеграція семантичного AST / Semantische AST-Integration
+;; ==========================================
+;; A SemanticCall represents the pre-derivation semantic intent.
+(def make-semantic-call (predicate roles)
+  (list (cons 'predicate predicate)
+        (cons 'roles roles)))
+
+(def semantic-call-predicate (call) (cdr (assoc 'predicate call)))
+
+;; Maps a semantic DHATU_* predicate to its canonical initial terms
+(def semantic-to-prakriya (call)
+  (let ((pred (semantic-call-predicate call)))
+    (cond
+      ((eq pred 'DHATU_DA)
+       (let* ((dhatu    (make-term '(d A) 'dhAtu))
+              (dhatu-c3 (term-add-tag dhatu 'juhotyAdi))
+              (vikarana (make-term '(S a p) 'vikarana))
+              (vk-tagged (term-add-tag (term-add-tag vikarana 'Sap) 'sArvaDAtukaM))
+              (tin       (make-term '(t i) 'tiN)))
+         (make-prakriya (list dhatu-c3 vk-tagged tin))))
+      (t (error "Unknown semantic predicate")))))
+
+(def derive-dadAti ()
+  ;; Start from a strict SemanticCall AST node (my-lisp karaka.rs compatibility)
+  (let* ((call (make-semantic-call 'DHATU_DA '((KARAKA_KARTR . server))))
+         (initial (semantic-to-prakriya call)))
+    (run-inference *machine-rules* initial 15)))
+

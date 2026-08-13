@@ -36,8 +36,9 @@
          (final-string (concat-terms final-terms)))
     (assert-equal "Bavati" final-string "Bavati derivation matches expected output")))
 
-;; Future test: dadAti derivation
-;; Tests the conflict resolution (apavAda) for Class 3 reduplication (Slu).
+;; dadAti derivation: class-3 Slu path.
+;; The final form is the executable assertion until the machine model exposes
+;; a provenance-bearing derivation trace for individual rule selections.
 (def test-dadati-derivation ()
   (let* ((final-prakriya (derive-dadAti))
          (final-string (concat-terms (prakriya-terms final-prakriya))))
@@ -49,4 +50,5 @@
   (test-eco-sandhi)
   (test-guna)
   (test-bavati-derivation)
+  (test-dadati-derivation)
   (print "Tests complete."))

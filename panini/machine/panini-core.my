@@ -23,29 +23,69 @@
 ;; ==========================================
 ;; Dhātu (Action / Operator Nodes)
 ;; ==========================================
-;; These represent the predicate nodes in our semantic graph AST.
-(setq dhatu-registry
+;; AUTHORITATIVE SOURCE: panini/registry/dhatu/*.yaml (20 verified entries).
+;;
+;; The authoritative registry is YAML-based (registry/dhatu/*.yaml).
+;; When My Lisp gains YAML/file I/O, this should be replaced by:
+;;   (load-dhatu-registry "/mnt/c/GitHub/my-lisp-panini/panini/registry/dhatu/")
+;;
+;; *test-dhatu-registry* is a SNAPSHOT for smoke-tests only.
+;; It is NOT an authoritative source. Do NOT add entries here;
+;; add them to registry/dhatu/*.yaml instead.
+;; See: PANINI-MACHINE-DHATU-REGISTRY-SINGLE-SOURCE
+(setq *test-dhatu-registry*
   '(
-    (BU   . ((meaning . "sattAyAm") (class . 1) (properties . (parasmaipadin seT))))
-    (eD   . ((meaning . "vfdDau")   (class . 1) (properties . (Atmanepadin seT))))
-    (dA   . ((meaning . "dAne")     (class . 3) (properties . (uBayapadin aniT))))
-    (kf   . ((meaning . "karaRe")   (class . 8) (properties . (uBayapadin aniT))))
-    (gam  . ((meaning . "gatau")    (class . 1) (properties . (parasmaipadin aniT))))
+    ;; SLP1         meaning (SLP1)   gana  pada            anit/seT
+    (BU   . ((meaning . "sattAyAm")    (class . 1) (properties . (parasmaipadin seT))))
+    (eD   . ((meaning . "vfdDau")      (class . 1) (properties . (Atmanepadin seT))))
+    (dA   . ((meaning . "dAne")        (class . 3) (properties . (uBayapadin aniT))))
+    (kf   . ((meaning . "karaRe")      (class . 8) (properties . (uBayapadin aniT))))
+    (gam  . ((meaning . "gatau")       (class . 1) (properties . (parasmaipadin aniT))))
     (sTA  . ((meaning . "gatinivfttau") (class . 1) (properties . (parasmaipadin aniT))))
+    ;; Additional verified entries from registry/dhatu/
+    (pac  . ((meaning . "pAke")        (class . 1) (properties . (uBayapadin seT))))
+    (vac  . ((meaning . "paribhASaRe") (class . 2) (properties . (parasmaipadin aniT))))
+    (han  . ((meaning . "hiMsAgatyoH") (class . 2) (properties . (parasmaipadin aniT))))
   ))
+
+;; Alias for compatibility: dhatu-registry → *test-dhatu-registry*
+;; Remove once file-based loading is implemented.
+(setq dhatu-registry *test-dhatu-registry*)
 
 ;; ==========================================
 ;; Graph Modeling (Action Instantiation)
 ;; ==========================================
 ;; An action instance represents a dhātu with its kāraka arguments.
-;; Example of how a derivation state looks before morphological rules apply.
-(defun make-action-graph (action-id dhatu kartf-entity karman-entity)
+;;
+;; FIXED (PANINI-MACHINE-FIXUP-ACTION-GRAPH-ARITY):
+;; Previous version had fixed arity (kartf, karman) — rejected by
+;; dhatu-karaka-relation.md: kāraka set depends on the sentence,
+;; not on dhātu alone (e.g. pac may or may not have aDikaraRa).
+;;
+;; karaka-pairs is an a-list of (kAraka-id . entity) pairs.
+;; Any subset of the six kāraka roles is valid:
+;;   kartf, karman, karaRa, sampradAna, apAdAna, aDikaraRa
+;;
+;; [MY-LISP HYPOTHESIS] — graph edge model, see hypothesis-ledger.md H1
+(defun make-action-graph (action-id dhatu karaka-pairs)
   (list action-id
         (cons 'dhAtu dhatu)
-        (cons 'kartf kartf-entity)
-        (cons 'karman karman-entity)))
+        (cons 'kAraka-args karaka-pairs)))
 
-;; Example Instantiation:
-;; "The agent 'devadatta' does the action 'gam' (to go) towards the target 'grAma' (village)"
-(setq example-derivation-state
-  (make-action-graph 'action-1 'gam 'devadatta 'grAma))
+;; Helper: get a kāraka entity from an action-graph
+(defun action-get-karaka (ag k-id)
+  (cdr (assoc k-id (cdr (assoc 'kAraka-args ag)))))
+
+;; Example 1: "devadatta goes to the village" — kartf + karman only
+(setq example-gam
+  (make-action-graph 'action-gam 'gam
+    '((kartf  . devadatta)
+      (karman . grAma))))
+
+;; Example 2: "devadatta cooks rice in the pot" — kartf + karman + aDikaraRa
+;; (sTAlyAM pacati odanam — the canonical 3-kAraka pac example)
+(setq example-pac-full
+  (make-action-graph 'action-pac 'pac
+    '((kartf      . devadatta)
+      (karman     . odana)
+      (aDikaraRa  . sTAlI))))
