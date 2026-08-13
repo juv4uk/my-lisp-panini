@@ -1,0 +1,107 @@
+# Boundary fixture: causative classification cannot be silently flattened into
+# a unique Role -> Participant map. This is not a complete causative derivation.
+# Contracts:
+# - ../../research/causative-karaka-stress-test.md
+# - ../../specs/karaka-role-cardinality.md
+# - ../../research/karaka-semantic-role-example-boundary.md
+
+fixture_id: trace-fixture:karaka-causative-nested-boundary-v0.1
+fixture_status: unsupported
+fixture_kind: participant-classification-boundary
+representation: canonical-SLP1
+
+outer_situation:
+  id: situation:fixture:causative-instigation
+  predicate_term: term:root-pac
+  status: asserted
+  note: >-
+    A bounded analysis scope for a causative claim. It does not assert a full
+    sentence parse, vibhakti assignment, worldly event ontology, or derivation.
+
+terms:
+  - id: term:root-pac
+    kind: dhAtu
+    source_form: pac
+    surface_form: pac
+    designations:
+      - id: dhAtu
+        provenance: [prov:fixture:pac-root-registry-needs-check]
+    metadata: { namespace: fixture, values: {} }
+  - id: term:participant-rAma
+    kind: prAtipadika
+    source_form: rAma
+    surface_form: rAmaH
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:participant-devadatta
+    kind: prAtipadika
+    source_form: devadatta
+    surface_form: devadattena
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:participant-odana
+    kind: prAtipadika
+    source_form: odana
+    surface_form: odanam
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+
+classification_claims:
+  - participant: term:participant-rAma
+    situation: situation:fixture:causative-instigation
+    designation: kartf
+    qualifier: hetu
+    basis:
+      kind: causative-extension
+      ref: "1.4.55"
+    provenance: [prov:fixture:karaka-hetu-1.4.55-needs-check]
+    status: asserted
+  - participant: term:participant-devadatta
+    situation: situation:fixture:causative-instigation
+    designation: kartf
+    qualifier: caused-action-participant
+    basis:
+      kind: interpretation
+      ref: commentary-needed
+    provenance: [prov:fixture:caused-kartf-needs-check]
+    status: unresolved
+  - participant: term:participant-odana
+    situation: situation:fixture:causative-instigation
+    designation: karman
+    qualifier: null
+    basis:
+      kind: general-criterion
+      ref: "1.4.49"
+    provenance: [prov:fixture:karaka-karman-1.4.49-needs-check]
+    status: unresolved
+
+simple_call_profile:
+  predicate: term:root-pac
+  role_container: unique-map
+  candidate_bindings:
+    - { role: kartf, participant: term:participant-rAma }
+    - { role: kartf, participant: term:participant-devadatta }
+    - { role: karman, participant: term:participant-odana }
+  validation:
+    result: unsupported
+    diagnostic: requires-nested-event-or-explicit-richer-profile
+    reason: >-
+      Two kartf-related participants require an explicit relation of
+      instigation/caused action. A unique map either overwrites a participant
+      or loses that relation.
+
+result:
+  status: unsupported
+  required_future_profile: nested-event-or-reviewed-richer-analysis
+  unknowns:
+    - source-and-commentary-complete-account-of-the-caused-participant
+    - vibhakti-and-sentence-level-analysis
+    - causative-morphological-derivation
+    - appropriate-machine-relation-shape-for-hetu
+
+negative_assertions:
+  - "hetu is not added as a seventh canonical karaka registry atom"
+  - "kartf is not renamed to agent or subject"
+  - "no entity:<id> is inferred from participant glosses"
+  - "no fixed valency frame is asserted for pac"
+  - "no graph edge is asserted to be a Paninian primitive"
