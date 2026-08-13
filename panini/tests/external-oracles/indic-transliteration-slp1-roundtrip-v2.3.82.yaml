@@ -1,18 +1,21 @@
-# External comparison plan; not a recorded oracle result.
+# Recorded external comparison fixture; not canonical registry data.
 # Contract: ../../specs/external-oracle-fixture-policy-v0.1.md
 
 id: oracle:indic-transliteration:slp1-roundtrip-v2.3.82
-fixture_status: planned
+fixture_status: recorded
 tool:
   name: indic_transliteration
   revision: "2.3.82"
   source: https://pypi.org/project/indic-transliteration/2.3.82/
   license: MIT
   invocation: >-
-    guix shell -m manifest.scm -- python3
+    python3 -m venv /tmp/panini-indic-venv &&
+    /tmp/panini-indic-venv/bin/pip install
+    indic_transliteration==2.3.82 PyYAML==6.0.2 &&
+    /tmp/panini-indic-venv/bin/python
     panini/tools/run_indic_transliteration_fixture.py
     panini/tests/external-oracles/indic-transliteration-slp1-roundtrip-v2.3.82.yaml
-  availability: pending-guix-package
+  availability: recorded-temporary-venv
 data:
   artifacts: []
   license_status: verified
@@ -43,13 +46,12 @@ cases:
     expected_iast: saṃskṛtam
     expected_devanagari: संस्कृतम्
 comparison:
-  result: pending
-  compared_on: null
+  result: match
+  compared_on: "2026-08-13"
   notes: >-
-    The repository's Guix manifest currently has Python and PyYAML but no
-    packaged indic_transliteration. This plan must not be reported as an
-    oracle match until a pinned, license-reviewed Guix package and a recorded
-    command output exist.
+    Recorded in an isolated temporary venv under WSL user `user`. The Guix
+    manifest still lacks a packaged indic_transliteration, so this fixture is
+    a reproducible comparison recipe but not yet a Guix-native test command.
 provenance:
   - prov:tool:indic-transliteration-pypi-2.3.82
   - prov:slp1:conformance-fixtures-v0.1
