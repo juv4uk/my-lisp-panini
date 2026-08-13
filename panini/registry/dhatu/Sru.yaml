@@ -1,4 +1,6 @@
 canonical: Sru
+dhatupatha_code: "01.1092"
+gana_disputed: true
 display: { iast: śru, devanagari: श्रु }
 class: dhatu
 gana: 5
@@ -6,4 +8,11 @@ pada: parasmaipada
 set_anit: seT
 source: { dhatupatha: "svAdi (gaRa 5)" }
 traditional_meaning: "чути"
-notes: "gaRa 5 — vikaraRa nu/no, окремий морфологічний патерн."
+notes: >
+  gaRa 5 — vikaraRa nu/no, окремий морфологічний патерн. GANA DISPUTED
+  (`PANINI-DHATUPATHA-DISAMBIGUATION-POLICY`, за знахідкою
+  `PANINI-DHATUPATHA-SOURCE-VERIFICATION`): первинний Dhātupāṭha
+  (`vidyut-prakriya/data/dhatupatha.tsv`, код 01.1092) показує "Sru\"
+  у gaRa **01** (bhvādi), не gaRa 5 (svādi), як тут заявлено. Не
+  виправлено мовчки — залишено як явна невідповідність до звірки
+  проти другого незалежного джерела (Sanskrit Heritage чи коментар).

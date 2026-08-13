@@ -1,4 +1,6 @@
 canonical: sTA
+source_form: "zWA\\"
+dhatupatha_code: "01.1077"
 display: { iast: sthā, devanagari: स्था }
 class: dhatu
 gana: 1
@@ -6,4 +8,11 @@ pada: parasmaipada
 set_anit: aniT
 source: { dhatupatha: "BvAdi (gaRa 1)" }
 traditional_meaning: "стояти"
-notes: "Корінь на довгий голосний — інша поведінка при guRa/vfdDi ніж у приголосних коренів."
+notes: >
+  Корінь на довгий голосний — інша поведінка при guRa/vfdDi ніж у
+  приголосних коренів. `source_form` у первинному Dhātupāṭha —
+  ретрофлексне "zWA" (не дентальне "sTA") — це не декоративний
+  it-маркер, а традиційна орфографія кореня. Нормалізовано до "sTA"
+  за незалежним підтвердженням (`PANINI-DHATUPATHA-DISAMBIGUATION-POLICY`):
+  цитатна форма "sthā" з дентальним `s` універсально визнана поза
+  самим Dhātupāṭha (підручники, `my-lisp`, `PANINI-GRAMMAR-REFERENCE.md`).
