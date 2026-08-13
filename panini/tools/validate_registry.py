@@ -28,6 +28,7 @@ ALLOWED = {
     "karaka": {"canonical", "iast", "display", "class", "definition", "defined_by", "relations", "caveats", "examples", "sources", "extending_sutras"},
     "samjna": {"canonical", "display", "class", "scope", "defined_by", "ontology", "caveats", "sources"},
 }
+EVIDENCE_STATUS = {"verified", "unverified", "disputed", "needs-check"}
 
 
 class Reporter:
@@ -59,7 +60,7 @@ def to_iast(slp1: str) -> str:
     return "".join(IAST_MAP.get(ch, ch) for ch in slp1)
 
 
-def validate_record(path: Path, data: dict[str, Any], expected: str, sutras: set[str], seen: dict[str, Path], reporter: Reporter) -> None:
+def validate_record(path: Path, data: dict[str, Any], expected: str, sutras: set[str], seen: dict[str, Path], reporter: Reporter, strict_provenance: bool) -> None:
     canonical = data.get("canonical")
     if not isinstance(canonical, str) or not canonical:
         reporter.emit("ERROR", path, "missing non-empty canonical SLP1 identifier")
@@ -87,6 +88,17 @@ def validate_record(path: Path, data: dict[str, Any], expected: str, sutras: set
         reporter.emit("ERROR", path, "missing Devanagari display")
     if expected == "dhatu" and not isinstance(data.get("source"), dict):
         reporter.emit("ERROR", path, "dhatu record requires a source mapping")
+    if strict_provenance:
+        provenance = data.get("source") if expected == "dhatu" else data.get("sources")
+        if expected == "dhatu" and (not isinstance(provenance, dict) or not provenance):
+            reporter.emit("ERROR", path, "strict provenance requires a non-empty source mapping")
+        if expected in {"karaka", "samjna"} and (not isinstance(provenance, list) or not provenance):
+            reporter.emit("ERROR", path, "strict provenance requires a non-empty sources list")
+    evidence = data.get("evidence")
+    if evidence is not None:
+        status = evidence.get("status") if isinstance(evidence, dict) else None
+        if status not in EVIDENCE_STATUS:
+            reporter.emit("ERROR", path, "evidence.status must be verified, unverified, disputed, or needs-check")
     definitions = data.get("defined_by", [])
     if expected in {"karaka", "samjna"} and not isinstance(definitions, list):
         reporter.emit("ERROR", path, f"{expected} record requires a defined_by list")
@@ -102,6 +114,7 @@ def validate_record(path: Path, data: dict[str, Any], expected: str, sutras: set
 def main() -> int:
     parser = argparse.ArgumentParser(description="Read-only Panini registry validator")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1], help="panini directory")
+    parser.add_argument("--strict-provenance", action="store_true", help="require explicit source(s) for every registry record")
     args = parser.parse_args()
     root: Path = args.root
     reporter = Reporter()
@@ -114,7 +127,7 @@ def main() -> int:
         for path in sorted((root / "registry" / kind).glob("*.yaml")):
             data = load(path, reporter)
             if data is not None:
-                validate_record(path, data, kind, sutras, seen, reporter)
+                validate_record(path, data, kind, sutras, seen, reporter, args.strict_provenance)
     print(f"SUMMARY errors={reporter.errors} warnings={reporter.warnings} records={len(seen)} sutras={len(sutras)}")
     return 1 if reporter.errors else 0
 
