@@ -1,5 +1,32 @@
 # dhatu registry schema v0.2
 
+## English
+
+**Status:** v0.1 (`PANINI-DHATU-REGISTRY-SCHEMA-V0.2`). This schema separates
+three field layers: attested source data, normalized display data, and
+evidence/provenance. `canonical` is normalized SLP1 for stable project use;
+`source_form` and `dhatupatha_code` preserve source identity; evidence status
+states verification rather than asserting a fact. The migration of 20 records
+adds only evidence already established by prior audits and explicitly leaves
+unverified or disputed items unresolved. No machine-usage layer belongs in a
+dhātu record yet. The detailed Ukrainian text below is normative for the
+v0.1 schema.
+
+## Deutsch
+
+**Status:** v0.1 (`PANINI-DHATU-REGISTRY-SCHEMA-V0.2`). Dieses Schema trennt
+drei Feldschichten: belegte Quelldaten, normalisierte Darstellungsdaten und
+Evidenz/Provenienz. `canonical` ist normalisiertes SLP1 für die stabile
+Projektverwendung; `source_form` und `dhatupatha_code` bewahren die
+Quellidentität; der Evidenzstatus beschreibt Verifikation, nicht eine
+behauptete Tatsache. Die Migration der 20 Einträge ergänzt nur bereits durch
+frühere Audits etablierte Evidenz und lässt ungeprüfte oder strittige Punkte
+ausdrücklich offen. Eine Ebene für Machine-Nutzung gehört noch nicht in einen
+dhātu-Eintrag. Der ukrainische Detailtext unten ist für das Schema v0.1
+normativ.
+
+## Українська
+
 Статус: v0.1 (`PANINI-DHATU-REGISTRY-SCHEMA-V0.2`).
 
 Формалізує ad-hoc поля, додані під час `PANINI-DHATUPATHA-SOURCE-VERIFICATION`
