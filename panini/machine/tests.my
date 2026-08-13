@@ -32,6 +32,39 @@
     (assert-equal "dadAti" (concat-terms (derive-dadAti)) "dadAti prototype")
     (assert-equal "kArayati" (concat-terms (derive-kArayati)) "kArayati prototype")))
 
+(def test-dadati-declared-conflict
+  (lambda ()
+    (assert-equal "2.4.72" (rule-id dadati-rule-2-4-72)
+                  "dadAti general rule id")
+    (assert-equal "2.4.75" (rule-id dadati-rule-2-4-75)
+                  "dadAti exception rule id")
+    (assert-equal "2.4.72" (rule-utsarga dadati-rule-2-4-75)
+                  "dadAti declared utsarga")
+    (assert-equal 'resolved-by
+                  (car (resolve-declared-apavada-traced
+                        dadati-rule-2-4-72 dadati-rule-2-4-75))
+                  "dadAti conflict trace status")
+    (assert-equal 'apavAda
+                  (second (resolve-declared-apavada-traced
+                           dadati-rule-2-4-72 dadati-rule-2-4-75))
+                  "dadAti conflict trace reason")
+    (assert-equal "2.4.75"
+                  (rule-id (third (resolve-declared-apavada-traced
+                                   dadati-rule-2-4-72 dadati-rule-2-4-75)))
+                  "dadAti conflict winner")
+    (assert-equal t
+                  (member? 'slu-applied
+                           (term-tags (car (dadati-apply-slu
+                                            (make-term '(d A) '(d A) 'dhAtu '())
+                                            (make-term '(S a p) '(S a p) 'pratyaya '())))))
+                  "dadAti Slu dhatu transition")
+    (assert-equal t
+                  (member? 'slu-elided
+                           (term-tags (second (dadati-apply-slu
+                                               (make-term '(d A) '(d A) 'dhAtu '())
+                                               (make-term '(S a p) '(S a p) 'pratyaya '())))))
+                  "dadAti Slu pratyaya transition")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -39,4 +72,5 @@
     (test-eco-sandhi)
     (test-guna)
     (test-prototype-derivations)
+    (test-dadati-declared-conflict)
     (print "Tests complete.")))

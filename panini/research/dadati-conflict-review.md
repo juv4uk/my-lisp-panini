@@ -4,8 +4,8 @@
 
 ### Scope
 
-This is a read-only review of the `dadAti` conflict harness. It does not
-certify a complete historical derivation and does not modify `panini/machine/`.
+This review distinguishes source evidence from an executable machine fixture.
+It does not certify a complete historical derivation.
 
 ### What the source model expresses
 
@@ -32,8 +32,11 @@ selected rather than another path. A valid conflict-level test must expose:
 4. the selection reason `apavAda-over-utsarga`; and
 5. the state transition that adds the Slu-related tag.
 
-Until the portable WSL loader and My Lisp `def` compatibility blockers are
-fixed, this remains source evidence only. It is not an executable claim.
+On 2026-08-14, the macro-free fixture entry point executed all five required
+observations in the My Lisp VM: both IDs, the encoded relation, `apavAda` as
+the trace reason and 2.4.75 as winner, plus two visible Slu tags. This is
+executable evidence for the declared machine fixture only; it is not a proof
+that the historical corpus mandates this implementation.
 
 ### Semantic identifier boundary
 
@@ -46,8 +49,8 @@ must not be presented as the foundation's canonical identifiers.
 
 ### Межа review
 
-Це read-only review conflict harness для `dadAti`. Він не сертифікує повну
-історичну деривацію та не змінює `panini/machine/`.
+Цей review розділяє source evidence і виконуваний machine fixture для `dadAti`.
+Він не сертифікує повну історичну деривацію.
 
 ### Що виражає source-модель
 
@@ -73,8 +76,11 @@ fallback на пізніше sūtra. Це узгоджене **машинне к
 4. причину `apavAda-over-utsarga`; і
 5. state transition, що додає Slu-пов'язаний tag.
 
-Поки не виправлено portable WSL loader та сумісність форми `def` з My Lisp,
-це лише source evidence, а не виконуване твердження.
+2026-08-14 macro-free fixture entrypoint виконав усі п'ять потрібних
+спостережень у My Lisp VM: обидва ID, закодоване відношення, `apavAda` як
+причину trace і 2.4.75 як переможця, а також два видимі Slu tags. Це виконуване
+evidence лише для оголошеного machine fixture; воно не доводить, що історичний
+корпус вимагає саме такої реалізації.
 
 ### Межа semantic identifiers
 
@@ -87,8 +93,8 @@ fallback на пізніше sūtra. Це узгоджене **машинне к
 
 ### Umfang
 
-Dies ist ein Read-only-Review des `dadAti`-Konflikt-Harness. Er bestätigt keine
-vollständige historische Derivation und ändert `panini/machine/` nicht.
+Dieses Review trennt Source-Evidence von einem ausführbaren `dadAti`-
+Maschinenfixture. Es bestätigt keine vollständige historische Derivation.
 
 ### Aussage des Source-Modells
 
@@ -97,10 +103,11 @@ als Klassen-3-Regel mit Verweis auf 2.4.72 im Feld `:utsarga`. `meta.my` wählt
 damit 2.4.75 mittels `apavada-of?`, bevor der spätere-Sūtra-Fallback greift.
 Das ist eine kohärente **Maschinenkodierung** der Regel/Ausnahme-Beziehung.
 
-Der Test prüft nur den Endtext `"dadAti"`; ein Provenance-Trace fehlt noch.
-Eine Konfliktprüfung muss beide Regeln, die `:utsarga`-Relation, Gewinner
-2.4.75, den Grund `apavAda-over-utsarga` und die Slu-Zustandsänderung zeigen.
-Bis WSL-Loader und My-Lisp-`def` kompatibel sind, ist dies nur Source-Evidence.
+Der Endtext `"dadAti"` allein beweist keine Regelwahl. Am 2026-08-14 prüfte
+der makrofreie Fixture-Einstiegspunkt in der My-Lisp-VM beide Regeln, die
+deklarierte `utsarga`-Relation, `apavAda` als Grund, Gewinner 2.4.75 und zwei
+sichtbare Slu-Tags. Das ist ausführbare Evidenz nur für das deklarierte
+Maschinenfixture, kein Beweis einer historischen Pāṇini-Interpretation.
 
 ### Grenze semantischer IDs
 

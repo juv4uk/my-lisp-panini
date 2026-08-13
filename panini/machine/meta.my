@@ -22,3 +22,12 @@
       ((apavada-of? first second) first)
       ((apavada-of? second first) second)
       (t '()))))
+
+;; This trace records only a relation declared by this machine fixture. It is
+;; neither a universal scheduler nor a proof of historical precedence.
+(def resolve-declared-apavada-traced
+  (lambda (first second)
+    (cond
+      ((apavada-of? first second) (list 'resolved-by 'apavAda first))
+      ((apavada-of? second first) (list 'resolved-by 'apavAda second))
+      (t (list 'unresolved '())))))

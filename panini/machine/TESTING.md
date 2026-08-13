@@ -13,8 +13,9 @@ The machine assertions themselves are in [tests.my](tests.my).
 
 ### Running tests
 
-Run the Lisp entry point from repository root. It loads the documented My Lisp
-core library before the machine modules and then invokes `(run-tests)`:
+Run the Lisp entry point from repository root. It loads the narrow macro-free
+fixture prelude before the machine modules and then invokes `(run-tests)`. This
+keeps acceptance evidence independent of changes in the shared My Lisp core:
 
 ```lisp
 $ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
@@ -31,6 +32,9 @@ The suite uses a small `assert-equal` helper to check state transitions.
 2. **Integration tests: machine fixtures.** They check narrow executable
    fixture outputs, not complete historical derivation traces:
    - `test-prototype-derivations` checks the fixture outputs `Bavati`, `dadAti`, and `kArayati`.
+   - `test-dadati-declared-conflict` checks both rule IDs, the declared
+     `utsarga` link, the trace reason `apavAda`, the selected 2.4.75 fixture,
+     and visible Slu transition tags.
 
 ### Adding a test
 
@@ -51,12 +55,13 @@ python3 panini/tests/run_machine_acceptance.py \
   --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
 ```
 
-Result: **PASS** — 14 assertions printed `[PASS]`, no `[FAIL]` or runtime
+Result: **PASS** — 22 assertions printed `[PASS]`, no `[FAIL]` or runtime
 diagnostics appeared, and `Tests complete.` was reached. The runtime worktree
-was dirty, so this is execution evidence, not release certification. The three
-derivation outputs are deliberately `machine-fixture` records: this proves My
-Lisp compatibility and stable fixture behavior, not complete historical
-Pāṇinian derivations.
+was dirty, so this is execution evidence, not release certification. The entry
+point uses `runtime-prelude.my`, not the currently changing shared core. The
+three derivation outputs and the `dadAti` conflict fields are deliberately
+`machine-fixture` records: this proves VM compatibility and declared fixture
+behavior, not complete historical Pāṇinian derivations.
 
 ## Українська
 
@@ -71,8 +76,9 @@ Pāṇinian derivations.
 
 ### Запуск тестів
 
-Запускайте Lisp entrypoint із кореня репозиторію. Він спершу завантажує
-документовану core-бібліотеку My Lisp, далі machine-модулі й `(run-tests)`:
+Запускайте Lisp entrypoint із кореня репозиторію. Він спершу завантажує вузький
+macro-free fixture prelude, далі machine-модулі й `(run-tests)`. Це зберігає
+evidence виконання незалежним від змін у спільному My Lisp core:
 
 ```lisp
 $ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
@@ -92,6 +98,9 @@ transition.
 Перевіряють вузькі виконувані fixture outputs, а не повні історичні traces
 деривації:
 - `test-prototype-derivations` — outputs `Bavati`, `dadAti`, `kArayati`.
+- `test-dadati-declared-conflict` — обидва ID правил, оголошений зв'язок
+  `utsarga`, причину trace `apavAda`, обраний fixture 2.4.75 і видимі
+  transition tags Slu.
 
 ### Додавання тесту
 
@@ -114,12 +123,13 @@ python3 panini/tests/run_machine_acceptance.py \
   --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
 ```
 
-Результат: **PASS** — 14 assertions надрукували `[PASS]`, не з'явилися
+Результат: **PASS** — 22 assertions надрукували `[PASS]`, не з'явилися
 `[FAIL]` або runtime diagnostics, досягнуто `Tests complete.`. Worktree
 runtime був dirty, тому це evidence виконання, а не release certification.
-Три derivation outputs навмисно є `machine-fixture` records: це доводить
-сумісність із My Lisp і стабільну поведінку fixture, а не complete історичні
-деривації Паніні.
+Entrypoint використовує `runtime-prelude.my`, а не спільний core, що зараз
+змінюється. Три derivation outputs і conflict fields `dadAti` навмисно є
+`machine-fixture` records: це доводить сумісність із VM і оголошену поведінку
+fixture, а не complete історичні деривації Паніні.
 
 ## Deutsch
 
@@ -134,9 +144,10 @@ Die Machine-Assertions liegen in [tests.my](tests.my).
 
 ### Tests ausführen
 
-Den Lisp-Einstiegspunkt vom Repository-Stamm ausführen. Er lädt zuerst die
-dokumentierte My-Lisp-Core-Bibliothek, dann die Maschinenmodule und
-`(run-tests)`:
+Den Lisp-Einstiegspunkt vom Repository-Stamm ausführen. Er lädt zuerst ein
+schmales makrofreies Fixture-Prelude, dann die Maschinenmodule und
+`(run-tests)`. Dadurch bleibt die Ausführungsevidenz von Änderungen am
+gemeinsamen My-Lisp-Core unabhängig:
 
 ```lisp
 $ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
@@ -154,6 +165,9 @@ Zustandsübergänge zu prüfen.
 2. **Integrationstests: Machine-Fixtures.** Sie prüfen enge ausführbare
    Fixture-Ausgaben, keine vollständigen historischen Ableitungstraces:
    - `test-prototype-derivations` prüft `Bavati`, `dadAti` und `kArayati`.
+   - `test-dadati-declared-conflict` prüft beide Regel-IDs, die deklarierte
+     `utsarga`-Verknüpfung, den Trace-Grund `apavAda`, das Fixture 2.4.75 und
+     sichtbare Slu-Übergangstags.
 
 ### Einen Test hinzufügen
 
@@ -175,9 +189,11 @@ python3 panini/tests/run_machine_acceptance.py \
   --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
 ```
 
-Ergebnis: **PASS** — 14 Assertions gaben `[PASS]` aus, ohne `[FAIL]` oder
+Ergebnis: **PASS** — 22 Assertions gaben `[PASS]` aus, ohne `[FAIL]` oder
 Runtime-Diagnosen; `Tests complete.` wurde erreicht. Der Runtime-Worktree war
-dirty, daher ist dies Ausführungsevidenz und keine Release-Zertifizierung. Die
-drei Derivationsausgaben sind absichtlich `machine-fixture`-Records: Der Test
-belegt My-Lisp-Kompatibilität und stabiles Fixture-Verhalten, keine
-vollständigen historischen Pāṇini-Ableitungen.
+dirty, daher ist dies Ausführungsevidenz und keine Release-Zertifizierung. Der
+Einstiegspunkt verwendet `runtime-prelude.my`, nicht den sich aktuell ändernden
+gemeinsamen Core. Die drei Derivationsausgaben und die `dadAti`-Konfliktfelder
+sind absichtlich `machine-fixture`-Records: Der Test belegt VM-Kompatibilität
+und deklariertes Fixture-Verhalten, keine vollständigen historischen
+Pāṇini-Ableitungen.

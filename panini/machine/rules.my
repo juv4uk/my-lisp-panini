@@ -77,3 +77,21 @@
 (def derive-kArayati
   (lambda ()
     (list (make-term '(k f) '(k A r a y a t i) 'dhAtu '(machine-fixture)))))
+
+;; Narrow conflict fixture for dadAti. These fields declare a machine relation;
+;; they do not independently establish an interpretation of the sutra corpus.
+(def dadati-rule-2-4-72
+  (list (cons 'id "2.4.72")
+        (cons 'utsarga '())
+        (cons 'kind 'machine-fixture)))
+
+(def dadati-rule-2-4-75
+  (list (cons 'id "2.4.75")
+        (cons 'utsarga "2.4.72")
+        (cons 'kind 'machine-fixture)))
+
+;; A deliberately visible state change for the conflict acceptance test.
+(def dadati-apply-slu
+  (lambda (dhatu sap)
+    (list (term-add-tag dhatu 'slu-applied)
+          (term-add-tag sap 'slu-elided))))

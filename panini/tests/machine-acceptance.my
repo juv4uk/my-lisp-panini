@@ -4,7 +4,7 @@
 (print "[PANINI-LISP-ACCEPTANCE] start")
 
 ;; These loads and run-tests are the real integration boundary.
-(load "../my-lisp/lib/core.my")
+(load "panini/machine/runtime-prelude.my")
 (load "panini/machine/compiler.my")
 (load "panini/machine/meta.my")
 (load "panini/machine/siva-sutras.my")
