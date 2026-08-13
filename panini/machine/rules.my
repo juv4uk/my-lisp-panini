@@ -164,3 +164,71 @@
                 (list (cons 'kartf 'devadatta)
                       (cons 'karman 'odana)
                       (cons 'aDikaraRa 'sTAlI))))))
+
+;; Static anuvRtti-edge graph (machine fixture). Per
+;; research/anuvrtti-graph-vs-dynamic-binding.md, anuvRtti is a property of
+;; the text, not of execution state; each rule declares its inherited words
+;; and their source sUtra explicitly instead of dynamic binding.
+(def panini-rule-3-1-1
+  (list (cons 'id "3.1.1")
+        (cons 'kind 'machine-fixture)
+        (cons 'inherits-from '())
+        (cons 'inherits-words '(pratyayaH))))
+
+(def panini-rule-3-1-68
+  (list (cons 'id "3.1.68")
+        (cons 'kind 'machine-fixture)
+        (cons 'inherits-from '("3.1.1"))
+        (cons 'inherits-words '(pratyayaH))))
+
+(def panini-rule-3-1-79
+  (list (cons 'id "3.1.79")
+        (cons 'kind 'machine-fixture)
+        (cons 'inherits-from '("3.1.1"))
+        (cons 'inherits-words '(pratyayaH))))
+
+(def anuvrtti-graph-rules
+  (list panini-rule-3-1-1 panini-rule-3-1-68 panini-rule-3-1-79))
+
+(def rule-inherits-from
+  (lambda (rule)
+    (cdr (assoc 'inherits-from rule))))
+
+(def rule-inherits-words
+  (lambda (rule)
+    (cdr (assoc 'inherits-words rule))))
+
+;; All source rule ids referenced by any inherits-from edge.
+(def dag-source-ids
+  (lambda (rules)
+    (cond
+      ((atom rules) '())
+      (t (cons (rule-id (car rules)) (dag-source-ids (cdr rules)))))))
+
+;; Membership in a flat list of ids.
+(def dag-has-id?
+  (lambda (id ids)
+    (member? id ids)))
+
+;; Every inherits-from target must exist in the rule set. Machine-level only.
+(def dag-edges-resolve?
+  (lambda (rules)
+    (dag-edges-resolve-from? rules (dag-source-ids rules))))
+
+(def dag-edges-resolve-from?
+  (lambda (rules all-ids)
+    (cond
+      ((atom rules) t)
+      (t (cond
+           ((null-edges? (rule-inherits-from (car rules)))
+            (dag-edges-resolve-from? (cdr rules) all-ids))
+           (t (cond
+                ((dag-has-id? (car (rule-inherits-from (car rules))) all-ids)
+                 (dag-edges-resolve-from? (cdr rules) all-ids))
+                (t '()))))))))
+
+(def null-edges?
+  (lambda (edges)
+    (cond
+      ((atom edges) t)
+      (t '()))))
