@@ -5,7 +5,7 @@ definition: "нерухома (фіксована) точка при відді�
 defined_by:
   - sutra: "1.4.24"
     text: "Druvam apAye 'pAdAnam"
-extending_sutras: ["1.4.25 (BIitrARAM Bayahetuh — джерело страху)"]
+extending_sutras: ["1.4.25 (BItrArTAnAM BayahetuH — джерело страху)"]
 caveats: >
   "Source"/"ablative" працює для просторових випадків, але ламається
   без спеціальних розширень (1.4.25 і подібні) для дієслів страху,

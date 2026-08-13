@@ -1,0 +1,51 @@
+;; Panini Machine Model v0.1
+;; Core Definitions for the Symbolic Virtual Machine
+;; All identifiers strictly use SLP1 encoding.
+
+;; ==========================================
+;; Kāraka (Semantic Roles / Edges)
+;; ==========================================
+;; These represent the typed edges in our semantic graph AST.
+(setq karaka-registry
+  '(
+    (apAdAna    . ((sutra . "1.4.24") (semantic-role . "source")))
+    (sampradAna . ((sutra . "1.4.32") (semantic-role . "recipient")))
+    (karaRa     . ((sutra . "1.4.42") (semantic-role . "instrument")))
+    (aDikaraRa  . ((sutra . "1.4.45") (semantic-role . "location")))
+    (karman     . ((sutra . "1.4.49") (semantic-role . "patient")))
+    (kartf      . ((sutra . "1.4.54") (semantic-role . "agent")))
+  ))
+
+;; Helper to fetch a karaka's property
+(defun get-karaka (k-id prop)
+  (cdr (assoc prop (cdr (assoc k-id karaka-registry)))))
+
+;; ==========================================
+;; Dhātu (Action / Operator Nodes)
+;; ==========================================
+;; These represent the predicate nodes in our semantic graph AST.
+(setq dhatu-registry
+  '(
+    (BU   . ((meaning . "sattAyAm") (class . 1) (properties . (parasmaipadin seT))))
+    (eD   . ((meaning . "vfdDau")   (class . 1) (properties . (Atmanepadin seT))))
+    (dA   . ((meaning . "dAne")     (class . 3) (properties . (uBayapadin aniT))))
+    (kf   . ((meaning . "karaRe")   (class . 8) (properties . (uBayapadin aniT))))
+    (gam  . ((meaning . "gatau")    (class . 1) (properties . (parasmaipadin aniT))))
+    (sTA  . ((meaning . "gatinivfttau") (class . 1) (properties . (parasmaipadin aniT))))
+  ))
+
+;; ==========================================
+;; Graph Modeling (Action Instantiation)
+;; ==========================================
+;; An action instance represents a dhātu with its kāraka arguments.
+;; Example of how a derivation state looks before morphological rules apply.
+(defun make-action-graph (action-id dhatu kartf-entity karman-entity)
+  (list action-id
+        (cons 'dhAtu dhatu)
+        (cons 'kartf kartf-entity)
+        (cons 'karman karman-entity)))
+
+;; Example Instantiation:
+;; "The agent 'devadatta' does the action 'gam' (to go) towards the target 'grAma' (village)"
+(setq example-derivation-state
+  (make-action-graph 'action-1 'gam 'devadatta 'grAma))

@@ -6,6 +6,6 @@ defined_by:
   - sutra: "1.4.49"
     text: "kartur IpsitatamaM karma"
   - sutra: "1.4.51"
-    text: "taTAyuktaM cAnIpsitam"
+    text: "taTAyuktam cAnIpsitam"
 relations: "sampradAna (1.4.32) визначається через karman."
 caveats: "\"Прямий об'єкт\"/\"patient\" — спрощення; 1.4.51 виходить за межі \"бажаного результату\"."

@@ -1,0 +1,32 @@
+((tasks . (
+  ("build-ontology-map" . (
+    (priority . 10.0)
+    (capabilities . ("my-lisp-panini"))
+    (depends-on . ())
+    (done . t)
+  ))
+  ("audit-vidyut" . (
+    (priority . 9.0)
+    (capabilities . ("my-lisp-panini"))
+    (depends-on . ("build-ontology-map"))
+    (done . t)
+  ))
+  ("build-dhatu-registry" . (
+    (priority . 8.0)
+    (capabilities . ("my-lisp-panini"))
+    (depends-on . ("build-ontology-map"))
+    (done . t)
+  ))
+  ("build-karaka-registry" . (
+    (priority . 7.0)
+    (capabilities . ("my-lisp-panini"))
+    (depends-on . ("build-dhatu-registry"))
+    (done . t)
+  ))
+  ("build-machine-model" . (
+    (priority . 6.0)
+    (capabilities . ("my-lisp-panini"))
+    (depends-on . ("build-karaka-registry"))
+    (done . ())
+  ))
+)))
