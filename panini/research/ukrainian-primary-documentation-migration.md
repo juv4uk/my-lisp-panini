@@ -4,8 +4,8 @@
 
 ### Measured baseline — 2026-08-14
 
-The offline checker reports 133 repository Markdown documents: 80 have the
-required three language sections, 53 do not, and 17 have the sections in an
+The offline checker reports 136 repository Markdown documents: 85 have the
+required three language sections, 51 do not, and 17 have the sections in an
 order different from `English → Ukrainian → German`. The result is an
 inventory, not permission to mechanically translate research claims.
 
@@ -32,8 +32,8 @@ invented scholarly claim. Run
 
 ### Виміряна база — 2026-08-14
 
-Offline checker показує 133 Markdown-документи репозиторію: 80 мають потрібні
-три мовні секції, 53 їх не мають, а 17 мають інший порядок, ніж
+Offline checker показує 136 Markdown-документів репозиторію: 85 мають потрібні
+три мовні секції, 51 їх не мають, а 17 мають інший порядок, ніж
 `English → Ukrainian → German`. Це інвентар, а не дозвіл механічно перекладати
 дослідницькі твердження.
 
@@ -60,8 +60,8 @@ Offline checker показує 133 Markdown-документи репозито�
 
 ### Gemessene Ausgangslage — 2026-08-14
 
-Der Offline-Checker meldet 133 Markdown-Dokumente im Repository: 80 besitzen
-die drei erforderlichen Sprachabschnitte, 53 nicht, und 17 verwenden eine
+Der Offline-Checker meldet 136 Markdown-Dokumente im Repository: 85 besitzen
+die drei erforderlichen Sprachabschnitte, 51 nicht, und 17 verwenden eine
 andere Reihenfolge als `English → Ukrainian → German`. Dies ist ein Inventar,
 keine Erlaubnis zur mechanischen Übersetzung von Forschungsbehauptungen.
 
