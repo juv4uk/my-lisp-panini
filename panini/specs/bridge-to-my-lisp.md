@@ -112,7 +112,7 @@ mutable state          — всі трансформації повертают�
 
 ## 6. Посилання
 
-- Трасований приклад: [`panini/examples/derivations/Bavati.md`](../panini/examples/derivations/Bavati.md)
-- Rule Engine: [`panini/machine/rules.my`](../panini/machine/rules.my)
+- Трасований приклад: [`examples/derivations/Bavati.md`](../examples/derivations/Bavati.md)
+- Rule Engine: [`machine/rules.my`](../machine/rules.my)
 - My Lisp core: [`C:/GitHub/my-lisp/lib/core.my`](file:///C:/GitHub/my-lisp/lib/core.my)
 - My Lisp contract: [`C:/GitHub/my-lisp/language-contract.my`](file:///C:/GitHub/my-lisp/language-contract.my)
