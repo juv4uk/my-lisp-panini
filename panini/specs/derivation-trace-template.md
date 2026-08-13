@@ -1,108 +1,116 @@
-# Шаблон доказового trace деривації
+# Evidence trace template / Шаблон доказового trace / Evidenz-Trace-Vorlage
 
-Статус: v0.1, дослідницький формат (`PANINI-DERIVATION-TRACE-EVIDENCE-TEMPLATE`).
+## English
 
-## Призначення
+### Purpose and boundary
 
-Цей шаблон призначено для **ручного, перевірюваного** trace. Він не є форматом
-VM, не доводить повноти деривації та не дозволяє перетворити послідовність
-кроків на executable grammar без окремого машинного milestone.
+This v0.1 template records a manually reviewable derivation trace. It is not a
+VM format, does not prove a complete derivation, and does not turn a sequence
+of notes into executable grammar. Each step separates source fact,
+interpretation, and our state representation.
 
-Кожен крок мусить відрізняти:
+### Invariants
 
-1. факт про текст або традиційне джерело;
-2. інтерпретацію, яка пов'язує факт зі станом;
-3. технічний опис стану, обраний нами для trace.
+- A sūtra reference alone does not prove the operation summary.
+- Inherited context must be `explicit`, `inferred`, or `unresolved`; inferred
+  context is never presented as literal sūtra text.
+- Every transformation is our representation and declares its representation
+  status.
+- Missing evidence produces `unresolved` or a `blocked` trace. Alternatives
+  remain recorded instead of being erased by a final surface form.
 
-## Обов'язковий каркас
+## Українська
+
+### Призначення й межа
+
+Цей шаблон v0.1 фіксує ручний trace деривації, який можна перевірити. Це не
+формат VM, не доказ повної деривації й не перетворення послідовності нотаток
+на виконувану граматику. Кожен крок розділяє факт джерела, інтерпретацію та
+наше представлення стану.
+
+### Інваріанти
+
+- Саме посилання на sūtra не доводить operation summary.
+- Успадкований контекст мусить бути `explicit`, `inferred` або `unresolved`;
+  inferred context не подається як буквальний текст sūtra.
+- Кожна transformation є нашим представленням і оголошує свій
+  representation status.
+- Відсутній доказ породжує `unresolved` або trace `blocked`. Alternatives
+  залишаються записаними, а не зникають через фінальну поверхневу форму.
+
+## Deutsch
+
+### Zweck und Grenze
+
+Diese v0.1-Vorlage hält einen manuell prüfbaren Derivationstrace fest. Sie ist
+kein VM-Format, beweist keine vollständige Derivation und macht aus einer
+Notizfolge keine ausführbare Grammatik. Jeder Schritt trennt Quellenfakt,
+Interpretation und unsere Zustandsrepräsentation.
+
+### Invarianten
+
+- Eine sūtra-Referenz allein beweist die Operationszusammenfassung nicht.
+- Geerbter Kontext muss `explicit`, `inferred` oder `unresolved` sein;
+  inferred Kontext wird nie als wörtlicher sūtra-Text dargestellt.
+- Jede Transformation ist unsere Repräsentation und erklärt ihren
+  Repräsentationsstatus.
+- Fehlende Evidenz führt zu `unresolved` oder einem `blocked`-Trace.
+  Alternativen bleiben verzeichnet und werden nicht durch eine Endform gelöscht.
+
+## Shared v0.1 schema / Спільна схема v0.1 / Gemeinsames Schema v0.1
 
 ```yaml
 trace_id: example-id
-status: draft                 # draft | source-checked | disputed | blocked
+status: draft # draft | source-checked | disputed | blocked
 goal:
-  display_iast: "…"
-  canonical_slp1: "…"
-
+  display_iast: "..."
+  canonical_slp1: "..."
 initial_terms:
   - term_id: root
-    form_slp1: "…"
+    form_slp1: "..."
     asserted_categories:
       - designation: dhAtu
-        source:
-          kind: dhatupatha
-          reference: "…"
-          evidence_status: source-checked
-
+        source: {kind: dhatupatha, reference: "...", evidence_status: source-checked}
 steps:
   - ordinal: 1
-    operation_summary: "Український стислий опис, що саме стверджується"
-    input_state: "…"          # наш запис стану, не цитата Паніні
+    operation_summary: "short human-readable assertion"
+    input_state: "..." # our state notation, never a Pāṇini quotation
     source:
-      kind: sutra              # sutra | commentary | traditional-principle | implementation-convenience
+      kind: sutra # sutra | commentary | traditional-principle | implementation-convenience
       reference: "3.1.68"
       text_ref: "registry/sutras/index.yaml#sutras.3.1.68"
       evidence_status: corpus-checked
     inherited_context:
-      - source: "…"           # sūtra/adhikāra або commentary
-        status: explicit | inferred | unresolved
-        note: "Що саме успадковано й чому"
+      - source: "..."
+        status: explicit # explicit | inferred | unresolved
+        note: "what is inherited and why"
     interpretation:
-      claim: "Як джерело застосовано до цього кроку"
-      status: source-checked | interpretation | disputed
+      claim: "how source is applied to this step"
+      status: source-checked # source-checked | interpretation | disputed
     transformation:
-      before: "…"
-      after: "…"
+      before: "..."
+      after: "..."
       representation_status: my-lisp-hypothesis
     alternatives:
-      - status: rejected | unresolved
-        reason: "Правило, умова або відсутній доказ"
-    output_state: "…"
-
+      - status: unresolved # rejected | unresolved
+        reason: "rule, condition, or missing evidence"
+    output_state: "..."
 result:
-  form_slp1: "…"
-  display_iast: "…"
-  confidence: source-checked | partial | blocked
-
-open_issues:
-  - "…"
+  form_slp1: "..."
+  display_iast: "..."
+  confidence: partial # source-checked | partial | blocked
+open_issues: ["..."]
 ```
 
-## Інваріанти
+## Pre-publication check / Перевірка перед публікацією / Prüfung vor Veröffentlichung
 
-- `source.reference` сам по собі не доводить `operation_summary`.
-- `inherited_context.status: inferred` не можна подавати як прямий текст
-  sūtra.
-- `transformation` — завжди наше представлення. Воно має явно нести
-  `representation_status`, навіть якщо джерело кроку безсумнівне.
-- За відсутності джерела або прозорого коментарного ланцюга крок не
-  «здогадується»: його статус `unresolved` або весь trace має `blocked`.
-- Не підміняти `evidence_status` наявністю ID у локальному індексі. Значення
-  береться з `registry/sutras/citation-provenance.yaml`.
+1. Every sūtra ID appears in the provenance registry.
+2. Every form change has SLP1 `before` and `after` values.
+3. Every implicit `anuvftti` or `aDikAra` context is labelled `inferred` or
+   `unresolved`.
+4. Rejected alternatives and conflicts remain in `alternatives`.
+5. A final form never substitutes for evidence of its path.
 
-## Мінімальна перевірка перед публікацією trace
-
-1. Кожен sūtra-ID присутній у provenance-реєстрі.
-2. Кожна згадана зміна форми має `before` і `after` у SLP1.
-3. Кожен неявний anuvṛtti/adhikāra-контекст має статус `inferred` або
-   `unresolved`, а не маскується як текст правила.
-4. Відкинуті варіанти та конфлікти не вилучаються; їх записують у
-   `alternatives`.
-5. Кінцева форма не є доказом правильності шляху: trace перевіряють крок за
-   кроком.
-
-## Зв'язок із наявними прикладами
-
-`examples/derivations/Bavati.md` і `dadAti.md` корисні як навчальні ланцюги,
-але не задовольняють автоматично цей шаблон: у них потрібно окремо додати
-структурований стан, provenance кожного кроку, спадкований контекст і
-альтернативи. Це свідомо відкладено; не переписувати приклади масово без
-окремого аудиту.
-
-## Джерела
-
-- [`rule-provenance-schema.md`](rule-provenance-schema.md) — поділ походження
-  тверджень про правила.
-- [`../foundation/anuvrtti.md`](../foundation/anuvrtti.md) — обмеження
-  представлення спадкованого контексту.
-- [`../research/derivation-examples-verification.md`](../research/derivation-examples-verification.md)
-  — поточний стан доказів прикладів.
+Related: [rule provenance](rule-provenance-schema.md),
+[anuvṛtti boundary](../foundation/anuvrtti.md), and
+[derivation-example verification](../research/derivation-examples-verification.md).
