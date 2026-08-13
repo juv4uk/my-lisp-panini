@@ -1,5 +1,31 @@
 # saṃjñā classification matrix
 
+## English
+
+**Status:** v0.1 (`PANINI-SAMJNA-CLASSIFICATION-MATRIX`). Identical saṃjñā
+syntax hides at least four different classification mechanisms: finite sound
+sets (`guRa`, `vfdDi`), lexical lists or form-plus-exception (`sarvanAma`,
+`Gu`), complements (`ArDaDAtuka`), and procedural semantic assessment
+(`kAraka`). A common interface may be possible in a future model, but this is
+not evidence that one implementation mechanism fits all categories.
+
+## Українська
+
+**Статус:** v0.1 (`PANINI-SAMJNA-CLASSIFICATION-MATRIX`). Однаковий синтаксис
+saṃjñā приховує щонайменше чотири різні механізми класифікації: скінченні
+множини звуків, лексичні списки або форма плюс виняток, доповнення та
+процедурну семантичну оцінку. Спільний інтерфейс у майбутній моделі можливий,
+але це не доказ, що один механізм реалізації годиться для всіх категорій.
+
+## Deutsch
+
+**Status:** v0.1 (`PANINI-SAMJNA-CLASSIFICATION-MATRIX`). Gleiche
+saṃjñā-Syntax verbirgt mindestens vier verschiedene Klassifikationsmechanismen:
+endliche Lautmengen, lexikalische Listen oder Form-plus-Ausnahme, Komplemente
+und prozedurale semantische Bewertung. Eine gemeinsame Schnittstelle in einem
+zukünftigen Modell ist möglich, dies belegt aber nicht, dass ein einziger
+Implementierungsmechanismus für alle Kategorien passt.
+
 Статус: v0.1 (`PANINI-SAMJNA-CLASSIFICATION-MATRIX`).
 
 Доповнює [`samjna.md`](samjna.md) — не переказ механізму `saMjYA`
