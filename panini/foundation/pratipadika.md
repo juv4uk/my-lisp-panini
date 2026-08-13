@@ -1,5 +1,40 @@
 # prAtipadika — фундаментальна нотатка з межами доказів
 
+## English
+
+**Status:** research note v0.1 (`PANINI-PRATIPADIKA-FOUNDATION`). Canonical
+identifier: `prAtipadika` (SLP1); display forms are *prātipadika* (IAST) and
+`प्रातिपदिक` (Devanāgarī).
+
+`prAtipadika` is a technical `saMjYA`, not an assumed programming primitive.
+The note distinguishes 1.2.45, which gives its stated conditions, from 1.2.46,
+which separately designates relevant kṛt, taddhita, and samāsa formations.
+Later sūtra use the category as a rule condition; that does not make it a free
+lexical object outside derivation. “Nominal base” is a useful gloss, not an
+interchangeable definition. Any machine representation must retain its
+designation source and provenance; it must not equate `prAtipadika` with a
+symbol, string, entity, or noun-AST node. The detailed Ukrainian text below
+keeps `[PANINI]`, `[INTERPRETATION]`, and `[MY-LISP HYPOTHESIS]` separate.
+
+## Deutsch
+
+**Status:** Forschungsnotiz v0.1 (`PANINI-PRATIPADIKA-FOUNDATION`). Der
+kanonische Identifikator ist `prAtipadika` (SLP1); Darstellungsformen sind
+*prātipadika* (IAST) und `प्रातिपदिक` (Devanāgarī).
+
+`prAtipadika` ist eine technische `saMjYA`, kein vorausgesetztes
+Programmierprimitiv. Die Notiz unterscheidet 1.2.45, das die genannten
+Bedingungen formuliert, von 1.2.46, das einschlägige kṛt-, taddhita- und
+samāsa-Bildungen gesondert bezeichnet. Spätere Sūtra verwenden die Kategorie
+als Regelbedingung; daraus wird kein freies lexikalisches Objekt außerhalb der
+Derivation. „Nominale Basis“ ist ein nützlicher Gloss, keine austauschbare
+Definition. Eine Maschinenrepräsentation muss Bezeichnungsquelle und
+Provenienz erhalten; sie darf `prAtipadika` nicht mit Symbol, String, Entität
+oder einem Substantiv-AST-Knoten gleichsetzen. Der ukrainische Detailtext unten
+trennt `[PANINI]`, `[INTERPRETATION]` und `[MY-LISP HYPOTHESIS]`.
+
+## Українська
+
 Статус: дослідницька нотатка v0.1 (`PANINI-PRATIPADIKA-FOUNDATION`).
 
 Канонічний ідентифікатор: `prAtipadika` (SLP1). Відображення: *prātipadika*
