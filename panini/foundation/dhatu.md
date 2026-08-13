@@ -171,7 +171,7 @@ notes: "gaRa 6 — vikaraRa a з наголосом на ньому, а не н�
 ```
 
 ```yaml
-canonical: dfz
+canonical: dfS
 display: { iast: dṛś, devanagari: दृश् }
 class: dhatu
 gana: 1
@@ -180,11 +180,15 @@ set_anit: aniT
 source: { dhatupatha: "bhvAdi (gaRa 1)" }
 traditional_meaning: "бачити"
 notes: >
-  Сильно суплетивний у різних часах/способах (paz-, dadfz- тощо) —
+  Сильно суплетивний у різних часах/способах (paS-, dadfS- тощо) —
   класичний приклад того, що "один dhātu" ≠ "один регулярний патерн
-  форм". SLP1 виправлено з "dfS" на "dfz" 2026-08-13 — ś (palatal)
-  кодується `z`, не `S` (яка означає ṣ, retroflex) — виявлено при
-  дослідженні Śiva-sūtra таблиці глифів (`PANINI-SIVA-SUTRA-PRATYAHARA`).
+  форм". SLP1: канонічно "dfS" (не "dfz") — виправлено двічі 2026-08-13
+  (`PANINI-DHATUPATHA-SOURCE-VERIFICATION`): спершу помилково змінено
+  на "dfz" за хибним твердженням `PANINI-GRAMMAR-REFERENCE.md`
+  ("ś=z, ṣ=S"), потім відкочено назад після звірки проти реального
+  коду Vidyut (`sounds.rs`, класифікація місць артикуляції: `S`
+  групується з палатальними `i/c/y` = ś, `z` групується з
+  ретрофлексними `f/w/r` = ṣ) — правильно: `ś=S`, `ṣ=z`.
 ```
 
 ```yaml
@@ -229,7 +233,7 @@ notes: "gaRa 2 — атематичний клас, без голосного vi
 ```
 
 ```yaml
-canonical: zru
+canonical: Sru
 display: { iast: śru, devanagari: श्रु }
 class: dhatu
 gana: 5
@@ -253,7 +257,7 @@ notes: "gaRa 9 — vikaraRa nA/nI, ще один окремий клас від�
 ```
 
 ```yaml
-canonical: BAS
+canonical: Baz
 display: { iast: bhāṣ, devanagari: भाष् }
 class: dhatu
 gana: 1
@@ -261,7 +265,12 @@ pada: atmanepada
 set_anit: seT
 source: { dhatupatha: "bhvAdi (gaRa 1)" }
 traditional_meaning: "говорити"
-notes: "Виключно ātmanepada — приклад коренів, що не мають ubhayapada-варіанту."
+notes: >
+  Виключно ātmanepada — приклад коренів, що не мають ubhayapada-варіанту.
+  SLP1 виправлено з "BAS" на "Baz" 2026-08-13
+  (`PANINI-DHATUPATHA-SOURCE-VERIFICATION`) — ṣ (retroflex) кодується
+  `z`, не `S` (яка означає ś, palatal); первісний запис "BAS" мовчки
+  наслідував хибну конвенцію `PANINI-GRAMMAR-REFERENCE.md`.
 ```
 
 ```yaml
@@ -280,7 +289,7 @@ notes: >
 ```
 
 ```yaml
-canonical: iS
+canonical: iz
 display: { iast: iṣ, devanagari: इष् }
 class: dhatu
 gana: 6
@@ -288,7 +297,15 @@ pada: ubhayapada
 set_anit: seT
 source: { dhatupatha: "tudAdi (gaRa 6)" }
 traditional_meaning: "бажати, прагнути"
-notes: "Семантично цікавий для kAraka-дослідження: apAdAna/sampradAna поведінка при дієсловах бажання нетривіальна."
+notes: >
+  Семантично цікавий для kAraka-дослідження: apAdAna/sampradAna
+  поведінка при дієсловах бажання нетривіальна. SLP1: канонічно "iz"
+  (не "iS") — виправлено двічі 2026-08-13
+  (`PANINI-DHATUPATHA-SOURCE-VERIFICATION`): спершу помилково змінено
+  з "iz" на "iS" у `PANINI-TERMINOLOGY-GLOSSARY` за хибним
+  твердженням `PANINI-GRAMMAR-REFERENCE.md`, потім відкочено назад
+  після звірки проти реального коду Vidyut (`sounds.rs`) — правильно:
+  `ṣ=z`, `ś=S`.
 ```
 
 ```yaml
