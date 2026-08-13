@@ -55,8 +55,8 @@
     (assert-equal t
                   (member? 'slu-applied
                            (term-tags (car (dadati-apply-slu
-                                            (make-term '(d A) '(d A) 'dhAtu '())
-                                            (make-term '(S a p) '(S a p) 'pratyaya '())))))
+                                             (make-term '(d A) '(d A) 'dhAtu '())
+                                             (make-term '(S a p) '(S a p) 'pratyaya '())))))
                   "dadAti Slu dhatu transition")
     (assert-equal t
                   (member? 'slu-elided
@@ -64,6 +64,28 @@
                                                (make-term '(d A) '(d A) 'dhAtu '())
                                                (make-term '(S a p) '(S a p) 'pratyaya '())))))
                   "dadAti Slu pratyaya transition")))
+
+(def canonical-empty-state
+  "{\"relations\":[],\"schema\":\"panini-state/0.1\",\"serialization\":\"canonical-json-sha256-v0.1\",\"terms\":[]}\n")
+
+(def canonical-sap-state
+  "{\"relations\":[],\"schema\":\"panini-state/0.1\",\"serialization\":\"canonical-json-sha256-v0.1\",\"terms\":[{\"id\":\"term:vikarana-Sap-raw\",\"kind\":\"pratyaya\",\"source_form\":\"Sap\",\"surface_form\":\"Sap\"}]}\n")
+
+(def test-trace-canonical-serialization
+  (lambda ()
+    (assert-equal "23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854"
+                  (sha256-hex canonical-empty-state)
+                  "canonical state vector A digest")
+    (assert-equal "7b19d66e1d5e24edf54f455a34bfb8fbeee28c3058b78801c1412ea1f431a09b"
+                  (sha256-hex canonical-sap-state)
+                  "canonical state vector B digest")
+    (assert-equal "state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854"
+                  (string-append "state:sha256:" (sha256-hex canonical-empty-state))
+                  "content-addressed state prefix")
+    (assert-equal t
+                  (not (equal? (sha256-hex canonical-empty-state)
+                               (sha256-hex canonical-sap-state)))
+                  "distinct states give distinct digests")))
 
 (def run-tests
   (lambda ()
@@ -73,4 +95,5 @@
     (test-guna)
     (test-prototype-derivations)
     (test-dadati-declared-conflict)
+    (test-trace-canonical-serialization)
     (print "Tests complete.")))
