@@ -46,7 +46,8 @@ guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.
 
 For an executable My Lisp integration check, use the supplied runtime path
 explicitly. This acceptance harness fails on REPL diagnostics even when the
-process exits with code 0:
+process exits with code 0. The actual load sequence lives in the Lisp file
+`panini/tests/machine-acceptance.my`:
 
 ```sh
 guix shell -m manifest.scm -- python3 panini/tests/run_machine_acceptance.py \
@@ -100,7 +101,8 @@ guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.
 
 Для виконуваної інтеграційної перевірки My Lisp передайте шлях до runtime
 явно. Цей acceptance harness провалюється на REPL diagnostics, навіть якщо
-process завершується з кодом 0:
+process завершується з кодом 0. Сам load sequence міститься у Lisp-файлі
+`panini/tests/machine-acceptance.my`:
 
 ```sh
 guix shell -m manifest.scm -- python3 panini/tests/run_machine_acceptance.py \
@@ -155,7 +157,8 @@ guix shell -m manifest.scm -- python3 panini/tests/test_trace_fixture_validator.
 
 Für einen ausführbaren My-Lisp-Integrationstest wird der Runtime-Pfad explizit
 übergeben. Dieser Acceptance-Harness schlägt auch bei REPL-Diagnosen fehl,
-selbst wenn der Prozess mit Code 0 endet:
+selbst wenn der Prozess mit Code 0 endet. Die eigentliche Load-Sequenz liegt
+in der Lisp-Datei `panini/tests/machine-acceptance.my`:
 
 ```sh
 guix shell -m manifest.scm -- python3 panini/tests/run_machine_acceptance.py \

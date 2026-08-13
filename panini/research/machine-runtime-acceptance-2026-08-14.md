@@ -35,10 +35,15 @@ Runtime revision: `bd36d21`. Стан My Lisp worktree був dirty, тому ц
 1. `compiler.my`, `rules.my` і `tests.my` використовують тричастинну форму
    `def`, тоді як runtime повідомляє «expected 2; received 3».
 2. `siva-sutras.my` викликає відсутній symbol `last-char`.
-3. Через ці помилки `(run-tests)` лишається unknown symbol і completion marker
+3. Окремий Lisp-level probe показав, що поточний runtime також не має `if`,
+   хоча наявний `tests.my` використовує цю форму. Це незалежний compatibility
+   blocker, а не причина підміняти test entrypoint власною умовною логікою.
+4. Через ці помилки `(run-tests)` лишається unknown symbol і completion marker
    `Tests complete.` не з'являється.
-4. REPL повернув process exit `0`; отже, shell exit code сам по собі не є
-   acceptance evidence.
+5. Інтерактивний REPL повернув process exit `0` попри diagnostics, тоді як
+   прямий запуск `machine-acceptance.my` завершився nonzero під час load.
+   Отже, transport mode теж є частиною test provenance; shell exit code без
+   transcript сам по собі не є достатнім acceptance evidence.
 
 Новий harness свідомо провалюється також на `Error:`, `[FAIL]`, `unknown
 symbol` або відсутньому `Tests complete.`. Після виправлення machine owner має

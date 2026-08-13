@@ -15,29 +15,22 @@ from pathlib import Path
 
 
 PANINI = Path(__file__).resolve().parents[1]
-LOADS = (
-    "panini/machine/compiler.my",
-    "panini/machine/meta.my",
-    "panini/machine/siva-sutras.my",
-    "panini/machine/rules.my",
-    "panini/machine/tests.my",
-)
+ENTRYPOINT = "panini/tests/machine-acceptance.my"
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runtime", required=True, type=Path, help="path to the My Lisp executable")
     args = parser.parse_args()
-    program = "\n".join([*(f'(load "{path}")' for path in LOADS), "(run-tests)", ""])
     result = subprocess.run(
-        [str(args.runtime)],
+        [str(args.runtime), ENTRYPOINT],
         cwd=PANINI.parent,
-        input=program,
-        text=True,
         capture_output=True,
         check=False,
     )
-    transcript = result.stdout + result.stderr
+    stdout = result.stdout.decode("utf-8", errors="replace") if isinstance(result.stdout, bytes) else result.stdout
+    stderr = result.stderr.decode("utf-8", errors="replace") if isinstance(result.stderr, bytes) else result.stderr
+    transcript = stdout + stderr
     print(transcript, end="")
     failures: list[str] = []
     if result.returncode:
@@ -45,6 +38,8 @@ def main() -> int:
     for marker in ("Error:", "[FAIL]", "unknown symbol"):
         if marker in transcript:
             failures.append(f"runtime emitted {marker!r}")
+    if "[PANINI-LISP-ACCEPTANCE] start" not in transcript:
+        failures.append("Lisp acceptance entry point did not start")
     if "Tests complete." not in transcript:
         failures.append("run-tests did not reach its completion marker")
     if failures:
