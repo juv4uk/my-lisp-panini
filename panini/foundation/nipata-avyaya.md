@@ -1,5 +1,33 @@
 # nipAta / avyaya
 
+## English
+
+**Status:** v0.1 (`PANINI-NIPATA-AVYAYA-ONTOLOGY`). This note keeps
+`nipAta`, `avyaya`, and `upasarga` distinct. Sūtra 1.1.37–38 gives `avyaya`
+as a disjunctive category, while 1.4.56–59 frame `nipAta` and `upasarga`.
+The `prAdi` lexical list can receive different `saMjYA` according to use:
+`nipAta` in its particle function and `upasarga` when connected with verbal
+action. The categories label object-language words, while the labels
+themselves are metalanguage. A future machine model must not flatten these
+productive and nonproductive categories into one generic token type. The
+detailed Ukrainian text retains `[PANINI]`, `[INTERPRETATION]`, and
+`[MY-LISP HYPOTHESIS]` separately.
+
+## Deutsch
+
+**Status:** v0.1 (`PANINI-NIPATA-AVYAYA-ONTOLOGY`). Diese Notiz hält
+`nipAta`, `avyaya` und `upasarga` auseinander. Sūtra 1.1.37–38 bestimmt
+`avyaya` als disjunktive Kategorie, während 1.4.56–59 `nipAta` und
+`upasarga` einordnet. Dieselbe `prAdi`-Lexikliste kann je nach Verwendung
+eine andere `saMjYA` erhalten: `nipAta` in Partikelfunktion und `upasarga`
+bei Verbindung mit einer Verbalhandlung. Die Kategorien bezeichnen Wörter der
+Objektsprache, die Bezeichnungen selbst gehören zur Metasprache. Ein
+zukünftiges Maschinenmodell darf diese produktiven und nichtproduktiven
+Kategorien nicht zu einem generischen Token-Typ einebnen. Der ukrainische
+Detailtext trennt `[PANINI]`, `[INTERPRETATION]` und `[MY-LISP HYPOTHESIS]`.
+
+## Українська
+
 Статус: v0.1 (`PANINI-NIPATA-AVYAYA-ONTOLOGY`). Важливі межі категорій і
 виправлення надто сильних формулювань: [`../research/avyaya-nipata-boundary.md`](../research/avyaya-nipata-boundary.md).
 
