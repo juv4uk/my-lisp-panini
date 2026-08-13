@@ -213,7 +213,7 @@
     ;; The engine will evaluate all rules in *machine-rules*.
     ;; It should detect that 7.3.84 is applicable (dhatu + sArvaDAtukaM) and apply Guṇa.
     ;; Then it will detect 6.1.78 is applicable (EC + AC) and apply Sandhi.
-    (run-inference *machine-rules* initial-prakriya 10)))
+    (run-full-inference *machine-rules* initial-prakriya 10)))
 
 ;; ==========================================
 ;; dadAti Derivation — Step-by-Step Harness
@@ -301,5 +301,5 @@
   ;; Start from a strict SemanticCall AST node (my-lisp karaka.rs compatibility)
   (let* ((call (make-semantic-call 'DHATU_DA '((KARAKA_KARTR . server))))
          (initial (semantic-to-prakriya call)))
-    (run-inference *machine-rules* initial 15)))
+    (run-full-inference *machine-rules* initial 15)))
 

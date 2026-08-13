@@ -109,6 +109,12 @@
 ;; Paribhāṣā Predicates
 ;; ==========================================
 
+;; Tripādī check: rule belongs to chapters 8.2, 8.3, 8.4.
+;; For v0.1 we provide a dummy returning '() since all our rules are Sapad.
+(def tripadi?
+  (lambda (rule)
+    '()))
+
 ;; P3: antaraMga — a rule is "internal" if its conditions
 ;; are fully contained within the current aṅga (stem) domain.
 ;; For our purposes: a rule is antaraMga if it only references
@@ -201,11 +207,11 @@
          ((rule-action winner) prakriya))))))
 
 ;;
-;; run-inference — main engine loop.
-;; Applies rules repeatedly until no more are applicable.
+;; run-sapad-inference — Phase 1: cyclic application
+;; Applies Sapad rules repeatedly until no more are applicable.
 ;; Returns final prakriya.
 ;;
-(def run-inference
+(def run-sapad-inference
   (lambda (rule-list prakriya max-steps)
     (cond
       ((eq max-steps 0) prakriya)  ;; safety limit
@@ -214,7 +220,37 @@
          (cond
            ((not applicable) prakriya)   ;; fixpoint reached
            (t
-            (run-inference
+            (run-sapad-inference
               rule-list
               (apply-best-rule applicable prakriya)
               (- max-steps 1)))))))))
+
+;;
+;; run-tripadi-inference — Phase 2: strictly sequential application
+;; Applies Tripadi rules exactly once in order of their sutra ID.
+;; No cyclical feedback.
+;;
+(def run-tripadi-inference
+  (lambda (rule-list prakriya)
+    (cond
+      ((not rule-list) prakriya)
+      (t
+       (let* ((rule (car rule-list))
+              (applicable ((rule-condition rule) prakriya)))
+         (run-tripadi-inference
+           (cdr rule-list)
+           (if applicable
+               ((rule-action rule) prakriya)
+               prakriya)))))))
+
+;;
+;; run-full-inference — Master Engine Loop
+;;
+(def run-full-inference
+  (lambda (rule-list prakriya max-steps)
+    ;; In a real implementation, we filter by `tripadi?` and sort Tripadi rules.
+    ;; For v0.1, we assume all current rules are Sapad and Tripadi list is empty.
+    (let* ((sapad-rules rule-list)
+           (tripadi-rules '())
+           (sapad-result (run-sapad-inference sapad-rules prakriya max-steps)))
+      (run-tripadi-inference tripadi-rules sapad-result))))
