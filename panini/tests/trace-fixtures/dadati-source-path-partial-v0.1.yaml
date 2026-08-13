@@ -3,6 +3,7 @@
 # conflict, whereas this one records only the source-facing path through 2.4.75.
 # Contracts:
 # - ../../research/dadati-derivation-machine-readiness.md
+# - ../../research/dadati-abhyasa-designation-source-audit.md
 # - ../../specs/derivation-ir-v0.1.md
 # - ../../specs/derivation-ir-trace-events-v0.1.md
 
@@ -12,9 +13,9 @@ ir_version: panini-derivation-ir/0.1
 derivation_id: drv:fixture:dadati-source-path
 result:
   status: partial
-  state: state:fixture:dadati:slu
+  state: state:fixture:dadati:abhyasa
   note: >-
-    This is a source-path record for dA through 2.4.75, an abhyAsa candidate,
+    This is a source-path record for dA through 6.1.4 abhyAsa designation,
     and a possible later 7.4.59 stage. It does not assert that 2.4.72 is co-applicable, does not
     resolve a conflict, and does not turn the observed surface dadAti into
     proof of a complete derivation.
@@ -100,7 +101,7 @@ states:
     serialization: fixture-sexpr-not-hashed
   - id: state:fixture:dadati:abhyasa
     schema: panini-state/0.1
-    terms: [term:abhyasa-dA, term:root-dA, term:slu-marker, term:tin-ti]
+    terms: [term:reduplicated-dA, term:root-dA, term:slu-marker, term:tin-ti]
     relations:
       - kind: implementation
         from: term:vikarana-Sap
@@ -108,12 +109,12 @@ states:
         provenance: [prov:fixture:dadati-2.4.75-source-path]
       - kind: implementation
         from: term:root-dA
-        to: term:abhyasa-dA
-        provenance: [prov:fixture:dadati-6.1.10-needs-check]
+        to: term:reduplicated-dA
+        provenance: [prov:fixture:dadati-6.1.10-dvirvacana]
       - kind: implementation
-        from: term:abhyasa-dA
+        from: term:reduplicated-dA
         to: designation:abhyAsa
-        provenance: [prov:fixture:dadati-6.1.4-needs-check]
+        provenance: [prov:fixture:dadati-6.1.4-abhyasa-designation]
     serialization: fixture-sexpr-not-hashed
   - id: state:fixture:dadati:dvirvacana
     schema: panini-state/0.1
@@ -171,7 +172,7 @@ rules:
     machine_ref: null
     conditions: [condition:fixture:reduplicated-occurrence]
     operation: null
-    provenance: [prov:fixture:dadati-6.1.4-needs-check]
+    provenance: [prov:fixture:dadati-6.1.4-abhyasa-designation]
   - id: rule:sutra:7.4.59
     kind: sutra-reference
     canonical_ref: "7.4.59"
@@ -261,28 +262,41 @@ events:
   - event_id: evt:08
     kind: applicability-check
     depends_on: [evt:07]
-    provenance: [prov:fixture:dadati-6.1.4-needs-check]
-    verification: needs-check
+    provenance: [prov:fixture:dadati-6.1.4-abhyasa-designation]
+    verification: verified
     payload:
       rule: "6.1.4"
       state: state:fixture:dadati:dvirvacana
-      outcome: unknown
+      outcome: applicable
       conditions: [reduplicated-occurrence]
 
   - event_id: evt:09
     kind: rule-decision
     depends_on: [evt:08]
-    provenance: [prov:fixture:dadati-6.1.4-needs-check]
-    verification: needs-check
+    provenance: [prov:fixture:dadati-6.1.4-abhyasa-designation]
+    verification: derived
     payload:
       rule: "6.1.4"
-      decision: deferred
-      policy: unknown-precondition-blocks-source-proof
-      reason: abhyAsa-designation-is-not-yet-independently-recorded
+      decision: selected
+      policy: source-backed-prior-occurrence-designation
+      reason: >-
+        6.1.4 designates the prior member of the locally relevant pair
+        produced by dvirvacana; no hrasva operation is asserted here.
 
   - event_id: evt:10
-    kind: trace-observation
+    kind: state-transition
     depends_on: [evt:09]
+    provenance: [prov:fixture:dadati-6.1.4-abhyasa-designation]
+    verification: derived
+    payload:
+      rule: "6.1.4"
+      before: state:fixture:dadati:dvirvacana
+      after: state:fixture:dadati:abhyasa
+      operation: attach-abhyasa-designation-to-prior-reduplicated-occurrence
+
+  - event_id: evt:11
+    kind: trace-observation
+    depends_on: [evt:10]
     provenance: [prov:fixture:dadati-example-observation-needs-check]
     verification: needs-check
     payload:
@@ -294,21 +308,21 @@ events:
         state. It is not evidence that 6.1.10, 6.1.4, 7.4.59, or a later
         surface operation has been fully established.
 
-  - event_id: evt:11
+  - event_id: evt:12
     kind: trace-terminated
-    depends_on: [evt:10]
+    depends_on: [evt:11]
     provenance: [prov:fixture:dadati-input-needs-check]
     verification: needs-check
     payload:
       outcome: partial
       reason: >-
-        The source path stops after dvirvacana and before abhyAsa designation,
-        hrasva, and the final surface operation because their required
-        preconditions and typed transitions remain unresolved.
+        The source path stops after abhyAsa designation and before hrasva and
+        the final surface operation because their required preconditions and
+        typed transitions remain unresolved.
 
 unknowns:
   - complete-source-account-of-the-2.4.72-to-2.4.75-conflict-relation-for-dA
-  - typed-state-operation-for-abhyasa-designation-and-hrasva
+  - typed-state-operation-for-abhyasa-hrasva
   - typed-state-operation-from-abhyasa-representation-to-surface-dadAti
   - portable-execution-and-provenance-trace-of-the-existing-machine-harness
 
