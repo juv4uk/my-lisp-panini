@@ -21,6 +21,9 @@ trace**, а не для прихованого проголошення резу
 Див. `derivation-ir-v0.1.md`, `derivation-ir-trace-events-v0.1.md` і
 `trace-evidence-model-v0.1.md` у `panini/specs/`.
 
+Поточний стан портфеля, прогалини та наступні evidence gates:
+`../../research/derivation-machine-v0.1-portfolio-audit.md`.
+
 ## Deutsch
 
 Diese Fixtures prüfen die Datenvertragsgrenzen von Derivations-Traces und
