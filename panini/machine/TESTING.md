@@ -39,6 +39,24 @@ These are machine-prototype tests, not self-sufficient proof that a rule models
 Pāṇini correctly; citation provenance and an evidence-bound derivation trace
 are also required.
 
+### Latest executed acceptance result
+
+On 2026-08-14, the Lisp entry point was executed in WSL as user
+`my-lisp-panini` against My Lisp revision `bd36d21`:
+
+```sh
+cd /mnt/c/GitHub/my-lisp-panini
+python3 panini/tests/run_machine_acceptance.py \
+  --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
+```
+
+Result: **PASS** — 14 assertions printed `[PASS]`, no `[FAIL]` or runtime
+diagnostics appeared, and `Tests complete.` was reached. The runtime worktree
+was dirty, so this is execution evidence, not release certification. The three
+derivation outputs are deliberately `machine-fixture` records: this proves My
+Lisp compatibility and stable fixture behavior, not complete historical
+Pāṇinian derivations.
+
 ## Українська
 
 Цей документ описує стратегію тестування `panini-machine-model-v0.1`.
@@ -83,6 +101,24 @@ transition.
 правило реалізує Паніні коректно. Для цього також потрібні citation provenance
 та evidence-bound derivation trace.
 
+### Останній виконаний acceptance result
+
+2026-08-14 Lisp entrypoint виконано у WSL користувачем `my-lisp-panini` проти
+My Lisp revision `bd36d21`:
+
+```sh
+cd /mnt/c/GitHub/my-lisp-panini
+python3 panini/tests/run_machine_acceptance.py \
+  --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
+```
+
+Результат: **PASS** — 14 assertions надрукували `[PASS]`, не з'явилися
+`[FAIL]` або runtime diagnostics, досягнуто `Tests complete.`. Worktree
+runtime був dirty, тому це evidence виконання, а не release certification.
+Три derivation outputs навмисно є `machine-fixture` records: це доводить
+сумісність із My Lisp і стабільну поведінку fixture, а не complete історичні
+деривації Паніні.
+
 ## Deutsch
 
 Dieses Dokument beschreibt die Teststrategie für `panini-machine-model-v0.1`.
@@ -124,3 +160,21 @@ Wort, das sie verwendet, ergänzen. Diese Tests sind Tests eines
 Maschinenprototyps, kein eigenständiger Nachweis, dass eine Regel Pāṇini korrekt
 modelliert; Zitatprovenienz und ein evidenzgebundener Ableitungstrace sind
 ebenfalls erforderlich.
+
+### Letztes ausgeführtes Acceptance-Ergebnis
+
+Am 2026-08-14 wurde der Lisp-Einstiegspunkt in WSL als Nutzer
+`my-lisp-panini` gegen My-Lisp-Revision `bd36d21` ausgeführt:
+
+```sh
+cd /mnt/c/GitHub/my-lisp-panini
+python3 panini/tests/run_machine_acceptance.py \
+  --runtime /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe
+```
+
+Ergebnis: **PASS** — 14 Assertions gaben `[PASS]` aus, ohne `[FAIL]` oder
+Runtime-Diagnosen; `Tests complete.` wurde erreicht. Der Runtime-Worktree war
+dirty, daher ist dies Ausführungsevidenz und keine Release-Zertifizierung. Die
+drei Derivationsausgaben sind absichtlich `machine-fixture`-Records: Der Test
+belegt My-Lisp-Kompatibilität und stabiles Fixture-Verhalten, keine
+vollständigen historischen Pāṇini-Ableitungen.
