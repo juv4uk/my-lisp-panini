@@ -208,3 +208,30 @@
 - `reference-from-engineer-1/PANINI-GRAMMAR-REFERENCE.md` §8 — джерело
   канонічної SLP1-таблиці приголосних, використаної для виявлення
   помилок вище.
+## English summary
+
+This glossary is the repository cross-reference for canonical SLP1 spelling,
+IAST display forms, and Devanagari presentation. SLP1 is the only internal ID
+form; IAST and Devanagari are human-facing representations. It consolidates
+the ontology, dhatu, karaka, and samjna terminology without turning any listed
+Paninian category into a My Lisp primitive.
+
+Its correction history is intentionally retained. In particular, SLP1 `S`
+represents palatal ś and `z` retroflex ṣ, while vowel quantity is significant:
+`BAz`, not `Baz`, represents bhāṣ. New records must be checked against primary
+digital sources and this glossary before commit.
+
+## Deutsch
+
+Dieses Glossar ist der projektweite Abgleich fuer kanonische SLP1-Schreibung,
+IAST-Anzeigeformen und Devanagari-Darstellung. SLP1 ist die einzige interne
+ID-Form; IAST und Devanagari dienen der menschlichen Darstellung. Es buendelt
+Ontologie-, Dhatu-, Karaka- und Samjna-Terminologie, ohne eine Kategorie
+automatisch zu einem My-Lisp-Primitive zu machen.
+
+Die Korrekturhistorie bleibt bewusst sichtbar: SLP1 `S` steht fuer palatales
+ś, `z` fuer retroflexes ṣ; Vokallaenge ist bedeutungstragend (`BAz`, nicht
+`Baz`). Neue Eintraege werden vor dem Commit gegen primaere digitale Quellen
+und dieses Glossar geprueft.
+
+## Українська
