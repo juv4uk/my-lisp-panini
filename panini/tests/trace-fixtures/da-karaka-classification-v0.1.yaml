@@ -1,0 +1,98 @@
+# Bounded participant-classification fixture; not a complete sentence analysis,
+# semantic graph, fixed valency frame, or My Lisp runtime input.
+# Contracts:
+# - ../../research/karaka-semantic-role-example-boundary.md
+# - ../../research/identity-referent-example-audit.md
+# - ../../specs/derivation-ir-v0.1.md
+
+fixture_id: trace-fixture:da-karaka-classification-v0.1
+fixture_status: partial
+fixture_kind: participant-classification
+representation: canonical-SLP1
+
+situation:
+  id: situation:fixture:da-giving
+  predicate_term: term:root-dA
+  status: asserted
+  note: >-
+    Analysis scope for one documented giving situation. It is not asserted to
+    be a universal event ontology or a fixed valency frame of dA.
+
+terms:
+  - id: term:root-dA
+    kind: dhAtu
+    source_form: dA
+    surface_form: dA
+    designations:
+      - id: dhAtu
+        provenance: [prov:fixture:da-root-registry]
+    metadata:
+      namespace: fixture
+      values: { gana: juhotyAdi }
+  - id: term:participant-guru
+    kind: prAtipadika
+    source_form: guru
+    surface_form: guruH
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:participant-pustaka
+    kind: prAtipadika
+    source_form: pustaka
+    surface_form: pustakam
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:participant-Sizya
+    kind: prAtipadika
+    source_form: Sizya
+    surface_form: SizyAya
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+
+participant_classifications:
+  - participant: term:participant-guru
+    situation: situation:fixture:da-giving
+    designation: kartf
+    basis:
+      kind: general-criterion
+      ref: "1.4.54"
+    conditions: [condition:fixture:independent-in-giving-situation]
+    provenance: [prov:fixture:karaka-kartf-1.4.54]
+    status: asserted
+  - participant: term:participant-pustaka
+    situation: situation:fixture:da-giving
+    designation: karman
+    basis:
+      kind: general-criterion
+      ref: "1.4.49"
+    conditions: [condition:fixture:intended-object-of-giving]
+    provenance: [prov:fixture:karaka-karman-1.4.49]
+    status: asserted
+  - participant: term:participant-Sizya
+    situation: situation:fixture:da-giving
+    designation: sampradAna
+    basis:
+      kind: general-criterion
+      ref: "1.4.32"
+    conditions: [condition:fixture:reached-through-karman]
+    provenance: [prov:fixture:karaka-sampradana-1.4.32]
+    status: asserted
+
+result:
+  status: partial
+  reason: >-
+    The fixture records three bounded classification claims for one teaching
+    situation. It contains no verified sentence parser, vibhakti assignment,
+    referent identity, fixed dhatu valency, causative analysis, or executable
+    derivation trace.
+  unknowns:
+    - sentence-level-source-and-commentary-verification
+    - participant-referent-identity-beyond-derivational-terms
+    - cardinality-policy-outside-simple-situation-profile
+    - causative-and-nested-event-analysis
+
+negative_assertions:
+  - "kartf is not asserted to equal grammatical subject or English agent"
+  - "karman is not asserted to equal a universal patient"
+  - "sampradAna is not asserted to equal a universal recipient"
+  - "participant_classifications are not asserted to be graph edges"
+  - "dA is not asserted to own a fixed three-role frame"
