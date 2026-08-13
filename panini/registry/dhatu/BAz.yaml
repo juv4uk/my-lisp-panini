@@ -7,3 +7,6 @@ set_anit: seT
 source: { dhatupatha: "BvAdi (gaRa 1)" }
 traditional_meaning: "говорити"
 notes: "Виключно ātmanepada — приклад коренів без ubhayapada-варіанту. SLP1 виправлено з \"Baz\" на \"BAz\" 2026-08-13 (my-lisp-1 крос-репо звірка, panini/research/slp1-lexicon-alignment.md) — попереднє виправлення BAS→Baz помилково загубило довготу голосного (bhāṣ має довгий ā, capital A в SLP1)."
+
+evidence:
+  status: verified
