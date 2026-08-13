@@ -1,0 +1,95 @@
+# SLP1 ↔ IAST ↔ Devanāgarī conformance fixtures.
+#
+# Status: v0.1 (PANINI-SLP1-CONFORMANCE-FIXTURES).
+#
+# Purpose: a single, small, executable-in-spirit source of truth for every
+# phoneme's SLP1 glyph, so future registry entries can be checked against
+# this table mechanically instead of from memory. Does NOT invent a new
+# scheme — every glyph here is the standard SLP1 scheme, cross-verified
+# against:
+#   - vidyut-prakriya/src/sounds.rs (place-of-articulation grouping —
+#     the specific, authoritative source that resolved the ś/ṣ confusion
+#     documented in foundation/terminology.md and
+#     research/dhatupatha-verification.md, PANINI-DHATUPATHA-SOURCE-VERIFICATION)
+#   - my-lisp's crates/my-lisp/src/semantic/transliteration.rs
+#     (independently verified against Wikipedia's SLP1 article,
+#     research/slp1-lexicon-alignment.md)
+# Both sources agree on every entry below.
+
+vowels:
+  short:
+    - { slp1: a, iast: a,  deva: अ }
+    - { slp1: i, iast: i,  deva: इ }
+    - { slp1: u, iast: u,  deva: उ }
+    - { slp1: f, iast: ṛ,  deva: ऋ }
+    - { slp1: x, iast: ḷ,  deva: ऌ }
+  long:
+    - { slp1: A, iast: ā,  deva: आ }
+    - { slp1: I, iast: ī,  deva: ई }
+    - { slp1: U, iast: ū,  deva: ऊ }
+    - { slp1: F, iast: ṝ,  deva: ॠ }
+    - { slp1: X, iast: ḹ,  deva: ॡ }
+  diphthong:
+    - { slp1: e, iast: e,  deva: ए }
+    - { slp1: E, iast: ai, deva: ऐ }
+    - { slp1: o, iast: o,  deva: ओ }
+    - { slp1: O, iast: au, deva: औ }
+
+marks:
+  - { slp1: M, iast: ṃ, deva: "ं", name: anusvāra }
+  - { slp1: H, iast: ḥ, deva: "ः", name: visarga }
+
+consonants:
+  velar:      # kaṇṭhya
+    - { slp1: k, iast: k,  deva: क }
+    - { slp1: K, iast: kh, deva: ख }
+    - { slp1: g, iast: g,  deva: ग }
+    - { slp1: G, iast: gh, deva: घ }
+    - { slp1: N, iast: ṅ,  deva: ङ }
+  palatal:    # tālavya
+    - { slp1: c, iast: c,  deva: च }
+    - { slp1: C, iast: ch, deva: छ }
+    - { slp1: j, iast: j,  deva: ज }
+    - { slp1: J, iast: jh, deva: झ }
+    - { slp1: Y, iast: ñ,  deva: ञ }
+  retroflex:  # mūrdhanya
+    - { slp1: w, iast: ṭ,  deva: ट }
+    - { slp1: W, iast: ṭh, deva: ठ }
+    - { slp1: q, iast: ḍ,  deva: ड }
+    - { slp1: Q, iast: ḍh, deva: ढ }
+    - { slp1: R, iast: ṇ,  deva: ण }
+  dental:     # dantya
+    - { slp1: t, iast: t,  deva: त }
+    - { slp1: T, iast: th, deva: थ }
+    - { slp1: d, iast: d,  deva: द }
+    - { slp1: D, iast: dh, deva: ध }
+    - { slp1: n, iast: n,  deva: न }
+  labial:     # oṣṭhya
+    - { slp1: p, iast: p,  deva: प }
+    - { slp1: P, iast: ph, deva: फ }
+    - { slp1: b, iast: b,  deva: ब }
+    - { slp1: B, iast: bh, deva: भ }
+    - { slp1: m, iast: m,  deva: म }
+  semivowel:
+    - { slp1: y, iast: y,  deva: य }
+    - { slp1: r, iast: r,  deva: र }
+    - { slp1: l, iast: l,  deva: ल }
+    - { slp1: v, iast: v,  deva: व }
+  sibilant:
+    # THE critical pair that was gotten backwards twice in this repo's
+    # history before PANINI-DHATUPATHA-SOURCE-VERIFICATION fixed it:
+    - { slp1: S, iast: ś,  deva: श, place: palatal,   note: "NOT z" }
+    - { slp1: z, iast: ṣ,  deva: ष, place: retroflex, note: "NOT S" }
+    - { slp1: s, iast: s,  deva: स, place: dental }
+  aspirate:
+    - { slp1: h, iast: h,  deva: ह }
+
+# Round-trip probe set: a small number of full words/roots, each of which
+# exercises at least one easy-to-confuse pair. Any registry entry sharing
+# a sound with one of these should transliterate consistently.
+probes:
+  - { slp1: kfzRa,  iast: kṛṣṇa,  note: "canonical mnemonic for ṣ=z (retroflex), widely cited" }
+  - { slp1: BAz,    iast: bhāṣ,   note: "ṣ=z retroflex + long A -- this repo's own regression case" }
+  - { slp1: zru,    iast: śru,    note: "WRONG on purpose -- do not use; correct is Sru (ś=S)" }
+  - { slp1: Sru,    iast: śru,    note: "correct: ś=S palatal" }
+  - { slp1: saMskftam, iast: saṃskṛtam, note: "combines anusvara + vocalic ṛ + aspirate" }
