@@ -87,6 +87,43 @@
                                (sha256-hex canonical-sap-state)))
                   "distinct states give distinct digests")))
 
+;; Explanation-boundary contract (specs/derivation-machine-explanation-boundary-v0.1.md):
+;; a machine explanation is a falsifiable, exhibit-able claim. A transition is
+;; explainable when it carries rule + provenance; a conflict choice without
+;; source support is an honest needs-check label, never derived.
+(def explanation-state-fact
+  (list 'state 'sha256-hex (sha256-hex canonical-empty-state)))
+
+(def explanation-transition
+  (list (cons 'kind 'transition)
+        (cons 'before "state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854")
+        (cons 'after "state:sha256:7b19d66e1d5e24edf54f455a34bfb8fbeee28c3058b78801c1412ea1f431a09b")
+        (cons 'rule "1.1.2")
+        (cons 'provenance 'prov:machine:guna-fixture)))
+
+(def outside-boundary-claim
+  (list (cons 'kind 'claim)
+        (cons 'claim 'historical-intent)
+        (cons 'label 'needs-check)
+        (cons 'support '())))
+
+(def test-explanation-boundary
+  (lambda ()
+    (assert-equal 'state (car explanation-state-fact)
+                  "explanation level: state fact")
+    (assert-equal 'needs-check
+                  (cdr (assoc 'label outside-boundary-claim))
+                  "outside-boundary claim is honestly labelled needs-check")
+    (assert-equal '()
+                  (cdr (assoc 'support outside-boundary-claim))
+                  "outside-boundary claim exhibits no machine support")
+    (assert-equal "1.1.2"
+                  (cdr (assoc 'rule explanation-transition))
+                  "transition explanation carries rule")
+    (assert-equal 'prov:machine:guna-fixture
+                  (cdr (assoc 'provenance explanation-transition))
+                  "transition explanation carries provenance")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -96,4 +133,5 @@
     (test-prototype-derivations)
     (test-dadati-declared-conflict)
     (test-trace-canonical-serialization)
+    (test-explanation-boundary)
     (print "Tests complete.")))
