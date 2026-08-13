@@ -1,0 +1,69 @@
+# Canonical test vectors for a future pratyahara expander.
+# Source status: independently checked textual sequence; still requires a
+# versioned source manifest before it becomes a machine-input authority.
+
+fixture_id: pratyahara-exhaustive-v0.1
+fixture_status: source-checked-test-vectors
+representation: SLP1
+source_status: needs-versioned-manifest
+siva_sutras:
+  - { ordinal: 1, sounds: [a, i, u], marker: R }
+  - { ordinal: 2, sounds: [f, x], marker: k }
+  - { ordinal: 3, sounds: [e, o], marker: N }
+  - { ordinal: 4, sounds: [E, O], marker: c }
+  - { ordinal: 5, sounds: [h, y, v, r], marker: w }
+  - { ordinal: 6, sounds: [l], marker: R }
+  - { ordinal: 7, sounds: [Y, m, N, R, n], marker: m }
+  - { ordinal: 8, sounds: [J, B], marker: Y }
+  - { ordinal: 9, sounds: [G, Q, D], marker: z }
+  - { ordinal: 10, sounds: [j, b, g, q, d], marker: S }
+  - { ordinal: 11, sounds: [K, P, C, W, T, c, w, t], marker: v }
+  - { ordinal: 12, sounds: [k, p], marker: y }
+  - { ordinal: 13, sounds: [S, z, s], marker: r }
+  - { ordinal: 14, sounds: [h], marker: l }
+
+# `stream` preserves the bounded linear scan. `set` is unique membership;
+# hal's stream includes h twice, whereas its semantic sound membership is set-like.
+cases:
+  - id: ac-vowels
+    notation_slp1: ac
+    start_sound: a
+    end_marker: c
+    expected_stream: [a, i, u, f, x, e, o, E, O]
+    expected_set: [a, i, u, f, x, e, o, E, O]
+  - id: ik-close-vowels
+    notation_slp1: ik
+    start_sound: i
+    end_marker: k
+    expected_stream: [i, u, f, x]
+    expected_set: [i, u, f, x]
+  - id: ec-diphthongs
+    notation_slp1: ec
+    start_sound: e
+    end_marker: c
+    expected_stream: [e, o, E, O]
+    expected_set: [e, o, E, O]
+  - id: yaR-semivowels
+    notation_slp1: yaR
+    start_sound: y
+    end_marker: R
+    expected_stream: [y, v, r, l]
+    expected_set: [y, v, r, l]
+  - id: hal-consonants
+    notation_slp1: hal
+    start_sound: h
+    end_marker: l
+    expected_stream: [h, y, v, r, l, Y, m, N, R, n, J, B, G, Q, D, j, b, g, q, d, K, P, C, W, T, c, w, t, k, p, S, z, s, h]
+    expected_set: [h, y, v, r, l, Y, m, N, R, n, J, B, G, Q, D, j, b, g, q, d, K, P, C, W, T, c, w, t, k, p, S, z, s]
+negative_cases:
+  - id: unknown-marker
+    start_sound: a
+    end_marker: L
+    expected: error:unknown-it-marker
+  - id: marker-is-not-sound
+    start_sound: a
+    end_marker: c
+    forbidden_member: c
+  - id: later-h-is-not-initial-h-for-hR
+    notation_slp1: hR
+    expected: requires-explicit-start-occurrence-policy
