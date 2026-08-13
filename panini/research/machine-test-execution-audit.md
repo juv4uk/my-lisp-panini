@@ -11,3 +11,17 @@ Read-only запуск 2026-08-13 не виконав набір тестів. `
 ## Deutsch
 
 Der Read-only-Lauf am 2026-08-13 führte die Suite nicht aus. `tests.my` lädt einen in WSL fehlenden Windows-Pfad; `siva-sutras.my` meldet unbekanntes `last-char`; `rules.my` meldet `def: expected 2; received 3`. Der gepipte Windows-Eingang begann außerdem mit einem BOM. Bis eine eigene Aufgabe diese Blocker behebt, darf kein erfolgreicher `run-tests`-Lauf oder ausführbarer dadAti-Konfliktclaim gemeldet werden.
+
+## Isolated source facts / Локалізовані факти коду / Isolierte Source-Fakten
+
+**English.** Direct execution isolates `rules.my:35`: `(def make-term
+(upadesha type) ...)` is incompatible with the current two-form `def`; and
+`siva-sutras.my:27`: `last-char` is unavailable in the current runtime.
+
+**Українська.** Прямий запуск локалізує `rules.my:35`: `(def make-term
+(upadesha type) ...)` несумісний із поточним двоформним `def`; та
+`siva-sutras.my:27`: `last-char` відсутній у поточному runtime.
+
+**Deutsch.** Direkte Ausführung isoliert `rules.my:35`: `(def make-term
+(upadesha type) ...)` ist mit dem aktuellen zweiformigen `def` unvereinbar;
+und `siva-sutras.my:27`: `last-char` fehlt im aktuellen Runtime.
