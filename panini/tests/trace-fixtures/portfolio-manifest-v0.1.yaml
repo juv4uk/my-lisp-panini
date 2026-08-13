@@ -1,0 +1,61 @@
+# Portfolio manifest for Panini Derivation Machine v0.1
+
+manifest_version: 0.1
+status: partial
+created: 2026-08-14
+owner: my-lisp-panini-1
+purpose: >
+  Machine-checkable list of reviewable derivation-trace fixtures for the v0.1
+  milestone gate. A fixture in this manifest is reviewable, not certified as a
+  complete historical derivation.
+
+fixtures:
+  - id: bhavati-source-path-partial-v0.1
+    file: panini/tests/trace-fixtures/bhavati-source-path-partial-v0.1.yaml
+    trace_status: partial
+    focus: BU to laT/tip/ti path; block on 3.1.68
+    reviewable: true
+
+  - id: bhavati-sap-designation-partial-v0.1
+    file: panini/tests/trace-fixtures/bhavati-sap-designation-partial-v0.1.yaml
+    trace_status: partial
+    focus: Sap markers/lopa/sArvaDAtuka designation
+    reviewable: true
+
+  - id: dadati-source-path-partial-v0.1
+    file: panini/tests/trace-fixtures/dadati-source-path-partial-v0.1.yaml
+    trace_status: partial
+    focus: juhotyAdi source prefix for 2.4.75
+    reviewable: true
+
+  - id: dadati-apavada-conflict-v0.1
+    file: panini/tests/trace-fixtures/dadati-apavada-conflict-v0.1.yaml
+    trace_status: partial
+    focus: declared machine conflict 2.4.72 / 2.4.75
+    reviewable: true
+
+  - id: tripadi-unresolved-visibility-v0.1
+    file: panini/tests/trace-fixtures/tripadi-unresolved-visibility-v0.1.yaml
+    trace_status: partial
+    focus: unresolved -> blocked visibility
+    reviewable: true
+
+  - id: canonical-empty-state-v0.1
+    file: panini/tests/trace-fixtures/canonical-empty-state-v0.1.yaml
+    trace_status: complete
+    focus: canonical serialization vector A (empty state)
+    reviewable: true
+
+milestone_gate:
+  requires_reviewable_traces: 5
+  current_reviewable_traces: 6
+  gate_result: partial
+  note: >
+    All fixtures remain partial except the canonical empty-state serialization
+    vector. None certifies a full historical derivation; the milestone stays
+    partial until 3-5 independently reviewable end-to-end source paths exist.
+
+verification:
+  command: python3 panini/tests/test_trace_fixture_validator.py
+  expected: PASS (all fixtures validate structurally)
+  boundary: structural validation only; no full acceptance verdict

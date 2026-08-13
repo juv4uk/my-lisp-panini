@@ -64,6 +64,25 @@ Milestone лишається `partial`. Перед будь-яким automated `
 4. окремі evidence records для genuine conflict і visibility/unresolved;
 5. review, який показує вісім відповідей `why?` для кожного transition.
 
+## Post-fix status / Стан після фіксів / Stand nach den Fixes
+
+**2026-08-14 (my-lisp-panini-1).** Reviewed against current master after the
+trace-format and derivation work. Blocker status:
+
+| Blocker | Стан | Де закрито |
+| --- | --- | --- |
+| 1. status mapping (trace vs result) | закрито | `specs/trace-canonical-serialization-v0.1.md` (trace_status vs result.status, versioned) |
+| 2. canonical serialization + test vectors | закрито | `specs/trace-canonical-serialization-v0.1.md` + vectors A/B + `canonical-empty-state-v0.1.yaml` |
+| 3. portfolio manifest (3–5 traces) | закрито | `tests/trace-fixtures/portfolio-manifest-v0.1.yaml` (6 reviewable fixtures, gate result partial) |
+| 4. evidence records: conflict + visibility | закрито | `dadati-apavada-conflict-v0.1.yaml`, `tripadi-unresolved-visibility-v0.1.yaml` |
+| 5. why?-review (8 відповідей на transition) | відкрито | наступний крок, окрема review |
+
+`python3 panini/tests/test_trace_fixture_validator.py` → trace fixture validator
+negative fixtures: PASS. Усі fixtures лишаються `partial` (крім canonical-empty
+state-vector), тож automated `complete`-verdict досі заборонений; milestone
+залишається `partial`, але всі п'ять документованих блокерів, крім why?-review,
+мають закриваючі артефакти.
+
 ## Deutsch
 
 Die qualitativen Gates sind stark, aber noch kein vollständiger ausführbarer
