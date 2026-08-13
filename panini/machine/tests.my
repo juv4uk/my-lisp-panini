@@ -124,6 +124,19 @@
                   (cdr (assoc 'provenance explanation-transition))
                   "transition explanation carries provenance")))
 
+(def test-karoti-derivation
+  (lambda ()
+    (assert-equal "3.1.79" (rule-id karoti-vikarana-snu)
+                  "karoti vikaraNa rule id")
+    (assert-equal 'SNu (rule-field 'vikarana karoti-vikarana-snu)
+                  "karoti vikaraNa is SNu")
+    (assert-equal '(k ar) (apply-guRa-sounds '(k f))
+                  "karoti root guNa f -> ar")
+    (assert-equal '(o) (apply-guRa-sounds '(u))
+                  "karoti vikaraNa guNa u -> o")
+    (assert-equal "karoti" (concat-terms (derive-karoti))
+                  "karoti surface form")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -132,6 +145,7 @@
     (test-guna)
     (test-prototype-derivations)
     (test-dadati-declared-conflict)
+    (test-karoti-derivation)
     (test-trace-canonical-serialization)
     (test-explanation-boundary)
     (print "Tests complete.")))

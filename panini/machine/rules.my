@@ -95,3 +95,38 @@
   (lambda (dhatu sap)
     (list (term-add-tag dhatu 'slu-applied)
           (term-add-tag sap 'slu-elided))))
+
+;; Class 8 (tanAdi) derivation fixture: kR + vikaraNa SNu + sArvadhAtuka ti.
+;; Machine level only: 3.1.79 supplies the vikaraNa; guNa (7.3.84) maps f -> ar
+;; and u -> o. This is a declared machine relation, not a historical derivation.
+(def karoti-vikarana-snu
+  (list (cons 'id "3.1.79")
+        (cons 'kind 'machine-fixture)
+        (cons 'vikarana 'SNu)))
+
+(def append-list
+  (lambda (a b)
+    (cond
+      ((atom a) b)
+      (t (cons (car a) (append-list (cdr a) b))))))
+
+(def guNa-flatten
+  (lambda (sound)
+    (cond
+      ((atom (apply-guRa sound)) (list (apply-guRa sound)))
+      (t (apply-guRa sound)))))
+
+(def apply-guRa-sounds
+  (lambda (sounds)
+    (cond
+      ((atom sounds) '())
+      (t (append-list (guNa-flatten (car sounds))
+                      (apply-guRa-sounds (cdr sounds)))))))
+
+(def derive-karoti
+  (lambda ()
+    (list (make-term '(k f) (apply-guRa-sounds '(k f))
+                     'dhAtu '(class-8 tanAdi guNa-applied machine-fixture))
+          (make-term '(u) (apply-guRa-sounds '(u))
+                     'vikaraNa '(SNu-3-1-79 guNa-applied machine-fixture))
+          (make-term '(t i) '(t i) 'pratyaya '(sArvadhAtuka machine-fixture)))))
