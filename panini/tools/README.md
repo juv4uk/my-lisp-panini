@@ -1,4 +1,30 @@
-# Інструменти Panini
+# Panini tools / Інструменти Panini / Panini-Werkzeuge
+
+## English
+
+`validate_registry.py` is an offline, read-only validator for the small YAML
+registries. It never edits or normalizes files.
+
+Run it in the declared Guix environment:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/validate_registry.py
+```
+
+`--strict-provenance` additionally requires a nonempty `source` for `dhatu`
+and nonempty `sources` for `karaka`/`samjna`. This mode is opt-in until legacy
+records gain provenance; the validator never rewrites data.
+
+Run negative fixtures with:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tests/test_registry_provenance.py
+```
+
+A nonzero exit code means errors were found. Warnings do not change data status
+and are not permission for an automatic correction.
+
+## Українська
 
 `validate_registry.py` — offline, read-only validator малих YAML-реєстрів.
 Він не редагує і не нормалізує файли.
@@ -21,3 +47,28 @@ guix shell -m manifest.scm -- python3 panini/tests/test_registry_provenance.py
 
 Ненульовий exit code означає знайдені помилки. Попередження не змінюють
 статус даних і не є дозволом на автоматичне виправлення.
+
+## Deutsch
+
+`validate_registry.py` ist ein Offline-Validator mit reinem Lesezugriff für
+die kleinen YAML-Register. Er bearbeitet oder normalisiert keine Dateien.
+
+Ausführung in der deklarierten Guix-Umgebung:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tools/validate_registry.py
+```
+
+`--strict-provenance` verlangt zusätzlich ein nicht leeres `source` für
+`dhatu` sowie nicht leere `sources` für `karaka`/`samjna`. Dieser Modus ist
+opt-in, bis ältere Datensätze Provenienz erhalten; der Validator schreibt Daten
+niemals um.
+
+Negative Fixtures werden so ausgeführt:
+
+```sh
+guix shell -m manifest.scm -- python3 panini/tests/test_registry_provenance.py
+```
+
+Ein Exit-Code ungleich null bedeutet, dass Fehler gefunden wurden. Warnungen
+ändern den Datenstatus nicht und erlauben keine automatische Korrektur.
