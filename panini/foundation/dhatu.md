@@ -257,7 +257,7 @@ notes: "gaRa 9 — vikaraRa nA/nI, ще один окремий клас від�
 ```
 
 ```yaml
-canonical: Baz
+canonical: BAz
 display: { iast: bhāṣ, devanagari: भाष् }
 class: dhatu
 gana: 1
@@ -267,10 +267,13 @@ source: { dhatupatha: "bhvAdi (gaRa 1)" }
 traditional_meaning: "говорити"
 notes: >
   Виключно ātmanepada — приклад коренів, що не мають ubhayapada-варіанту.
-  SLP1 виправлено з "BAS" на "Baz" 2026-08-13
+  SLP1 виправлено двічі 2026-08-13: спершу "BAS"→"Baz"
   (`PANINI-DHATUPATHA-SOURCE-VERIFICATION`) — ṣ (retroflex) кодується
-  `z`, не `S` (яка означає ś, palatal); первісний запис "BAS" мовчки
-  наслідував хибну конвенцію `PANINI-GRAMMAR-REFERENCE.md`.
+  `z`, не `S` (яка означає ś, palatal); але це виправлення випадково
+  загубило довготу голосного (мало бути велике `A`, не мале `a`) —
+  знайдено незалежною крос-репо звіркою `my-lisp-1`
+  (`panini/research/slp1-lexicon-alignment.md`), остаточно виправлено
+  на "BAz".
 ```
 
 ```yaml
