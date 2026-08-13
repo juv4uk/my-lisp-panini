@@ -137,6 +137,23 @@
     (assert-equal "karoti" (concat-terms (derive-karoti))
                   "karoti surface form")))
 
+(def test-pacati-derivation
+  (lambda ()
+    (assert-equal "3.1.68" (rule-id pacati-sap-vikarana)
+                  "pacati vikaraNa rule id")
+    (assert-equal 'Sap (rule-field 'vikarana pacati-sap-vikarana)
+                  "pacati vikaraNa is Sap")
+    (assert-equal 1 (rule-field 'gana pac-gana)
+                  "pac is class 1 (bhvAdi)")
+    (assert-equal "pacati" (concat-terms (derive-pacati))
+                  "pacati surface form")
+    (assert-equal 'odana
+                  (cdr (assoc 'karman (cdr (assoc 'kAraka-args (pacati-3karaka)))))
+                  "pacati 3-kAraka karman")
+    (assert-equal 'sTAlI
+                  (cdr (assoc 'aDikaraRa (cdr (assoc 'kAraka-args (pacati-3karaka)))))
+                  "pacati 3-kAraka aDikaraRa")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -146,6 +163,7 @@
     (test-prototype-derivations)
     (test-dadati-declared-conflict)
     (test-karoti-derivation)
+    (test-pacati-derivation)
     (test-trace-canonical-serialization)
     (test-explanation-boundary)
     (print "Tests complete.")))

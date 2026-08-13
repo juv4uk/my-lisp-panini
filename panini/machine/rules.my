@@ -130,3 +130,37 @@
           (make-term '(u) (apply-guRa-sounds '(u))
                      'vikaraNa '(SNu-3-1-79 guNa-applied machine-fixture))
           (make-term '(t i) '(t i) 'pratyaya '(sArvadhAtuka machine-fixture)))))
+
+;; Class 1 (bhvAdi) derivation fixture: pac + vikaraNa Sap + sArvadhAtuka ti.
+;; Sap surfaces as a (3.1.68); no guNa applies to pac. The 3-kAraka example
+;; (sTAlyAM pacati odanam) is expressed as an action graph with variable
+;; kAraka arity (FIXUP-ACTION-GRAPH-ARITY): the kAraka set depends on the
+;; sentence, not on the dhAtu alone. Machine level only; [MY-LISP HYPOTHESIS]
+;; H1 graph-edge model (hypothesis-ledger.md).
+(def pacati-sap-vikarana
+  (list (cons 'id "3.1.68")
+        (cons 'kind 'machine-fixture)
+        (cons 'vikarana 'Sap)))
+
+(def pac-gana
+  (list (cons 'id "pac")
+        (cons 'gana 1)
+        (cons 'pada 'ubhayapada)
+        (cons 'kind 'machine-fixture)))
+
+(def derive-pacati
+  (lambda ()
+    (list (make-term '(p a c) '(p a c)
+                     'dhAtu '(class-1 bhvAdi machine-fixture))
+          (make-term '(a) '(a)
+                     'vikaraNa '(Sap-3-1-68 machine-fixture))
+          (make-term '(t i) '(t i) 'pratyaya '(sArvadhAtuka machine-fixture)))))
+
+(def pacati-3karaka
+  (lambda ()
+    (list (cons 'action-id 'action-pac)
+          (cons 'dhAtu 'pac)
+          (cons 'kAraka-args
+                (list (cons 'kartf 'devadatta)
+                      (cons 'karman 'odana)
+                      (cons 'aDikaraRa 'sTAlI))))))
