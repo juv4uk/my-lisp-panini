@@ -1,5 +1,20 @@
 # dadAti conflict review: source evidence versus executable evidence
 
+## Execution confirmation / Підтвердження виконання / Ausführungsbestätigung
+
+**2026-08-14 (my-lisp-panini-1).** The five required conflict observations are
+re-executed on the current master by the shared acceptance suite, which is
+owned jointly with Panini 2:
+`python3 panini/tests/run_machine_acceptance.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE ACCEPTANCE: PASS
+(36/36), including `dadAti declared utsarga`, `dadAti exception rule id`,
+`dadAti conflict winner`, `dadAti conflict trace status/reason`, and the two
+Slu transition tags. Executable `panini/machine/` contains no
+`SemanticCall`/`DHATU_DA`/`KARAKA_KARTR` bridge (grep: zero hits), so the
+semantic-identifier boundary in this review is not violated by the current
+code. This remains executable evidence for the declared machine fixture, not
+proof that the historical corpus mandates the implementation.
+
 ## English
 
 ### Scope
