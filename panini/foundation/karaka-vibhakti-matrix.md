@@ -1,5 +1,33 @@
 # Kāraka and vibhakti: an evidence-bounded matrix
 
+## English
+
+This is a matrix of relations, not equivalences: `kAraka` analyzes an action
+relation, whereas `vibhakti` is a case-form category. Definitions occur under
+`kArake` (1.4.23); cited assignments occur separately in 2.3. Thus no
+universal conversion such as `kartf = nominative` follows. The matrix records
+only stated, provenance-bounded assignments; its local-index citations are not
+upgraded into external verification by this document.
+
+## Українська
+
+Це матриця відношень, а не еквівалентностей: `kAraka` аналізує відношення в
+дії, тоді як `vibhakti` є категорією відмінкової форми. Означення містяться
+під `kArake` (1.4.23), а наведені призначення — окремо в 2.3. Тому з неї не
+випливає універсальна конверсія на кшталт `kartf = nominative`. Матриця
+фіксує лише явно задані призначення з обмеженим provenance; local-index
+цитати не стають зовнішньо верифікованими лише через цей документ.
+
+## Deutsch
+
+Dies ist eine Relationsmatrix, keine Äquivalenztabelle: `kAraka` analysiert
+eine Handlungsrelation, `vibhakti` ist dagegen eine Kasusformkategorie. Die
+Definitionen stehen unter `kArake` (1.4.23), die angeführten Zuweisungen
+getrennt in 2.3. Daher folgt keine universelle Umrechnung wie
+`kartf = nominative`. Die Matrix hält nur explizit genannte, durch Provenienz
+begrenzte Zuweisungen fest; local-index-Zitate werden durch dieses Dokument
+nicht zu extern verifizierten Zitaten.
+
 Status: research note (`PANINI-KARAKA-CASE-MAPPING-MATRIX`).
 
 This is deliberately a **matrix of relations**, not a table of equivalences.
