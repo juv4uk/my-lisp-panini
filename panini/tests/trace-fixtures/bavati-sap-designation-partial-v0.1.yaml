@@ -1,0 +1,343 @@
+# Bounded Bhavati affix fixture. It verifies the evidence shape for Sap's
+# initial S and final p; it does not execute, complete, or certify Bhavati.
+# Contracts:
+# - ../../research/bavati-sap-initial-marker-source-audit.md
+# - ../../specs/derivation-ir-v0.1.md
+# - ../../specs/derivation-ir-trace-events-v0.1.md
+
+fixture_id: trace-fixture:bavati-sap-designation-partial-v0.1
+fixture_status: partial
+ir_version: panini-derivation-ir/0.1
+derivation_id: drv:fixture:bavati-sap-designation
+result:
+  status: partial
+  state: state:fixture:bavati:sap-a-sarvadhatuka
+  note: >-
+    This fixture records only the affix-designation and it-lopa path needed
+    before a later Bhavati guna inquiry. It does not select lakara/tin,
+    establish every applicability condition, or derive Bavati.
+
+terms:
+  - id: term:vikarana-Sap-raw
+    kind: pratyaya
+    source_form: Sap
+    surface_form: Sap
+    designations: []
+    metadata:
+      namespace: fixture
+      values: {}
+  - id: term:vikarana-Sap-ap
+    kind: pratyaya
+    source_form: Sap
+    surface_form: ap
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+  - id: term:vikarana-Sap-a
+    kind: pratyaya
+    source_form: Sap
+    surface_form: a
+    designations: []
+    metadata: { namespace: fixture, values: {} }
+
+states:
+  - id: state:fixture:bavati:sap-raw
+    schema: panini-state/0.1
+    terms: [term:vikarana-Sap-raw]
+    relations: []
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bavati:sap-Sit
+    schema: panini-state/0.1
+    terms: [term:vikarana-Sap-raw]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap-raw
+        to: designation:it:initial-S
+        provenance: [prov:fixture:sap-initial-S-1.3.8]
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bavati:sap-ap
+    schema: panini-state/0.1
+    terms: [term:vikarana-Sap-ap]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap-raw
+        to: designation:it:initial-S
+        provenance: [prov:fixture:sap-initial-S-1.3.8]
+      - kind: implementation
+        from: term:vikarana-Sap-raw
+        to: term:vikarana-Sap-ap
+        provenance: [prov:fixture:tasya-lopa-1.3.9]
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bavati:sap-ap-pit
+    schema: panini-state/0.1
+    terms: [term:vikarana-Sap-ap]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap-raw
+        to: designation:it:initial-S
+        provenance: [prov:fixture:sap-initial-S-1.3.8]
+      - kind: implementation
+        from: term:vikarana-Sap-ap
+        to: designation:it:final-p
+        provenance: [prov:fixture:sap-final-p-1.3.3]
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bavati:sap-a
+    schema: panini-state/0.1
+    terms: [term:vikarana-Sap-a]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap-raw
+        to: designation:it:initial-S
+        provenance: [prov:fixture:sap-initial-S-1.3.8]
+      - kind: implementation
+        from: term:vikarana-Sap-ap
+        to: designation:it:final-p
+        provenance: [prov:fixture:sap-final-p-1.3.3]
+      - kind: implementation
+        from: term:vikarana-Sap-ap
+        to: term:vikarana-Sap-a
+        provenance: [prov:fixture:tasya-lopa-1.3.9]
+    serialization: fixture-sexpr-not-hashed
+  - id: state:fixture:bavati:sap-a-sarvadhatuka
+    schema: panini-state/0.1
+    terms: [term:vikarana-Sap-a]
+    relations:
+      - kind: implementation
+        from: term:vikarana-Sap-raw
+        to: designation:it:initial-S
+        provenance: [prov:fixture:sap-initial-S-1.3.8]
+      - kind: implementation
+        from: term:vikarana-Sap-ap
+        to: designation:it:final-p
+        provenance: [prov:fixture:sap-final-p-1.3.3]
+      - kind: implementation
+        from: term:vikarana-Sap-ap
+        to: term:vikarana-Sap-a
+        provenance: [prov:fixture:tasya-lopa-1.3.9]
+      - kind: implementation
+        from: term:vikarana-Sap-a
+        to: designation:sArvaDAtuka
+        provenance: [prov:fixture:sap-sarvadhatuka-3.4.113]
+    serialization: fixture-sexpr-not-hashed
+
+rules:
+  - id: rule:sutra:1.3.8
+    kind: sutra-reference
+    canonical_ref: "1.3.8"
+    machine_ref: null
+    conditions: [condition:fixture:non-taddhita-affix-initial-S]
+    operation: null
+    provenance: [prov:fixture:sap-initial-S-1.3.8]
+  - id: rule:sutra:1.3.3
+    kind: sutra-reference
+    canonical_ref: "1.3.3"
+    machine_ref: null
+    conditions: [condition:fixture:affix-final-p-is-hal]
+    operation: null
+    provenance: [prov:fixture:sap-final-p-1.3.3]
+  - id: rule:sutra:1.3.9
+    kind: sutra-reference
+    canonical_ref: "1.3.9"
+    machine_ref: null
+    conditions: [condition:fixture:marked-it-sound]
+    operation: null
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+  - id: rule:sutra:3.4.113
+    kind: sutra-reference
+    canonical_ref: "3.4.113"
+    machine_ref: null
+    conditions: [condition:fixture:Sit-affix-occurrence]
+    operation: null
+    provenance: [prov:fixture:sap-sarvadhatuka-3.4.113]
+
+events:
+  - event_id: evt:01
+    kind: state-observed
+    depends_on: []
+    provenance: [prov:fixture:sap-input]
+    verification: needs-check
+    payload:
+      state: state:fixture:bavati:sap-raw
+      serialization: fixture-sexpr-not-hashed
+
+  - event_id: evt:02
+    kind: applicability-check
+    depends_on: [evt:01]
+    provenance: [prov:fixture:sap-initial-S-1.3.8]
+    verification: verified
+    payload:
+      rule: "1.3.8"
+      state: state:fixture:bavati:sap-raw
+      outcome: applicable
+      conditions: [non-taddhita-affix-initial-S]
+
+  - event_id: evt:03
+    kind: rule-decision
+    depends_on: [evt:02]
+    provenance: [prov:fixture:sap-initial-S-1.3.8]
+    verification: derived
+    payload:
+      rule: "1.3.8"
+      decision: selected
+      policy: single-source-backed-designation
+      reason: initial-S-of-non-taddhita-affix
+
+  - event_id: evt:04
+    kind: state-transition
+    depends_on: [evt:03]
+    provenance: [prov:fixture:sap-initial-S-1.3.8]
+    verification: derived
+    payload:
+      rule: "1.3.8"
+      before: state:fixture:bavati:sap-raw
+      after: state:fixture:bavati:sap-Sit
+      operation: attach-initial-S-it-designation
+
+  - event_id: evt:05
+    kind: applicability-check
+    depends_on: [evt:04]
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+    verification: verified
+    payload:
+      rule: "1.3.9"
+      state: state:fixture:bavati:sap-Sit
+      outcome: applicable
+      conditions: [marked-initial-S]
+
+  - event_id: evt:06
+    kind: rule-decision
+    depends_on: [evt:05]
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+    verification: derived
+    payload:
+      rule: "1.3.9"
+      decision: selected
+      policy: marked-sound-lopa
+      reason: initial-S-has-it-designation
+
+  - event_id: evt:07
+    kind: state-transition
+    depends_on: [evt:06]
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+    verification: derived
+    payload:
+      rule: "1.3.9"
+      before: state:fixture:bavati:sap-Sit
+      after: state:fixture:bavati:sap-ap
+      operation: remove-marked-initial-S
+
+  - event_id: evt:08
+    kind: applicability-check
+    depends_on: [evt:07]
+    provenance: [prov:fixture:sap-final-p-1.3.3]
+    verification: verified
+    payload:
+      rule: "1.3.3"
+      state: state:fixture:bavati:sap-ap
+      outcome: applicable
+      conditions: [affix-final-p-is-hal]
+
+  - event_id: evt:09
+    kind: rule-decision
+    depends_on: [evt:08]
+    provenance: [prov:fixture:sap-final-p-1.3.3]
+    verification: derived
+    payload:
+      rule: "1.3.3"
+      decision: selected
+      policy: single-source-backed-designation
+      reason: final-p-of-affix-is-hal
+
+  - event_id: evt:10
+    kind: state-transition
+    depends_on: [evt:09]
+    provenance: [prov:fixture:sap-final-p-1.3.3]
+    verification: derived
+    payload:
+      rule: "1.3.3"
+      before: state:fixture:bavati:sap-ap
+      after: state:fixture:bavati:sap-ap-pit
+      operation: attach-final-p-it-designation
+
+  - event_id: evt:11
+    kind: applicability-check
+    depends_on: [evt:10]
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+    verification: verified
+    payload:
+      rule: "1.3.9"
+      state: state:fixture:bavati:sap-ap-pit
+      outcome: applicable
+      conditions: [marked-final-p]
+
+  - event_id: evt:12
+    kind: rule-decision
+    depends_on: [evt:11]
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+    verification: derived
+    payload:
+      rule: "1.3.9"
+      decision: selected
+      policy: marked-sound-lopa
+      reason: final-p-has-it-designation
+
+  - event_id: evt:13
+    kind: state-transition
+    depends_on: [evt:12]
+    provenance: [prov:fixture:tasya-lopa-1.3.9]
+    verification: derived
+    payload:
+      rule: "1.3.9"
+      before: state:fixture:bavati:sap-ap-pit
+      after: state:fixture:bavati:sap-a
+      operation: remove-marked-final-p
+
+  - event_id: evt:14
+    kind: applicability-check
+    depends_on: [evt:13]
+    provenance: [prov:fixture:sap-sarvadhatuka-3.4.113]
+    verification: verified
+    payload:
+      rule: "3.4.113"
+      state: state:fixture:bavati:sap-a
+      outcome: applicable
+      conditions: [Sit-affix-occurrence]
+
+  - event_id: evt:15
+    kind: rule-decision
+    depends_on: [evt:14]
+    provenance: [prov:fixture:sap-sarvadhatuka-3.4.113]
+    verification: derived
+    payload:
+      rule: "3.4.113"
+      decision: selected
+      policy: source-backed-designation
+      reason: affix-occurrence-has-initial-S-it-designation
+
+  - event_id: evt:16
+    kind: state-transition
+    depends_on: [evt:15]
+    provenance: [prov:fixture:sap-sarvadhatuka-3.4.113]
+    verification: derived
+    payload:
+      rule: "3.4.113"
+      before: state:fixture:bavati:sap-a
+      after: state:fixture:bavati:sap-a-sarvadhatuka
+      operation: attach-sarvadhatuka-designation-to-affix-occurrence
+
+  - event_id: evt:17
+    kind: trace-terminated
+    depends_on: [evt:16]
+    provenance: [prov:fixture:sap-sarvadhatuka-3.4.113]
+    verification: needs-check
+    payload:
+      outcome: partial
+      reason: >-
+        The affix occurrence has a source-backed sarvadhatuka designation,
+        but later Bhavati applicability and guna/sandhi transitions are outside
+        this bounded fixture.
+
+negative_assertions:
+  - "initial-S is not attributed to 1.3.7"
+  - "surface a is not itself asserted to be an it marker"
+  - "surface a is not used as an unscoped metadata tag"
+  - "no complete Bhavati derivation is asserted"
