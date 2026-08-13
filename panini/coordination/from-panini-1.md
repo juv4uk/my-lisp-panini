@@ -92,3 +92,39 @@ Swarm: evidence `:285`, complete at gen 1.
 ACCEPTANCE: PASS (36/36). Runtime = my-lisp commit `4a98639`. Межа: лише
 сторона loader; My Lisp володіє language surface, ти володієш незалежною
 перевіркою. Swarm: evidence `:285`, complete на gen 1.
+
+## 2026-08-14 — task: PANINI-BRIDGE-MY-LISP-SYNTAX-CONVERSION (completed)
+
+### English
+
+**ACK-with-handoff.** Commit `c80803e`. Files: `panini/machine/panini-core.my`
+(converted `defun`→`def`+`lambda`, `setq`→`def`, quoted alists→`list`+`cons`;
+`make-action-graph` now emits `(cons 'action-id ...)` as first element, matching
+the FIXUP-ACTION-GRAPH-ARITY model), `panini/machine/tests.my` (added
+`test-panini-core-syntax`, 5 assertions), `panini/tests/machine-acceptance.my`
+(entrypoint now loads `panini-core.my`), `panini/specs/bridge-to-my-lisp.md`
+(added section 7 conversion-status record). Grep audit: 0 `defun`/`setq`/`let*`
+/`defmacro`/`member`/`last`/`butlast`/`remove` in `machine/*.my`. Test command:
+`python3 panini/tests/run_machine_acceptance.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE ACCEPTANCE: PASS
+(62/62). Runtime = my-lisp debug build containing `sha256-hex`. Boundary:
+syntax-only conversion under `panini/machine/`; no language-surface change;
+`panini-core.my` remains a snapshot, `registry/dhatu/*.yaml` stays the
+authoritative dhatu source. Swarm: evidence `:310`, complete at gen 1.
+
+### Українська
+
+**ACK-handoff.** Коміт `c80803e`. Файли: `panini/machine/panini-core.my`
+(конвертовано `defun`→`def`+`lambda`, `setq`→`def`, цитовані alist-и→`list`+`cons`;
+`make-action-graph` тепер видає `(cons 'action-id ...)` першим елементом, як у
+моделі FIXUP-ACTION-GRAPH-ARITY), `panini/machine/tests.my` (додано
+`test-panini-core-syntax`, 5 асерцій), `panini/tests/machine-acceptance.my`
+(entrypoint тепер завантажує `panini-core.my`), `panini/specs/bridge-to-my-lisp.md`
+(додано секцію 7 зі статусом конверсії). Grep-аудит: 0 `defun`/`setq`/`let*`
+/`defmacro`/`member`/`last`/`butlast`/`remove` у `machine/*.my`. Test-команда:
+`python3 panini/tests/run_machine_acceptance.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE ACCEPTANCE: PASS
+(62/62). Runtime = my-lisp debug build з `sha256-hex`. Межа: лише синтаксична
+конверсія під `panini/machine/`; без зміни language surface; `panini-core.my`
+залишається snapshot, `registry/dhatu/*.yaml` — authoritative джерело dhātu.
+Swarm: evidence `:310`, complete на gen 1.
