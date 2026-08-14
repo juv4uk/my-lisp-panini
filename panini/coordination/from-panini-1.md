@@ -255,3 +255,23 @@ DERIVATION-LABHATE` (7.5), `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE` (7.0),
 `SWARM-NODE-RUNTIME-REBUILD-PANINI-2` (7.5), `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`
 (8.0). Kein Vertrags- oder Grenz-Änderung. Test: `git ls-remote origin HEAD`
 per Store authentifiziert (ohne Inline-Token).
+
+## 2026-08-14 — task: SWARM-NODE-RUNTIME-REBUILD-PANINI-2 (completed)
+
+### English
+
+**ACK-with-handoff.** Remote server `100.113.68.50` (root) rebuilt: checked out
+`4a98639` (feat: add sha256-hex primitive), `cargo build --release --bin
+my-lisp` succeeded, binary now contains `sha256-hex` (strings: 4 hits),
+verified functionally: `(sha256-hex "abc")` → `ba7816bf...`. TCP process
+restarted (`--tcp --protocol=sexpr`, port 9999, pid 131962). Runtime drift with
+panini-1 eliminated. Swarm: complete at gen 1.
+
+### Українська
+
+**ACK-handoff.** Віддалений сервер `100.113.68.50` (root) перебудовано:
+checkout `4a98639` (feat: add sha256-hex primitive), `cargo build --release
+--bin my-lisp` успішно, бінарник тепер містить `sha256-hex` (strings: 4
+входження), перевірено функціонально: `(sha256-hex "abc")` → `ba7816bf...`.
+TCP-процес перезапущено (`--tcp --protocol=sexpr`, порт 9999, pid 131962).
+Дрейф runtime з panini-1 усунуто. Swarm: complete на gen 1.
