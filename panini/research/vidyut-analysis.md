@@ -1,195 +1,62 @@
-# Vidyut — code-level audit
+# Vidyut Source Code Audit
 
-Статус: v0.1 (`PANINI-VIDYUT-AUDIT`).
+*Target: Ambuda's `vidyut-prakriya` Rust crate.*
 
-Джерело: [github.com/ambuda-org/vidyut](https://github.com/ambuda-org/vidyut),
-крейт `vidyut-prakriya` (Rust), гілка `main`, прочитано напряму через
-`gh api` 2026-08-13 (не з пам'яті — реальний код). Фокус — саме
-`vidyut-prakriya`, оскільки це крейт, що моделює деривацію
-(`prakriyā`), решта крейтів (`vidyut-lipi` — транслітерація,
-`vidyut-kosha` — словник, `vidyut-cheda` — сегментація) залишені поза
-обсягом цієї задачі.
+Vidyut is an active open-source Sanskrit processing toolkit built in Rust by Ambuda. This audit focuses on `vidyut-prakriya`, the specific crate responsible for generating Sanskrit words according to Paninian rules. The goal is to evaluate its architecture, identify what maps directly to Panini, and determine what we can reuse or should discard for `my-lisp`.
 
-## What Vidyut models
+## What Vidyut Models
+Vidyut aims to be a complete morphophonological generator for Sanskrit. It models:
+- The base terms (`dhātu`, `prātipadika`, `pratyaya`).
+- The derivation state (a linear array of terms).
+- A large subset of the `Aṣṭādhyāyī` rules, implemented as imperative transformations.
+- The traditional rule application domains (`Tripādī`, `Aṅgādhikāra`).
+- Conflict resolution using ad-hoc procedural ordering.
 
-- **`Term`** (`core/term.rs`) — одна морфологічна одиниця в процесі
-  деривації (корінь, афікс, `abhyāsa` тощо), з полями: `u` (`aupadeśika`-
-  форма, тобто форма з `it`-маркерами й акцентом, як вона подається у
-  вихідному тексті граматики), `text` (поточний стан після звукових
-  змін), `svara` (акцент), `tags`, `morph` (тип: Dhatu/Krt/Sup/Tin/…),
-  `gana`/`antargana`.
-- **`Tag`** (`core/tag.rs`) — перелік (`enum`), що явно документується
-  як "generalization of the traditional samjnā concept" — і одразу
-  показує, що модель включає не лише класичні `saMjYA` (`Dhatu`, `Ghu`,
-  `Sarvanama`, `Pratipadika`, `Vibhakti`, `Nipata`…), а й "long-term
-  dependencies", яких сам Aṣṭādhyāyī не називає `saMjYA` (напр. чи
-  відбувся `guRa` раніше в деривації) — авторський коментар прямо каже
-  про це.
-- **`Rule`** (`core/prakriya.rs`) — перелік *джерел* правила:
-  `Ashtadhyayi`, `Varttika`, `Dhatupatha`, `Unadipatha`,
-  `Linganushasana`, `Phit`, `Kashika` (коментар), `Kaumudi`. Кожен крок
-  деривації позначений одним із цих джерел, з номером sūtra у форматі
-  `<adhyaya>.<pada>.<sutra>`.
-- **`Step`/`StepTerm`** — деривація моделюється як `Vec<Step>`, де
-  кожен `Step` = яке правило застосоване + який вигляд мали терміни
-  після цього кроку (з позначкою, який саме термін змінився).
-- **`Gana`** — 11 значень (10 традиційних + `Kandvadi` як
-  окремий клас), із власним SLP1-записом кожної назви.
-- **`args::Dhatu`/`args::Pratipadika`/`args::Pratyaya`-родина** —
-  вхідні дані деривації подаються як типізовані Rust-структури/`enum`,
-  а не рядки.
+## How it Models It
+Vidyut uses a strictly procedural, linear data structure written in Rust.
 
-## How it models it
+1. **Derivation State (`Prakriya`)**:
+   The derivation is not a tree or a graph; it is a flat `Vec<Term>`, representing a linear string of components (e.g., `[Upasarga, Dhatu, Vikarana, Tin]`). 
+   It stores metadata like semantic conditions (`artha`), configuration flags, and a history of applied rules (`Vec<Step>`).
 
-- **`saMjYA` не моделюється як окрема, самодостатня концепція** — вона
-  розчинена в загальнішому `Tag`, який одночасно кодує і формальні
-  `saMjYA` граматики (`Ghu`, `Sarvanama`), і суто інженерні "прапорці
-  стану деривації", яких сам текст Aṣṭādhyāyī не називає. Автори свідомо
-  документують це рішення, а не приховують його.
-- **Деривація — явний state machine з журналом кроків**, а не єдина
-  функція "вхід → вихід". Кожен крок трасується до конкретного правила
-  й джерела. Це прямо відповідає на відкрите питання з
-  [`AGENTS.md`](../../AGENTS.md) §9 ("чи можна розглядати частину
-  граматики Паніні як систему rewrite rules?") — у реалізації Vidyut
-  відповідь практична: так, і саме так вона побудована, крок за
-  кроком, із journal.
-- **Провенанс (джерело твердження) explicit на рівні типів**, не лише
-  коментарів: `Rule::Ashtadhyayi` відрізняється від `Rule::Kashika`
-  (коментар) чи `Rule::Kaumudi` (пізніший підручник) на рівні
-  `enum`-варіанта. Це незалежна, інженерна реалізація тієї самої
-  дисципліни, яку `AGENTS.md` §17/§21 вимагає від нас вручну
-  (`[PANINI]` проти `[INTERPRETATION]`, перевірка sūtra проти
-  коментаря) — сильний сигнал, що це не бюрократія, а необхідність,
-  визнана незалежно іншою серйозною реалізацією.
-- **Немає єдиного канонічного Dhātupāṭha** — коментар у
-  `args/dhatu.rs` (`Antargana`) прямо каже: "There is no canonical
-  version of the Dhatupatha, and we cannot expect that a dhatu's index
-  is consistent across all of these versions" — це стосується напряму
-  задачі `PANINI-DHATUPATHA-SOURCE-VERIFICATION`: "звірити проти
-  первинного джерела" не має єдиної відповіді навіть у виробничій
-  реалізації.
+2. **Term Representation (`Term`)**:
+   A `Term` represents a single morpheme. It contains:
+   - `u` (Aupadeshika): The underlying theoretical form with `it` markers (e.g., `qukf\Y`).
+   - `text`: The current surface form (e.g., `kar`).
+   - `tags`: A bitset (`EnumSet<Tag>`) representing assigned `saṃjñā`s (e.g., `Tag::Ardhadhatuka`, `Tag::Dhatu`).
+   - `morph`: A Rust enum distinguishing `Dhatu`, `Krt`, `Tin`, `Sup`, etc.
 
-## What corresponds directly to Pāṇini
+3. **Rule Representation & Application (`Rule` and Functions)**:
+   Rules are represented merely as enum labels (e.g., `Rule::Ashtadhyayi("7.1.5")`).
+   They are applied via hardcoded Rust logic inside sequence functions like `run_main_rules`.
+   Example:
+   ```rust
+   if base.is_abhyasta() {
+       // juhvati
+       p.run_at("7.1.4", i, |t| t.set_adi("at"));
+   }
+   ```
+   If the condition is met, the string is mutated in place. Rule ordering is achieved strictly by the order in which these Rust functions are called, simulating Panini's rule priority manually.
 
-- Формат кодування правил `<adhyaya>.<pada>.<sutra>` — пряме
-  відображення структури Aṣṭādhyāyī (8 `adhyāya` × 4 `pāda`).
-  `Gana`-переліки з тими самими SLP1-іменами (`BvAdi`, `adAdi`,
-  `juhotyAdi`…), що незалежно збіглися з нашим
-  [`terminology.md`](../foundation/terminology.md) — потрійне
-  підтвердження gaṇa-номенклатури (Vidyut, `PANINI-GRAMMAR-REFERENCE.md`,
-  наш реєстр).
-- `it_samjna.rs`/`it_agama.rs`, `atidesha.rs` — окремі модулі саме для
-  `it`-механізму та `atideSa` — обидва є нашими прогалинами
-  (`PANINI-IT-MARKERS` ще заблокована, `atideSa` знайдена як прогалина
-  в `PANINI-GRAMMAR-REFERENCE-CROSSCHECK`) — сильний сигнал, що ці
-  механізми справді центральні для будь-якої обчислювальної реалізації,
-  не другорядні деталі.
-- Кожен `Tag`-варіант для `it`-samjnā (`adit`, `Adit`, `idit`, `Idit`
-  тощо) супроводжується прямим коментарем із номером sūtra й описом
-  ефекту (напр. `idit` — "indicates the mandatory use of num-Agama…
-  per" конкретний sūtra) — це саме та деталізація `it`-механізму, яку
-  `PANINI-IT-MARKERS` ще має дослідити.
+4. **`dhātu` and `pratyaya`**:
+   Roots and suffixes are bootstrapped from traditional lists (`Dhatupatha`), parsed into strings, and mutated.
 
-## What is implementation machinery
+## What Corresponds Directly to Pāṇini
+- **`u` vs `text` distinction**: Directly maps to `upadeśa` vs `sthānin/ādeśa`.
+- **`Tag` enum**: Directly models `saṃjñā` (designations like `Aṅga`, `Bha`, `Pada`, `Sārvadhātuka`).
+- **`Rule` IDs**: Maintain 1:1 traceability back to the `Aṣṭādhyāyī`.
 
-- `TermString`/`CompactString` vs `String` вибір, продуктивність
-  (коментар про бенчмарки в `term.rs`) — суто інженерне рішення Rust,
-  без стосунку до граматики.
-- `EnumSet<Tag>` як спосіб зберігання множини тегів — ефективна
-  структура даних, не Paninian факт.
-- `wasm_bindgen`-атрибути, `serde`-похідні — інфраструктура для
-  WebAssembly/серіалізації, чисто інженерне.
-- Об'єднання класичних `saMjYA` з "internal state flags" в одному
-  `Tag`-переліку — це **архітектурне рішення Vidyut**, не факт
-  граматики; наш `ontology.md` явно розрізняє ці два види (Рівень 3
-  метамова граматики vs. інженерний стан деривації) — варто зберегти
-  це розрізнення, а не змішувати їх слідом за Vidyut.
+## What is Implementation Machinery (Not Pāṇini)
+- **Procedural Sequence Control**: Pāṇini's rules operate concurrently in a conflict-driven resolution network (`vipratiṣedha`, `apavāda`). Vidyut uses linear, imperative Rust function calls (`run_before_stritva(); try_iw_agama(); dvitva::run();`) which artificially forces sequential evaluation.
+- **Flat Array (`Vec<Term>`)**: Pāṇini's derivation often requires a hierarchical or semantic graph understanding of relations (e.g., for `kāraka` roles). The flat array is a simplistic string-builder pattern.
+- **Rule Definitions**: Rules are embedded inside `if/else` Rust blocks rather than existing as independent, queryable axioms.
 
-## What we could reuse (як ідею, не як код)
+## What We Could Reuse
+- **Data Sets**: The pre-parsed `Dhatupatha` lists, `Gana` classifications, and mappings of `it` markers (e.g., knowing that `qukf\Y` is `Bhvadi` and has `qu` and `\Y` as `it`s).
+- **SLP1 String manipulation edge-cases**: Useful reference for tricky sandhi implementations.
+- **Traceability logic**: The idea of recording a `History` of applied rules to produce a proof of derivation (`Step`).
 
-- **Явне тегування провенансу** (sūtra-текст vs. коментар vs.
-  vārttika vs. пізніший підручник) — саме той принцип, який `AGENTS.md`
-  §17/§21 уже вимагає; варто явно формалізувати аналог `Rule`-переліку
-  для `panini-machine-model-v0.1`, коли дійде до цього milestone.
-- **Journal кроків деривації** (`Vec<Step>`, кожен крок = правило +
-  результат + що саме змінилося) — пряма, перевірена практикою
-  відповідь на відкрите питання "чи rewrite-rules" з §9 `AGENTS.md`.
-- Структуроване (не рядкове) представлення вхідних даних деривації
-  (`args::Dhatu` тощо) — узгоджується з принципом "SLP1 як канонічний
-  ID", а не з довільним рядком.
-
-## What we should NOT reuse
-
-- **Змішування `saMjYA` з інженерними прапорцями стану в одному
-  `Tag`-переліку.** Це працює для Vidyut, бо його мета — практична
-  генерація форм, а не збереження чіткого розмежування object language
-  / metalanguage / implementation, яке є явним пріоритетом цього
-  репозиторію (`AGENTS.md` §21, §25). Копіювання цього рішення прямо
-  суперечило б нашій методології.
-- Rust-специфічні деталі продуктивності (вибір типу рядка тощо) —
-  передчасні для нас: `AGENTS.md` §13 явно каже не писати parser/
-  implementation до стабілізації `panini-foundation-v0.1`.
-
-## Висновок
-
-Vidyut — серйозна, добре задокументована реалізація з практичним
-досвідом, вбудованим у код (коментарі прямо пояснюють *чому*, не лише
-*що*). Найцінніше для нас — не конкретний Rust-код, а два підтверджені
-незалежним джерелом висновки: (1) провенанс-тегування кожного
-твердження — необхідність, яку інша серйозна команда теж винайшла;
-(2) деривація як журнал кроків "правило → результат" — робоча відповідь
-на питання §9 `AGENTS.md`, яку варто розглянути для
-`panini-machine-model-v0.1`, а не вигадувати з нуля.
-
-## Додаткові знахідки (об'єднано з паралельного аудиту, `research/vidyut-analysis.md` кореня репо, `PANINI-DEDUP-RESEARCH-DIR`)
-
-Інший агент екосистеми провів паралельний, частково перетинний аудит
-тих самих файлів плюс `sounds.rs`. Три реальні технічні деталі звідти,
-яких не було вище:
-
-- **`Sutra`-структура для Śiva-sūtra в `sounds.rs`**: `struct Sutra {
-  sounds: &'static str, it: Sound }` — кожен рядок Śiva-sūtra закодовано
-  як пара "звуки + власний кінцевий `it`-маркер", і функція `s(&["ac"])`
-  обходить масив таких структур, збираючи звуки від початку `a` до
-  `it`-маркера `c`. Це прямий, робочий аналог механізму
-  [`pratyahara.md`](../foundation/pratyahara.md) — підтверджує, що наш
-  ручний переклад 14-рядкового списку в SLP1 (`PANINI-SIVA-SUTRA-PRATYAHARA`)
-  відповідає тому, як це реально закодовано у виробничій системі.
-- **`Uccarana`** (`HashMap<Sound, Uccarana>` у `sounds.rs`) — крім уже
-  згаданого `Sthana` (місце артикуляції, використаного нами для
-  виправлення конвенції `ś`/`ṣ`, `PANINI-DHATUPATHA-SOURCE-VERIFICATION`),
-  зберігає ще `Ghosha` (дзвінкість: `Ghoshavat`/`Aghosha`) і `Prana`
-  (аспірація: `Alpaprana`/`Mahaprana`) для кожного звука — повніша
-  фонетична класифікація, ніж ми досліджували; варта уваги для
-  майбутньої roku sandhi-дослідження.
-- **`Decision` enum** (`core/prakriya.rs`): `enum Decision { Accept,
-  Decline }` — `Prakriya` веде журнал не лише *застосованих* правил, а
-  й **відхилених** (`Decline`) — деривація зберігає слід про те, які
-  правила розглядались, але не спрацювали, не лише які спрацювали. Це
-  деталь, яку варто врахувати, якщо `panini-machine-model-v0.1` колись
-  реалізовуватиме журнал кроків: повнота трасування вимагає фіксувати
-  й "чому НЕ застосовано", а не лише "що застосовано" — саме той тип
-  міркування, який уже присутній у наших `dadAti.md`/`Bavati.md`
-  ("Чому НЕ застосовується Guṇa?" — секція, що робить те саме вручну).
-
-**Застереження щодо методу того паралельного аудиту:** його підсумкова
-таблиця використовувала пласкі "✅ Підтверджено" твердження без
-трирівневого розбору — той самий патерн, виправлений в
-`PANINI-V01-SPEC-METHODOLOGY-REVIEW`. Тут наведено лише самі технічні
-знахідки (структура `Sutra`, `Uccarana`, `Decision`), без запозичення
-цього формату.
-
-## Джерела
-
-- `github.com/ambuda-org/vidyut`, крейт `vidyut-prakriya/src/`:
-  `core/term.rs`, `core/tag.rs`, `core/prakriya.rs`, `args/dhatu.rs` —
-  прочитано напряму 2026-08-13 через `gh api`, не з пам'яті.
-  Файли `it_samjna.rs`, `it_agama.rs`, `atidesha.rs`, `dhatupatha.rs`,
-  `ganapatha.rs`, `krt.rs`, `taddhita.rs` — помічені за назвою й
-  розташуванням у дереві репозиторію, **вміст не прочитано** в цій
-  задачі — залишено для `PANINI-IT-MARKERS` (it_samjna/it_agama) і
-  майбутніх задач atideśa/krt/taddhita.
-- `sounds.rs`, доповнення `Sutra`/`Uccarana`/`Decision` — з паралельного
-  аудиту іншого агента екосистеми (`research/vidyut-analysis.md`
-  кореня репо до дедуплікації, `PANINI-DEDUP-RESEARCH-DIR`), об'єднано
-  сюди 2026-08-13.
+## What We Should NOT Reuse
+- **Procedural Rule Engine**: For `my-lisp` and Symbolic AI, rules must be independent data structures (axioms) evaluated by an Inference VM, not hardcoded `if/else` Rust macros.
+- **Flat State (`Vec<Term>`)**: We need a semantic directed graph where `dhātu` connects to `kāraka` via explicit roles, not just a string builder array.
+- **State Mutation (`set_adi("at")`)**: Rather than mutating strings in place, our derivation should ideally be a purely functional trace (a graph transition sequence) suitable for logical verification or backwards-inference.
