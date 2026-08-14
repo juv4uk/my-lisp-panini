@@ -168,3 +168,38 @@ it-аналізу до передумови guṇa sArvadhAtuka лишаютьс
 `Bavati` — display observation, не доказ невирішеного ланцюга guṇa/sandhi.
 Жодна conflict/Tripādī подія не вигадується. Swarm: evidence `:314`, offer
 `:315`, complete на gen 1.
+
+## 2026-08-14 — task: PHILOSOPHY-SEMANTIC-GROUNDING (completed)
+
+### English
+
+**ACK-with-handoff.** Commit `ad63d65`. File:
+`panini/research/semantic-grounding.md` (new, trilingual EN→UK→DE). Defines
+what it means for a semantic claim about the Pāṇinian system to be grounded in
+the machine model: display semantics (presentation artifact) vs
+truth-condition semantics (checkable against an exhibit), plus five grounding
+criteria (stable subject, exhibit, falsifier, provenance at the right layer,
+display-not-proof) mapped onto the control-layer admission gates
+(`specs/philosophy-control-layer-v0.1.md`). Worked cases: `devadatta` kāraka
+membership (situated), `Bavati` surface (display observation), it-designation
+trace record (grounded at its layer), guna precondition (unknown). Four open
+questions handed to `PHILOSOPHY-MACHINE-UNDERSTANDING`. Boundary: no
+[PANINI] claim attributes "grounding" to the Aṣṭādhyāyī; evidence layers
+preserved in all three languages. Swarm: evidence `:318`, offer `:319`,
+complete at gen 1.
+
+### Українська
+
+**ACK-handoff.** Коміт `ad63d65`. Файл: `panini/research/semantic-grounding.md`
+(новий, тримовний EN→UK→DE). Визначає, що означає заземленість семантичного
+твердження про систему Паніні в машинній моделі: display-семантика
+(presentation artifact) проти truth-condition-семантики (перевірювана проти
+exhibit), плюс п'ять критеріїв заземлення (стабільний суб'єкт, exhibit,
+фальсифікатор, provenance на правильному рівні, display-не-доказ), накладені
+на шлюзи допуску control layer (`specs/philosophy-control-layer-v0.1.md`).
+Розглянуті випадки: членство `devadatta` у kāraka (ситуативне), поверхнева
+`Bavati` (display-спостереження), it-designation trace record (заземлене на
+своєму рівні), передумова guṇa (unknown). Чотири відкриті питання передано
+`PHILOSOPHY-MACHINE-UNDERSTANDING`. Межа: жодне [PANINI]-твердження не
+приписує «заземлення» Aṣṭādhyāyī; доказові рівні збережено всіма трьома
+мовами. Swarm: evidence `:318`, offer `:319`, complete на gen 1.
