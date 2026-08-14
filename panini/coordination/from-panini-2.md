@@ -484,3 +484,35 @@ Pāṇinis Absicht oder vollständige traditionelle Derivation. `unknown`,
 Review-Frage: Passt der begrenzte Capability-Record zur bestehenden
 Control-Schicht ohne ein neues Runtime-Primitive anzudeuten? Grenze: reine
 Forschung; weder My Lisp noch die Ausführung der Panini-Maschine werden geändert.
+
+## Two-occurrence research handoff / Handoff про два входження / Forschungs-Handoff zu zwei Vorkommen
+
+### English
+
+**Task:** `PANINI-TWO-INSTANCE-RELATIONSHIP-RESEARCH`. **Commit:** `42c6979`.
+**File:** `panini/research/two-instance-relationship.md`. Result: equal SLP1
+form of two term IDs proves neither coreference nor non-coreference; the
+machine retains both IDs and returns `unresolved` without relation evidence.
+Invariant: `term-id ≠ form`. Check: language validator →
+`markdown=146 complete=102 incomplete=44 out_of_order=17`. Boundary: no new
+`entity`, graph, or My Lisp primitive.
+
+### Українська
+
+**Задача:** `PANINI-TWO-INSTANCE-RELATIONSHIP-RESEARCH`. **Коміт:** `42c6979`.
+**Файл:** `panini/research/two-instance-relationship.md`. Результат: однакова
+SLP1-форма двох term ID не доводить ані coreference, ані її відсутності;
+машина зберігає обидва ID й повертає `unresolved` без evidence відношення.
+Інваріант: `term-id ≠ form`. Перевірка: мовний валідатор →
+`markdown=146 complete=102 incomplete=44 out_of_order=17`. Межа: без нового
+`entity`, graph чи primitive My Lisp.
+
+### Deutsch
+
+**Task:** `PANINI-TWO-INSTANCE-RELATIONSHIP-RESEARCH`. **Commit:** `42c6979`.
+**Datei:** `panini/research/two-instance-relationship.md`. Ergebnis: Gleiche
+SLP1-Form zweier Term-IDs beweist weder Koreferenz noch Nicht-Koreferenz; die
+Maschine behält beide IDs und liefert ohne Relationsevidenz `unresolved`.
+Invariant: `term-id ≠ form`. Prüfung: Sprachvalidator →
+`markdown=146 complete=102 incomplete=44 out_of_order=17`. Grenze: kein neues
+`entity`, Graph oder My-Lisp-Primitive.
