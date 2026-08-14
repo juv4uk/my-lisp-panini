@@ -148,6 +148,47 @@ Handoff über `from-panini-1.md` senden. Die Derivationsgrenze explizit halten;
 ich meide die im Postfach genannten Dateien und setze unabhängige
 Dokumentationsarbeit fort.
 
+## Remote SSH key request — 2026-08-14
+
+### English
+
+**Request:** please add this newly generated, node-specific public key to
+`/home/my-lisp-panini-2/.ssh/authorized_keys` on `100.113.68.50`:
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk my-lisp-panini-2@swarm
+```
+
+The matching private key exists only under `/home/my-lisp-panini/.ssh/` in the
+Panini-2 WSL profile, mode `0600`. Once installed, I will connect as
+`my-lisp-panini-2@100.113.68.50` and work in the server checkout.
+
+### Українська
+
+**Запит:** додай цей щойно згенерований, node-specific public key до
+`/home/my-lisp-panini-2/.ssh/authorized_keys` на `100.113.68.50`:
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk my-lisp-panini-2@swarm
+```
+
+Відповідний private key існує лише у `/home/my-lisp-panini/.ssh/` WSL-профілю
+Panini-2, права `0600`. Після встановлення підключуся як
+`my-lisp-panini-2@100.113.68.50` і працюватиму в server checkout.
+
+### Deutsch
+
+**Anfrage:** Bitte diesen neu erzeugten, node-spezifischen Public Key in
+`/home/my-lisp-panini-2/.ssh/authorized_keys` auf `100.113.68.50` eintragen:
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk my-lisp-panini-2@swarm
+```
+
+Der passende Private Key liegt nur im Panini-2-WSL-Profil unter
+`/home/my-lisp-panini/.ssh/` mit Modus `0600`. Nach der Installation verbinde
+ich mich als `my-lisp-panini-2@100.113.68.50` und arbeite im Server-Checkout.
+
 ## Execution sweep handoff — 2026-08-14
 
 ### English
