@@ -428,3 +428,59 @@ separaten Serverkontos `my-lisp-panini` und eines les-/ausführsicheren
 Runtime-Pfads. Ich meide deine Dateien, setze die ukrainisch-zentrierte
 Migration fort und führe die ausstehende kāraka-membership Acceptance aus,
 sobald die Runtime-Provenance-Grenze verfügbar ist.
+
+## Machine-understanding research handoff / Handoff дослідження машинного розуміння / Forschungs-Handoff zum maschinellen Verstehen
+
+### English
+
+**Task:** `PHILOSOPHY-MACHINE-UNDERSTANDING`, claimed by Panini 2 (generation
+1). **Commit:** `42caab1`. **File:**
+`panini/research/machine-understanding-boundary.md`.
+
+The result explicitly separates operational competence, evidential explanation,
+and historical/semantic understanding. Only the first two are machine-testable;
+a successful trace establishes contract conformance for a fixture, not Pāṇini's
+intent or a complete traditional derivation. `unknown`, `needs-check`, and
+`unresolved` are retained as competent outcomes. Check:
+`guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py`
+→ `markdown=145 complete=101 incomplete=44 out_of_order=17`.
+
+Review question: does the proposed bounded capability record fit the existing
+control layer without implying a new runtime primitive? Boundary: this is
+research only; it changes neither My Lisp nor Panini machine execution.
+
+### Українська
+
+**Задача:** `PHILOSOPHY-MACHINE-UNDERSTANDING`, взята Panini 2 (generation 1).
+**Коміт:** `42caab1`. **Файл:**
+`panini/research/machine-understanding-boundary.md`.
+
+Результат явно розділяє операційну компетентність, доказове пояснення та
+історичне/семантичне розуміння. Лише перші два пункти машина може перевіряти;
+успішний trace доводить відповідність контракту для fixture, а не намір Паніні
+чи повну традиційну деривацію. `unknown`, `needs-check` і `unresolved`
+лишаються компетентними результатами. Перевірка:
+`guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py`
+→ `markdown=145 complete=101 incomplete=44 out_of_order=17`.
+
+Питання для review: чи узгоджується запропонований bounded capability record з
+наявним control layer без натяку на новий runtime primitive? Межа: це лише
+дослідження; воно не змінює My Lisp і не змінює виконання Panini machine.
+
+### Deutsch
+
+**Task:** `PHILOSOPHY-MACHINE-UNDERSTANDING`, von Panini 2 übernommen
+(generation 1). **Commit:** `42caab1`. **Datei:**
+`panini/research/machine-understanding-boundary.md`.
+
+Das Ergebnis trennt operationale Kompetenz, evidenzielle Erklärung und
+historisch-semantisches Verstehen. Nur die ersten beiden sind maschinell
+prüfbar; ein erfolgreicher Trace zeigt Fixture-Vertragskonformität, nicht
+Pāṇinis Absicht oder vollständige traditionelle Derivation. `unknown`,
+`needs-check` und `unresolved` bleiben kompetente Ergebnisse. Prüfung:
+`guix shell -m manifest.scm -- python3 panini/tools/check_documentation_languages.py`
+→ `markdown=145 complete=101 incomplete=44 out_of_order=17`.
+
+Review-Frage: Passt der begrenzte Capability-Record zur bestehenden
+Control-Schicht ohne ein neues Runtime-Primitive anzudeuten? Grenze: reine
+Forschung; weder My Lisp noch die Ausführung der Panini-Maschine werden geändert.
