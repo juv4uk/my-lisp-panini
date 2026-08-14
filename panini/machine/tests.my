@@ -28,7 +28,7 @@
 
 (def test-prototype-derivations
   (lambda ()
-    (assert-equal "Bavati" (concat-terms (derive-Bavati)) "Bavati prototype")
+    (assert-equal "Bavati" (concat-terms bavati-surface-terms) "Bavati prototype")
     (assert-equal "dadAti" (concat-terms (derive-dadAti)) "dadAti prototype")
     (assert-equal "kArayati" (concat-terms (derive-kArayati)) "kArayati prototype")))
 
@@ -203,6 +203,26 @@
     (assert-equal 8 (cdr (assoc 'class (cdr (assoc 'kf dhatu-registry))))
                   "core dhatu-registry kf class")))
 
+(def test-bavati-execution
+  (lambda ()
+    (assert-equal 7 (bavati-step-count (derive-Bavati))
+                  "bavati executable step count")
+    (assert-equal 'partial (bavati-status (derive-Bavati))
+                  "bavati trace terminates partial")
+    (assert-equal "3.2.123" (bavati-step-rule (bavati-step-at (derive-Bavati) 1))
+                  "bavati step 1 rule")
+    (assert-equal "6.1.78" (bavati-step-rule (bavati-step-at (derive-Bavati) 7))
+                  "bavati step 7 rule")
+    (assert-equal "state:bavati:bavati"
+                  (bavati-step-after (bavati-step-at (derive-Bavati) 7))
+                  "bavati step 7 after state")
+    (assert-equal t
+                  (member? "bridge-from-it-analysis-to-sarvadhatuka-precondition"
+                           (bavati-unknowns-of (derive-Bavati)))
+                  "bavati guna precondition unknown recorded")
+    (assert-equal "Bavati" (concat-terms bavati-surface-terms)
+                  "bavati observed surface form")))
+
 (def run-tests
   (lambda ()
     (print "Running Panini Machine Tests...")
@@ -218,4 +238,5 @@
     (test-trace-canonical-serialization)
     (test-explanation-boundary)
     (test-panini-core-syntax)
+    (test-bavati-execution)
     (print "Tests complete.")))

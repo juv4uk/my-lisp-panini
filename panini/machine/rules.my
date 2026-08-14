@@ -66,9 +66,88 @@
 
 ;; The following outputs are deliberately narrow executable fixtures. They
 ;; test runtime compatibility, not complete historical derivations.
+
+;; Executable Bavati step-trace (PANINI-MACHINE-DERIVE-BAVATI-EXECUTION).
+;; Bound by research/bavati-derivation-machine-readiness.md: the trace records
+;; 7 state transitions and terminates partial with explicit unknowns. The
+;; observed surface form Bavati is a display observation, not a proof of the
+;; unresolved guna/sandhi precondition chain. Machine level only.
+(def bavati-unknowns
+  (list "exact-source-supported-account-of-initial-S-in-Sap"
+        "bridge-from-it-analysis-to-sarvadhatuka-precondition"
+        "complete-applicability-conditions-for-each-selection"
+        "independent-typed-operation-check-for-each-state-transition"))
+
+(def bavati-result
+  (list (cons 'status 'partial)
+        (cons 'state "state:bavati:sap-a-ti")
+        (cons 'unknowns bavati-unknowns)))
+
+(def bavati-step
+  (lambda (n rule before after operation verification)
+    (list (cons 'step n)
+          (cons 'rule rule)
+          (cons 'before before)
+          (cons 'after after)
+          (cons 'operation operation)
+          (cons 'verification verification))))
+
+(def bavati-steps
+  (list
+    (bavati-step 1 "3.2.123" "state:bavati:input" "state:bavati:lat"
+                 "attach-lakara-candidate" 'derived)
+    (bavati-step 2 "3.4.78" "state:bavati:lat" "state:bavati:tip"
+                 "select-tip-occurrence" 'derived)
+    (bavati-step 3 "1.3.3+1.3.9" "state:bavati:tip" "state:bavati:ti"
+                 "it-designation-final-p-then-lopa" 'derived)
+    (bavati-step 4 "3.1.68" "state:bavati:ti" "state:bavati:sap-raw-ti"
+                 "insert-vikarana-Sap" 'needs-check)
+    (bavati-step 5 "1.3.8+1.3.3+1.3.9+3.4.113" "state:bavati:sap-raw-ti"
+                 "state:bavati:sap-a-ti" "sap-subtrace-lopa" 'needs-check)
+    (bavati-step 6 "7.3.84" "state:bavati:sap-a-ti" "state:bavati:bo-a-ti"
+                 "guna-U-to-o" 'needs-check)
+    (bavati-step 7 "6.1.78" "state:bavati:bo-a-ti" "state:bavati:bavati"
+                 "eco-sandhi-o-a-to-av-a" 'needs-check)))
+
+(def bavati-surface-terms
+  (list (make-term '(B U) '(B a v a t i) 'dhAtu '(machine-fixture observation))))
+
+(def bavati-trace-result
+  (lambda (trace) (car trace)))
+
+(def bavati-trace-steps
+  (lambda (trace) (cdr (car (cdr trace)))))
+
+(def bavati-status
+  (lambda (trace)
+    (cdr (assoc 'status (bavati-trace-result trace)))))
+
+(def bavati-unknowns-of
+  (lambda (trace)
+    (cdr (assoc 'unknowns (bavati-trace-result trace)))))
+
+(def bavati-step-count
+  (lambda (trace) (length (bavati-trace-steps trace))))
+
+(def bavati-step-at-from
+  (lambda (steps n)
+    (cond
+      ((equal? n 1) (car steps))
+      (t (bavati-step-at-from (cdr steps) (- n 1))))))
+
+(def bavati-step-at
+  (lambda (trace n)
+    (bavati-step-at-from (bavati-trace-steps trace) n)))
+
+(def bavati-step-rule
+  (lambda (step) (cdr (assoc 'rule step))))
+
+(def bavati-step-after
+  (lambda (step) (cdr (assoc 'after step))))
+
 (def derive-Bavati
   (lambda ()
-    (list (make-term '(B U) '(B a v a t i) 'dhAtu '(machine-fixture)))))
+    (list bavati-result (cons 'steps bavati-steps))))
 
 (def derive-dadAti
   (lambda ()

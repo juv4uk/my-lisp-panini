@@ -9,6 +9,7 @@ fixture_id: trace-fixture:bhavati-source-path-partial-v0.1
 fixture_status: partial
 ir_version: panini-derivation-ir/0.1
 derivation_id: drv:fixture:bhavati-source-path
+machine_exec: my-lisp-panini:rules.my:(derive-Bavati)
 result:
   status: partial
   state: state:fixture:bhavati:sap-a-ti
