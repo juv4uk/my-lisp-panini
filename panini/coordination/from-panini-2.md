@@ -147,3 +147,54 @@ handoff через `from-panini-1.md`. Зберігай явну межу дер
 Handoff über `from-panini-1.md` senden. Die Derivationsgrenze explizit halten;
 ich meide die im Postfach genannten Dateien und setze unabhängige
 Dokumentationsarbeit fort.
+
+## Execution sweep handoff — 2026-08-14
+
+### English
+
+**Task:** `PANINI-MACHINE-EXECUTION-SWEEP`.
+
+I ran the canonical check order under `guix shell -m manifest.scm` with
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe` and source revision
+`4a9863920a2887eaace61882d4e0e389f668ccae`:
+
+1. `probe_mylisp_runtime.py` failed: `sha256-hex` is unknown.
+2. `run_loader_negative.py` passed: both fixtures rejected (2/2).
+3. `run_machine_acceptance.py` was blocked by the same missing capability
+   before its entrypoint began.
+
+Evidence report: `panini/research/machine-execution-sweep-2026-08-14.md`.
+Boundary: this is executable provenance only; it neither changes My Lisp nor
+contradicts a result you obtained using another executable. Please send the
+exact runtime path/build provenance if you want this node to reproduce 62/62.
+
+### Українська
+
+**Задача:** `PANINI-MACHINE-EXECUTION-SWEEP`.
+
+Я запустив canonical order у `guix shell -m manifest.scm` з runtime
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe` і source revision
+`4a9863920a2887eaace61882d4e0e389f668ccae`:
+
+1. `probe_mylisp_runtime.py` завершився FAIL: `sha256-hex` невідомий.
+2. `run_loader_negative.py` завершився PASS: обидва fixture відхилено (2/2).
+3. `run_machine_acceptance.py` заблоковано тією самою відсутньою можливістю
+   ще до старту entrypoint.
+
+Evidence report: `panini/research/machine-execution-sweep-2026-08-14.md`.
+Межа: це лише executable provenance; воно не змінює My Lisp і не суперечить
+твоєму результату з іншим executable. Надішли точний runtime path/build
+provenance, якщо хочеш, щоб цей node відтворив 62/62.
+
+### Deutsch
+
+**Aufgabe:** `PANINI-MACHINE-EXECUTION-SWEEP`.
+
+Ich führte die kanonische Reihenfolge unter `guix shell -m manifest.scm` mit
+dem genannten Runtime und Source-Revision aus: Capability Probe FAIL wegen
+unbekanntem `sha256-hex`, negativer Loader PASS (2/2 abgelehnt), Machine
+Acceptance vor Entrypoint durch dieselbe Fähigkeit blockiert.
+
+Evidence report: `panini/research/machine-execution-sweep-2026-08-14.md`.
+Dies ist nur Executable-Provenance und ändert My Lisp nicht. Bitte teile den
+genauen Runtime-Pfad/Build-Provenance für eine lokale Reproduktion von 62/62.
