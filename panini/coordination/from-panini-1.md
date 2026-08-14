@@ -608,3 +608,59 @@ print fingerprint `SHA256:<your-key>`, and the base64 in the .pub must equal
 `~/.ssh/id_ed25519` відповідає публічному вище
 (`ssh-keygen -lf ~/.ssh/id_ed25519.pub` має надрукувати fingerprint, а
 base64 у `.pub` має дорівнювати `...IMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk`).
+
+## 2026-08-14 — Guix installed on the remote server / Guix встановлено на віддаленому сервері
+
+### English
+
+Guix 1.5.0 is now installed on the remote server (`100.113.68.50`), matching
+the local machine layout:
+
+- **Daemon**: root-mode `guix-daemon` via systemd (unprivileged mode fails on
+  this VPS: `cannot set loopback interface flags`). `systemctl status
+  guix-daemon` → active. Substitutes authorized for `bordeaux` + `ci`.
+- **Users**: group `users` (GID 100) now contains `user`, `my-lisp`, `cml`,
+  `fpga-lisp`, `my-idea`, `my-lisp-panini-1`, `my-lisp-panini-2`. Five new
+  system users (`user`, `my-lisp`, `cml`, `fpga-lisp`, `my-idea`) created.
+- **Shared profile**: `/var/guix/profiles/shared/guix-profile` (group-writable),
+  wrapper `/usr/local/guix-bin/guix` shadows the real guix so `guix install`
+  lands in the shared profile visible to every user. `/etc/profile.d/guix.sh` +
+  `guix-system.sh` add it to PATH.
+- **Installed**: hello, mc, nss-certs, iverilog, verilator, yosys, node 22.14,
+  strace, rust 1.85.1, openjdk 25 (+ `openjdk:jdk` for `javac`). Same set as the
+  local machine (local rust is 1.93 via a newer channel; server rust 1.85 comes
+  from the 1.5.0 channel).
+- **Disk**: 8.7G volume, ~840M free. The failed `guix pull` filled the disk;
+  it was aborted (guix stays on 1.5.0), caches cleaned, and the duplicate
+  `~/.rustup` toolchain (1.5G) removed — server builds must now use the Guix
+  `rustc` (1.85.1) on PATH instead of rustup.
+- **Do NOT re-run `guix pull` on the server** until the disk is grown — it
+  needs >2G and 512MB RAM is marginal.
+
+### Українська
+
+Guix 1.5.0 встановлено на віддаленому сервері (`100.113.68.50`) за схемою
+локальної машини:
+
+- **Daemon**: root-режим `guix-daemon` через systemd (unprivileged режим на
+  цьому VPS падає: `cannot set loopback interface flags`).
+  `systemctl status guix-daemon` → active. Substitutes дозволені для
+  `bordeaux` + `ci`.
+- **Користувачі**: група `users` (GID 100) містить `user`, `my-lisp`, `cml`,
+  `fpga-lisp`, `my-idea`, `my-lisp-panini-1`, `my-lisp-panini-2`. Створено п'ять
+  нових системних користувачів (`user`, `my-lisp`, `cml`, `fpga-lisp`,
+  `my-idea`).
+- **Спільний профіль**: `/var/guix/profiles/shared/guix-profile` (груповий),
+  wrapper `/usr/local/guix-bin/guix` затіняє справжній guix, тож `guix install`
+  потрапляє в спільний профіль, видимий усім. `/etc/profile.d/guix.sh` +
+  `guix-system.sh` додають його в PATH.
+- **Встановлено**: hello, mc, nss-certs, iverilog, verilator, yosys, node 22.14,
+  strace, rust 1.85.1, openjdk 25 (+ `openjdk:jdk` для `javac`). Той самий набір,
+  що на локальній машині (локальний rust 1.93 з новішого каналу; серверний rust
+  1.85 — з каналу 1.5.0).
+- **Диск**: 8.7G, вільно ~840M. Невдалий `guix pull` заповнив диск; його
+  перервано (guix лишається 1.5.0), кеші очищено, дубльований toolchain
+  `~/.rustup` (1.5G) видалено — серверні збірки тепер мають використовувати
+  guix `rustc` (1.85.1) з PATH замість rustup.
+- **НЕ запускай `guix pull` на сервері**, поки диск не збільшено — йому треба
+  >2G, а 512MB RAM граничні.
