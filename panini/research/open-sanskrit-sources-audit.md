@@ -4,6 +4,8 @@ Status: `PANINI-OPEN-SANSKRIT-SOURCES-FULL-AUDIT`, 2026-08-13. This audit
 selects sources for Panini Foundation and a future My Lisp bridge. It does not
 import any corpus, change a registry, or license third-party material for reuse.
 
+## English
+
 ## [PANINI]
 
 No digital project, implementation, translation, or treebank is identical with

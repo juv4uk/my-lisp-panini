@@ -3,6 +3,8 @@
 Status: `PANINI-USEFUL-SOFTWARE-TOOLS-FULL-AUDIT`, 2026-08-13. This is a
 selection policy, not authorization to add dependencies or alter My Lisp.
 
+## English
+
 ## [PANINI]
 
 No software tool determines what a Pāṇinian category means. Tools can preserve
