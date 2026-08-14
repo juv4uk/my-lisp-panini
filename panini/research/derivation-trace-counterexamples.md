@@ -1,5 +1,35 @@
 # Контрприклади до лінійного derivation trace
 
+## English
+
+### Scope
+
+This note records three bounded counterexample patterns. It does not generate a
+Sanskrit form and does not claim that a universal scheduler follows from any
+one sūtra. Its narrower point is that `state0 → state1 → …` alone is not
+evidence of why a rule was applicable.
+
+### Evidence requirements
+
+First, inherited scope (`anuvftti` / `aDikAra`) needs source, item and
+explicit-or-inferred status, plus a separately statused scope: a step such as
+`apply 1.4.59` otherwise hides `prAdayaH` from 1.4.58. Second, optionality
+needs both selected and non-selected branches with status and justification;
+absence of a field does not prove absence of an alternative. Third, sequence
+does not establish `vipratiSeDa`: each candidate's applicability, conflicting
+effect and actual mechanism (`vipratiSeDa`, `utsarga-apavAda`, other, or
+`unresolved`) must be recorded. The mention of 1.4.2 is not a claim of a
+universal runtime scheduler.
+
+### Machine boundary
+
+Post-v0.1 traces need `branches` and `competing_rules`, or an honest
+`not-applicable` / unsearched-alternatives explanation. A tree, DAG, or
+snapshot representation is `[MY-LISP HYPOTHESIS]`, not a statement about
+Pāṇini.
+
+## Українська
+
 ## Теза
 
 Список кроків `state₀ → state₁ → …` корисний, але сам по собі не зберігає
@@ -109,6 +139,34 @@ competing_rules: []   # для фактичної конкуренції, не �
 Майбутня machine model може подати branches як tree, DAG або набір snapshots.
 Це проектна оптимізація. Панініївський фундамент вимагає лише зберегти
 джерело, scope, alternatives і спосіб розв'язання там, де вони стверджуються.
+
+## Deutsch
+
+### Geltungsbereich
+
+Diese Notiz hält drei begrenzte Gegenbeispielmuster fest. Sie erzeugt keine
+Sanskritform und behauptet nicht, dass aus einem einzelnen Sūtra ein
+universeller Scheduler folgt. Ihr engerer Punkt lautet: `state0 → state1 → …`
+allein belegt nicht, warum eine Regel anwendbar war.
+
+### Evidenzanforderungen
+
+Erstens benötigt geerbter Scope (`anuvftti` / `aDikAra`) Quelle, Element und
+den Status `explicit-or-inferred`, außerdem einen separat statusierten Scope:
+Ein Schritt wie `apply 1.4.59` verbirgt sonst `prAdayaH` aus 1.4.58. Zweitens
+benötigt Optionalität gewählte und nicht gewählte Zweige mit Status und
+Begründung; ein fehlendes Feld beweist nicht das Fehlen einer Alternative.
+Drittens begründet Reihenfolge kein `vipratiSeDa`: Anwendbarkeit jedes
+Kandidaten, kollidierende Wirkung und der tatsächlich verwendete Mechanismus
+(`vipratiSeDa`, `utsarga-apavAda`, anderer oder `unresolved`) müssen
+festgehalten werden. Der Bezug auf 1.4.2 ist kein Anspruch eines universellen
+Runtime-Schedulers.
+
+### Maschinengrenze
+
+Traces nach v0.1 benötigen `branches` und `competing_rules` oder eine ehrliche
+Erklärung `not-applicable` beziehungsweise ungeprüfter Alternativen. Baum,
+DAG oder Snapshots sind `[MY-LISP HYPOTHESIS]`, keine Aussage über Pāṇini.
 
 ## Висновок
 
