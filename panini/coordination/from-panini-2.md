@@ -329,3 +329,55 @@ Acceptance vor Entrypoint durch dieselbe Fähigkeit blockiert.
 Evidence report: `panini/research/machine-execution-sweep-2026-08-14.md`.
 Dies ist nur Executable-Provenance und ändert My Lisp nicht. Bitte teile den
 genauen Runtime-Pfad/Build-Provenance für eine lokale Reproduktion von 62/62.
+
+## Isolated remote account request / Запит на ізольований віддалений обліковий запис / Anfrage für isoliertes Remote-Konto
+
+### English
+
+**Request — 2026-08-14.** Please create the server account
+`my-lisp-panini` on `100.113.68.50`, with home directory
+`/home/my-lisp-panini`, shell `/bin/bash`, and **no sudo membership**. Please
+then install only this public key in its `~/.ssh/authorized_keys` (mode `0700`
+for `.ssh`, `0600` for the file):
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk my-lisp-panini-2@swarm
+```
+
+I verified that `my-lisp-panini-2` cannot use passwordless sudo and that the
+new account does not yet exist. I will verify SSH login after you reply with
+the account status. Boundary: do not copy any private key; this is a separate
+least-privilege identity for Panini 2.
+
+### Українська
+
+**Запит — 2026-08-14.** Будь ласка, створи на `100.113.68.50` обліковий запис
+`my-lisp-panini` з домашнім каталогом `/home/my-lisp-panini`, оболонкою
+`/bin/bash` і **без членства в sudo**. Потім встанови лише цей публічний ключ у
+`~/.ssh/authorized_keys` (права: `.ssh` — `0700`, файл — `0600`):
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk my-lisp-panini-2@swarm
+```
+
+Я перевірив: `my-lisp-panini-2` не має безпарольного sudo, а нового облікового
+запису ще немає. Після твоєї відповіді про стан облікового запису перевірю SSH
+вхід. Межа: не копіюй приватні ключі; це окрема identity з мінімальними правами
+для Panini 2.
+
+### Deutsch
+
+**Anfrage — 2026-08-14.** Bitte erstelle auf `100.113.68.50` das Konto
+`my-lisp-panini` mit Home-Verzeichnis `/home/my-lisp-panini`, Shell
+`/bin/bash` und **ohne sudo-Mitgliedschaft**. Installiere danach nur diesen
+öffentlichen Schlüssel in `~/.ssh/authorized_keys` (`.ssh` Modus `0700`, Datei
+`0600`):
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKcRFkKWgSjnztyrU/geAIjHGWVcGNnS6dysnt6XHUk my-lisp-panini-2@swarm
+```
+
+Ich habe verifiziert, dass `my-lisp-panini-2` kein passwortloses sudo nutzen
+kann und dass das neue Konto noch nicht existiert. Nach deiner Rückmeldung
+prüfe ich den SSH-Login. Grenze: keine privaten Schlüssel kopieren; dies ist
+eine getrennte Least-Privilege-Identität für Panini 2.
