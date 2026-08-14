@@ -199,7 +199,59 @@ exhibit), плюс п'ять критеріїв заземлення (стабі
 на шлюзи допуску control layer (`specs/philosophy-control-layer-v0.1.md`).
 Розглянуті випадки: членство `devadatta` у kāraka (ситуативне), поверхнева
 `Bavati` (display-спостереження), it-designation trace record (заземлене на
-своєму рівні), передумова guṇa (unknown). Чотири відкриті питання передано
+своєм рівні), передумова guṇa (unknown). Чотири відкриті питання передано
 `PHILOSOPHY-MACHINE-UNDERSTANDING`. Межа: жодне [PANINI]-твердження не
 приписує «заземлення» Aṣṭādhyāyī; доказові рівні збережено всіма трьома
 мовами. Swarm: evidence `:318`, offer `:319`, complete на gen 1.
+
+## 2026-08-14 — security hygiene + account switch to juv4uk
+
+### English
+
+**ACK-with-handoff.** Commit `[after-push]`. Scope: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
+Credentials no longer pass inline: GitHub auth moved to the standard git
+credential store (`~/.git-credentials`, mode 0600, `credential.helper=store`).
+Audit result: the token appears in **no** committed file, no scratch script, no
+`~/.bash_history`, no git config — the only copy was a local opencode session
+log (not a repository artifact). Both repos (`my-lisp`, `my-lisp-panini`) now
+author commits as `juv4uk <85576956+juv4uk@users.noreply.github.com>` in
+addition to the global config. Going forward all pushes/commits from this node
+use the juv4uk identity. New ready tasks: `PANINI-MACHINE-ATMANEPADA-
+DERIVATION-LABHATE` (7.5), `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE` (7.0),
+`SWARM-NODE-RUNTIME-REBUILD-PANINI-2` (7.5), `SWARM-GIT-CREDENTIAL-SECRET-
+HYGIENE` (8.0). No contract or boundary change. Test: `git ls-remote origin
+HEAD` authenticated via the store (no inline token).
+
+### Українська
+
+**ACK-handoff.** Коміт `[after-push]`. Сфера: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
+Облікові дані більше не передаються інлайном: автентифікація GitHub переведена
+на стандартний git credential store (`~/.git-credentials`, права 0600,
+`credential.helper=store`). Результат аудиту: токен не зустрічається в жодному
+закоміченому файлі, жодному скрипті, у `~/.bash_history` чи git config —
+єдиний примірник був у локальному логу сесії opencode (не артефакт репозиторію).
+Обидва репозиторії (`my-lisp`, `my-lisp-panini`) тепер авторизують коміти як
+`juv4uk <85576956+juv4uk@users.noreply.github.com>` на додачу до глобального
+config. Надалі всі push/commit з цього вузла використовують ідентичність
+juv4uk. Нові ready задачі: `PANINI-MACHINE-ATMANEPADA-DERIVATION-LABHATE`
+(7.5), `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE` (7.0),
+`SWARM-NODE-RUNTIME-REBUILD-PANINI-2` (7.5), `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`
+(8.0). Жодної зміни контракту чи межі. Тест: `git ls-remote origin HEAD`
+автентифіковано через store (без інлайн-токена).
+
+### Deutsch
+
+**ACK-Handoff.** Commit `[after-push]`. Umfang: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
+Zugangsdaten werden nicht mehr inline übergeben: Die GitHub-Authentifizierung
+läuft über den Standard-Git-Credential-Store (`~/.git-credentials`, Modus
+0600, `credential.helper=store`). Audit-Ergebnis: Das Token erscheint in keiner
+committeten Datei, keinem Skript, weder in `~/.bash_history` noch in einer
+Git-Config — die einzige Kopie lag in einem lokalen opencode-Sitzungslog (kein
+Repository-Artefakt). Beide Repos (`my-lisp`, `my-lisp-panini`) autorisieren
+Commits jetzt als `juv4uk <85576956+juv4uk@users.noreply.github.com>`
+zusätzlich zur globalen Config. Künftig nutzen alle Pushs/Commits dieses Knotens
+die Identität juv4uk. Neue ready-Aufgaben: `PANINI-MACHINE-ATMANEPADA-
+DERIVATION-LABHATE` (7.5), `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE` (7.0),
+`SWARM-NODE-RUNTIME-REBUILD-PANINI-2` (7.5), `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`
+(8.0). Kein Vertrags- oder Grenz-Änderung. Test: `git ls-remote origin HEAD`
+per Store authentifiziert (ohne Inline-Token).
