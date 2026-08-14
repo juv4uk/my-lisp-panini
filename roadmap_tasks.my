@@ -123,6 +123,6 @@
     (priority . 9.2)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Prototype the universal inference engine logic using anuvrtti.")
-    (done . ())
+    (done . (1))
   ))
 )))
