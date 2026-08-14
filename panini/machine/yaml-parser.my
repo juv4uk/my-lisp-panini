@@ -1,0 +1,86 @@
+;; YAML parser for dhatu registry
+
+(def string-rest-n
+  (lambda (s n)
+    (cond
+      ((= n 0) s)
+      ((string-empty? s) s)
+      (t (string-rest-n (string-rest s) (- n 1))))))
+
+(def get-line-onto
+  (lambda (s acc)
+    (cond
+      ((string-empty? s) acc)
+      ((eq (string-first s) "\n") acc)
+      ((eq (string-first s) "\r") (get-line-onto (string-rest s) acc))
+      (t (get-line-onto (string-rest s) (string-append acc (string-first s)))))))
+
+(def get-line
+  (lambda (s) (get-line-onto s "")))
+
+(def get-rest-lines
+  (lambda (s)
+    (cond
+      ((string-empty? s) s)
+      ((eq (string-first s) "\n") (string-rest s))
+      (t (get-rest-lines (string-rest s))))))
+
+(def split-lines
+  (lambda (s)
+    (cond
+      ((string-empty? s) '())
+      (t (cons (get-line s) (split-lines (get-rest-lines s)))))))
+
+(def trim-left
+  (lambda (s)
+    (cond
+      ((string-empty? s) s)
+      ((eq (string-first s) " ") (trim-left (string-rest s)))
+      ((eq (string-first s) "\t") (trim-left (string-rest s)))
+      (t s))))
+
+(def extract-field
+  (lambda (lines prefix)
+    (cond
+      ((atom lines) "")
+      ((string-prefix? prefix (car lines))
+       (trim-left (string-rest-n (car lines) (string-length prefix))))
+      (t (extract-field (cdr lines) prefix)))))
+
+(def parse-dhatu-yaml
+  (lambda (content)
+    (let ((lines (split-lines content)))
+      (let ((canonical (extract-field lines "canonical:"))
+            (gana      (extract-field lines "gana:"))
+            (pada      (extract-field lines "pada:"))
+            (set-anit  (extract-field lines "set_anit:")))
+        
+        (let ((pada-sym (cond
+                          ((string-prefix? "parasmaipada" pada) 'parasmaipadin)
+                          ((string-prefix? "atmanepada" pada) 'Atmanepadin)
+                          (t 'uBayapadin)))
+              (gana-num (read gana))
+              (set-anit-sym (string->symbol set-anit)))
+          (cons (string->symbol canonical)
+                (list (cons 'meaning "")
+                      (cons 'class gana-num)
+                      (cons 'properties (list pada-sym set-anit-sym)))))))))
+
+(def filter-yaml-files
+  (lambda (files)
+    (cond
+      ((atom files) '())
+      ((string-contains? ".yaml" (car files))
+       (cons (car files) (filter-yaml-files (cdr files))))
+      (t (filter-yaml-files (cdr files))))))
+
+(def process-dhatu-files
+  (lambda (dir-path fs)
+    (cond
+      ((atom fs) '())
+      (t (cons (parse-dhatu-yaml (read-file (string-append dir-path (string-append "/" (car fs)))))
+               (process-dhatu-files dir-path (cdr fs)))))))
+
+(def load-dhatu-registry
+  (lambda (dir-path)
+    (process-dhatu-files dir-path (filter-yaml-files (read-dir dir-path)))))

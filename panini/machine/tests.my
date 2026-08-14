@@ -261,4 +261,14 @@
     (test-panini-core-syntax)
     (test-situated-karaka-membership)
     (test-bavati-execution)
+    (test-yaml-parser)
     (print "Tests complete.")))
+
+(def test-yaml-parser
+  (lambda ()
+    ;; We expect *test-dhatu-registry* (populated via yaml-parser) to contain BU and others.
+    ;; Check properties of 'BU
+    (let ((bu (assoc 'BU *test-dhatu-registry*)))
+      (let ((_ (assert-equal '1 (cdr (assoc 'class (cdr bu))) "yaml parser extracted BU class 1")))
+        (assert-equal '(parasmaipadin seT) (cdr (assoc 'properties (cdr bu))) "yaml parser extracted BU parasmaipadin seT")))))
+

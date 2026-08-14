@@ -33,22 +33,8 @@
 ;; It is NOT an authoritative source. Do NOT add entries here;
 ;; add them to registry/dhatu/*.yaml instead.
 ;; See: PANINI-MACHINE-DHATU-REGISTRY-SINGLE-SOURCE
-(def *test-dhatu-registry*
-  (list
-    ;; SLP1         meaning (SLP1)   gana  pada            anit/seT
-    (cons 'BU   (list (cons 'meaning "sattAyAm")    (cons 'class 1) (cons 'properties (list 'parasmaipadin 'seT))))
-    (cons 'eD   (list (cons 'meaning "vfdDau")      (cons 'class 1) (cons 'properties (list 'Atmanepadin 'seT))))
-    (cons 'dA   (list (cons 'meaning "dAne")        (cons 'class 3) (cons 'properties (list 'uBayapadin 'aniT))))
-    (cons 'kf   (list (cons 'meaning "karaRe")      (cons 'class 8) (cons 'properties (list 'uBayapadin 'aniT))))
-    (cons 'gam  (list (cons 'meaning "gatau")       (cons 'class 1) (cons 'properties (list 'parasmaipadin 'aniT))))
-    (cons 'sTA  (list (cons 'meaning "gatinivfttau") (cons 'class 1) (cons 'properties (list 'parasmaipadin 'aniT))))
-    ;; Additional verified entries from registry/dhatu/
-    (cons 'pac  (list (cons 'meaning "pAke")        (cons 'class 1) (cons 'properties (list 'uBayapadin 'seT))))
-    (cons 'vac  (list (cons 'meaning "paribhASaRe") (cons 'class 2) (cons 'properties (list 'parasmaipadin 'aniT))))
-    (cons 'han  (list (cons 'meaning "hiMsAgatyoH") (cons 'class 2) (cons 'properties (list 'parasmaipadin 'aniT))))))
-
-;; Alias for compatibility: dhatu-registry → *test-dhatu-registry*
-;; Remove once file-based loading is implemented.
+(load "panini/machine/yaml-parser.my")
+(def *test-dhatu-registry* (load-dhatu-registry "panini/registry/dhatu"))
 (def dhatu-registry *test-dhatu-registry*)
 
 ;; ==========================================
@@ -118,3 +104,4 @@
     (list (cons 'kartf 'devadatta)
           (cons 'karman 'odana)
           (cons 'aDikaraRa 'sTAlI))))
+
