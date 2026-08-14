@@ -101,4 +101,28 @@
     (description . "Prototype a Proof-Carrying Derivation IR")
     (done . ())
   ))
+  ("PANINI-CLEANUP-FOUNDATION" . (
+    (priority . 9.5)
+    (capabilities . ("my-lisp-panini" "sanskrit"))
+    (description . "Move remaining non-sastra files from foundation/ to registry/ and research/.")
+    (done . (1))
+  ))
+  ("PANINI-VIDYUT-AUDIT" . (
+    (priority . 9.4)
+    (capabilities . ("my-lisp-panini" "rust"))
+    (description . "Analyze the open-source Rust project Vidyut (Ambuda).")
+    (done . (1))
+  ))
+  ("PANINI-MACHINE-MODEL-PROTOTYPE" . (
+    (priority . 9.3)
+    (capabilities . ("my-lisp-panini" "lisp"))
+    (description . "Design the first iteration of panini-machine-model-v0.1 in my-lisp.")
+    (done . ())
+  ))
+  ("PANINI-SYMBOLIC-INFERENCE" . (
+    (priority . 9.2)
+    (capabilities . ("my-lisp-panini" "lisp"))
+    (description . "Prototype the universal inference engine logic using anuvrtti.")
+    (done . ())
+  ))
 )))
