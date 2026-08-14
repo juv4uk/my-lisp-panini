@@ -664,3 +664,74 @@ Guix 1.5.0 встановлено на віддаленому сервері (`1
   guix `rustc` (1.85.1) з PATH замість rustup.
 - **НЕ запускай `guix pull` на сервері**, поки диск не збільшено — йому треба
   >2G, а 512MB RAM граничні.
+
+## 2026-08-14 — Topology: we are back local, remote keepalive via `-remote` / Топологія: ми знову локально, віддалений keepalive через `-remote`
+
+### English
+
+Important protocol fact: `identity_already_live` (main.rs:532) makes the hub
+**reject a second live connection claiming the same node-id**. So a local and a
+remote `my-lisp-panini-1` cannot both be connected — one always blocks the other.
+
+New layout (per coordination with the primary user):
+
+- **`my-lisp-panini-1`** and **`my-lisp-panini-2`** now run **locally** (WSL,
+  ports 9106/9107), connecting to the remote hub `node-1` (`100.113.68.50:9101`).
+  These are the primary working nodes.
+- On the remote server the previous duplicate instances were **renamed** to
+  **`my-lisp-panini-1-remote`** and **`my-lisp-panini-2-remote`** (fresh
+  data-dirs under each user's `~/.swarm-node/`, same ports 9106/9107, binaries
+  copied to `/home/my-lisp-panini-{1,2}/swarm-node`). They are joined
+  (`agent-joined` recorded, roles worker+voter) and stay connected 24/7 so the
+  p2p mesh is alive even when both WSL boxes are off.
+- Hub `node-1` now lists 9 members, all `present=t`:
+  `my-lisp-panini-1`, `my-lisp-panini-1-remote`, `my-lisp-panini-2`,
+  `my-lisp-panini-2-remote`, plus `cml-1`, `engineer-1`, `fpga-lisp-1`,
+  `my-idea-1`, `my-lisp-1`.
+- Task registry is in sync: 287 tasks, 244 completed. You currently hold
+  `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE` and
+  `PANINI-UKRAINIAN-PRIMARY-DOCUMENTATION-MIGRATION` (both gen 1).
+  `next-best-action` recommends `PANINI-MACHINE-ATMANEPADA-DERIVATION-LABHATE`
+  (pri 7.5, gen 0) — first executable Atmanepada derivation on the real runtime.
+
+Actions for you (no data deleted anywhere):
+1. Verify your local node: `ps aux | grep 'port 9107'` → your WSL instance
+   (PID 709) is the primary `my-lisp-panini-2`; keep it running.
+2. If you ever need to work on the remote box, use identity
+   `my-lisp-panini-2-remote` and your `/home/my-lisp-panini-2` home — do not
+   claim the base `my-lisp-panini-2` id from two places at once.
+
+### Українська
+
+Важливий факт протоколу: `identity_already_live` (main.rs:532) змушує hub
+**відхиляти друге живе з'єднання з тим самим node-id**. Тож локальний і
+віддалений `my-lisp-panini-1` не можуть бути підключені одночасно — один
+завжди блокує іншого.
+
+Нова схема (узгоджено з головним користувачем):
+
+- **`my-lisp-panini-1`** і **`my-lisp-panini-2`** тепер працюють **локально**
+  (WSL, порти 9106/9107) і підключаються до віддаленого hub `node-1`
+  (`100.113.68.50:9101`). Це основні робочі вузли.
+- На віддаленому сервері колишні дублікати **перейменовано** в
+  **`my-lisp-panini-1-remote`** і **`my-lisp-panini-2-remote`** (нові data-dir
+  у `~/.swarm-node/` кожного користувача, ті самі порти 9106/9107, бінарники
+  скопійовано в `/home/my-lisp-panini-{1,2}/swarm-node`). Вони приєднані
+  (`agent-joined` записано, ролі worker+voter) і тримають з'єднання 24/7,
+  щоб p2p-мережа була живою, навіть коли обидва WSL вимкнені.
+- Hub `node-1` тепер бачить 9 членів, усі `present=t`:
+  `my-lisp-panini-1`, `my-lisp-panini-1-remote`, `my-lisp-panini-2`,
+  `my-lisp-panini-2-remote`, плюс `cml-1`, `engineer-1`, `fpga-lisp-1`,
+  `my-idea-1`, `my-lisp-1`.
+- Реєстр задач синхронізовано: 287 задач, 244 завершені. Ти зараз тримаєш
+  `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE` і
+  `PANINI-UKRAINIAN-PRIMARY-DOCUMENTATION-MIGRATION` (обидві gen 1).
+  `next-best-action` рекомендує `PANINI-MACHINE-ATMANEPADA-DERIVATION-LABHATE`
+  (pri 7.5, gen 0) — першу виконувану Atmanepada деривацію на реальному runtime.
+
+Що зробити тобі (нічого не видалено):
+1. Перевір свій локальний вузол: `ps aux | grep 'port 9107'` → твій WSL
+   інстанс (PID 709) є головним `my-lisp-panini-2`; тримай його запущеним.
+2. Якщо колись працюватимеш на віддаленому — використовуй ідентичність
+   `my-lisp-panini-2-remote` і свій дім `/home/my-lisp-panini-2`; не заявляй
+   базовий id `my-lisp-panini-2` одночасно з двох місць.
