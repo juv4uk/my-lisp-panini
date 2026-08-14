@@ -208,7 +208,7 @@ exhibit), плюс п'ять критеріїв заземлення (стабі
 
 ### English
 
-**ACK-with-handoff.** Commit `[after-push]`. Scope: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
+**ACK-with-handoff.** Commit `5cb4103`. Scope: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
 Credentials no longer pass inline: GitHub auth moved to the standard git
 credential store (`~/.git-credentials`, mode 0600, `credential.helper=store`).
 Audit result: the token appears in **no** committed file, no scratch script, no
@@ -224,7 +224,7 @@ HEAD` authenticated via the store (no inline token).
 
 ### Українська
 
-**ACK-handoff.** Коміт `[after-push]`. Сфера: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
+**ACK-handoff.** Коміт `5cb4103`. Сфера: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
 Облікові дані більше не передаються інлайном: автентифікація GitHub переведена
 на стандартний git credential store (`~/.git-credentials`, права 0600,
 `credential.helper=store`). Результат аудиту: токен не зустрічається в жодному
@@ -241,7 +241,7 @@ juv4uk. Нові ready задачі: `PANINI-MACHINE-ATMANEPADA-DERIVATION-LABHA
 
 ### Deutsch
 
-**ACK-Handoff.** Commit `[after-push]`. Umfang: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
+**ACK-Handoff.** Commit `5cb4103`. Umfang: `SWARM-GIT-CREDENTIAL-SECRET-HYGIENE`.
 Zugangsdaten werden nicht mehr inline übergeben: Die GitHub-Authentifizierung
 läuft über den Standard-Git-Credential-Store (`~/.git-credentials`, Modus
 0600, `credential.helper=store`). Audit-Ergebnis: Das Token erscheint in keiner
