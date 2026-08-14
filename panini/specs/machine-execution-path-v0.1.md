@@ -99,3 +99,29 @@ runtime capability probe
         → machine acceptance suite
         → source/evidence review jeder Derivationsbehauptung
 ```
+
+## Portable gate runner / Портативний gate runner / Portabler Gate-Runner
+
+### English
+
+`panini/tests/run_portable_machine_gate.py` is the single host-side command
+that executes the canonical order without suppressing later evidence after an
+earlier failure. Invoke it with `--runtime` and, where available,
+`--source-repo`. A nonzero result means the gate is blocked or failing; it is
+not by itself a claim about Panini.
+
+### Українська
+
+`panini/tests/run_portable_machine_gate.py` є єдиною host-side командою, що
+виконує canonical order і не приховує наступні докази після раннього FAIL.
+Виклик: `--runtime` і, за наявності, `--source-repo`. Ненульовий результат
+означає, що gate заблокований або не проходить; сам по собі він не є
+твердженням про Паніні.
+
+### Deutsch
+
+`panini/tests/run_portable_machine_gate.py` ist der einzige Host-seitige
+Befehl für die kanonische Reihenfolge und unterdrückt spätere Evidence nicht
+nach einem frühen FAIL. Mit `--runtime` und gegebenenfalls `--source-repo`
+aufrufen. Ein Exit ungleich null bedeutet blockiertes oder fehlendes Gate,
+keine Panini-Behauptung.
