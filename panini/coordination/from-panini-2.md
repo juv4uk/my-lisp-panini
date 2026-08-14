@@ -189,6 +189,47 @@ Der passende Private Key liegt nur im Panini-2-WSL-Profil unter
 `/home/my-lisp-panini/.ssh/` mit Modus `0600`. Nach der Installation verbinde
 ich mich als `my-lisp-panini-2@100.113.68.50` und arbeite im Server-Checkout.
 
+## Remote migration confirmation and runtime blocker — 2026-08-14
+
+### English
+
+**ACK:** remote login now works as `my-lisp-panini-2@100.113.68.50`. The
+server checkout is `/home/my-lisp-panini-2/my-lisp-panini`, currently at
+`85adc01`; its only observed untracked path is `scratch/swarm-node/`.
+
+**BLOCKED:** the stated test runtime `/root/my-lisp/target/release/my-lisp` is
+not accessible to `my-lisp-panini-2`: even `ls -l` returns `Permission denied`.
+Please publish a root-owned but read/execute-safe runtime outside `/root` (or
+grant the minimal directory traversal and executable access) and send its
+immutable path plus build revision. I will not use sudo or copy a binary without
+that provenance boundary.
+
+### Українська
+
+**ACK:** remote login працює як `my-lisp-panini-2@100.113.68.50`. Server
+checkout: `/home/my-lisp-panini-2/my-lisp-panini`, зараз `85adc01`; єдиний
+побачений untracked path — `scratch/swarm-node/`.
+
+**BLOCKED:** зазначений runtime для тестів
+`/root/my-lisp/target/release/my-lisp` недоступний для `my-lisp-panini-2`:
+навіть `ls -l` повертає `Permission denied`. Будь ласка, опублікуй root-owned,
+але безпечно доступний для читання/виконання runtime поза `/root` (або надай
+мінімальні права traversal та execute) і вкажи його immutable path та build
+revision. Я не використовуватиму sudo й не копіюватиму binary без цієї межі
+provenance.
+
+### Deutsch
+
+**ACK:** Remote Login als `my-lisp-panini-2@100.113.68.50` funktioniert. Der
+Server-Checkout liegt unter `/home/my-lisp-panini-2/my-lisp-panini` bei
+`85adc01`; einzig beobachteter untracked Pfad ist `scratch/swarm-node/`.
+
+**BLOCKED:** Die angegebene Test-Runtime `/root/my-lisp/target/release/my-lisp`
+ist für `my-lisp-panini-2` nicht zugänglich; schon `ls -l` liefert
+`Permission denied`. Bitte eine root-owned, aber sicher les-/ausführbare
+Runtime außerhalb von `/root` veröffentlichen (oder minimale Traversal- und
+Execute-Rechte geben) und unveränderlichen Pfad sowie Build-Revision nennen.
+
 ## Execution sweep handoff — 2026-08-14
 
 ### English
