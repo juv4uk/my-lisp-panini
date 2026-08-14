@@ -211,3 +211,82 @@ vs. 2.4.75 `Slu`-apavAda) і перевірити, чи він дає задок
 [`research/vidyut-analysis.md`](../research/vidyut-analysis.md),
 [`research/panini-nlp-analysis.md`](../research/panini-nlp-analysis.md),
 [`specs/gate-review.md`](gate-review.md).
+
+## Evidence update after executable tests — 2026-08-14
+
+### English — reference translation
+
+### H7 — source revision identifies executable capability
+
+**Claim:** a My Lisp source revision is sufficient provenance for the capability
+of a nearby executable used by the Panini Machine.
+
+**Evidence against:** under `guix shell -m manifest.scm`, the source checkout at
+`4a9863920a2887eaace61882d4e0e389f668ccae` coexisted with
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe`, which reported
+`unknown symbol: sha256-hex`. The capability probe failed and canonical machine
+acceptance did not reach its entrypoint; the portable negative loader still
+passed 2/2. See
+[`machine-execution-sweep-2026-08-14.md`](../research/machine-execution-sweep-2026-08-14.md).
+
+**Current confidence:** refuted for source revision alone. Runtime path, build
+provenance, and capability-probe result are separate required evidence.
+
+**Provenance class:** `implementation-convenience` / execution environment,
+not `[PANINI]`.
+
+**Falsification test:** provide an executable built from the stated revision,
+pass the capability probe, then reproduce canonical acceptance without changing
+the fixture. Until then, any result from a different executable is
+`peer-reported` in this environment.
+
+### Українська — нормативна
+
+### H7 — source revision визначає можливість executable
+
+**Твердження:** source revision My Lisp є достатнім provenance для можливостей
+сусіднього executable, який використовує Panini Machine.
+
+**Докази проти:** у `guix shell -m manifest.scm` source checkout
+`4a9863920a2887eaace61882d4e0e389f668ccae` співіснував із
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe`, який повідомив
+`unknown symbol: sha256-hex`. Capability probe завершився FAIL, а canonical
+machine acceptance не досяг entrypoint; portable negative loader усе ж пройшов
+2/2. Див.
+[`machine-execution-sweep-2026-08-14.md`](../research/machine-execution-sweep-2026-08-14.md).
+
+**Поточна впевненість:** спростовано для одного лише source revision. Runtime
+path, build provenance і capability-probe result є окремими обов'язковими
+доказами.
+
+**Клас походження:** `implementation-convenience` / execution environment, а
+не `[PANINI]`.
+
+**Тест фальсифікації:** надати executable, зібраний із зазначеного revision,
+пройти capability probe і відтворити canonical acceptance без зміни fixture.
+Доти результат іншого executable у цьому середовищі є `peer-reported`.
+
+### Deutsch — Referenzübersetzung
+
+### H7 — Source-Revision bestimmt Executable-Fähigkeit
+
+**Behauptung:** Eine My-Lisp-Source-Revision ist ausreichende Provenance für
+die Fähigkeiten einer benachbarten ausführbaren Datei der Panini Machine.
+
+**Gegenevidenz:** Unter `guix shell -m manifest.scm` existierte der
+Source-Checkout `4a9863920a2887eaace61882d4e0e389f668ccae` neben
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe`, das
+`unknown symbol: sha256-hex` meldete. Capability Probe FAIL, kanonische
+Acceptance erreichte den Entrypoint nicht, der portable negative Loader bestand
+dennoch 2/2. Siehe den Execution-Sweep-Bericht.
+
+**Aktuelle Sicherheit:** Für die Source-Revision allein widerlegt. Runtime-Pfad,
+Build-Provenance und Capability-Probe sind getrennte Pflicht-Evidence.
+
+**Provenance-Klasse:** `implementation-convenience` / Ausführungsumgebung,
+nicht `[PANINI]`.
+
+**Falsifikationstest:** eine aus der genannten Revision gebaute Datei
+bereitstellen, Capability Probe bestehen und die kanonische Acceptance ohne
+Fixture-Änderung reproduzieren. Bis dahin bleibt ein Ergebnis einer anderen
+Datei in dieser Umgebung `peer-reported`.
