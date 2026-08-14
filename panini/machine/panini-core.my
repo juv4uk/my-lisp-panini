@@ -77,6 +77,34 @@
   (lambda (ag k-id)
     (cdr (assoc k-id (cdr (assoc 'kAraka-args ag))))))
 
+;; ==========================================
+;; Situated kAraka membership
+;; ==========================================
+;; [MACHINE] This bounded record keeps situation, participant, provenance, and
+;; epistemic status explicit for a situated designation claim.
+;;
+;; [INTERPRETATION] It does not assert a permanent dhAtu/participant property,
+;; identify kartf with a modern "agent" label, or create graph-edge semantics.
+;; See research/semantic-grounding.md and hypothesis-ledger.md H1.
+(def make-karaka-membership
+  (lambda (situation-id karaka-id participant provenance status)
+    (list (cons 'kind 'karaka-membership)
+          (cons 'situation situation-id)
+          (cons 'karaka karaka-id)
+          (cons 'participant participant)
+          (cons 'provenance provenance)
+          (cons 'status status))))
+
+(def karaka-membership-field
+  (lambda (membership field)
+    (cdr (assoc field membership))))
+
+;; Example only: the designation is scoped to this asserted situation. Neither
+;; devadatta nor pac receives a global or fixed semantic role from this record.
+(def example-pac-kartf-membership
+  (make-karaka-membership 'situation-pac-01 'kartf 'devadatta
+                          'prov:example:pacati 'needs-check))
+
 ;; Example 1: "devadatta goes to the village" — kartf + karman only
 (def example-gam
   (make-action-graph 'action-gam 'gam

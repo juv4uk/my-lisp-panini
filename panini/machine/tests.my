@@ -203,6 +203,27 @@
     (assert-equal 8 (cdr (assoc 'class (cdr (assoc 'kf dhatu-registry))))
                   "core dhatu-registry kf class")))
 
+(def test-situated-karaka-membership
+  (lambda ()
+    (assert-equal 'karaka-membership
+                  (karaka-membership-field example-pac-kartf-membership 'kind)
+                  "karaka membership record kind")
+    (assert-equal 'situation-pac-01
+                  (karaka-membership-field example-pac-kartf-membership 'situation)
+                  "karaka membership is situation-scoped")
+    (assert-equal 'kartf
+                  (karaka-membership-field example-pac-kartf-membership 'karaka)
+                  "karaka membership preserves Panini identifier")
+    (assert-equal 'devadatta
+                  (karaka-membership-field example-pac-kartf-membership 'participant)
+                  "karaka membership names situated participant")
+    (assert-equal 'prov:example:pacati
+                  (karaka-membership-field example-pac-kartf-membership 'provenance)
+                  "karaka membership carries provenance")
+    (assert-equal 'needs-check
+                  (karaka-membership-field example-pac-kartf-membership 'status)
+                  "karaka membership keeps uncertain status explicit")))
+
 (def test-bavati-execution
   (lambda ()
     (assert-equal 7 (bavati-step-count (derive-Bavati))
@@ -238,5 +259,6 @@
     (test-trace-canonical-serialization)
     (test-explanation-boundary)
     (test-panini-core-syntax)
+    (test-situated-karaka-membership)
     (test-bavati-execution)
     (print "Tests complete.")))

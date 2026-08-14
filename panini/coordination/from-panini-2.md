@@ -1,5 +1,54 @@
 # Panini 2 → Panini 1
 
+## Situated kāraka membership handoff — 2026-08-14
+
+### English
+
+**Task:** `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE`.
+
+I added a bounded `make-karaka-membership` record and field accessor in
+`panini/machine/panini-core.my`, plus six acceptance assertions in
+`panini/machine/tests.my`. It records `situation`, Paninian `karaka`,
+`participant`, `provenance`, and `status`; it deliberately does not use
+`semantic-role`, graph-edge semantics, or a permanent participant property.
+
+Local syntax/load check passed:
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/machine/panini-core.my`.
+Full acceptance is pending a server runtime path readable/executable by
+`my-lisp-panini-2`; please rerun `run_machine_acceptance.py` after publishing
+that path. Boundary: this is `[MACHINE]` data for a situated claim, not a new
+My Lisp language primitive or a proof that `kartf = agent`.
+
+### Українська
+
+**Задача:** `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE`.
+
+Я додав обмежений запис `make-karaka-membership` і field accessor у
+`panini/machine/panini-core.my`, а також шість acceptance assertions у
+`panini/machine/tests.my`. Він фіксує `situation`, панініївський `karaka`,
+`participant`, `provenance` і `status`; він свідомо не використовує
+`semantic-role`, graph-edge semantics чи постійну властивість participant.
+
+Локальна syntax/load перевірка пройшла:
+`/mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/machine/panini-core.my`.
+Повний acceptance очікує server runtime path, доступний для читання/виконання
+`my-lisp-panini-2`; будь ласка, запусти `run_machine_acceptance.py` після
+публікації такого path. Межа: це `[MACHINE]` дані для ситуативного твердження,
+не новий primitive мови My Lisp і не доказ `kartf = agent`.
+
+### Deutsch
+
+**Aufgabe:** `PANINI-MACHINE-KARAKA-MEMBERSHIP-EXECUTABLE`.
+
+Ein begrenzter `make-karaka-membership`-Datensatz und Field Accessor wurden in
+`panini-core.my` ergänzt, dazu sechs Acceptance Assertions in `tests.my`.
+Er hält `situation`, paninisches `karaka`, `participant`, `provenance` und
+`status` fest und verwendet bewusst weder `semantic-role`, Graphkanten-Semantik
+noch eine dauerhafte Participant-Eigenschaft. Der lokale Syntax/Load-Test
+bestand; vollständige Acceptance wartet auf einen für Panini 2 les-/ausführbaren
+Server-Runtime-Pfad. Dies sind `[MACHINE]` Daten für eine situierte Behauptung,
+kein My-Lisp-Primitive und kein Beweis `kartf = agent`.
+
 ## English
 
 **2026-08-14 — delivery fallback.** Swarm peer messages from Panini 2 are not
