@@ -578,77 +578,39 @@ symbolic representation
 
 Але це не Phase 1.
 
-## 21. Суворо розділяти три рівні
+## 21. Foundation Independence Test та Source Ladder
 
-У кожному дослідницькому документі використовувати:
+Для того, щоб проєкт не став "slave-проєктом" My Lisp, запроваджується **Foundation Independence Test**:
+Кожен документ у папці `foundation/` (чи `sastra/`) має залишатися повністю осмисленим, якщо видалити з нього всі згадки про My Lisp, Lisp, VM, compiler, FPGA, edge, execution context та будь-які інші сучасні CS-аналогії.
 
-```text
-[PANINI]
-Що фактично визначає система Паніні.
+Дослідження мають опиратися на **Source Ladder**. Для кожного машинного твердження застосовується послідовність (за необхідності занурення):
+`CLAIM` ↓ `Aṣṭādhyāyī` anchor ↓ `Kāśikā` explanation ↓ `Siddhāntakaumudī` derivational usage ↓ `Mahābhāṣya` / Vārttika if disputed ↓ `modern scholarship` ↓ `implementation comparison`
 
-[INTERPRETATION]
-Як це трактують дослідники/реалізації.
-
-[MY-LISP HYPOTHESIS]
-Як це потенційно може бути використано нами.
-```
-
-Наприклад, заборонено писати:
-
-```text
-it = compiler metadata
-```
-
-Правильно:
-
-```text
-[PANINI]
-опис механізму it
-
-[INTERPRETATION]
-роль у derivation
-
-[MY-LISP HYPOTHESIS]
-можлива аналогія з metadata/control tags
-```
-
-Це захистить проєкт від псевдоісторичних тверджень.
-
-## 22. Структура репозиторію
+## 22. Архітектура репозиторію (4 Поверхи)
 
 ```text
 panini/
 ├── README.md
 │
-├── foundation/
-│   ├── ontology.md
-│   ├── terminology.md
+├── sastra/ (або foundation/)
+│   ├── karaka.md      (лише традиція, жодного CS)
 │   ├── samjna.md
-│   ├── dhatu.md
-│   ├── karaka.md
-│   ├── pratyaya.md
-│   ├── it.md
-│   ├── pratyahara.md
-│   ├── anuvrtti.md
-│   └── rule-system.md
+│   └── dhatu.md
 │
-├── registry/
-│   ├── dhatu/
-│   ├── karaka/
-│   ├── samjna/
-│   └── rules/
+├── formal/
+│   └── (нейтральні формальні моделі, IR)
+│
+├── hypotheses/
+│   ├── karaka-machine-model.md (CS-аналогії, напр. H1a: edge, H1b: designation)
+│   └── samjna-machine-model.md
+│
+├── implementation/
+│   └── (My Lisp / FPGA / tools)
 │
 ├── research/
-│   ├── vidyut-analysis.md
-│   ├── heritage-analysis.md
-│   ├── panini-nlp-analysis.md
-│   └── computational-hypotheses.md
-│
-├── examples/
-│   └── derivations/
-│
-└── specs/
-    └── panini-foundation-v0.1.md
+│   ├── external-reviews/
+│   │   └── sarvam-hostile-review.md
+│   └── vidyut-analysis.md
 ```
 
 ## 23. Перший milestone
