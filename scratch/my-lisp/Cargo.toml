@@ -1,0 +1,28 @@
+[package]
+name = "my-lisp"
+version = "0.15.0"
+edition = "2021"
+license = "MIT"
+description = "Independent my-lisp core · Незалежне ядро my-lisp · Unabhängiger my-lisp-Kern"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+
+[dev-dependencies]
+# No dev-dependencies needed as of 2026-08-09: mccarthy.rs's fixture tests
+# used to need serde_json (conformance.json) and my-lisp-literate
+# (markdown-mode fixtures) — both gone now that tests/fixtures/conformance.my
+# is native my-lisp data (read via this crate's own `parse`) and the one
+# literate fixture was retired as redundant with my-lisp-literate's own
+# tests/literate_offsets.rs. The shipped library stays capability-free
+# either way (see docs/language-core.md).
+# Жодних dev-залежностей не потрібно з 2026-08-09: тести фікстур у
+# mccarthy.rs раніше потребували serde_json (conformance.json) і
+# my-lisp-literate (markdown-фікстури) — обидва зникли, тепер коли
+# tests/fixtures/conformance.my — рідні my-lisp-дані (читаються через
+# власний `parse` цього крейта), а єдину literate-фікстуру прибрано як
+# надлишкову відносно власних тестів my-lisp-literate у
+# tests/literate_offsets.rs. Бібліотека лишається без залежностей у будь-
+# якому разі (див. docs/language-core.md).
