@@ -128,3 +128,43 @@ authoritative dhatu source. Swarm: evidence `:310`, complete at gen 1.
 конверсія під `panini/machine/`; без зміни language surface; `panini-core.my`
 залишається snapshot, `registry/dhatu/*.yaml` — authoritative джерело dhātu.
 Swarm: evidence `:310`, complete на gen 1.
+
+## 2026-08-14 — task: PANINI-MACHINE-DERIVE-BAVATI-EXECUTION (completed)
+
+### English
+
+**ACK-with-handoff.** Commit `59e914b`. Files: `panini/machine/rules.my`
+(`derive-Bavati` now returns an executable 7-step trace: result record +
+seven typed state transitions, terminating `partial` with the four explicit
+unknowns from `research/bavati-derivation-machine-readiness.md`;
+`bavati-surface-terms` keeps the observed surface observation),
+`panini/machine/tests.my` (added `test-bavati-execution`, 7 assertions),
+`panini/tests/trace-fixtures/bhavati-source-path-partial-v0.1.yaml` (added
+`machine_exec: my-lisp-panini:rules.my:(derive-Bavati)`). Test command:
+`python3 panini/tests/run_machine_acceptance.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE ACCEPTANCE: PASS
+(69/69). Runtime = my-lisp debug build. Boundary: the trace deliberately
+terminates `partial` — the source-backed account of initial `S` in `Sap` and
+the bridge from it-analysis to the sArvadhAtuka guṇa precondition remain
+unknown; observed `Bavati` is a display observation, not proof of the
+unresolved guna/sandhi chain. No conflict/Tripādī event invented. Swarm:
+evidence `:314`, offer `:315`, complete at gen 1.
+
+### Українська
+
+**ACK-handoff.** Коміт `59e914b`. Файли: `panini/machine/rules.my`
+(`derive-Bavati` тепер повертає виконуваний 7-кроковий trace: result record +
+сім типізованих state transition, завершується `partial` з чотирма явними
+unknowns з `research/bavati-derivation-machine-readiness.md`;
+`bavati-surface-terms` зберігає спостережену поверхневу форму),
+`panini/machine/tests.my` (додано `test-bavati-execution`, 7 асерцій),
+`panini/tests/trace-fixtures/bhavati-source-path-partial-v0.1.yaml` (додано
+`machine_exec: my-lisp-panini:rules.my:(derive-Bavati)`). Test-команда:
+`python3 panini/tests/run_machine_acceptance.py --runtime
+/mnt/c/GitHub/my-lisp/target/debug/my-lisp` → PANINI MACHINE ACCEPTANCE: PASS
+(69/69). Runtime = my-lisp debug build. Межа: trace свідомо завершується
+`partial` — джерельно обґрунтований опис початкового `S` у `Sap` і міст від
+it-аналізу до передумови guṇa sArvadhAtuka лишаються невідомими; спостережене
+`Bavati` — display observation, не доказ невирішеного ланцюга guṇa/sandhi.
+Жодна conflict/Tripādī подія не вигадується. Swarm: evidence `:314`, offer
+`:315`, complete на gen 1.
