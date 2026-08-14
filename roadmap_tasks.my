@@ -117,7 +117,7 @@
     (priority . 9.3)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Design the first iteration of panini-machine-model-v0.1 in my-lisp.")
-    (done . ())
+    (done . (1))
   ))
   ("PANINI-SYMBOLIC-INFERENCE" . (
     (priority . 9.2)
