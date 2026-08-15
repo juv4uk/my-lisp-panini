@@ -814,3 +814,12 @@ FPGA
 > - **COORDINATOR**: (tauricode) планує задачі та агрегує їх.
 > 
 > **Головне правило рою**: Агент не володіє задачею, репозиторій володіє знанням. Агенти приходять, читають стан, виконують одну операцію, пишуть trace і йдуть. `.my` є lingua franca екосистеми (папка `ecosystem/`).
+
+## 28. Canonical Internally, Permissive Externally
+
+Агенти не зобов'язані мислити або генерувати нативні s-expressions на перших етапах. Ми підтримуємо 3 рівні взаємодії:
+- **Level 0**: Агент мислить у YAML/JSON/Markdown та використовує `swarm` CLI-утиліти (adapters) для реєстрації задач, клеймів та хендофів. Для швидкого старту використовуй `agent-cheatsheet.my`.
+- **Level 1**: Агент розуміє базовий `.my` (lists, symbols, strings) як data-only формат для координації (ніякого `eval`, closures чи макросів).
+- **Level 2**: Agent-native. Агент використовує `my-lisp` reasoning engine (query, explain, reason) для автоматичної валідації та побудови доказів.
+
+Зараз система перебуває у Phase 1: файли координації мають бути strictly data-only S-expressions.
