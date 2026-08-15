@@ -25,15 +25,15 @@ This repository is part of a larger epistemic chain. We consume facts from upstr
        ▼ (qualified claims)
        │
 [my-lisp-panini]
-(Downstream/Upstream: Pāṇinian ontology, saṃjñā, dhātu, derivations)
+(Knowledge Compiler: Pāṇinian ontology, saṃjñā, dhātu, derivations)
        │
        ▼ (computational hypotheses)
        │
 [My Lisp]
-(Downstream: Symbolic semantics, inference, proof-carrying IR, VM)
+(Semantic Substrate: Symbolic semantics, inference, proof-carrying IR, VM)
 ```
 
-The full mandate and methodology are in [AGENTS.md](AGENTS.md). Internal
+The full mandate and methodology are in [AGENTS.md](AGENTS.md). The repo coordination is governed by **Swarm Contract v0.1** (see `repo.my`). Internal
 identifiers use ASCII SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST and Devanāgarī
 are presentation forms only. Every formalized entity must strictly separate 4 layers of provenance: `[PANINI]`, `[SCHOLARLY INTERPRETATION]`, `[COMPUTATIONAL INTERPRETATION]`, and `[MY-LISP HYPOTHESIS]`.
 

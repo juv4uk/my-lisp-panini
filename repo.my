@@ -1,0 +1,18 @@
+(repository
+  (id my-lisp-panini)
+  (role knowledge-compiler)
+  (exports
+    panini-claims
+    derivations)
+  (imports
+    shiva-claims)
+  (capabilities
+    sanskrit
+    symbolic-reasoning
+    documentation)
+  (authorities
+    paninian-ontology)
+  (non-authorities
+    shiva-canon
+    my-lisp-runtime
+    fpga-hardware))

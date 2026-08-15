@@ -1,0 +1,10 @@
+(imports
+  (source "juv4uk/shiva-sutras")
+  (claims
+    (claim SS-CANON-001 (revision "a8391c4") (status resolved))
+    (claim SS-PRATYAHARA-001 (revision "a8391c4") (status supported))
+    (claim SS-MARKERS-001 (revision "a8391c4") (status supported))
+    (claim SS-MARKERS-002 (revision "a8391c4") (status supported))
+    (claim SS-MARKERS-003 (revision "a8391c4") (status supported))
+  )
+)
