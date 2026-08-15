@@ -9,7 +9,7 @@
     (priority . 9.8)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate anuvrtti.md to 4-layer architecture")
-    (done . ())
+    (done . (1))
   ))
   ("PANINI-MIGRATE-IT" . (
     (priority . 9.7)
