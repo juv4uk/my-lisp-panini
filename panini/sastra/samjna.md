@@ -1,95 +1,58 @@
 # saMjYA · saṃjñā: Technical Terms in Pāṇini's Grammar
 
 ## English
-
-This document explores the **saṃjñā** system based strictly on the traditional *vyākaraṇa* framework (Pāṇini, Patañjali, Kāśikā), excluding any modern computational or linguistic analogies.
-
-### The Concept of saṃjñā
-
-In the Aṣṭādhyāyī, `saṃjñā` (literally "shared designation" or "name") is a technical term introduced by a specific sūtra. Its sole purpose is to serve as a compact reference in subsequent sūtras.
-
-The mechanism operates through three distinct principles visible in the text:
-
-1. **Definition by Equation:** A sūtra assigns a name to a class or set without using a verb. The format is typically `X [is called] Y`. 
-   - **1.1.1 vṛddhir ādaic:** "`ā`, `ai`, `au` are called `vṛddhi`."
-   - **1.1.2 adeṅ guṇaḥ:** "`a`, `e`, `o` are called `guṇa`."
-   - **1.1.20 dādhā ghvadāp:** Roots in the form `dā` or `dhā` are called `ghu`, except `dā` with the *it*-marker `p`.
-   - **1.1.27 sarvādīni sarvanāmāni:** The list starting with `sarva` is called `sarvanāma` (pronominal).
-
-2. **Non-operational Nature:** A saṃjñā sūtra itself does not cause any grammatical change. For example, 1.1.1 does not change any vowel to `vṛddhi`; it only establishes the definition. This distinguishes them from *vidhi* sūtras (operational rules).
-
-3. **Compact Reference:** Later sūtras use the saṃjñā as a shorthand, avoiding the need to list all elements (like specific sounds or words) repeatedly.
-
-### Protection from Literal Interpretation
-
-A critical meta-rule (paribhāṣā) ensures technical terms are interpreted correctly:
-- **1.1.68 svaṃ rūpaṃ śabdasyāśabdasaṃjñā:** "A word's own form [denotes itself], except when it is a non-verbal saṃjñā."
-This rule dictates that when a word is used as a technical term (like *guṇa* or *vṛddhi*), it refers to its defined class of sounds or words, not its ordinary lexical meaning ("quality" or "growth").
-
-### The Scope (adhikāra) of saṃjñā
-
-Sūtra 1.4.1, *ākāḍārād ekā saṃjñā* ("Up to [the word] *kāḍāra*, only one designation [applies]"), opens a section (1.4.1–1.4.110) where multiple terms are defined. Within this section, if two designations are simultaneously applicable to the same entity, only one takes effect (typically the latter or more specific one). The *kāraka* categories (*kartṛ*, *karman*, etc.) are defined within this very section, demonstrating that they too are formally *saṃjñā*s.
-
----
+This document establishes the formal epistemology of the **saṃjñā** system in Pāṇini's grammar. It strictly separates the traditional source material from computational hypotheses.
 
 ## Українська
+Цей документ встановлює формальну епістемологію системи **saṃjñā** у граматиці Паніні. Він строго відокремлює традиційне джерельне знання від обчислювальних гіпотез.
 
-Цей документ досліджує систему **saṃjñā** виключно на основі традиційної бази *vyākaraṇa* (Паніні, Патанджалі, Kāśikā), виключаючи сучасні обчислювальні або лінгвістичні аналогії.
-
-### Поняття saṃjñā
-
-В Aṣṭādhyāyī `saṃjñā` (дослівно "спільне позначення" або "ім'я") — це технічний термін, запроваджений спеціальною сутрою. Його єдина мета — слугувати компактним посиланням у наступних сутрах.
-
-Механізм працює через три чіткі принципи, видимі в тексті:
-
-1. **Визначення через прирівнювання:** Сутра призначає ім'я класу або множині без використання дієслова. Типовий формат: `X [називається] Y`.
-   - **1.1.1 vṛddhir ādaic:** "`ā`, `ai`, `au` називаються `vṛddhi`."
-   - **1.1.2 adeṅ guṇaḥ:** "`a`, `e`, `o` називаються `guṇa`."
-   - **1.1.20 dādhā ghvadāp:** Корені у формі `dā` або `dhā` називаються `ghu`, окрім `dā` з маркером *it* `p`.
-   - **1.1.27 sarvādīni sarvanāmāni:** Список, що починається з `sarva`, називається `sarvanāma` (займенникові).
-
-2. **Неопераційний характер:** Сутра saṃjñā сама по собі не спричиняє жодних граматичних змін. Наприклад, 1.1.1 не перетворює жоден голосний на `vṛddhi`; вона лише встановлює визначення. Це відрізняє їх від сутр *vidhi* (операційних правил).
-
-3. **Компактне посилання:** Пізніші сутри використовують saṃjñā як скорочення, уникаючи необхідності щоразу перераховувати всі елементи (наприклад, конкретні звуки чи слова).
-
-### Захист від буквального тлумачення
-
-Важливе метаправило (paribhāṣā) забезпечує правильне тлумачення технічних термінів:
-- **1.1.68 svaṃ rūpaṃ śabdasyāśabdasaṃjñā:** "Власна форма слова [позначає саме себе], за винятком випадків, коли це не-словесна saṃjñā."
-Це правило встановлює, що коли слово використовується як технічний термін (наприклад, *guṇa* або *vṛddhi*), воно стосується визначеного ним класу звуків чи слів, а не його звичайного лексичного значення ("якість" або "зростання").
-
-### Область дії (adhikāra) saṃjñā
-
-Сутра 1.4.1, *ākāḍārād ekā saṃjñā* ("Аж до [слова] *kāḍāra* [застосовується] лише одне позначення"), відкриває розділ (1.4.1–1.4.110), де визначаються численні терміни. У цьому розділі, якщо до однієї сутності одночасно застосовні два позначення, діє лише одне (зазвичай пізніше або більш спеціальне). Категорії *kāraka* (*kartṛ*, *karman* тощо) визначаються саме в цьому розділі, що демонструє, що вони формально також є *saṃjñā*.
+## Deutsch
+Dieses Dokument begründet die formale Epistemologie des **saṃjñā**-Systems in Pāṇinis Grammatik. Es trennt strikt das traditionelle Quellenmaterial von rechnergestützten Hypothesen.
 
 ---
 
-## Deutsch
+## [PANINI]
 
-Dieses Dokument untersucht das **saṃjñā**-System streng auf der Grundlage des traditionellen *vyākaraṇa*-Rahmens (Pāṇini, Patañjali, Kāśikā), wobei moderne rechnergestützte oder linguistische Analogien ausgeschlossen werden.
+**Source Anchor:** Aṣṭādhyāyī 1.1.68, 1.4.1–1.4.110.
 
-### Das Konzept von saṃjñā
+In the Pāṇinian system, a `saṃjñā` is a technical designation (name or label) assigned to a specific grammatical entity, class of entities, or operation.
 
-In der Aṣṭādhyāyī ist `saṃjñā` (wörtlich "gemeinsame Bezeichnung" oder "Name") ein technischer Begriff, der durch ein spezifisches Sūtra eingeführt wird. Sein einziger Zweck besteht darin, in nachfolgenden Sūtras als kompakte Referenz zu dienen.
+### Key Principles
 
-Der Mechanismus operiert durch drei im Text sichtbare Prinzipien:
+1. **Definition by Equation (saṃjñā-sūtra):** A term is assigned to a class without operational verbs. 
+   - *Example (1.1.1 vṛddhir ādaic):* The phonemes `ā`, `ai`, `au` are designated by the term `vṛddhi`.
+   - *Example (1.1.2 adeṅ guṇaḥ):* The phonemes `a`, `e`, `o` are designated by the term `guṇa`.
 
-1. **Definition durch Gleichsetzung:** Ein Sūtra weist einer Klasse oder Menge einen Namen zu, ohne ein Verb zu verwenden. Das Format ist typischerweise `X [heißt] Y`.
-   - **1.1.1 vṛddhir ādaic:** "`ā`, `ai`, `au` heißen `vṛddhi`."
-   - **1.1.2 adeṅ guṇaḥ:** "`a`, `e`, `o` heißen `guṇa`."
-   - **1.1.20 dādhā ghvadāp:** Wurzeln in der Form `dā` oder `dhā` heißen `ghu`, außer `dā` mit dem *it*-Marker `p`.
-   - **1.1.27 sarvādīni sarvanāmāni:** Die Liste beginnend mit `sarva` heißt `sarvanāma` (pronominal).
+2. **Non-operational Nature:** A saṃjñā-sūtra itself does not trigger any grammatical derivation or transformation. It only establishes the binding between a name (`saṃjñā`) and its referent (`saṃjñin`).
 
-2. **Nicht-operationale Natur:** Ein saṃjñā-Sūtra selbst bewirkt keine grammatikalische Veränderung. Zum Beispiel ändert 1.1.1 keinen Vokal in `vṛddhi`; es legt nur die Definition fest. Dies unterscheidet sie von *vidhi*-Sūtras (operativen Regeln).
+3. **Protection from Literal Interpretation:** 
+   - **Sūtra 1.1.68 (svaṃ rūpaṃ śabdasyāśabdasaṃjñā):** "A word's own form [denotes itself], except when it is a non-verbal saṃjñā."
+   - This ensures that when a technical term is used in subsequent rules, it refers to its defined class, not its phonetic shape or everyday lexical meaning.
 
-3. **Kompakte Referenz:** Spätere Sūtras verwenden die saṃjñā als Abkürzung, wodurch vermieden wird, dass alle Elemente (wie bestimmte Laute oder Wörter) wiederholt aufgelistet werden müssen.
+4. **Scoping and Conflict Resolution (adhikāra):**
+   - **Sūtra 1.4.1 (ākāḍārād ekā saṃjñā):** "Up to [the word] *kāḍāra* [in rule 2.2.38], only one designation [applies]."
+   - When multiple terms in this section apply simultaneously to the same entity, only one takes effect (governed by specific conflict rules, usually the later rule). This section notably includes the definitions of all `kāraka` roles.
 
-### Schutz vor wörtlicher Interpretation
+## [SCHOLARLY INTERPRETATION]
 
-Eine kritische Metaregel (paribhāṣā) stellt sicher, dass Fachbegriffe richtig interpretiert werden:
-- **1.1.68 svaṃ rūpaṃ śabdasyāśabdasaṃjñā:** "Die eigene Form eines Wortes [bezeichnet sich selbst], es sei denn, es handelt sich um eine nicht-wörtliche saṃjñā."
-Diese Regel besagt, dass wenn ein Wort als Fachbegriff verwendet wird (wie *guṇa* oder *vṛddhi*), es sich auf die definierte Klasse von Lauten oder Wörtern bezieht, nicht auf seine gewöhnliche lexikalische Bedeutung ("Eigenschaft" oder "Wachstum").
+Modern linguistic and Indological scholarship (e.g., Cardona, Kiparsky) views `saṃjñā` as the cornerstone of Pāṇini's metalinguistic architecture. 
 
-### Der Geltungsbereich (adhikāra) von saṃjñā
+- **Artificial vs. Meaningful Terms:** Pāṇini uses both highly artificial, algebraic terms (like `ṭi`, `ghu`, `bha`) and terms drawn from conventional Sanskrit (like `kāraka`, `samāsa`, `sarvanāman`). However, rule 1.1.68 ensures that even conventional words, when established as saṃjñās, function purely as technical class labels.
+- **Economy (lāghava):** The primary motivation for the saṃjñā system is brevity. By assigning a short label to a large set or complex condition, subsequent operational rules (vidhi-sūtras) can be stated with extreme conciseness.
+- **Taxonomy:** The `ākāḍārād ekā saṃjñā` block (1.4.1–2.2.38) creates a strict taxonomy where certain grammatical properties are mutually exclusive.
 
-Sūtra 1.4.1, *ākāḍārād ekā saṃjñā* ("Bis zu [dem Wort] *kāḍāra* [gilt] nur eine Bezeichnung"), eröffnet einen Abschnitt (1.4.1–1.4.110), in dem mehrere Begriffe definiert werden. Innerhalb dieses Abschnitts gilt, wenn zwei Bezeichnungen gleichzeitig auf dieselbe Entität anwendbar sind, nur eine (typischerweise die spätere oder speziellere). Die *kāraka*-Kategorien (*kartṛ*, *karman* usw.) werden genau in diesem Abschnitt definiert, was zeigt, dass auch sie formal *saṃjñā*s sind.
+## [COMPUTATIONAL INTERPRETATION]
+
+Formally, a saṃjñā-sūtra acts as a **Type Definition**, **Macro**, or **Binding**. 
+
+- **Environment Binding:** In an abstract computational model, applying a saṃjñā-sūtra modifies the global or local environment by introducing a new symbol that evaluates to a specific set of entities or structural conditions.
+- **Evaluation Strategy:** When the engine encounters a rule containing a saṃjñā, it must expand or evaluate that symbol against the environment rather than treating it as a literal string token (mirroring rule 1.1.68).
+- **Mutual Exclusion (Tags/Enums):** The `ākāḍārād` block behaves like a strongly typed Enum or a set of mutually exclusive tags. An entity can hold various properties, but within this specific domain, assigning a new tag overwrites or preempts others based on priority rules.
+
+## [MY-LISP HYPOTHESIS]
+
+Could the `saṃjñā` mechanism be the direct equivalent of `(define ...)` or variable binding in a Lisp-like environment?
+
+- **Hypothesis 1 (Symbolic Tagging):** We can implement `saṃjñā` as semantic tags attached to the derivation state. When a token enters the system, a set of saṃjñā-sūtras runs as pattern-matching predicates, tagging the token (e.g., `[TAG: ghu]`).
+- **Hypothesis 2 (Proof-Carrying Context):** In our `(symbol value proof)` architecture, when a token is identified as `guṇa`, the proof graph must trace back not just to the operational rule, but to the specific `saṃjñā-sūtra` (1.1.2) that authorized this classification.
+- **Hypothesis 3 (Conflict Engine):** The `ākāḍārād ekā saṃjñā` block suggests that our My Lisp inference engine needs a dedicated subsystem for resolving tag conflicts, rather than just sequential execution.
