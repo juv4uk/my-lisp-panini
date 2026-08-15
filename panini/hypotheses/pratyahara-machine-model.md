@@ -1,5 +1,22 @@
 # Machine Models for pratyāhāra
 
+## Epistemic Dependencies (imported from `juv4uk/shiva-sutras`)
+
+> Розділ hypotheses — шар `[MY-LISP HYPOTHESIS]`/`[COMPUTATIONAL INTERPRETATION]`. Фундаментальні факти про Śiva-sūtras, механіку pratyāhāra та математичні властивості моделі імпортуються з upstream і **не** встановлюються тут. Джерело: `panini/coordination/dependencies.yaml`; upstream-реєстр: `shiva-sutras/docs/claims-export.yaml`.
+
+| Imported claim | status_at_import | min_status | revision | Використання тут |
+| :--- | :--- | :--- | :--- | :--- |
+| `SS-CANON-001` | `resolved` | `supported` | `a8391c4` | Канон 14 сутр у SLP1 (база для bitset) |
+| `SS-PRATYAHARA-001` | `supported` | `supported` | `a8391c4` | Механіка `start + it_marker = set` (H1) |
+| `SS-MARKERS-001` (M_min=14) | `proved-in-model` | `supported` | `a8391c4` | Обмеження: 14 маркерів, канонічний порядок досягає оптимуму |
+| `SS-MARKERS-002` | `proved-in-model` | `supported` | `a8391c4` | Рівно 2 оптимальні класи |
+| `SS-MARKERS-003` | `proved-in-model` | `supported` | `a8391c4` | Class B унікальний для безколізійної адресації — основа ISA-аналогії (H2) |
+| `SS-ORDER-001` | `proved` (`falsified` як гіпотеза унікальності) | `supported` | `a8391c4` | Забороняє аргумент «порядок унікальний через C1P» |
+
+**Boundary**: `[MY-LISP HYPOTHESIS]` (bitset/ISA/compile-time constant) — локальна інженерна інтерпретація; не є фактом про Паніні. `M_min = 14` доведено лише для 42-класової моделі upstream, не як історичний задум.
+
+---
+
 ## Hypothesis: `pratyāhāra` as a Bitset / Computed Constant
 
 This document outlines the provisional machine representation of **pratyāhāra** (compact phoneme sets) within the My Lisp/VM ecosystem. It addresses how the Śiva Sūtras are implemented as a computational data structure.

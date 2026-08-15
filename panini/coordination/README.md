@@ -15,6 +15,9 @@ peer-message не доставляється. Кожен агент пише app
 повідомлення підтвердженим, доки у Git не з'явиться файл-відповідь або оновлення
 задачі.
 
+Реєстр односторонніх епістемічних імпортів із `shiva-sutras` (claims, статуси,
+ревізії, споживачі) — [`dependencies.yaml`](dependencies.yaml).
+
 ## Deutsch
 
 Dieses Git-versionierte Postfach ist der Ersatzkanal, wenn Swarm-Peer-Nachrichten

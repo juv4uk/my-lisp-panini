@@ -632,7 +632,7 @@ result
 
 Правила взаємодії з `shiva-sutras`:
 1. **Односторонній імпорт**: `my-lisp-panini` не має права заново встановлювати чи "покращувати" фундаментальні факти про Śiva-sūtras. Він може лише споживати явно позначені результати з upstream.
-2. **Cross-Repo Provenance**: Заборонено копіювати твердження без походження. Кожен імпорт має вказувати репозиторій, конкретний claim, його статус (напр., `proved-in-model`, `UNRESOLVED`) та SHA комміту.
+2. **Cross-Repo Provenance**: Заборонено копіювати твердження без походження. Кожен імпорт має вказувати репозиторій, конкретний claim, його статус (напр., `proved-in-model`, `UNRESOLVED`) та SHA комміту. Канонічний реєстр усіх імпортів — `panini/coordination/dependencies.yaml` (має оновлюватися разом із будь-яким споживанням).
    ```yaml
    dependency:
      repository: juv4uk/shiva-sutras
@@ -640,6 +640,7 @@ result
      status_at_import: proved-in-model
      revision: <commit-sha>
    ```
+   Імпортовані ID (стабільні upstream-експорти, див. `shiva-sutras/docs/claims-export.yaml`): `SS-CANON-001`, `SS-PRATYAHARA-001`, `SS-MARKERS-001..003`, `SS-ORDER-001`, `SS-CORPUS-001`, `SS-EPISTEMIC-001..002`.
 3. **Обмеження гіпотез**: Невирішений статус (UNRESOLVED) в upstream не означає, що твердження хибне, але його не можна використовувати як foundation. На ньому можна будувати лише експериментальні гіпотези (`[EXPERIMENTAL HYPOTHESIS]`).
 4. **Заборона на диктування**: `my-lisp-panini` може ставити upstream-агенту лише дослідницькі питання. Заборонено давати завдання, які диктують бажаний результат (наприклад, "знайди докази, що pratyāhāra — це ISA encoding"). Upstream-результати потрібно поважати.
 

@@ -1,5 +1,18 @@
 # Śiva Sūtras та Pratyāhāra · Śiva Sūtras and Pratyāhāra · Śiva Sūtras und Pratyāhāra
 
+## Epistemic Dependencies (imported from `juv4uk/shiva-sutras`)
+
+> Канон 14 сутр і механіка pratyāhāra імпортуються з upstream; наведений нижче список у SLP1 — спожите подання, а не повторне встановлення фактів. Джерело: `panini/coordination/dependencies.yaml`; upstream-реєстр: `shiva-sutras/docs/claims-export.yaml`.
+
+| Imported claim | status_at_import | min_status | revision |
+| :--- | :--- | :--- | :--- |
+| `SS-CANON-001` | `resolved` | `supported` | `a8391c4` |
+| `SS-PRATYAHARA-001` | `supported` | `supported` | `a8391c4` |
+
+**Boundary**: При виявленні розбіжності між цим файлом та upstream-каноном — авторитетним є `SS-CANON-001`; розбіжність фіксується як `[REVALIDATE]`.
+
+---
+
 ## English
 
 Pāṇini begins his grammar not with rules of derivation, but with the **Śiva Sūtras** (14 aphorisms, `māheśvara sūtra`), which enumerate all phonemes of Sanskrit in a strictly defined sequence. 
