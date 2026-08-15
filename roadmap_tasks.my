@@ -1,4 +1,28 @@
 ((tasks . (
+  ("PANINI-DEPENDENCY-REGISTRY-AUTOMATION" . (
+    (priority . 9.8)
+    (capabilities . ("my-lisp-panini" "rust" "tooling"))
+    (description . "Automate validation of coordination/dependencies.yaml against upstream shiva-sutras.")
+    (done . ())
+  ))
+  ("PANINI-FOUNDATION-INDEPENDENCE-TEST-AUDIT" . (
+    (priority . 9.8)
+    (capabilities . ("my-lisp-panini" "documentation"))
+    (description . "Audit all sastra/ files against the Foundation Independence Test.")
+    (done . ())
+  ))
+  ("PANINI-TAILSCALE-NODE-DOCUMENTATION" . (
+    (priority . 9.6)
+    (capabilities . ("my-lisp-panini" "documentation"))
+    (description . "Document the Tailscale WSL connection flow for remote swarm nodes.")
+    (done . ())
+  ))
+  ("PANINI-UKRAINIAN-PRIMARY-DOCUMENTATION-MIGRATION" . (
+    (priority . 9.5)
+    (capabilities . ("my-lisp-panini" "documentation"))
+    (description . "Migrate and consolidate the primary documentation to Ukrainian.")
+    (done . ())
+  ))
   ("PANINI-MIGRATE-SAMJNA" . (
     (priority . 9.9)
     (capabilities . ("my-lisp-panini" "sanskrit"))
