@@ -14,67 +14,25 @@
 ---
 
 ## English
-
-Pāṇini begins his grammar not with rules of derivation, but with the **Śiva Sūtras** (14 aphorisms, `māheśvara sūtra`), which enumerate all phonemes of Sanskrit in a strictly defined sequence. 
-
-The full list in SLP1 notation (where bracketed letters are the `it`-markers at the end of each line, which are not part of the sound set themselves):
-```
- 1. a i u [Ṇ]
- 2. ṛ ḷ [k]
- 3. e o [ṅ]
- 4. ai au [c]
- 5. h y v r [ṭ]
- 6. l [ṇ]
- 7. ñ m ṅ ṇ n [m]
- 8. jh bh [ñ]
- 9. gh ḍh dh [ṣ]
-10. j b g ḍ d [ś]
-11. kh ph ch ṭh th c ṭ t [v]
-12. k p [y]
-13. ś ṣ s [r]
-14. h [l]
-```
-
-Sūtra **1.1.71** (`ādir antyena sahetā`, "the initial [letter] along with the final `it` [forms a designation]") defines the **pratyāhāra** mechanism: the initial letter of any line, combined with the `it`-marker of *any* subsequent line, designates the set of all sounds between them, inclusive (but excluding the `it`-markers themselves).
-
-For example, `ac` (from `a` in line 1 to the `it`-marker `c` in line 4) denotes the set of all vowels: `{a, i, u, ṛ, ḷ, e, o, ai, au}`. `hal` (from `h` in line 5 to the `it`-marker `l` in line 14) denotes all consonants. This is a highly compact notational mechanism to refer to specific sound classes.
-
----
+This document establishes the formal epistemology of the **pratyāhāra** system (compact phonetic sets) and the **Śiva Sūtras**. It separates the textual basis from computational interpretations.
 
 ## Українська
+Цей документ встановлюється формальну епістемологію системи **pratyāhāra** (компактні множини звуків) та **Śiva Sūtras**. Він відокремлює текстуальну базу від обчислювальних інтерпретацій.
 
-Паніні починає свою граматику не з правил деривації, а з **Śiva Sūtras** (14 афоризмів, `māheśvara sūtra`), які перелічують усі фонеми санскриту у строго визначеному порядку. 
-
-Повний список у транслітерації SLP1 (квадратні дужки позначають `it`-маркери в кінці кожного рядка, які самі не входять до множини звуків):
-```
- 1. a i u [Ṇ]
- 2. ṛ ḷ [k]
- 3. e o [ṅ]
- 4. ai au [c]
- 5. h y v r [ṭ]
- 6. l [ṇ]
- 7. ñ m ṅ ṇ n [m]
- 8. jh bh [ñ]
- 9. gh ḍh dh [ṣ]
-10. j b g ḍ d [ś]
-11. kh ph ch ṭh th c ṭ t [v]
-12. k p [y]
-13. ś ṣ s [r]
-14. h [l]
-```
-
-Сутра **1.1.71** (`ādir antyena sahetā`, "початкова [літера] разом із кінцевим `it` [утворює позначення]") визначає механізм **pratyāhāra**: початкова літера будь-якого рядка разом із `it`-маркером *будь-якого* пізнішого рядка позначає всі звуки між ними включно (сам `it` та інші проміжні `it` — ні).
-
-Наприклад, `ac` (від `a` в рядку 1 до `it`-маркера `c` в рядку 4) означає множину всіх голосних: `{a, i, u, ṛ, ḷ, e, o, ai, au}`. `hal` (від `h` в рядку 5 до `it`-маркера `l` в рядку 14) означає всі приголосні. Це надзвичайно компактний нотаційний механізм для позначення конкретних класів звуків.
+## Deutsch
+Dieses Dokument begründet die formale Epistemologie des **pratyāhāra**-Systems (kompakte phonetische Mengen) und der **Śiva Sūtras**. Es trennt die textliche Grundlage von rechnergestützten Interpretationen.
 
 ---
 
-## Deutsch
+## [PANINI]
 
-Pāṇini beginnt seine Grammatik nicht mit Ableitungsregeln, sondern mit den **Śiva Sūtras** (14 Aphorismen, `māheśvara sūtra`), die alle Phoneme des Sanskrit in einer streng definierten Reihenfolge aufzählen.
+**Source Anchor:** Śiva Sūtras 1–14, Aṣṭādhyāyī 1.1.71 (ādir antyena sahetā).
 
-Die vollständige Liste in SLP1-Transliteration (eingeklammerte Buchstaben sind die `it`-Marker am Ende jeder Zeile, die selbst nicht zur Lautmenge gehören):
-```
+Pāṇini begins his grammar with the **Śiva Sūtras** (māheśvara sūtra), which enumerate phonemes in a strictly defined sequence.
+
+### The Canonical Sūtras (`SS-CANON-001`)
+The full list in SLP1 notation (bracketed letters are the `it`-markers at the end of each line, not part of the sound set themselves):
+```text
  1. a i u [Ṇ]
  2. ṛ ḷ [k]
  3. e o [ṅ]
@@ -91,6 +49,31 @@ Die vollständige Liste in SLP1-Transliteration (eingeklammerte Buchstaben sind 
 14. h [l]
 ```
 
-Sūtra **1.1.71** (`ādir antyena sahetā`, "der Anfangs-[Buchstabe] zusammen mit dem finalen `it` [bildet eine Bezeichnung]") definiert den **pratyāhāra**-Mechanismus: Der Anfangsbuchstabe einer beliebigen Zeile, kombiniert mit dem `it`-Marker *jeder* nachfolgenden Zeile, bezeichnet die Menge aller dazwischenliegenden Laute (die `it`-Marker selbst ausgeschlossen).
+### The Pratyāhāra Mechanism (`SS-PRATYAHARA-001`)
+- **Sūtra 1.1.71 (ādir antyena sahetā):** "The initial [letter] along with the final `it` [forms a designation]".
+- The mechanism: The initial letter of any line, combined with the `it`-marker of *any* subsequent line, designates the set of all sounds between them, inclusive (but excluding the `it`-markers themselves).
+- **Example:** `ac` (from `a` in line 1 to the `it`-marker `c` in line 4) denotes the set of all vowels: `{a, i, u, ṛ, ḷ, e, o, ai, au}`. `hal` (from `h` in line 5 to the `it`-marker `l` in line 14) denotes all consonants.
 
-Zum Beispiel bezeichnet `ac` (von `a` in Zeile 1 bis zum `it`-Marker `c` in Zeile 4) die Menge aller Vokale: `{a, i, u, ṛ, ḷ, e, o, ai, au}`. `hal` (von `h` in Zeile 5 bis zum `it`-Marker `l` in Zeile 14) bezeichnet alle Konsonanten. Dies ist ein äußerst kompakter Notationsmechanismus zur Bezeichnung bestimmter Lautklassen.
+## [SCHOLARLY INTERPRETATION]
+
+Modern linguistic scholarship (e.g., Staal, Kiparsky, Petersen) views the Śiva Sūtras as one of the greatest achievements of early phonological feature geometry.
+
+- **Non-traditional Ordering:** Pāṇini intentionally broke the traditional, strictly phonetic Sanskrit alphabet ordering (*varṇasamāmnāya*) to optimize for operational rules. The sequence is arranged so that sounds undergoing similar grammatical operations are grouped together.
+- **Maximal Brevity (lāghava):** The arrangement minimizes the number of rules required in the Aṣṭādhyāyī. It is a sorting algorithm designed for maximum descriptive economy.
+- **Formal System:** It behaves like a formal algebra. The `pratyāhāra` is a substring extraction operator.
+
+## [COMPUTATIONAL INTERPRETATION]
+
+Formally, a `pratyāhāra` acts as **Set Comprehension**, an **Interval Definition**, or a **Computed Constant**.
+
+- **Substring Extraction:** It is a function `P(start_char, end_marker)` that returns a subset of an ordered array.
+- **Immutability:** The Śiva Sūtras are immutable. Therefore, all possible `pratyāhāra` sets can be computed at compile-time as constant sets or hash maps for O(1) membership checking.
+- **Equivalence to Regular Expressions:** A `pratyāhāra` like `ac` is computationally equivalent to a character class in a regular expression `[aiuṛḷeoaiau]`.
+
+## [MY-LISP HYPOTHESIS]
+
+How can My Lisp model `pratyāhāra` in a way that respects upstream constraints and supports Proof-Carrying Derivations?
+
+- **Upstream Dependencies:** The `shiva-sutras` repository has proven mathematically that the marker structure is optimal (`SS-MARKERS-001`, `SS-MARKERS-002`) and that "Class B" is unique for collision-free addressing (`SS-MARKERS-003`).
+- **Hypothesis 1 (Bitset / ISA Encoding):** Because the addressing is optimal and collision-free, My Lisp can encode the Śiva Sūtras natively as a Bitset or an Instruction Set Architecture (ISA) mask. A phoneme is a binary vector, and checking `ac` membership is a bitwise `AND` operation, resulting in extremely fast execution on an FPGA.
+- **Hypothesis 2 (Proof-Carrying Type System):** When a token is checked against `ac`, the evaluation might use the precomputed bitset for speed. However, the resulting proof graph `(symbol value proof)` must trace the `true` evaluation back to the definition `ādir antyena sahetā` and the specific subset `a i u Ṇ ... c`. The phonological check must be tied to the foundational layer, not just an opaque bitwise result.
