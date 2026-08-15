@@ -12,10 +12,11 @@ first establish what Pāṇini's system is; only then do we test which
 computational constructions might follow from it. No correspondence from
 `cons`/`car`/`cdr`/`lambda` to Sanskrit terminology is assumed in advance.
 
+Our ultimate goal is to build an **executable epistemology of Pāṇini**, where the system works with `(symbol value proof)` through **Proof-Carrying Derivations**. 
+
 The full mandate and methodology are in [AGENTS.md](AGENTS.md). Internal
 identifiers use ASCII SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST and Devanāgarī
-are presentation forms only. Each research document separates `[PANINI]`,
-`[INTERPRETATION]`, and `[MY-LISP HYPOTHESIS]`.
+are presentation forms only. Every formalized entity must strictly separate 4 layers of provenance: `[PANINI]`, `[SCHOLARLY INTERPRETATION]`, `[COMPUTATIONAL INTERPRETATION]`, and `[MY-LISP HYPOTHESIS]`.
 
 The first milestone, `panini-foundation-v0.1`, contains ontology, sources,
 and evidence-bound examples — no parser, complete NLP system, or My Lisp
@@ -31,10 +32,11 @@ stabilizes.
 `cons`/`car`/`cdr`/`lambda` до санскритських термінів ніколи не припускаються
 наперед.
 
+Наша мета — побудувати **executable epistemology Паніні**, де система працює зі `(symbol value proof)` через **Proof-Carrying Derivations**.
+
 Повний мандат і методологія — в [AGENTS.md](AGENTS.md). Внутрішні
 ідентифікатори використовують ASCII SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST і
-деванаґарі є лише presentation forms. Кожен дослідницький документ розділяє
-`[PANINI]`, `[INTERPRETATION]` і `[MY-LISP HYPOTHESIS]`.
+деванаґарі є лише presentation forms. Кожна формалізована сутність повинна строго розділяти 4 шари походження: `[PANINI]`, `[SCHOLARLY INTERPRETATION]`, `[COMPUTATIONAL INTERPRETATION]` і `[MY-LISP HYPOTHESIS]`.
 
 Перший milestone, `panini-foundation-v0.1`, містить онтологію, джерела й
 доказово простежені приклади — без parser-а, повної NLP-системи чи змін My
@@ -50,10 +52,11 @@ welche Rechenkonstruktionen sich daraus ergeben könnten. Eine Entsprechung
 von `cons`/`car`/`cdr`/`lambda` zu Sanskrit-Begriffen wird nie vorab
 angenommen.
 
+Unser Ziel ist der Aufbau einer **executable epistemology von Pāṇini**, wobei das System mit `(symbol value proof)` durch **Proof-Carrying Derivations** arbeitet.
+
 Das vollständige Mandat und die Methodik stehen in [AGENTS.md](AGENTS.md).
 Interne Bezeichner verwenden ASCII-SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST und
-Devanāgarī dienen nur der Darstellung. Jedes Forschungsdokument trennt
-`[PANINI]`, `[INTERPRETATION]` und `[MY-LISP HYPOTHESIS]`.
+Devanāgarī dienen nur der Darstellung. Jede formalisierte Entität muss 4 Herkunftsschichten strikt trennen: `[PANINI]`, `[SCHOLARLY INTERPRETATION]`, `[COMPUTATIONAL INTERPRETATION]` und `[MY-LISP HYPOTHESIS]`.
 
 Der erste Meilenstein, `panini-foundation-v0.1`, enthält Ontologie, Quellen
 und beweisgebundene Beispiele — ohne Parser, vollständiges NLP-System oder

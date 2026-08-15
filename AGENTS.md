@@ -2,13 +2,14 @@
 
 ## 1. Місія
 
-Ти відповідаєш за дослідження формальної системи граматики Pāṇini та створення
-`panini-foundation` — мінімального, точного й машинно-представимого фундаменту,
-який у майбутньому може використовуватися My Lisp та системою символьного ШІ.
+Ти відповідаєш за дослідження формальної системи граматики Pāṇini та побудову
+**executable epistemology Паніні**.
+
+Машина повинна працювати зі знанням, походженням знання і його виведенням:
+`(symbol value proof)`.
 
 Головний принцип:
-
-> Не перекладати Lisp санскритом. Спочатку реконструювати фундаментальну систему
+> Не перекладати Lisp санскритом і не «реалізовувати Паніні». Спочатку реконструювати фундаментальну систему
 > Паніні, а вже потім досліджувати, які обчислювальні конструкції природно з неї
 > випливають.
 
@@ -378,10 +379,10 @@ vipratiSedha
 
 Це критично для майбутнього inference engine.
 
-## 13. Не писати parser передчасно
+## 13. Не писати parser передчасно (Ніякого Panini NLP)
 
-До стабілізації `panini-foundation-v0.1` не потрібно будувати повну санскритську
-NLP-систему.
+До стабілізації `panini-foundation-v0.1` заборонено будувати повну санскритську
+NLP-систему або оптимізувати систему на здатність аналізувати довільний санскритський текст.
 
 Пріоритет:
 
@@ -390,7 +391,7 @@ knowledge
    ↓
 formalization
    ↓
-small executable experiments
+small executable experiments (one full derivation)
    ↓
 architecture
    ↓
@@ -578,13 +579,51 @@ symbolic representation
 
 Але це не Phase 1.
 
-## 21. Foundation Independence Test та Source Ladder
+## 21. Правило «Ніякої семантики без provenance»
+
+Заборонено вводити семантику (наприклад, графи, ролі, функції) без доведення її походження з системи Паніні.
+Кожен термін, кожна сутність у `foundation/` має бути задокументована за такою 4-шаровою структурою:
+
+```text
+[PANINI]
+джерело + sūtra + традиційне трактування
+
+[SCHOLARLY INTERPRETATION]
+що стверджує сучасна наука
+
+[COMPUTATIONAL INTERPRETATION]
+як це можна формалізувати
+
+[MY-LISP HYPOTHESIS]
+що ми хочемо з цього зробити
+```
+
+Жодна сутність з четвертого шару (гіпотези) не повинна автоматично проникати назад у перший шар.
 
 Для того, щоб проєкт не став "slave-проєктом" My Lisp, запроваджується **Foundation Independence Test**:
 Кожен документ у папці `foundation/` (чи `sastra/`) має залишатися повністю осмисленим, якщо видалити з нього всі згадки про My Lisp, Lisp, VM, compiler, FPGA, edge, execution context та будь-які інші сучасні CS-аналогії.
 
 Дослідження мають опиратися на **Source Ladder**. Для кожного машинного твердження застосовується послідовність (за необхідності занурення):
 `CLAIM` ↓ `Aṣṭādhyāyī` anchor ↓ `Kāśikā` explanation ↓ `Siddhāntakaumudī` derivational usage ↓ `Mahābhāṣya` / Vārttika if disputed ↓ `modern scholarship` ↓ `implementation comparison`
+
+## 21a. Proof-Carrying Derivation
+
+Центральною ідеєю системи є Proof-Carrying Derivation.
+Замість `input → engine → result` ми робимо:
+
+```text
+input
+ ↓
+state₀
+ ↓ rule X
+state₁
+ ↓ rule Y
+...
+result
++ proof graph
+```
+
+Результат без історії його отримання вважається неповним. Наступним практичним кроком має бути **одна повна канонічна derivation**, яка від початку до кінця генерує такий proof.
 
 ## 22. Архітектура репозиторію (4 Поверхи)
 
@@ -635,7 +674,7 @@ panini/
 Як працюють canonical SLP1 identifiers?
 ```
 
-І містити кілька повністю простежених прикладів, а не тисячі неперевірених
+І містити кілька повністю простежених прикладів (зокрема **одну повністю доказову derivation**), а не тисячі неперевірених
 записів.
 
 ## 24. Другий milestone
@@ -660,10 +699,6 @@ machine rule
 derivation
        ↓
 state transition
-
-semantic relation
-       ↓
-graph edge
 ```
 
 І тільки тут починається міст до:
@@ -675,7 +710,9 @@ VM
 FPGA
 ```
 
-## 25. Головне правило агента
+**Увага:** Концепції на зразок Graph Rewriting (або `semantic relation -> graph edge`) повинні розглядатися виключно як `[MY-LISP HYPOTHESIS]`, а не як встановлена базова онтологія. Слід також розглядати Term Rewriting, Constraint Propagation чи Contextual Transformations.
+
+## 25. Нові пріоритети та головне правило агента
 
 Якщо виникає вибір між:
 
@@ -724,7 +761,21 @@ FPGA
 неправильною. Це теж корисний результат. Ми хочемо знайти справжню структуру, а
 не довести наперед придуману тезу.
 
-## Перше конкретне завдання
+## Перше конкретне завдання та Пріоритети
 
-Побудуй ontology map системи Паніні та зроби code-level audit Vidyut.
-Жодних змін My Lisp до завершення цього етапу.
+Припини розширення machine model. Заверши epistemically clean Panini foundation згідно з цими пріоритетами:
+
+```text
+1. saMjYA
+2. anuvftti + aDikAra
+3. it
+4. pratyAhAra
+5. paribhASA / conflict mechanisms
+6. dhAtu + pratyaya
+7. ONE canonical derivation (повністю доказова)
+8. Proof-Carrying Derivation IR
+9. machine model v0.1
+10. тільки потім general inference engine
+```
+
+Жодних змін My Lisp до завершення foundation milestone. Кожен термін повинен мати provenance, рівень абстракції, sūtra/source, traditional interpretation та окремо computational hypothesis.
