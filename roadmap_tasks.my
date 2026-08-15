@@ -15,7 +15,7 @@
     (priority . 9.7)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate it.md to 4-layer architecture")
-    (done . ())
+    (done . (1))
   ))
   ("PANINI-INTEGRATE-PRATYAHARA" . (
     (priority . 9.6)

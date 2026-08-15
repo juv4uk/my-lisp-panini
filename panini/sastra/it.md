@@ -1,59 +1,61 @@
-# it (anubandha) · it · it
+# it (anubandha): Metalinguistic Markers and Control Flow
 
 ## English
-
-`it` (इत्, literally "this [sound]"), also known in later tradition as *anubandha*, refers to a metalinguistic sound attached to elements in the formal grammar (such as in the *Dhātupāṭha* or within a *pratyaya*). Crucially, an `it` marker never appears in the final spoken word, but it governs how subsequent operational rules are applied.
-
-The mechanism is established in sūtras 1.3.2 through 1.3.9:
-- **Identification**: Sūtras 1.3.2 to 1.3.8 define exactly which sounds in which positions are considered `it` (e.g., 1.3.2 `upadeśe 'janunāsika it` states that a nasalized vowel in the original enunciation is an `it`).
-- **Deletion**: Sūtra 1.3.9 `tasya lopaḥ` ("its elision") is the operational rule that universally deletes all `it` sounds after they have fulfilled their control function.
-
-### Heterogeneity of it-markers
-
-An `it` is not a single homogeneous "special" marker. There are dozens of specific `it` sounds, and each governs a distinct grammatical effect. For example:
-- **Ṇit** (a pratyaya marked with *ṇ*): Blocks *guṇa* and *vṛddhi* strengthening of the base; triggers *samprasāraṇa* for roots like *grah* (6.1.15).
-- **Ñit** (a pratyaya marked with *ñ*): Causes *vṛddhi* (7.2.115); when attached to a *dhātu*, it allows both active and middle endings (*ubhayapada*, 1.3.72).
-- **pit** (a pratyaya marked with *p*): Indicates a grave (*anudātta*) accent (3.1.4); for *sārvadhātuka* affixes, it explicitly allows *guṇa*/*vṛddhi*, whereas all other non-*pit* affixes in that class are treated as *Ṇit* by default and thus block strengthening.
-
-### Connection to seṭ/aniṭ
-The *seṭ*/*aniṭ* distinction (whether a root takes an augmented *i* before certain suffixes) is controlled by a subset of the `it` system (e.g., *idit*, *īdit*, *udit* markers on the root itself).
-
----
+This document establishes the formal epistemology of the **it** (or *anubandha*) system in Pāṇini's grammar. It strictly separates the traditional source material from computational hypotheses.
 
 ## Українська
+Цей документ встановлює формальну епістемологію системи **it** (*anubandha*) у граматиці Паніні. Він строго відокремлює традиційне джерельне знання від обчислювальних гіпотез.
 
-`it` (इत्, буквально "цей [звук]"), також відомий у пізнішій традиції як *anubandha* — це металінгвістичний звук, доданий до елементів у формальній граматиці (наприклад, у *Dhātupāṭha* або всередині *pratyaya*). Критично важливо, що маркер `it` ніколи не з'являється у кінцевому вимовленому слові, але він керує тим, як застосовуються подальші операційні правила.
-
-Механізм встановлено в сутрах 1.3.2–1.3.9:
-- **Ідентифікація**: Сутри 1.3.2–1.3.8 точно визначають, які звуки в яких позиціях вважаються `it` (наприклад, 1.3.2 `upadeśe 'janunāsika it` стверджує, що назалізований голосний у первинному виголошенні є `it`).
-- **Елізія (видалення)**: Сутра 1.3.9 `tasya lopaḥ` ("його елізія") — це операційне правило, яке універсально видаляє всі `it`-звуки після того, як вони виконали свою керуючу функцію.
-
-### Гетерогенність it-маркерів
-
-`it` не є єдиним однорідним "спеціальним" маркером. Існують десятки конкретних `it`-звуків, і кожен керує окремим граматичним ефектом. Наприклад:
-- **Ṇit** (*pratyaya*, позначений *ṇ*): Блокує посилення основи (*guṇa* та *vṛddhi*); викликає *samprasāraṇa* для коренів типу *grah* (6.1.15).
-- **Ñit** (*pratyaya*, позначений *ñ*): Викликає *vṛddhi* (7.2.115); коли приєднаний до *dhātu*, дозволяє як активні, так і медіальні закінчення (*ubhayapada*, 1.3.72).
-- **pit** (*pratyaya*, позначений *p*): Вказує на низький (*anudātta*) акцент (3.1.4); для афіксів *sārvadhātuka* він явно дозволяє *guṇa*/*vṛddhi*, тоді як усі інші не-*pit* афікси в цьому класі за замовчуванням розглядаються як *Ṇit* і таким чином блокують посилення.
-
-### Зв'язок із seṭ/aniṭ
-Розрізнення *seṭ*/*aniṭ* (чи приймає корінь вставний *i* перед певними суфіксами) контролюється підмножиною системи `it` (наприклад, маркерами *idit*, *īdit*, *udit* на самому корені).
+## Deutsch
+Dieses Dokument begründet die formale Epistemologie des **it**- (*anubandha*)-Systems in Pāṇinis Grammatik. Es trennt strikt das traditionelle Quellenmaterial von rechnergestützten Hypothesen.
 
 ---
 
-## Deutsch
+## [PANINI]
 
-`it` (इत्, wörtlich "dieser [Laut]"), in der späteren Tradition auch als *anubandha* bekannt, bezieht sich auf einen metalinguistischen Laut, der an Elemente in der formalen Grammatik (wie im *Dhātupāṭha* oder innerhalb eines *pratyaya*) angehängt wird. Entscheidend ist, dass ein `it`-Marker niemals im endgültig gesprochenen Wort erscheint, aber er steuert, wie nachfolgende operative Regeln angewendet werden.
+**Source Anchor:** Aṣṭādhyāyī 1.3.2–1.3.9.
 
-Der Mechanismus wird in den Sūtras 1.3.2 bis 1.3.9 etabliert:
-- **Identifikation**: Die Sūtras 1.3.2 bis 1.3.8 definieren genau, welche Laute in welchen Positionen als `it` gelten (z. B. besagt 1.3.2 `upadeśe 'janunāsika it`, dass ein nasalierter Vokal in der ursprünglichen Äußerung ein `it` ist).
-- **Tilgung**: Sūtra 1.3.9 `tasya lopaḥ` ("seine Elision") ist die operative Regel, die universell alle `it`-Laute löscht, nachdem sie ihre Steuerfunktion erfüllt haben.
+`it` (इत्, literally "this [sound]"), also known in the later commentarial tradition as *anubandha*, is a metalinguistic sound attached to elements in the formal grammar (e.g., in the *Dhātupāṭha* or within a *pratyaya*). Crucially, an `it` marker never appears in the final spoken word, but its presence dictates how subsequent operational rules are applied.
 
-### Heterogenität der it-Marker
+### Key Principles
 
-Ein `it` ist kein einzelner homogener "Spezial"-Marker. Es gibt Dutzende spezifischer `it`-Laute, und jeder steuert einen bestimmten grammatikalischen Effekt. Zum Beispiel:
-- **Ṇit** (ein mit *ṇ* markiertes *pratyaya*): Blockiert die *guṇa*- und *vṛddhi*-Stärkung der Basis; löst *samprasāraṇa* für Wurzeln wie *grah* aus (6.1.15).
-- **Ñit** (ein mit *ñ* markiertes *pratyaya*): Verursacht *vṛddhi* (7.2.115); wenn es an ein *dhātu* angehängt wird, erlaubt es sowohl aktive als auch mediale Endungen (*ubhayapada*, 1.3.72).
-- **pit** (ein mit *p* markiertes *pratyaya*): Zeigt einen tiefen (*anudātta*) Akzent an (3.1.4); für *sārvadhātuka*-Affixe erlaubt es explizit *guṇa*/*vṛddhi*, während alle anderen Nicht-*pit*-Affixe in dieser Klasse standardmäßig als *Ṇit* behandelt werden und somit die Stärkung blockieren.
+1. **Identification of markers (1.3.2–1.3.8):** 
+   - A precise set of rules defines exactly which sounds in which positions are considered `it`.
+   - *Example (1.3.2 upadeśe 'janunāsika it):* A nasalized vowel in the original enunciation (upadeśa) is an `it`.
+   - *Example (1.3.3 halantyam):* A final consonant (in an upadeśa) is an `it`.
 
-### Verbindung zu seṭ/aniṭ
-Die *seṭ*/*aniṭ*-Unterscheidung (ob eine Wurzel vor bestimmten Suffixen ein eingeschobenes *i* annimmt) wird durch eine Teilmenge des `it`-Systems (z.B. *idit*, *īdit*, *udit* Marker an der Wurzel selbst) gesteuert.
+2. **Deletion (1.3.9 tasya lopaḥ):**
+   - The operational rule "its elision" universally deletes all `it` sounds. They do not surface in the final output.
+
+3. **Heterogeneity of Effects:**
+   - There are dozens of specific `it` sounds, each governing distinct grammatical effects.
+   - **Ṇit** (*ṇ*-marker): Blocks *guṇa* and *vṛddhi* strengthening; triggers *samprasāraṇa* (6.1.15).
+   - **Ñit** (*ñ*-marker): Causes *vṛddhi* (7.2.115); when on a *dhātu*, allows both active and middle endings (*ubhayapada*, 1.3.72).
+   - **pit** (*p*-marker): Indicates grave (*anudātta*) accent (3.1.4); explicitly allows *guṇa*/*vṛddhi* for *sārvadhātuka* affixes.
+
+## [SCHOLARLY INTERPRETATION]
+
+Modern linguistic scholarship (Cardona, Kiparsky, Sharma) views the `it` system as a sophisticated device for categorizing roots and affixes into intersective classes without creating separate lists.
+
+- **Marker vs. Marked:** The tradition strictly distinguishes between the marker (*anubandha*) and the item to which it is attached (*anubandhin*). 
+- **Algorithmic Control Flow:** The markers serve as control instructions for the derivation process. They trigger or block specific phonological and morphological operations.
+- **Economy (lāghava):** By embedding these instructions directly into the abstract underlying forms, Pāṇini avoids verbose conditional statements in the operational rules.
+
+## [COMPUTATIONAL INTERPRETATION]
+
+Formally, an `it` marker acts as **Metadata**, an **Annotation**, or a **Compiler Directive**.
+
+- **Ephemeral State:** The `it` marker represents data that is crucial during the derivation phase (compile-time) but must be stripped out before the final output generation (runtime). This is analogous to type erasure in generics, or non-emitting macros.
+- **Multi-phase Evaluation:** The system requires a distinct lifecycle:
+  1. *Lexical Phase:* Identification of markers attached to a token.
+  2. *Derivation Phase:* Execution of rules conditional on the presence/absence of these markers.
+  3. *Emission Phase:* `tasya lopaḥ` corresponds to the final flattening/emission where annotations are stripped.
+- **Property Bags:** An entity with an `it` marker can be modeled as a record or object carrying boolean flags or property bags (e.g., `{ base: "grah", properties: ["Ṇit"] }`).
+
+## [MY-LISP HYPOTHESIS]
+
+How can My Lisp model the `it` system to support Proof-Carrying Derivations?
+
+- **Hypothesis 1 (Symbolic Metadata):** In My Lisp, `it` markers can be implemented as Lisp property lists (plists) or attributes attached to a symbol: `(put 'grah 'it-marker 'ṇ)`. The operational rules check these properties via predicates like `(has-it-p token 'ṇ)`.
+- **Hypothesis 2 (Evaluation Lifecycle):** We can implement a specialized derivation engine where `tasya lopaḥ` is not a sequential rule that destroys data prematurely, but rather a final `(emit form)` function that strips all properties to yield a pure string.
+- **Hypothesis 3 (Proof Tracing):** In a Proof-Carrying Derivation `(symbol value proof)`, if a rule applies because a token is `Ṇit`, the proof graph must reference the original presence of the `ṇ` marker. If `tasya lopaḥ` truly erased the `ṇ` from memory midway through the derivation, the proof engine would lose the provenance. Thus, `it` markers must persist in the *derivation state* even if they are elided from the *surface form*.
