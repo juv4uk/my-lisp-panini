@@ -14,6 +14,25 @@ computational constructions might follow from it. No correspondence from
 
 Our ultimate goal is to build an **executable epistemology of Pāṇini**, where the system works with `(symbol value proof)` through **Proof-Carrying Derivations**. 
 
+## Cross-Repo Epistemic Architecture
+
+This repository is part of a larger epistemic chain. We consume facts from upstream repositories and build computational hypotheses upon them.
+
+```text
+[shiva-sutras]
+(Upstream Authority: Canon, pratyāhāra, markers, mathematics, epistemic tests)
+       │
+       ▼ (qualified claims)
+       │
+[my-lisp-panini]
+(Downstream/Upstream: Pāṇinian ontology, saṃjñā, dhātu, derivations)
+       │
+       ▼ (computational hypotheses)
+       │
+[My Lisp]
+(Downstream: Symbolic semantics, inference, proof-carrying IR, VM)
+```
+
 The full mandate and methodology are in [AGENTS.md](AGENTS.md). Internal
 identifiers use ASCII SLP1 (`kartf`, `karaRa`, `dhAtu`); IAST and Devanāgarī
 are presentation forms only. Every formalized entity must strictly separate 4 layers of provenance: `[PANINI]`, `[SCHOLARLY INTERPRETATION]`, `[COMPUTATIONAL INTERPRETATION]`, and `[MY-LISP HYPOTHESIS]`.
