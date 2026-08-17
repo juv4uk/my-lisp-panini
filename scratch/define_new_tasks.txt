@@ -1,0 +1,19 @@
+(define-task (task PANINI-MACHINE-MODEL-PROTOTYPE)
+  (priority 9.3)
+  (capabilities (my-lisp-panini lisp))
+  (description "Design the first iteration of panini-machine-model-v0.1 in my-lisp."))
+
+(define-task (task PANINI-SYMBOLIC-INFERENCE)
+  (priority 9.2)
+  (capabilities (my-lisp-panini lisp))
+  (description "Prototype the universal inference engine logic using anuvrtti."))
+
+(define-task (task PANINI-CLEANUP-FOUNDATION)
+  (priority 9.5)
+  (capabilities (my-lisp-panini sanskrit))
+  (description "Move remaining non-sastra files from foundation/ to registry/ and research/."))
+
+(define-task (task PANINI-VIDYUT-AUDIT)
+  (priority 9.4)
+  (capabilities (my-lisp-panini rust))
+  (description "Analyze the open-source Rust project Vidyut (Ambuda)."))

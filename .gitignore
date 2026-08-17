@@ -1,0 +1,9 @@
+.git-credentials
+
+panini/implementation/__pycache__/
+*.pyc
+*.tar.gz
+scratch/lisp_output.txt
+scratch/status.txt
+scratch/status2.txt
+scratch/status_all.txt
