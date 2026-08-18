@@ -28,7 +28,7 @@
 (def split-lines
   (lambda (s)
     (cond
-      ((string-empty? s) '())
+      ((string-empty? s) (quote ()))
       (t (cons (get-line s) (split-lines (get-rest-lines s)))))))
 
 (def trim-left
@@ -56,20 +56,20 @@
             (set-anit  (extract-field lines "set_anit:")))
         
         (let ((pada-sym (cond
-                          ((string-prefix? "parasmaipada" pada) 'parasmaipadin)
-                          ((string-prefix? "atmanepada" pada) 'Atmanepadin)
-                          (t 'uBayapadin)))
+                          ((string-prefix? "parasmaipada" pada) (quote parasmaipadin))
+                          ((string-prefix? "atmanepada" pada) (quote Atmanepadin))
+                          (t (quote uBayapadin))))
               (gana-num (read gana))
               (set-anit-sym (string->symbol set-anit)))
           (cons (string->symbol canonical)
-                (list (cons 'meaning "")
-                      (cons 'class gana-num)
-                      (cons 'properties (list pada-sym set-anit-sym)))))))))
+                (list (cons (quote meaning) "")
+                      (cons (quote class) gana-num)
+                      (cons (quote properties) (list pada-sym set-anit-sym)))))))))
 
 (def filter-yaml-files
   (lambda (files)
     (cond
-      ((atom files) '())
+      ((atom files) (quote ()))
       ((string-contains? ".yaml" (car files))
        (cons (car files) (filter-yaml-files (cdr files))))
       (t (filter-yaml-files (cdr files))))))
@@ -77,7 +77,7 @@
 (def process-dhatu-files
   (lambda (dir-path fs)
     (cond
-      ((atom fs) '())
+      ((atom fs) (quote ()))
       (t (cons (parse-dhatu-yaml (read-file (string-append dir-path (string-append "/" (car fs)))))
                (process-dhatu-files dir-path (cdr fs)))))))
 

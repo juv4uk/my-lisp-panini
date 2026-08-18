@@ -9,16 +9,16 @@
 (def list-but-last
   (lambda (values)
     (cond
-      ((atom (cdr values)) '())
+      ((atom (cdr values)) (quote ()))
       (t (cons (car values) (list-but-last (cdr values)))))))
 
 (def machine-rule
   (lambda (id condition action provenance)
-    (list (cons 'id id)
-          (cons 'condition condition)
-          (cons 'action action)
-          (cons 'provenance provenance))))
+    (list (cons (quote id) id)
+          (cons (quote condition) condition)
+          (cons (quote action) action)
+          (cons (quote provenance) provenance))))
 
 (def machine-rule-id
   (lambda (rule)
-    (cdr (assoc 'id rule))))
+    (cdr (assoc (quote id) rule))))

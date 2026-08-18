@@ -6,7 +6,7 @@
 (def not
   (lambda (value)
     (cond
-      (value '())
+      (value (quote ()))
       (t t))))
 
 (def second (lambda (values) (car (cdr values))))
@@ -15,21 +15,21 @@
 (def equal?
   (lambda (left right)
     (cond
-      ((atom left) (cond ((atom right) (eq left right)) (t '())))
-      ((atom right) '())
+      ((atom left) (cond ((atom right) (eq left right)) (t (quote ()))))
+      ((atom right) (quote ()))
       ((equal? (car left) (car right)) (equal? (cdr left) (cdr right)))
-      (t '()))))
+      (t (quote ())))))
 
 (def member?
   (lambda (item values)
     (cond
-      ((atom values) '())
+      ((atom values) (quote ()))
       ((equal? item (car values)) t)
       (t (member? item (cdr values))))))
 
 (def assoc
   (lambda (key entries)
     (cond
-      ((atom entries) '())
+      ((atom entries) (quote ()))
       ((equal? key (car (car entries))) (car entries))
       (t (assoc key (cdr entries))))))

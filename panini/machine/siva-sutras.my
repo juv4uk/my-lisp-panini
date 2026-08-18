@@ -1,22 +1,22 @@
 ;; Śiva Sūtra data and tested pratyāhāra subsets.
 
 (def *siva-sutras*
-  '((a i u R) (f x k) (e o N) (E O c) (h y v r w) (l R)
+  (quote ((a i u R) (f x k) (e o N) (E O c) (h y v r w) (l R)
     (Y m N R n m) (J B Y) (G Q D S) (j b g q d S)
-    (K P C W T c w t V) (k p y) (S z s r) (h l)))
+    (K P C W T c w t V) (k p y) (S z s r) (h l))))
 
 (def get-all-it-markers
   (lambda (sutras)
     (cond
-      ((atom sutras) '())
+      ((atom sutras) (quote ()))
       (t (cons (list-last (car sutras)) (get-all-it-markers (cdr sutras)))))))
 
 (def *it-markers* (get-all-it-markers *siva-sutras*))
 
 ;; These checked sets remain an explicit v0.1 machine fixture, not a
 ;; replacement for the source-governed pratyāhāra registry.
-(def AC '(a i u f x e o E O))
-(def HAL '(h y v r l Y m N R n J B G Q D j b g q d K P C W T c w t V k p S z s))
-(def IK '(i u f x))
-(def EC '(e o E O))
-(def YAN '(y v r l))
+(def AC (quote (a i u f x e o E O)))
+(def HAL (quote (h y v r l Y m N R n J B G Q D j b g q d K P C W T c w t V k p S z s)))
+(def IK (quote (i u f x)))
+(def EC (quote (e o E O)))
+(def YAN (quote (y v r l)))

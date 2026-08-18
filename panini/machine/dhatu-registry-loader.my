@@ -50,10 +50,10 @@
   (lambda (prefix s)
     (cond
       ((l-empty? prefix) t)
-      ((l-empty? s) '())
+      ((l-empty? s) (quote ()))
       ((eq (l-first prefix) (l-first s))
        (l-prefix?-onto (l-rest prefix) (l-rest s)))
-      (t '()))))
+      (t (quote ())))))
 
 (def l-prefix?
   (lambda (prefix s) (l-prefix?-onto prefix s)))
@@ -62,7 +62,7 @@
   (lambda (needle s)
     (cond
       ((l-prefix? needle s) t)
-      ((l-empty? s) '())
+      ((l-empty? s) (quote ()))
       (t (l-contains?-onto needle (l-rest s))))))
 
 (def l-contains?
@@ -126,7 +126,7 @@
       (t (l-reverse-onto (cdr values) (cons (car values) acc))))))
 
 (def l-reverse
-  (lambda (values) (l-reverse-onto values '())))
+  (lambda (values) (l-reverse-onto values (quote ()))))
 
 ;; split s on every occurrence of sep (a one-char string), dropping empty
 ;; segments: "" -> (), "a\nb" -> ("a" "b"), "a\n" -> ("a").
@@ -155,8 +155,8 @@
 (def l-split
   (lambda (s sep)
     (cond
-      ((l-empty? s) '())
-      (t (l-split-onto s sep '())))))
+      ((l-empty? s) (quote ()))
+      (t (l-split-onto s sep (quote ()))))))
 
 ;; ---------------------------------------------------------------------
 ;; Scalar parsing
@@ -175,25 +175,25 @@
       ((eq c "7") t)
       ((eq c "8") t)
       ((eq c "9") t)
-      (t '()))))
+      (t (quote ())))))
 
 (def l-numeric?-onto
   (lambda (s)
     (cond
       ((l-empty? s) t)
       ((l-digit? (l-first s)) (l-numeric?-onto (l-rest s)))
-      (t '()))))
+      (t (quote ())))))
 
 (def l-numeric?
   (lambda (s)
     (cond
-      ((l-empty? s) '())
+      ((l-empty? s) (quote ()))
       (t (l-numeric?-onto s)))))
 
 (def l-quoted?
   (lambda (s)
     (cond
-      ((l-empty? s) '())
+      ((l-empty? s) (quote ()))
       (t (eq (l-first s) "\"")))))
 
 (def l-unquote
@@ -215,7 +215,7 @@
     (cond
       ((l-quoted? s) (l-unquote s))
       ((l-true? s) t)
-      ((l-false? s) '())
+      ((l-false? s) (quote ()))
       ((not (l-numeric? s)) (string->symbol s))
       (t (read s)))))
 
@@ -226,7 +226,7 @@
 (def flow-pair
   (lambda (s)
     (cond
-      ((l-empty? s) '())
+      ((l-empty? s) (quote ()))
       (t
        ((lambda (colon)
           (cond
@@ -252,8 +252,8 @@
 (def parse-flow
   (lambda (s)
     (cond
-      ((l-empty? s) '())
-      (t (parse-flow-onto (l-slice s 1 (- (l-length s) 1)) '())))))
+      ((l-empty? s) (quote ()))
+      (t (parse-flow-onto (l-slice s 1 (- (l-length s) 1)) (quote ()))))))
 
 ;; ---------------------------------------------------------------------
 ;; Line handling and record parsing
@@ -268,7 +268,7 @@
   (lambda (line)
     ((lambda (colon)
        (cond
-         ((= colon -1) '())
+         ((= colon -1) (quote ()))
          (t (cons (l-strip (l-slice line 0 colon))
                   (l-strip (l-slice line (+ colon 1) (l-length line)))))))
      (l-index-of ":" line))))
@@ -320,7 +320,7 @@
       (t (cons (l-reverse acc) lines)))))
 
 (def collect-nested
-  (lambda (lines) (collect-nested-onto lines '())))
+  (lambda (lines) (collect-nested-onto lines (quote ()))))
 
 ;; Build one association list from a whole YAML record's lines.
 (def parse-record-onto
@@ -361,7 +361,7 @@
         (parse-key-value (car lines)))))))
 
 (def parse-record
-  (lambda (text) (parse-record-onto (l-lines text) '())))
+  (lambda (text) (parse-record-onto (l-lines text) (quote ()))))
 
 ;; ---------------------------------------------------------------------
 ;; Registry shaping
@@ -370,16 +370,16 @@
 (def pada-tag
   (lambda (pada)
     (cond
-      ((eq pada 'parasmaipada) 'parasmaipadin)
-      ((eq pada 'atmanepada) 'Atmanepadin)
-      ((eq pada 'ubhayapada) 'uBayapadin)
+      ((eq pada (quote parasmaipada)) (quote parasmaipadin))
+      ((eq pada (quote atmanepada)) (quote Atmanepadin))
+      ((eq pada (quote ubhayapada)) (quote uBayapadin))
       (t pada))))
 
 (def set-tag
   (lambda (set-anit)
     (cond
-      ((eq set-anit 'seT) 'seT)
-      ((eq set-anit 'aniT) 'aniT)
+      ((eq set-anit (quote seT)) (quote seT))
+      ((eq set-anit (quote aniT)) (quote aniT))
       (t set-anit))))
 
 (def record-field
@@ -393,23 +393,23 @@
   (lambda (record)
     ((lambda (canonical gana pada set-anit meaning)
        (cons canonical
-             (list (cons 'meaning meaning)
-                   (cons 'class gana)
-                   (cons 'properties (list (pada-tag pada) (set-tag set-anit)))
-                   (cons 'pada pada)
-                   (cons 'set-anit set-anit))))
-     (record-field record 'canonical)
-     (record-field record 'gana)
-     (record-field record 'pada)
-     (record-field record 'set-anit)
-     (record-field record 'traditional_meaning))))
+             (list (cons (quote meaning) meaning)
+                   (cons (quote class) gana)
+                   (cons (quote properties) (list (pada-tag pada) (set-tag set-anit)))
+                   (cons (quote pada) pada)
+                   (cons (quote set-anit) set-anit))))
+     (record-field record (quote canonical))
+     (record-field record (quote gana))
+     (record-field record (quote pada))
+     (record-field record (quote set-anit))
+     (record-field record (quote traditional_meaning)))))
 
 (def registry-name?
   (lambda (name)
     (cond
-      ((l-prefix? "." name) '())
+      ((l-prefix? "." name) (quote ()))
       ((l-contains? ".yaml" name) t)
-      (t '()))))
+      (t (quote ())))))
 
 (def load-registry-onto
   (lambda (dir names acc)
@@ -425,4 +425,4 @@
 
 (def load-dhatu-registry
   (lambda (dir)
-    (load-registry-onto dir (read-dir dir) '())))
+    (load-registry-onto dir (read-dir dir) (quote ()))))

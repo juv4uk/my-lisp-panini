@@ -6,11 +6,11 @@
 
 (def rule-utsarga
   (lambda (rule)
-    (rule-field 'utsarga rule)))
+    (rule-field (quote utsarga) rule)))
 
 (def rule-id
   (lambda (rule)
-    (rule-field 'id rule)))
+    (rule-field (quote id) rule)))
 
 (def apavada-of?
   (lambda (candidate general)
@@ -21,13 +21,13 @@
     (cond
       ((apavada-of? first second) first)
       ((apavada-of? second first) second)
-      (t '()))))
+      (t (quote ())))))
 
 ;; This trace records only a relation declared by this machine fixture. It is
 ;; neither a universal scheduler nor a proof of historical precedence.
 (def resolve-declared-apavada-traced
   (lambda (first second)
     (cond
-      ((apavada-of? first second) (list 'resolved-by 'apavAda first))
-      ((apavada-of? second first) (list 'resolved-by 'apavAda second))
-      (t (list 'unresolved '())))))
+      ((apavada-of? first second) (list (quote resolved-by) (quote apavAda) first))
+      ((apavada-of? second first) (list (quote resolved-by) (quote apavAda) second))
+      (t (list (quote unresolved) (quote ()))))))

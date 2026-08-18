@@ -8,23 +8,23 @@
 
 (def test-pratyahara
   (lambda ()
-    (assert-equal '(a i u f x e o E O) AC "AC fixture")
-    (assert-equal '(i u f x) IK "IK fixture")
-    (assert-equal '(e o E O) EC "EC fixture")))
+    (assert-equal (quote (a i u f x e o E O)) AC "AC fixture")
+    (assert-equal (quote (i u f x)) IK "IK fixture")
+    (assert-equal (quote (e o E O)) EC "EC fixture")))
 
 (def test-eco-sandhi
   (lambda ()
-    (assert-equal '(a y) (apply-eco-sandhi 'e 'a) "eco e+a")
-    (assert-equal '(a v) (apply-eco-sandhi 'o 'a) "eco o+a")
-    (assert-equal '(A y) (apply-eco-sandhi 'E 'a) "eco E+a")
-    (assert-equal '(A v) (apply-eco-sandhi 'O 'a) "eco O+a")))
+    (assert-equal (quote (a y)) (apply-eco-sandhi (quote e) (quote a)) "eco e+a")
+    (assert-equal (quote (a v)) (apply-eco-sandhi (quote o) (quote a)) "eco o+a")
+    (assert-equal (quote (A y)) (apply-eco-sandhi (quote E) (quote a)) "eco E+a")
+    (assert-equal (quote (A v)) (apply-eco-sandhi (quote O) (quote a)) "eco O+a")))
 
 (def test-guna
   (lambda ()
-    (assert-equal 'o (apply-guRa 'u) "guna u")
-    (assert-equal 'o (apply-guRa 'U) "guna U")
-    (assert-equal 'e (apply-guRa 'i) "guna i")
-    (assert-equal 'ar (apply-guRa 'f) "guna f")))
+    (assert-equal (quote o) (apply-guRa (quote u)) "guna u")
+    (assert-equal (quote o) (apply-guRa (quote U)) "guna U")
+    (assert-equal (quote e) (apply-guRa (quote i)) "guna i")
+    (assert-equal (quote ar) (apply-guRa (quote f)) "guna f")))
 
 (def test-prototype-derivations
   (lambda ()
@@ -40,11 +40,11 @@
                   "dadAti exception rule id")
     (assert-equal "2.4.72" (rule-utsarga dadati-rule-2-4-75)
                   "dadAti declared utsarga")
-    (assert-equal 'resolved-by
+    (assert-equal (quote resolved-by)
                   (car (resolve-declared-apavada-traced
                         dadati-rule-2-4-72 dadati-rule-2-4-75))
                   "dadAti conflict trace status")
-    (assert-equal 'apavAda
+    (assert-equal (quote apavAda)
                   (second (resolve-declared-apavada-traced
                            dadati-rule-2-4-72 dadati-rule-2-4-75))
                   "dadAti conflict trace reason")
@@ -53,16 +53,16 @@
                                    dadati-rule-2-4-72 dadati-rule-2-4-75)))
                   "dadAti conflict winner")
     (assert-equal t
-                  (member? 'slu-applied
+                  (member? (quote slu-applied)
                            (term-tags (car (dadati-apply-slu
-                                             (make-term '(d A) '(d A) 'dhAtu '())
-                                             (make-term '(S a p) '(S a p) 'pratyaya '())))))
+                                             (make-term (quote (d A)) (quote (d A)) (quote dhAtu) (quote ()))
+                                             (make-term (quote (S a p)) (quote (S a p)) (quote pratyaya) (quote ()))))))
                   "dadAti Slu dhatu transition")
     (assert-equal t
-                  (member? 'slu-elided
+                  (member? (quote slu-elided)
                            (term-tags (second (dadati-apply-slu
-                                               (make-term '(d A) '(d A) 'dhAtu '())
-                                               (make-term '(S a p) '(S a p) 'pratyaya '())))))
+                                               (make-term (quote (d A)) (quote (d A)) (quote dhAtu) (quote ()))
+                                               (make-term (quote (S a p)) (quote (S a p)) (quote pratyaya) (quote ()))))))
                   "dadAti Slu pratyaya transition")))
 
 (def canonical-empty-state
@@ -92,47 +92,47 @@
 ;; explainable when it carries rule + provenance; a conflict choice without
 ;; source support is an honest needs-check label, never derived.
 (def explanation-state-fact
-  (list 'state 'sha256-hex (sha256-hex canonical-empty-state)))
+  (list (quote state) (quote sha256-hex) (sha256-hex canonical-empty-state)))
 
 (def explanation-transition
-  (list (cons 'kind 'transition)
-        (cons 'before "state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854")
-        (cons 'after "state:sha256:7b19d66e1d5e24edf54f455a34bfb8fbeee28c3058b78801c1412ea1f431a09b")
-        (cons 'rule "1.1.2")
-        (cons 'provenance 'prov:machine:guna-fixture)))
+  (list (cons (quote kind) (quote transition))
+        (cons (quote before) "state:sha256:23aa0265da93189f9a093c2b6698ae91baa345c58a30754ee5cc6ffb7698e854")
+        (cons (quote after) "state:sha256:7b19d66e1d5e24edf54f455a34bfb8fbeee28c3058b78801c1412ea1f431a09b")
+        (cons (quote rule) "1.1.2")
+        (cons (quote provenance) (quote prov:machine:guna-fixture))))
 
 (def outside-boundary-claim
-  (list (cons 'kind 'claim)
-        (cons 'claim 'historical-intent)
-        (cons 'label 'needs-check)
-        (cons 'support '())))
+  (list (cons (quote kind) (quote claim))
+        (cons (quote claim) (quote historical-intent))
+        (cons (quote label) (quote needs-check))
+        (cons (quote support) (quote ()))))
 
 (def test-explanation-boundary
   (lambda ()
-    (assert-equal 'state (car explanation-state-fact)
+    (assert-equal (quote state) (car explanation-state-fact)
                   "explanation level: state fact")
-    (assert-equal 'needs-check
-                  (cdr (assoc 'label outside-boundary-claim))
+    (assert-equal (quote needs-check)
+                  (cdr (assoc (quote label) outside-boundary-claim))
                   "outside-boundary claim is honestly labelled needs-check")
-    (assert-equal '()
-                  (cdr (assoc 'support outside-boundary-claim))
+    (assert-equal (quote ())
+                  (cdr (assoc (quote support) outside-boundary-claim))
                   "outside-boundary claim exhibits no machine support")
     (assert-equal "1.1.2"
-                  (cdr (assoc 'rule explanation-transition))
+                  (cdr (assoc (quote rule) explanation-transition))
                   "transition explanation carries rule")
-    (assert-equal 'prov:machine:guna-fixture
-                  (cdr (assoc 'provenance explanation-transition))
+    (assert-equal (quote prov:machine:guna-fixture)
+                  (cdr (assoc (quote provenance) explanation-transition))
                   "transition explanation carries provenance")))
 
 (def test-karoti-derivation
   (lambda ()
     (assert-equal "3.1.79" (rule-id karoti-vikarana-snu)
                   "karoti vikaraNa rule id")
-    (assert-equal 'SNu (rule-field 'vikarana karoti-vikarana-snu)
+    (assert-equal (quote SNu) (rule-field (quote vikarana) karoti-vikarana-snu)
                   "karoti vikaraNa is SNu")
-    (assert-equal '(k ar) (apply-guRa-sounds '(k f))
+    (assert-equal (quote (k ar)) (apply-guRa-sounds (quote (k f)))
                   "karoti root guNa f -> ar")
-    (assert-equal '(o) (apply-guRa-sounds '(u))
+    (assert-equal (quote (o)) (apply-guRa-sounds (quote (u)))
                   "karoti vikaraNa guNa u -> o")
     (assert-equal "karoti" (concat-terms (derive-karoti))
                   "karoti surface form")))
@@ -141,28 +141,28 @@
   (lambda ()
     (assert-equal "3.1.68" (rule-id pacati-sap-vikarana)
                   "pacati vikaraNa rule id")
-    (assert-equal 'Sap (rule-field 'vikarana pacati-sap-vikarana)
+    (assert-equal (quote Sap) (rule-field (quote vikarana) pacati-sap-vikarana)
                   "pacati vikaraNa is Sap")
-    (assert-equal 1 (rule-field 'gana pac-gana)
+    (assert-equal 1 (rule-field (quote gana) pac-gana)
                   "pac is class 1 (bhvAdi)")
     (assert-equal "pacati" (concat-terms (derive-pacati))
                   "pacati surface form")
-    (assert-equal 'odana
-                  (cdr (assoc 'karman (cdr (assoc 'kAraka-args (pacati-3karaka)))))
+    (assert-equal (quote odana)
+                  (cdr (assoc (quote karman) (cdr (assoc (quote kAraka-args) (pacati-3karaka)))))
                   "pacati 3-kAraka karman")
-    (assert-equal 'sTAlI
-                  (cdr (assoc 'aDikaraRa (cdr (assoc 'kAraka-args (pacati-3karaka)))))
+    (assert-equal (quote sTAlI)
+                  (cdr (assoc (quote aDikaraRa) (cdr (assoc (quote kAraka-args) (pacati-3karaka)))))
                   "pacati 3-kAraka aDikaraRa")))
 
 (def test-anuvrtti-dag-edges
   (lambda ()
-    (assert-equal '() (rule-inherits-from panini-rule-3-1-1)
+    (assert-equal (quote ()) (rule-inherits-from panini-rule-3-1-1)
                   "3.1.1 aDikAra root has no inherited words")
-    (assert-equal '("3.1.1") (rule-inherits-from panini-rule-3-1-68)
+    (assert-equal (quote ("3.1.1")) (rule-inherits-from panini-rule-3-1-68)
                   "3.1.68 inherits from 3.1.1")
-    (assert-equal '("3.1.1") (rule-inherits-from panini-rule-3-1-79)
+    (assert-equal (quote ("3.1.1")) (rule-inherits-from panini-rule-3-1-79)
                   "3.1.79 inherits from 3.1.1")
-    (assert-equal 'pratyayaH (car (rule-inherits-words panini-rule-3-1-68))
+    (assert-equal (quote pratyayaH) (car (rule-inherits-words panini-rule-3-1-68))
                   "3.1.68 inherits word pratyayaH")
     (assert-equal t (dag-edges-resolve? anuvrtti-graph-rules)
                   "all anuvRtti edges resolve to existing rules")))
@@ -170,22 +170,22 @@
 (def test-negative-derivation-fixtures
   (lambda ()
     (assert-equal t
-                  (it-deletable? (term-add-tag (make-term '(s) '(s) 'it '()) 'it-marker))
+                  (it-deletable? (term-add-tag (make-term (quote (s)) (quote (s)) (quote it) (quote ())) (quote it-marker)))
                   "it deletion allowed only on marked it")
-    (assert-equal '()
-                  (it-deletable? (make-term '(s) '(s) 'it '()))
+    (assert-equal (quote ())
+                  (it-deletable? (make-term (quote (s)) (quote (s)) (quote it) (quote ())))
                   "unmarked it is rejected")
-    (assert-equal t (guNa-eligible? 'i) "guNa eligible on short i")
-    (assert-equal '() (guNa-eligible? 'a) "guNa rejected on a (no eligible condition)")
-    (assert-equal t (slp1-r-vowel? 'f) "SLP1 f recognized as R vowel")
-    (assert-equal '() (slp1-r-vowel? 'r) "bare r spelling rejected")
+    (assert-equal t (guNa-eligible? (quote i)) "guNa eligible on short i")
+    (assert-equal (quote ()) (guNa-eligible? (quote a)) "guNa rejected on a (no eligible condition)")
+    (assert-equal t (slp1-r-vowel? (quote f)) "SLP1 f recognized as R vowel")
+    (assert-equal (quote ()) (slp1-r-vowel? (quote r)) "bare r spelling rejected")
     (assert-equal t
-                  (sap-eligible? (make-term '(d A) '(d A) 'dhAtu '(class-1)))
+                  (sap-eligible? (make-term (quote (d A)) (quote (d A)) (quote dhAtu) (quote (class-1))))
                   "Sap eligible on non-juhotyAdi")
-    (assert-equal '()
-                  (sap-eligible? (make-term '(d A) '(d A) 'dhAtu '(juhotyAdi)))
+    (assert-equal (quote ())
+                  (sap-eligible? (make-term (quote (d A)) (quote (d A)) (quote dhAtu) (quote (juhotyAdi))))
                   "Sap rejected on juhotyAdi without Slu")
-    (assert-equal '()
+    (assert-equal (quote ())
                   (ambiguous-apavada? dadati-rule-2-4-72 dadati-rule-2-4-75)
                   "declared dadAti priority is unambiguous")
     (assert-equal t
@@ -194,41 +194,41 @@
 
 (def test-panini-core-syntax
   (lambda ()
-    (assert-equal "1.4.54" (get-karaka 'kartf 'sutra) "core get-karaka sutra")
-    (assert-equal 'agent (get-karaka 'kartf 'semantic-role) "core get-karaka role")
-    (assert-equal 'gam (cdr (assoc 'dhAtu example-gam)) "core example-gam dhatu")
-    (assert-equal 'sTAlI
-                  (cdr (assoc 'aDikaraRa (cdr (assoc 'kAraka-args example-pac-full))))
+    (assert-equal "1.4.54" (get-karaka (quote kartf) (quote sutra)) "core get-karaka sutra")
+    (assert-equal (quote agent) (get-karaka (quote kartf) (quote semantic-role)) "core get-karaka role")
+    (assert-equal (quote gam) (cdr (assoc (quote dhAtu) example-gam)) "core example-gam dhatu")
+    (assert-equal (quote sTAlI)
+                  (cdr (assoc (quote aDikaraRa) (cdr (assoc (quote kAraka-args) example-pac-full))))
                   "core example-pac-full aDikaraRa")
-    (assert-equal 8 (cdr (assoc 'class (cdr (assoc 'kf dhatu-registry))))
+    (assert-equal 8 (cdr (assoc (quote class) (cdr (assoc (quote kf) dhatu-registry))))
                   "core dhatu-registry kf class")))
 
 (def test-situated-karaka-membership
   (lambda ()
-    (assert-equal 'karaka-membership
-                  (karaka-membership-field example-pac-kartf-membership 'kind)
+    (assert-equal (quote karaka-membership)
+                  (karaka-membership-field example-pac-kartf-membership (quote kind))
                   "karaka membership record kind")
-    (assert-equal 'situation-pac-01
-                  (karaka-membership-field example-pac-kartf-membership 'situation)
+    (assert-equal (quote situation-pac-01)
+                  (karaka-membership-field example-pac-kartf-membership (quote situation))
                   "karaka membership is situation-scoped")
-    (assert-equal 'kartf
-                  (karaka-membership-field example-pac-kartf-membership 'karaka)
+    (assert-equal (quote kartf)
+                  (karaka-membership-field example-pac-kartf-membership (quote karaka))
                   "karaka membership preserves Panini identifier")
-    (assert-equal 'devadatta
-                  (karaka-membership-field example-pac-kartf-membership 'participant)
+    (assert-equal (quote devadatta)
+                  (karaka-membership-field example-pac-kartf-membership (quote participant))
                   "karaka membership names situated participant")
-    (assert-equal 'prov:example:pacati
-                  (karaka-membership-field example-pac-kartf-membership 'provenance)
+    (assert-equal (quote prov:example:pacati)
+                  (karaka-membership-field example-pac-kartf-membership (quote provenance))
                   "karaka membership carries provenance")
-    (assert-equal 'needs-check
-                  (karaka-membership-field example-pac-kartf-membership 'status)
+    (assert-equal (quote needs-check)
+                  (karaka-membership-field example-pac-kartf-membership (quote status))
                   "karaka membership keeps uncertain status explicit")))
 
 (def test-bavati-execution
   (lambda ()
     (assert-equal 7 (bavati-step-count (derive-Bavati))
                   "bavati executable step count")
-    (assert-equal 'partial (bavati-status (derive-Bavati))
+    (assert-equal (quote partial) (bavati-status (derive-Bavati))
                   "bavati trace terminates partial")
     (assert-equal "3.2.123" (bavati-step-rule (bavati-step-at (derive-Bavati) 1))
                   "bavati step 1 rule")
@@ -268,7 +268,7 @@
   (lambda ()
     ;; We expect *test-dhatu-registry* (populated via yaml-parser) to contain BU and others.
     ;; Check properties of 'BU
-    (let ((bu (assoc 'BU *test-dhatu-registry*)))
-      (let ((_ (assert-equal '1 (cdr (assoc 'class (cdr bu))) "yaml parser extracted BU class 1")))
-        (assert-equal '(parasmaipadin seT) (cdr (assoc 'properties (cdr bu))) "yaml parser extracted BU parasmaipadin seT")))))
+    (let ((bu (assoc (quote BU) *test-dhatu-registry*)))
+      (let ((_ (assert-equal (quote 1) (cdr (assoc (quote class) (cdr bu))) "yaml parser extracted BU class 1")))
+        (assert-equal (quote (parasmaipadin seT)) (cdr (assoc (quote properties) (cdr bu))) "yaml parser extracted BU parasmaipadin seT")))))
 

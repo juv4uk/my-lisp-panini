@@ -8,12 +8,12 @@
 ;; These represent the typed edges in our semantic graph AST.
 (def karaka-registry
   (list
-    (cons 'apAdAna    (list (cons 'sutra "1.4.24") (cons 'semantic-role 'source)))
-    (cons 'sampradAna (list (cons 'sutra "1.4.32") (cons 'semantic-role 'recipient)))
-    (cons 'karaRa     (list (cons 'sutra "1.4.42") (cons 'semantic-role 'instrument)))
-    (cons 'aDikaraRa  (list (cons 'sutra "1.4.45") (cons 'semantic-role 'location)))
-    (cons 'karman     (list (cons 'sutra "1.4.49") (cons 'semantic-role 'patient)))
-    (cons 'kartf      (list (cons 'sutra "1.4.54") (cons 'semantic-role 'agent)))))
+    (cons (quote apAdAna)    (list (cons (quote sutra) "1.4.24") (cons (quote semantic-role) (quote source))))
+    (cons (quote sampradAna) (list (cons (quote sutra) "1.4.32") (cons (quote semantic-role) (quote recipient))))
+    (cons (quote karaRa)     (list (cons (quote sutra) "1.4.42") (cons (quote semantic-role) (quote instrument))))
+    (cons (quote aDikaraRa)  (list (cons (quote sutra) "1.4.45") (cons (quote semantic-role) (quote location))))
+    (cons (quote karman)     (list (cons (quote sutra) "1.4.49") (cons (quote semantic-role) (quote patient))))
+    (cons (quote kartf)      (list (cons (quote sutra) "1.4.54") (cons (quote semantic-role) (quote agent))))))
 
 ;; Helper to fetch a karaka's property
 (def get-karaka
@@ -54,14 +54,14 @@
 ;; [MY-LISP HYPOTHESIS] — graph edge model, see hypothesis-ledger.md H1
 (def make-action-graph
   (lambda (action-id dhatu karaka-pairs)
-    (list (cons 'action-id action-id)
-          (cons 'dhAtu dhatu)
-          (cons 'kAraka-args karaka-pairs))))
+    (list (cons (quote action-id) action-id)
+          (cons (quote dhAtu) dhatu)
+          (cons (quote kAraka-args) karaka-pairs))))
 
 ;; Helper: get a kāraka entity from an action-graph
 (def action-get-karaka
   (lambda (ag k-id)
-    (cdr (assoc k-id (cdr (assoc 'kAraka-args ag))))))
+    (cdr (assoc k-id (cdr (assoc (quote kAraka-args) ag))))))
 
 ;; ==========================================
 ;; Situated kAraka membership
@@ -74,12 +74,12 @@
 ;; See research/semantic-grounding.md and hypothesis-ledger.md H1.
 (def make-karaka-membership
   (lambda (situation-id karaka-id participant provenance status)
-    (list (cons 'kind 'karaka-membership)
-          (cons 'situation situation-id)
-          (cons 'karaka karaka-id)
-          (cons 'participant participant)
-          (cons 'provenance provenance)
-          (cons 'status status))))
+    (list (cons (quote kind) (quote karaka-membership))
+          (cons (quote situation) situation-id)
+          (cons (quote karaka) karaka-id)
+          (cons (quote participant) participant)
+          (cons (quote provenance) provenance)
+          (cons (quote status) status))))
 
 (def karaka-membership-field
   (lambda (membership field)
@@ -88,20 +88,20 @@
 ;; Example only: the designation is scoped to this asserted situation. Neither
 ;; devadatta nor pac receives a global or fixed semantic role from this record.
 (def example-pac-kartf-membership
-  (make-karaka-membership 'situation-pac-01 'kartf 'devadatta
-                          'prov:example:pacati 'needs-check))
+  (make-karaka-membership (quote situation-pac-01) (quote kartf) (quote devadatta)
+                          (quote prov:example:pacati) (quote needs-check)))
 
 ;; Example 1: "devadatta goes to the village" — kartf + karman only
 (def example-gam
-  (make-action-graph 'action-gam 'gam
-    (list (cons 'kartf 'devadatta)
-          (cons 'karman 'grAma))))
+  (make-action-graph (quote action-gam) (quote gam)
+    (list (cons (quote kartf) (quote devadatta))
+          (cons (quote karman) (quote grAma)))))
 
 ;; Example 2: "devadatta cooks rice in the pot" — kartf + karman + aDikaraRa
 ;; (sTAlyAM pacati odanam — the canonical 3-kAraka pac example)
 (def example-pac-full
-  (make-action-graph 'action-pac 'pac
-    (list (cons 'kartf 'devadatta)
-          (cons 'karman 'odana)
-          (cons 'aDikaraRa 'sTAlI))))
+  (make-action-graph (quote action-pac) (quote pac)
+    (list (cons (quote kartf) (quote devadatta))
+          (cons (quote karman) (quote odana))
+          (cons (quote aDikaraRa) (quote sTAlI)))))
 

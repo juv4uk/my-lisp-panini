@@ -2,15 +2,15 @@
 
 (def make-term
   (lambda (source-form surface-form term-type tags)
-    (list (cons 'source-form source-form)
-          (cons 'surface-form surface-form)
-          (cons 'type term-type)
-          (cons 'tags tags))))
+    (list (cons (quote source-form) source-form)
+          (cons (quote surface-form) surface-form)
+          (cons (quote type) term-type)
+          (cons (quote tags) tags))))
 
-(def term-source-form (lambda (term) (cdr (assoc 'source-form term))))
-(def term-surface-form (lambda (term) (cdr (assoc 'surface-form term))))
-(def term-type (lambda (term) (cdr (assoc 'type term))))
-(def term-tags (lambda (term) (cdr (assoc 'tags term))))
+(def term-source-form (lambda (term) (cdr (assoc (quote source-form) term))))
+(def term-surface-form (lambda (term) (cdr (assoc (quote surface-form) term))))
+(def term-type (lambda (term) (cdr (assoc (quote type) term))))
+(def term-tags (lambda (term) (cdr (assoc (quote tags) term))))
 
 (def term-add-tag
   (lambda (term tag)
@@ -39,29 +39,29 @@
 (def apply-guRa
   (lambda (sound)
     (cond
-      ((equal? sound 'a) 'a)
-      ((equal? sound 'A) 'a)
-      ((equal? sound 'i) 'e)
-      ((equal? sound 'I) 'e)
-      ((equal? sound 'u) 'o)
-      ((equal? sound 'U) 'o)
-      ((equal? sound 'f) 'ar)
-      ((equal? sound 'F) 'ar)
-      ((equal? sound 'x) 'al)
+      ((equal? sound (quote a)) (quote a))
+      ((equal? sound (quote A)) (quote a))
+      ((equal? sound (quote i)) (quote e))
+      ((equal? sound (quote I)) (quote e))
+      ((equal? sound (quote u)) (quote o))
+      ((equal? sound (quote U)) (quote o))
+      ((equal? sound (quote f)) (quote ar))
+      ((equal? sound (quote F)) (quote ar))
+      ((equal? sound (quote x)) (quote al))
       (t sound))))
 
 (def vowel?
   (lambda (sound)
-    (member? sound '(a A i I u U f F x X e o E O))))
+    (member? sound (quote (a A i I u U f F x X e o E O)))))
 
 (def apply-eco-sandhi
   (lambda (sound next-sound)
     (cond
       ((not (vowel? next-sound)) sound)
-      ((equal? sound 'e) '(a y))
-      ((equal? sound 'o) '(a v))
-      ((equal? sound 'E) '(A y))
-      ((equal? sound 'O) '(A v))
+      ((equal? sound (quote e)) (quote (a y)))
+      ((equal? sound (quote o)) (quote (a v)))
+      ((equal? sound (quote E)) (quote (A y)))
+      ((equal? sound (quote O)) (quote (A v)))
       (t sound))))
 
 ;; The following outputs are deliberately narrow executable fixtures. They
@@ -79,38 +79,38 @@
         "independent-typed-operation-check-for-each-state-transition"))
 
 (def bavati-result
-  (list (cons 'status 'partial)
-        (cons 'state "state:bavati:sap-a-ti")
-        (cons 'unknowns bavati-unknowns)))
+  (list (cons (quote status) (quote partial))
+        (cons (quote state) "state:bavati:sap-a-ti")
+        (cons (quote unknowns) bavati-unknowns)))
 
 (def bavati-step
   (lambda (n rule before after operation verification)
-    (list (cons 'step n)
-          (cons 'rule rule)
-          (cons 'before before)
-          (cons 'after after)
-          (cons 'operation operation)
-          (cons 'verification verification))))
+    (list (cons (quote step) n)
+          (cons (quote rule) rule)
+          (cons (quote before) before)
+          (cons (quote after) after)
+          (cons (quote operation) operation)
+          (cons (quote verification) verification))))
 
 (def bavati-steps
   (list
     (bavati-step 1 "3.2.123" "state:bavati:input" "state:bavati:lat"
-                 "attach-lakara-candidate" 'derived)
+                 "attach-lakara-candidate" (quote derived))
     (bavati-step 2 "3.4.78" "state:bavati:lat" "state:bavati:tip"
-                 "select-tip-occurrence" 'derived)
+                 "select-tip-occurrence" (quote derived))
     (bavati-step 3 "1.3.3+1.3.9" "state:bavati:tip" "state:bavati:ti"
-                 "it-designation-final-p-then-lopa" 'derived)
+                 "it-designation-final-p-then-lopa" (quote derived))
     (bavati-step 4 "3.1.68" "state:bavati:ti" "state:bavati:sap-raw-ti"
-                 "insert-vikarana-Sap" 'needs-check)
+                 "insert-vikarana-Sap" (quote needs-check))
     (bavati-step 5 "1.3.8+1.3.3+1.3.9+3.4.113" "state:bavati:sap-raw-ti"
-                 "state:bavati:sap-a-ti" "sap-subtrace-lopa" 'needs-check)
+                 "state:bavati:sap-a-ti" "sap-subtrace-lopa" (quote needs-check))
     (bavati-step 6 "7.3.84" "state:bavati:sap-a-ti" "state:bavati:bo-a-ti"
-                 "guna-U-to-o" 'needs-check)
+                 "guna-U-to-o" (quote needs-check))
     (bavati-step 7 "6.1.78" "state:bavati:bo-a-ti" "state:bavati:bavati"
-                 "eco-sandhi-o-a-to-av-a" 'needs-check)))
+                 "eco-sandhi-o-a-to-av-a" (quote needs-check))))
 
 (def bavati-surface-terms
-  (list (make-term '(B U) '(B a v a t i) 'dhAtu '(machine-fixture observation))))
+  (list (make-term (quote (B U)) (quote (B a v a t i)) (quote dhAtu) (quote (machine-fixture observation)))))
 
 (def bavati-trace-result
   (lambda (trace) (car trace)))
@@ -120,11 +120,11 @@
 
 (def bavati-status
   (lambda (trace)
-    (cdr (assoc 'status (bavati-trace-result trace)))))
+    (cdr (assoc (quote status) (bavati-trace-result trace)))))
 
 (def bavati-unknowns-of
   (lambda (trace)
-    (cdr (assoc 'unknowns (bavati-trace-result trace)))))
+    (cdr (assoc (quote unknowns) (bavati-trace-result trace)))))
 
 (def bavati-step-count
   (lambda (trace) (length (bavati-trace-steps trace))))
@@ -140,48 +140,48 @@
     (bavati-step-at-from (bavati-trace-steps trace) n)))
 
 (def bavati-step-rule
-  (lambda (step) (cdr (assoc 'rule step))))
+  (lambda (step) (cdr (assoc (quote rule) step))))
 
 (def bavati-step-after
-  (lambda (step) (cdr (assoc 'after step))))
+  (lambda (step) (cdr (assoc (quote after) step))))
 
 (def derive-Bavati
   (lambda ()
-    (list bavati-result (cons 'steps bavati-steps))))
+    (list bavati-result (cons (quote steps) bavati-steps))))
 
 (def derive-dadAti
   (lambda ()
-    (list (make-term '(d A) '(d a d A t i) 'dhAtu '(machine-fixture)))) )
+    (list (make-term (quote (d A)) (quote (d a d A t i)) (quote dhAtu) (quote (machine-fixture))))) )
 
 (def derive-kArayati
   (lambda ()
-    (list (make-term '(k f) '(k A r a y a t i) 'dhAtu '(machine-fixture)))))
+    (list (make-term (quote (k f)) (quote (k A r a y a t i)) (quote dhAtu) (quote (machine-fixture))))))
 
 ;; Narrow conflict fixture for dadAti. These fields declare a machine relation;
 ;; they do not independently establish an interpretation of the sutra corpus.
 (def dadati-rule-2-4-72
-  (list (cons 'id "2.4.72")
-        (cons 'utsarga '())
-        (cons 'kind 'machine-fixture)))
+  (list (cons (quote id) "2.4.72")
+        (cons (quote utsarga) (quote ()))
+        (cons (quote kind) (quote machine-fixture))))
 
 (def dadati-rule-2-4-75
-  (list (cons 'id "2.4.75")
-        (cons 'utsarga "2.4.72")
-        (cons 'kind 'machine-fixture)))
+  (list (cons (quote id) "2.4.75")
+        (cons (quote utsarga) "2.4.72")
+        (cons (quote kind) (quote machine-fixture))))
 
 ;; A deliberately visible state change for the conflict acceptance test.
 (def dadati-apply-slu
   (lambda (dhatu sap)
-    (list (term-add-tag dhatu 'slu-applied)
-          (term-add-tag sap 'slu-elided))))
+    (list (term-add-tag dhatu (quote slu-applied))
+          (term-add-tag sap (quote slu-elided)))))
 
 ;; Class 8 (tanAdi) derivation fixture: kR + vikaraNa SNu + sArvadhAtuka ti.
 ;; Machine level only: 3.1.79 supplies the vikaraNa; guNa (7.3.84) maps f -> ar
 ;; and u -> o. This is a declared machine relation, not a historical derivation.
 (def karoti-vikarana-snu
-  (list (cons 'id "3.1.79")
-        (cons 'kind 'machine-fixture)
-        (cons 'vikarana 'SNu)))
+  (list (cons (quote id) "3.1.79")
+        (cons (quote kind) (quote machine-fixture))
+        (cons (quote vikarana) (quote SNu))))
 
 (def append-list
   (lambda (a b)
@@ -198,17 +198,17 @@
 (def apply-guRa-sounds
   (lambda (sounds)
     (cond
-      ((atom sounds) '())
+      ((atom sounds) (quote ()))
       (t (append-list (guNa-flatten (car sounds))
                       (apply-guRa-sounds (cdr sounds)))))))
 
 (def derive-karoti
   (lambda ()
-    (list (make-term '(k f) (apply-guRa-sounds '(k f))
-                     'dhAtu '(class-8 tanAdi guNa-applied machine-fixture))
-          (make-term '(u) (apply-guRa-sounds '(u))
-                     'vikaraNa '(SNu-3-1-79 guNa-applied machine-fixture))
-          (make-term '(t i) '(t i) 'pratyaya '(sArvadhAtuka machine-fixture)))))
+    (list (make-term (quote (k f)) (apply-guRa-sounds (quote (k f)))
+                     (quote dhAtu) (quote (class-8 tanAdi guNa-applied machine-fixture)))
+          (make-term (quote (u)) (apply-guRa-sounds (quote (u)))
+                     (quote vikaraNa) (quote (SNu-3-1-79 guNa-applied machine-fixture)))
+          (make-term (quote (t i)) (quote (t i)) (quote pratyaya) (quote (sArvadhAtuka machine-fixture))))))
 
 ;; Class 1 (bhvAdi) derivation fixture: pac + vikaraNa Sap + sArvadhAtuka ti.
 ;; Sap surfaces as a (3.1.68); no guNa applies to pac. The 3-kAraka example
@@ -217,71 +217,71 @@
 ;; sentence, not on the dhAtu alone. Machine level only; [MY-LISP HYPOTHESIS]
 ;; H1 graph-edge model (hypothesis-ledger.md).
 (def pacati-sap-vikarana
-  (list (cons 'id "3.1.68")
-        (cons 'kind 'machine-fixture)
-        (cons 'vikarana 'Sap)))
+  (list (cons (quote id) "3.1.68")
+        (cons (quote kind) (quote machine-fixture))
+        (cons (quote vikarana) (quote Sap))))
 
 (def pac-gana
-  (list (cons 'id "pac")
-        (cons 'gana 1)
-        (cons 'pada 'ubhayapada)
-        (cons 'kind 'machine-fixture)))
+  (list (cons (quote id) "pac")
+        (cons (quote gana) 1)
+        (cons (quote pada) (quote ubhayapada))
+        (cons (quote kind) (quote machine-fixture))))
 
 (def derive-pacati
   (lambda ()
-    (list (make-term '(p a c) '(p a c)
-                     'dhAtu '(class-1 bhvAdi machine-fixture))
-          (make-term '(a) '(a)
-                     'vikaraNa '(Sap-3-1-68 machine-fixture))
-          (make-term '(t i) '(t i) 'pratyaya '(sArvadhAtuka machine-fixture)))))
+    (list (make-term (quote (p a c)) (quote (p a c))
+                     (quote dhAtu) (quote (class-1 bhvAdi machine-fixture)))
+          (make-term (quote (a)) (quote (a))
+                     (quote vikaraNa) (quote (Sap-3-1-68 machine-fixture)))
+          (make-term (quote (t i)) (quote (t i)) (quote pratyaya) (quote (sArvadhAtuka machine-fixture))))))
 
 (def pacati-3karaka
   (lambda ()
-    (list (cons 'action-id 'action-pac)
-          (cons 'dhAtu 'pac)
-          (cons 'kAraka-args
-                (list (cons 'kartf 'devadatta)
-                      (cons 'karman 'odana)
-                      (cons 'aDikaraRa 'sTAlI))))))
+    (list (cons (quote action-id) (quote action-pac))
+          (cons (quote dhAtu) (quote pac))
+          (cons (quote kAraka-args)
+                (list (cons (quote kartf) (quote devadatta))
+                      (cons (quote karman) (quote odana))
+                      (cons (quote aDikaraRa) (quote sTAlI)))))))
 
 ;; Static anuvRtti-edge graph (machine fixture). Per
 ;; research/anuvrtti-graph-vs-dynamic-binding.md, anuvRtti is a property of
 ;; the text, not of execution state; each rule declares its inherited words
 ;; and their source sUtra explicitly instead of dynamic binding.
 (def panini-rule-3-1-1
-  (list (cons 'id "3.1.1")
-        (cons 'kind 'machine-fixture)
-        (cons 'inherits-from '())
-        (cons 'inherits-words '(pratyayaH))))
+  (list (cons (quote id) "3.1.1")
+        (cons (quote kind) (quote machine-fixture))
+        (cons (quote inherits-from) (quote ()))
+        (cons (quote inherits-words) (quote (pratyayaH)))))
 
 (def panini-rule-3-1-68
-  (list (cons 'id "3.1.68")
-        (cons 'kind 'machine-fixture)
-        (cons 'inherits-from '("3.1.1"))
-        (cons 'inherits-words '(pratyayaH))))
+  (list (cons (quote id) "3.1.68")
+        (cons (quote kind) (quote machine-fixture))
+        (cons (quote inherits-from) (quote ("3.1.1")))
+        (cons (quote inherits-words) (quote (pratyayaH)))))
 
 (def panini-rule-3-1-79
-  (list (cons 'id "3.1.79")
-        (cons 'kind 'machine-fixture)
-        (cons 'inherits-from '("3.1.1"))
-        (cons 'inherits-words '(pratyayaH))))
+  (list (cons (quote id) "3.1.79")
+        (cons (quote kind) (quote machine-fixture))
+        (cons (quote inherits-from) (quote ("3.1.1")))
+        (cons (quote inherits-words) (quote (pratyayaH)))))
 
 (def anuvrtti-graph-rules
   (list panini-rule-3-1-1 panini-rule-3-1-68 panini-rule-3-1-79))
 
 (def rule-inherits-from
   (lambda (rule)
-    (cdr (assoc 'inherits-from rule))))
+    (cdr (assoc (quote inherits-from) rule))))
 
 (def rule-inherits-words
   (lambda (rule)
-    (cdr (assoc 'inherits-words rule))))
+    (cdr (assoc (quote inherits-words) rule))))
 
 ;; All source rule ids referenced by any inherits-from edge.
 (def dag-source-ids
   (lambda (rules)
     (cond
-      ((atom rules) '())
+      ((atom rules) (quote ()))
       (t (cons (rule-id (car rules)) (dag-source-ids (cdr rules)))))))
 
 ;; Membership in a flat list of ids.
@@ -304,13 +304,13 @@
            (t (cond
                 ((dag-has-id? (car (rule-inherits-from (car rules))) all-ids)
                  (dag-edges-resolve-from? (cdr rules) all-ids))
-                (t '()))))))))
+                (t (quote ())))))))))
 
 (def null-edges?
   (lambda (edges)
     (cond
       ((atom edges) t)
-      (t '()))))
+      (t (quote ())))))
 
 ;; Negative / counterfactual fixtures (PANINI-MACHINE-NEGATIVE-TESTS).
 ;; Each predicate returns t when the operation is eligible, otherwise '().
@@ -320,24 +320,24 @@
 ;; 1. it-deletion order: an it marker may be deleted only when marked.
 (def it-deletable?
   (lambda (term)
-    (member? 'it-marker (term-tags term))))
+    (member? (quote it-marker) (term-tags term))))
 
 ;; 2. guNa eligibility: only short/long i u f x are eligible; a, A and the
 ;;    guNa results e o E O are not.
 (def guNa-eligible?
   (lambda (sound)
-    (member? sound '(i I u U f F x))))
+    (member? sound (quote (i I u U f F x)))))
 
 ;; 3. SLP1 r-vowel spelling: f = R, F = RR; a bare r is not a vowel glyph.
 (def slp1-r-vowel?
   (lambda (sound)
-    (member? sound '(f F))))
+    (member? sound (quote (f F)))))
 
 ;; 4. Sap eligibility: a juhotyAdi dhAtu requires Slu first; Sap is not
 ;;    eligible while the dhAtu still carries the juhotyAdi tag.
 (def sap-eligible?
   (lambda (dhatu)
-    (not (member? 'juhotyAdi (term-tags dhatu)))))
+    (not (member? (quote juhotyAdi) (term-tags dhatu)))))
 
 ;; 5. Conflict priority: mutual apavAda declarations are ambiguous and must be
 ;;    rejected; the declared pair must be unambiguous.
@@ -345,14 +345,14 @@
   (lambda (a b)
     (cond
       ((apavada-of? a b) (apavada-of? b a))
-      (t '()))))
+      (t (quote ())))))
 
 (def incorrect-priority-pair-a
-  (list (cons 'id "2.4.72")
-        (cons 'utsarga "2.4.75")
-        (cons 'kind 'machine-fixture)))
+  (list (cons (quote id) "2.4.72")
+        (cons (quote utsarga) "2.4.75")
+        (cons (quote kind) (quote machine-fixture))))
 
 (def incorrect-priority-pair-b
-  (list (cons 'id "2.4.75")
-        (cons 'utsarga "2.4.72")
-        (cons 'kind 'machine-fixture)))
+  (list (cons (quote id) "2.4.75")
+        (cons (quote utsarga) "2.4.72")
+        (cons (quote kind) (quote machine-fixture))))
