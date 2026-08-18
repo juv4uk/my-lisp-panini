@@ -4,7 +4,7 @@
 
 ## Обсяг
 
-Перевірено 19 файлів `panini/foundation/` та пов'язані `research/`/`specs/`
+Перевірено 19 файлів `panini/sastra/` та пов'язані `research/`/`specs/`
 посилання для канонічних SLP1-ідентифікаторів із високим ризиком плутанини:
 довгота голосних, `S`/`z`, `f`/`F`, а також назви ключових категорій.
 Еталон — `tests/slp1-conformance.yaml` і `foundation/terminology.md`; це не

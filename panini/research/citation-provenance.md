@@ -1,7 +1,7 @@
 # Citation provenance
 
 `citation-provenance.yaml` is the machine-readable inventory for all 50
-Aṣṭādhyāyī IDs cited in `panini/foundation/` and `panini/examples/` as of
+Aṣṭādhyāyī IDs cited in `panini/sastra/` and `panini/examples/` as of
 2026-08-13.
 
 It deliberately separates three questions that had previously been folded into

@@ -3,7 +3,7 @@
 
 > **Erratum (added 2026-08-13, PANINI-SLP1-LEXICON-ALIGNMENT / cross-referenced
 > against `my-lisp-panini`'s `panini/research/dhatupatha-verification.md` and
-> `panini/foundation/terminology.md#знайдені-й-виправлені-розбіжності`):**
+> `panini/sastra/terminology.md#знайдені-й-виправлені-розбіжності`):**
 > §8.2 below states the sibilant convention as `ś=z, ṣ=S`. This is backwards.
 > Verified against `vidyut-prakriya/src/sounds.rs` (articulation-place
 > classification, the most authoritative source checked) and independently

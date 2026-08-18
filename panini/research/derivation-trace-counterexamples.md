@@ -62,7 +62,7 @@ scope:
 ```
 
 Джерело межі: [upasarga crosswalk](upasarga-foundation-crosswalk.md) та
-[anuvftti foundation note](../foundation/anuvrtti.md).
+[anuvftti foundation note](../sastra/anuvrtti.md).
 
 ## 2. Факультативність: не один наступний стан
 
@@ -118,7 +118,7 @@ resolution:
   status: interpretation|source-checked|unresolved
 ```
 
-Джерело межі: [rule-system.md](../foundation/rule-system.md). Документ
+Джерело межі: [rule-system.md](../sastra/rule-system.md). Документ
 навмисно не стверджує, що 1.4.2 — універсальний runtime scheduler.
 
 ## Мінімальне уточнення template

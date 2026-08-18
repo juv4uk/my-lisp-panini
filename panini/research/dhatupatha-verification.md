@@ -22,7 +22,7 @@ Dhātupāṭha (2260 записів: `code` [gaṇa.номер], `dhatu` [SLP1, 
 **`ś = S`, `ṣ = z`** — точно протилежно. Виправлено 4 dhātu:
 `iS`→`iz`, `Sru`↔`zru`→`Sru` (відкат хибного проміжного виправлення),
 `dfS`↔`dfz`→`dfS` (те саме), `BAS`→`Baz`. Повна історія — в
-[`terminology.md`](../foundation/terminology.md#знайдені-й-виправлені-розбіжності).
+[`terminology.md`](../sastra/terminology.md#знайдені-й-виправлені-розбіжності).
 
 ## Звірка gaṇa/pada/значення 20 коренів проти первинного Dhātupāṭha
 

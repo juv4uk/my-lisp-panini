@@ -154,7 +154,7 @@ Lexical closure в мовах програмування:
 
 ## Джерела
 
-- [`foundation/anuvrtti.md`](../foundation/anuvrtti.md)
+- [`foundation/anuvrtti.md`](../sastra/anuvrtti.md)
 - [`machine/meta.my`](../machine/meta.my) — `with-adhikara` реалізація
 - [`specs/hypothesis-ledger.md`](../specs/hypothesis-ledger.md) — H4
 - [`specs/bridge-to-my-lisp.md`](../specs/bridge-to-my-lisp.md)

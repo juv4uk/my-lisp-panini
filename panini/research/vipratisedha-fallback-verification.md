@@ -151,7 +151,7 @@ Cardona (1976, "Pāṇini: A Survey of Research"):
 
 ## Джерела
 
-- [`foundation/paribhasha.md`](../foundation/paribhasha.md) — P1-P4
+- [`foundation/paribhasha.md`](../sastra/paribhasha.md) — P1-P4
 - [`machine/meta.my`](../machine/meta.my) — `resolve-conflict`
 - [`specs/hypothesis-ledger.md`](../specs/hypothesis-ledger.md) — H5
 - Cardona 1976, "Pāṇini: A Survey of Research" (вторинне джерело)

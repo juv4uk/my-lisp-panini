@@ -124,5 +124,5 @@ Eine Signaturänderung braucht eine eigene Kompatibilitätsaufgabe.
 
 - [`research/vidyut-analysis.md`](../research/vidyut-analysis.md)
 - `panini/machine/rules.my`, `panini/machine/meta.my`
-- [`foundation/rule-system.md`](../foundation/rule-system.md)
-- [`foundation/paribhasha.md`](../foundation/paribhasha.md)
+- [`foundation/rule-system.md`](../sastra/rule-system.md)
+- [`foundation/paribhasha.md`](../sastra/paribhasha.md)

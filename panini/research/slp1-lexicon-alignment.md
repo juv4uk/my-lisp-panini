@@ -17,7 +17,7 @@ this is the check that they haven't.
 ## Sibilant convention: now aligned (was not, transiently)
 
 `my-lisp-panini`'s own `panini/research/dhatupatha-verification.md` and
-`panini/foundation/terminology.md` already found and fixed this before I
+`panini/sastra/terminology.md` already found and fixed this before I
 checked: `reference-from-engineer-1/PANINI-GRAMMAR-REFERENCE.md` §8.2
 (the doc I copied into this repo on 2026-08-12) states the sibilant mapping
 backwards (`ś=z, ṣ=S`). `my-lisp-panini`'s Round 3 verification against
@@ -45,7 +45,7 @@ fix I made unilaterally:
   `display: { iast: bhāṣ, devanagari: भाष् }` — both of which show a
   **long** ā. Per SLP1 there is no ambiguity: lowercase `a` is always
   short, `A` is always long, so `Baz` should transliterate to `bhaṣ`
-  (short a), not `bhāṣ`. I found `panini/foundation/terminology.md`
+  (short a), not `bhāṣ`. I found `panini/sastra/terminology.md`
   documents `Baz` as a *deliberate*, dated (2026-08-13) correction from
   `BAS`, so this isn't an oversight I should silently overwrite — I
   initially did edit it to `BAz` before finding that history, reverted

@@ -67,7 +67,7 @@ Sanskrit Heritage Platform, Gérard Huet & Pawan Goyal, INRIA;
   `reference-from-engineer-1/PANINI-GRAMMAR-REFERENCE.md` §6.
 - Морфологічні модулі (`declension.ml`/`conjugation.ml`) відповідають
   тим самим `sup`/`tiN`-`pratyaya` системам, що й у
-  [`pratyaya.md`](../foundation/pratyaya.md).
+  [`pratyaya.md`](../sastra/pratyaya.md).
 
 ## What is implementation machinery
 

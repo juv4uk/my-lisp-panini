@@ -131,7 +131,7 @@ dA (dawати) — ātmanepada:
 
 ## Джерела
 
-- [`foundation/karaka.md`](../foundation/karaka.md) — визначення kāraka
+- [`foundation/karaka.md`](../sastra/karaka.md) — визначення kāraka
 - [`registry/dhatu/dA.yaml`](../registry/dhatu/dA.yaml) — pada: ubhayapada
 - [`registry/dhatu/BU.yaml`](../registry/dhatu/BU.yaml) — pada: parasmaipada
 - Aṣṭādhyāyī 1.3.26, 1.3.72 (за пам'яттю, потребує верифікації)

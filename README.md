@@ -84,7 +84,7 @@ Stabilisierung dieses Fundaments.
 
 ## Repository structure · Структура репозиторію · Repository-Struktur
 
-- [panini/foundation/](panini/foundation) — ontology and terminology ·
+- [panini/sastra/](panini/sastra) — ontology and terminology ·
   онтологія й термінологія · Ontologie und Terminologie;
 - [panini/registry/](panini/registry) — machine-readable records ·
   машинно-читані записи · maschinenlesbare Einträge;

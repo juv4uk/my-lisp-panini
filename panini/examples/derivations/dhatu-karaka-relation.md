@@ -2,8 +2,8 @@
 
 Статус: чернетка v0.1 (`PANINI-DHATU-KARAKA-RELATION`).
 
-Синтез [`foundation/dhatu.md`](../../foundation/dhatu.md) та
-[`foundation/karaka.md`](../../foundation/karaka.md) — центральне питання
+Синтез [`foundation/dhatu.md`](../../sastra/dhatu.md) та
+[`foundation/karaka.md`](../../sastra/karaka.md) — центральне питання
 §8 [`AGENTS.md`](../../../AGENTS.md): чи можна машинно представити
 відношення dhātu↔kāraka, і якщо так, то як саме — без нав'язування
 графової моделі джерелам заздалегідь.
@@ -62,7 +62,7 @@ kāraka-слотів"**. Наприклад:
    означення.
 
 Це узгоджується з тим, що вже було відмічено в
-[`karaka.md`](../../foundation/karaka.md) ("[MY-LISP HYPOTHESIS]" —
+[`karaka.md`](../../sastra/karaka.md) ("[MY-LISP HYPOTHESIS]" —
 "базове означення + шар dhātu-специфічних розширень"), і зараз
 підтверджується прикладом, а не залишається абстрактним припущенням.
 Дослідники сучасної обчислювальної традиції (Vidyut, Sanskrit Heritage)
@@ -97,8 +97,8 @@ kāraka-слотів"**. Наприклад:
 
 ## Джерела
 
-- [`foundation/dhatu.md`](../../foundation/dhatu.md),
-  [`foundation/karaka.md`](../../foundation/karaka.md) — реєстри, з
+- [`foundation/dhatu.md`](../../sastra/dhatu.md),
+  [`foundation/karaka.md`](../../sastra/karaka.md) — реєстри, з
   яких взято `pac`, `dA`, `BI`.
 - Aṣṭādhyāyī 1.4.24, 1.4.25, 1.4.32, 1.4.49 — sūtra-текст, перехресна
   перевірка все ще потрібна проти традиційного коментаря (правило 17,

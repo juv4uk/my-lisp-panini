@@ -142,5 +142,5 @@ sentence-analysis шаром.**
 - Patañjali, Mahābhāṣya ad 1.1.1 — традиційне джерело спорідненості
   граматики і онтології (відомо з вторинної літератури)
 - [`research/samjna-categorization-vs-tag.md`](samjna-categorization-vs-tag.md)
-- [`foundation/samjna.md`](../foundation/samjna.md)
-- [`foundation/karaka.md`](../foundation/karaka.md)
+- [`foundation/samjna.md`](../sastra/samjna.md)
+- [`foundation/karaka.md`](../sastra/karaka.md)

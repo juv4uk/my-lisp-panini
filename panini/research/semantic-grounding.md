@@ -98,8 +98,8 @@ contract that `PHILOSOPHY-MACHINE-UNDERSTANDING` should later make executable.
 
 ### Sources
 
-- [`foundation/samjna.md`](../foundation/samjna.md) — saṃjñā as checkable designation
-- [`foundation/karaka.md`](../foundation/karaka.md) — kāraka determined by sentence criteria
+- [`foundation/samjna.md`](../sastra/samjna.md) — saṃjñā as checkable designation
+- [`foundation/karaka.md`](../sastra/karaka.md) — kāraka determined by sentence criteria
 - [`research/samanya-visesa-ontology.md`](samanya-visesa-ontology.md) — universal/particular membership
 - [`specs/philosophy-control-layer-v0.1.md`](../specs/philosophy-control-layer-v0.1.md) — admission gates, falsifier, directionality
 - [`specs/derivation-machine-explanation-boundary-v0.1.md`](../specs/derivation-machine-explanation-boundary-v0.1.md) — falsifiable, exhibit-able machine explanation
@@ -200,8 +200,8 @@ trace, тест), який може його підтвердити чи спр�
 
 ### Джерела
 
-- [`foundation/samjna.md`](../foundation/samjna.md) — saṃjñā як перевірювана позначка
-- [`foundation/karaka.md`](../foundation/karaka.md) — kāraka, визначений умовами речення
+- [`foundation/samjna.md`](../sastra/samjna.md) — saṃjñā як перевірювана позначка
+- [`foundation/karaka.md`](../sastra/karaka.md) — kāraka, визначений умовами речення
 - [`research/samanya-visesa-ontology.md`](samanya-visesa-ontology.md) — членство universal/particular
 - [`specs/philosophy-control-layer-v0.1.md`](../specs/philosophy-control-layer-v0.1.md) — шлюзи допуску, фальсифікатор, спрямованість
 - [`specs/derivation-machine-explanation-boundary-v0.1.md`](../specs/derivation-machine-explanation-boundary-v0.1.md) — фальсифіковане, exhibit-able машинне пояснення
@@ -310,8 +310,8 @@ später ausführbar machen soll.
 
 ### Quellen
 
-- [`foundation/samjna.md`](../foundation/samjna.md) — saṃjñā als prüfbare Bezeichnung
-- [`foundation/karaka.md`](../foundation/karaka.md) — kāraka durch Satzkriterien bestimmt
+- [`foundation/samjna.md`](../sastra/samjna.md) — saṃjñā als prüfbare Bezeichnung
+- [`foundation/karaka.md`](../sastra/karaka.md) — kāraka durch Satzkriterien bestimmt
 - [`research/samanya-visesa-ontology.md`](samanya-visesa-ontology.md) — Zugehörigkeit universal/particular
 - [`specs/philosophy-control-layer-v0.1.md`](../specs/philosophy-control-layer-v0.1.md) — Zulassungsportale, Falsifikator, Richtung
 - [`specs/derivation-machine-explanation-boundary-v0.1.md`](../specs/derivation-machine-explanation-boundary-v0.1.md) — falsifizierbare, exhibit-fähige Maschinenerklärung

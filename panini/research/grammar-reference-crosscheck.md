@@ -6,9 +6,9 @@
 автор `engineer-1`, написано для `SANSKRIT-P1..P9` в `my-lisp`, статус
 "working reference", явно позначений як такий, що потребує звірки проти
 авторитетних джерел). Порівнюється з тим, що вже встановлено в
-[`foundation/ontology.md`](../foundation/ontology.md),
-[`foundation/dhatu.md`](../foundation/dhatu.md),
-[`foundation/karaka.md`](../foundation/karaka.md).
+[`foundation/ontology.md`](../sastra/ontology.md),
+[`foundation/dhatu.md`](../sastra/dhatu.md),
+[`foundation/karaka.md`](../sastra/karaka.md).
 
 ## Збіги (незалежне підтвердження)
 
@@ -37,7 +37,7 @@
   замінити/видалити/приєднати), **`niyama`** (обмеження іншого
   правила), **`atideśa`** (розширення — "розглядати X як Y"),
   **`paribhāṣā`** (метаправило-максима, напр. "правило діє щойно дана
-  його причина"). Наш [`ontology.md`](../foundation/ontology.md) явно
+  його причина"). Наш [`ontology.md`](../sastra/ontology.md) явно
   згадує лише перші три (`saMjYA`, `aDikAra`, `anuvftti`) як приклади
   metalanguage-рівня — `vidhi`/`niyama`/`atideSa`/`paribhAzA` там
   **не** зафіксовані.

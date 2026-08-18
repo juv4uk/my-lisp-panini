@@ -112,5 +112,5 @@ open_issues: ["..."]
 5. A final form never substitutes for evidence of its path.
 
 Related: [rule provenance](rule-provenance-schema.md),
-[anuvṛtti boundary](../foundation/anuvrtti.md), and
+[anuvṛtti boundary](../sastra/anuvrtti.md), and
 [derivation-example verification](../research/derivation-examples-verification.md).

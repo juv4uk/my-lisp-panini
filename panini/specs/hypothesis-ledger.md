@@ -50,7 +50,7 @@
 компілятора/control-тегам: присутні у проміжному представленні,
 керують обробкою, відсутні у фінальному виводі.
 
-**Докази за:** [`it.md`](../foundation/it.md) — структурний патерн
+**Докази за:** [`it.md`](../sastra/it.md) — структурний патерн
 (`upadeSa` → керує правилами → `1.3.9 tasya lopaH` видаляє) точно
 збігається з формою "control tag, що зникає перед фінальним виводом".
 
@@ -109,7 +109,7 @@ Aṣṭādhyāyī, що вимагає впорядкованої множини
 **Докази за:** обидва — "значення, захоплене з ширшого контексту, без
 явного повторення на кожному використанні" — та сама загальна форма.
 
-**Докази проти:** [`anuvrtti.md`](../foundation/anuvrtti.md) знайшла
+**Докази проти:** [`anuvrtti.md`](../sastra/anuvrtti.md) знайшла
 істотну розбіжність: lexical closure в мовах програмування має явні,
 синтаксично закриті межі; межі `aDikAra` **не завжди самоочевидні з
 голого тексту** — приклад `sTA`/`zWA` й межа `1.4.56` вимагали
@@ -140,7 +140,7 @@ Aṣṭādhyāyī, що вимагає впорядкованої множини
 **Твердження:** `paribhAzA` функціонує як метарівень, що керує
 застосуванням об'єктних правил — аналогічно `defmacro` в Lisp.
 
-**Докази за:** [`paribhasha.md`](../foundation/paribhasha.md) —
+**Докази за:** [`paribhasha.md`](../sastra/paribhasha.md) —
 реальна, академічно обґрунтована ієрархія пріоритету
 (`antaraNga`>`nitya`>`apavAda`>`vipratiSeDa` як fallback) — це справді
 метарівень над об'єктними `viDi`-правилами, структурно близький до
@@ -206,8 +206,8 @@ vs. 2.4.75 `Slu`-apavAda) і перевірити, чи він дає задок
 
 Кожен запис посилається на власні джерела вбудовано; зведений список
 основних документів: [`dhatu-karaka-relation.md`](../examples/derivations/dhatu-karaka-relation.md),
-[`it.md`](../foundation/it.md), [`anuvrtti.md`](../foundation/anuvrtti.md),
-[`paribhasha.md`](../foundation/paribhasha.md),
+[`it.md`](../sastra/it.md), [`anuvrtti.md`](../sastra/anuvrtti.md),
+[`paribhasha.md`](../sastra/paribhasha.md),
 [`research/vidyut-analysis.md`](../research/vidyut-analysis.md),
 [`research/panini-nlp-analysis.md`](../research/panini-nlp-analysis.md),
 [`specs/gate-review.md`](gate-review.md).

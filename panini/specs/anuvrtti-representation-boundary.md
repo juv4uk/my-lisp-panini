@@ -1,7 +1,7 @@
 # anuvftti/aDikAra: what a machine model must preserve vs. cannot encode
 
 Статус: v0.1 (`PANINI-ANUVRTTI-REPRESENTATION-BOUNDARY`). Синтезує
-[`anuvrtti.md`](../foundation/anuvrtti.md) у форму, придатну для
+[`anuvrtti.md`](../sastra/anuvrtti.md) у форму, придатну для
 майбутнього `panini-machine-model-v0.1` — що обов'язково зберегти, і
 що чесно позначити як недосяжне з наявних доказів.
 
@@ -76,6 +76,6 @@
 
 ## Джерела
 
-- [`foundation/anuvrtti.md`](../foundation/anuvrtti.md) — усі факти
+- [`foundation/anuvrtti.md`](../sastra/anuvrtti.md) — усі факти
   вище походять звідти, ця задача лише перекомпоновує їх у формат
   "зберегти / не можемо закодувати" для майбутнього проєктування.

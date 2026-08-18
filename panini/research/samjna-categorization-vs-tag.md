@@ -141,7 +141,7 @@
 
 ## Джерела
 
-- [`foundation/samjna.md`](../foundation/samjna.md) — первинне дослідження
-- [`foundation/ontology.md`](../foundation/ontology.md) — рівні сутностей
+- [`foundation/samjna.md`](../sastra/samjna.md) — первинне дослідження
+- [`foundation/ontology.md`](../sastra/ontology.md) — рівні сутностей
 - Aṣṭādhyāyī 1.1.1, 1.1.2, 1.1.68, 1.4.1 (за `samjna.md`, не перевірено повторно)
 - [`specs/hypothesis-ledger.md`](../specs/hypothesis-ledger.md) — H1, H2

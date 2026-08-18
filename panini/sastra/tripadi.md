@@ -1,7 +1,7 @@
 # tripAdI · Tripādī · Tripādī
 
 Статус: v0.1 (`PANINI-RESEARCH-TRIPADI`). Закриває TODO, двічі позначений у
-[`../foundation/anuvrtti.md`](../foundation/anuvrtti.md) та
+[`../sastra/anuvrtti.md`](../sastra/anuvrtti.md) та
 [`../specs/hypothesis-ledger.md`](../specs/hypothesis-ledger.md) (H4,
 тест фальсифікації) — межа `pratyaya`-`aDikAra` (3.1.1) виявилась пов'язаною
 не з єдиним "закриваючим" sūtra, а з переходом у принципово інший
@@ -55,7 +55,7 @@ Sūtra **8.2.1** `pUrvatrAsiddham` — буквально "[правило, за
 щодо [sūtra, які стоять] `pUrvatra` ("раніше [в тексті]", тобто поза
 `tripAdI`". Це `aDikAra`, що діє на весь `tripAdI` (8.2.1–8.4.68) —
 формально той самий механізм `aDikAra`/`anuvftti`, досліджений у
-[`../foundation/anuvrtti.md`](../foundation/anuvrtti.md), але тут явно
+[`../sastra/anuvrtti.md`](../sastra/anuvrtti.md), але тут явно
 встановлює **інший режим взаємодії правил**, а не просто область дії
 термінів.
 
@@ -144,6 +144,6 @@ Vidyut має окремий файл `tripadi.rs` (`vidyut-prakriya/src/tripadi
 
 - Aṣṭādhyāyī sūtra 8.2.1 — звірено проти `sanskrit/learnsanskrit.org`,
   `data/ashtadhyayi-rules.txt`, 2026-08-18.
-- [`../foundation/anuvrtti.md`](../foundation/anuvrtti.md),
+- [`../sastra/anuvrtti.md`](../sastra/anuvrtti.md),
   [`../specs/hypothesis-ledger.md`](../specs/hypothesis-ledger.md) —
   джерело відкритого TODO, який ця задача закриває.
