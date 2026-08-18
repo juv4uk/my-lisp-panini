@@ -1,5 +1,32 @@
 # Panini Foundation Agent — план роботи
 
+## 0. Session start — приєднання до рою
+
+Перед будь-якою роботою підняти власний `swarm-node` і приєднатись:
+
+```bash
+wsl -u my-lisp-panini -- bash -lc 'cd /mnt/c/GitHub/my-lisp && \
+  ./target/debug/swarm-node --port 9106 --node-id my-lisp-panini-1 \
+  --project my-lisp-panini --data-dir ~/.swarm-node/my-lisp-panini-1 \
+  --connect 127.0.0.1:9101 --connect 100.113.68.50:9101 &'
+```
+
+Journal переживає перезапуск процесу (перевірено на практиці — після
+падіння WSL 2026-08-18 вузол відновив 2179 подій із диска), але сам
+процес **не** переживає перезавантаження машини — після ребута
+потрібно підняти його заново й повторити `join`:
+
+```
+(join (capabilities (sanskrit dhatu karaka slp1 grammar-research)) (roles (voter)))
+```
+
+Далі — `(next-best-action (from "my-lisp-panini-1"))` для пропозиції
+задачі, `(claim-task ...)`/`(complete-task ... (generation N))` для
+роботи з чергою `PANINI-*`. Якщо після реконекту виявляться "завислі"
+claim з попередньої сесії, під якими немає реального контексту в
+поточній розмові — чесніше `(release-task ...)`, ніж вигадувати
+завершення роботи, якої не пам'ятаєш.
+
 ## 1. Місія
 
 Ти відповідаєш за дослідження формальної системи граматики Pāṇini та побудову
@@ -632,7 +659,7 @@ result
 
 Правила взаємодії з `shiva-sutras`:
 1. **Односторонній імпорт**: `my-lisp-panini` не має права заново встановлювати чи "покращувати" фундаментальні факти про Śiva-sūtras. Він може лише споживати явно позначені результати з upstream.
-2. **Cross-Repo Provenance**: Заборонено копіювати твердження без походження. Кожен імпорт має вказувати репозиторій, конкретний claim, його статус (напр., `proved-in-model`, `UNRESOLVED`) та SHA комміту. Канонічний реєстр усіх імпортів — `panini/coordination/dependencies.yaml` (має оновлюватися разом із будь-яким споживанням).
+2. **Cross-Repo Provenance**: Заборонено копіювати твердження без походження. Кожен імпорт має вказувати репозиторій, конкретний claim, його статус (напр., `proved-in-model`, `UNRESOLVED`) та SHA комміту. На практиці такі блоки записуються inline, у документі, що споживає claim (напр. у `sastra/pratyahara.md`), поруч із твердженням, яке вони обґрунтовують — окремого централізованого реєстру `panini/coordination/dependencies.yaml` наразі не існує (перевірено 2026-08-18; директорія `panini/coordination/` відсутня). Якщо централізований реєстр колись буде створений, ця секція має бути оновлена, щоб вказувати на нього.
    ```yaml
    dependency:
      repository: juv4uk/shiva-sutras
@@ -646,24 +673,45 @@ result
 
 ## 22. Архітектура репозиторію (4 Поверхи)
 
+Історична примітка: директорія `foundation/` була перейменована на
+`sastra/`; `formal/` як окрема директорія так і не була створена —
+формальні IR-специфікації живуть у `specs/` (напр.
+`derivation-ir-v0.1.md`). Дерево нижче відображає фактичний стан на
+2026-08-18, не оригінальний ескіз:
+
 ```text
 panini/
 ├── README.md
 │
-├── sastra/ (або foundation/)
+├── sastra/
 │   ├── karaka.md      (лише традиція, жодного CS)
 │   ├── samjna.md
 │   └── dhatu.md
 │
-├── formal/
-│   └── (нейтральні формальні моделі, IR)
+├── specs/
+│   └── (нейтральні формальні моделі, IR — напр. derivation-ir-v0.1.md)
 │
 ├── hypotheses/
 │   ├── karaka-machine-model.md (CS-аналогії, напр. H1a: edge, H1b: designation)
 │   └── samjna-machine-model.md
 │
+├── machine/
+│   └── (виконуваний My Lisp bridge-код)
+│
 ├── implementation/
 │   └── (My Lisp / FPGA / tools)
+│
+├── registry/
+│   └── dhatu/ (машинно-читані SLP1-записи)
+│
+├── examples/derivations/
+│   └── (простежені приклади з provenance)
+│
+├── tests/
+│   └── (fixtures, conformance-звіти)
+│
+├── tools/
+│   └── (реальні Python-валідатори: validate_registry.py, тощо)
 │
 ├── research/
 │   ├── external-reviews/
