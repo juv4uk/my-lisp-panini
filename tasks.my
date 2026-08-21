@@ -51,7 +51,7 @@
     (priority . 9.5)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate paribhasha.md to 4-layer architecture")
-    (done . ())
+    (done . t)
   ))
   ("PANINI-MIGRATE-DHATU" . (
     (priority . 9.4)
