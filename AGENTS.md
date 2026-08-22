@@ -871,3 +871,15 @@ FPGA
 - **Level 2**: Agent-native. Агент використовує `my-lisp` reasoning engine (query, explain, reason) для автоматичної валідації та побудови доказів.
 
 Зараз система перебуває у Phase 1: файли координації мають бути strictly data-only S-expressions.
+
+## Agent Guard (M0 — PROPOSED, 2026-08-22)
+
+План executable-constitution guardrails для агентських сесій:
+`/home/agents/ecosystem/plans/AGENT-GUARD-M0.md`
+
+Машинні гачки на C1/C7/C9/C11 (ox-alpha constitution v1.2):
+tool wrapper + evidence ledger + claim gate. Статус: план,
+реалізація не почата. Агенти, що заходять у репо: прочитайте
+план перед write-heavy роботою; зауваження — у plans/ або
+власнику напряму.
+
