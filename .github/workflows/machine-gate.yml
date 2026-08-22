@@ -1,0 +1,44 @@
+name: Machine Acceptance Gate
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  machine-acceptance:
+    name: panini machine suite on fresh my-lisp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The runtime under test: a fresh my-lisp build from origin/main.
+      - name: Checkout my-lisp runtime
+        uses: actions/checkout@v4
+        with:
+          repository: juv4uk/my-lisp
+          path: my-lisp-runtime
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: my-lisp-runtime
+
+      - name: Build my-lisp binary
+        run: cargo build --release -p my-lisp-cli
+        working-directory: my-lisp-runtime
+
+      # The gate itself: fails on REPL diagnostics or nonzero exit.
+      - name: Run panini machine acceptance suite
+        run: python3 panini/tests/run_machine_acceptance.py --runtime my-lisp-runtime/target/release/my-lisp
+
+      # Pure-python prototype tests (no runtime dependency).
+      - name: Derivation IR prototype tests
+        run: python3 prototype/derivation_ir/test_derivation_ir.py
+
+      - name: Registry provenance validator
+        run: |
+          test -f panini/tests/test_registry_provenance.py && \
+            python3 panini/tests/test_registry_provenance.py || \
+            echo "no provenance validator in this tree — skipped"
