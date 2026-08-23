@@ -1,0 +1,69 @@
+# Paradigm: брат (Step 4 fragment — dict_uk morphology × kāraka matrix)
+# Перша повна парадигма, зшита з двох джерел:
+#   морфологія: dict_uk data/affix/n2.aff (lemma "брат /n20.a.p.ke.<")
+#   семантика:  extensions/karaka-uk-cases.yaml (kāraka матриця)
+#
+# Кожна форма: відмінок (dict_uk) -> kāraka (де відмінок його призначає).
+# Форми без kāraka — це форми, які Паніні не трактує як роль аргумента.
+
+meta:
+  version: "0.1"
+  created: "2026-08-22"
+  lemma: брат
+  dict_uk_flag: "/n20.a.p.ke.<"
+  dict_uk_affix: "data/affix/n2.aff :: group n20 + subgroup n20.ke"
+  karaka_matrix: "extensions/karaka-uk-cases.yaml"
+  cognate_pair: "брат ↔ bhrātṛ (cognates-uk-sa.yaml, embedding cos 0.653 rank 1/13)"
+
+paradigm:
+
+  - uk_case: називний
+    form: брат
+    example_role: kartf            # «Брат пише» — хто діє
+    karaka: kartf
+    sanskrit_reference: "svatantraH kartA (1.4.54)"
+    cognate_note: "брат ↔ bhrātṛ — сам субʼєкт споріднений"
+
+  - uk_case: родовий
+    form: брата
+    karaka: null                   # залежить від контексту: sambandha чи apAdAna
+    notes: >-
+      Приналежність («брата рука») = sambandha; відокремлення
+      («з боку брата», рідко) = apādāna. Див. special_section
+      karaka-uk-cases.yaml.
+
+  - uk_case: давальний
+    form: брату / братові
+    karaka: sampradAna
+    example_role: "«брату» — кому дається"
+
+  - uk_case: знахідний
+    form: брата                    # одушевлене → форма родового
+    karaka: karman
+    example_role: "«брата покликали» — кого"
+    notes: ".a (істота): знахідний збігається з родовим."
+
+  - uk_case: орудний
+    form: братом
+    karaka: karaRa
+    example_role: "«братом» — чим/ким зроблено"
+
+  - uk_case: місцевий
+    form: на браті / про брата
+    karaka: aDikaraRa
+    example_role: "«про брата» — тема; ADhAro 'DikaraRam (1.4.45)"
+
+  - uk_case: кличний
+    form: брате!
+    karaka: null                   # звертання не є аргументом дії
+    notes: >-
+      subgroup n20.ke: закінчення -е після твердого приголосного.
+      saMbodhana — поза системою кáрак.
+
+sanskrit_mirror:
+  # Той самий ряд ролей у санскритській фразі (для майбутнього порівняння):
+  sa_sentence: "bhrAtA bhraAtaram kalpayati"   # умовний приклад
+  gloss: "брат (kartf) братові-формою (sampradAna) призначає (каузатив)"
+  note: >-
+    Санскритський аналог будується наступним кроком Кроку 4:
+    автогенерація форм через panini_nlp і звірка з dict_uk парадигмою.

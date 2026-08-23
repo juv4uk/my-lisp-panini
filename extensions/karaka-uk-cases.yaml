@@ -1,0 +1,130 @@
+# Karaka <-> Ukrainian Case Matrix (Step 2 of the uk-sa understanding roadmap)
+# Матриця: кáрака Паніні <-> українські відмінки.
+#
+# AUTHORITY BOUNDARY (важливо):
+#   - Кáраки визначає реєстр my-lisp-panini: panini/registry/karaka/*.yaml
+#     Цей файл НЕ перевизначає їх — тільки посилається на canonical (SLP1) id.
+#   - Українська сторона — нові дані цього файлу.
+#
+# Епістеміка:
+#   - confidence: high / medium / low — відповідність ПРИБЛИЗНА за дизайном:
+#     кáрака = семантична роль, відмінок = морфологічна форма (A 2.3.1-2.3.5
+#     мапить їх не один-до-одного).
+#   - exceptions фіксують розбіжності явно. Відсутність exceptions != повна відповідність.
+#
+# Українська система: 7 відмінків (кличний включно).
+# Санскритська: prathamA..saptamI (1..7) + saMbodhana (кличний).
+
+meta:
+  version: "0.1"
+  created: "2026-08-22"
+  author: "Сакші (sākṣī, ox-alpha)"
+  registry_source: "../panini/registry/karaka/"
+  status_vocabulary: [confirmed, partial, rejected]
+  verification: "tests/test_karaka_uk_cases.py"
+
+mappings:
+
+  - karaka_canonical: kartf            # == panini/registry/karaka/kartf.yaml
+    iast: kartṛ
+    defined_by: "1.4.54 svatantraH kartA"
+    uk_case: називний
+    uk_question: "хто? що?"
+    confidence: high
+    notes: "Незалежний виконавець дії."
+    exceptions:
+      - "каузатив: справжній виконавець стає prayojya-kartf/hetu (див. caveat реєстру)"
+      - "пасив: karma поверхнево стає називним"
+
+  - karaka_canonical: karman           # == panini/registry/karaka/karman.yaml
+    iast: karman
+    defined_by: "1.4.49 kartur IpsitatamaM karma; 1.4.50 tATAyuktaM cAnipsitam"
+    uk_case: знахідний
+    uk_question: "кого? що?"
+    confidence: high
+    notes: "Обʼєкт бажання/дії; 1.4.50 розширює за межі «бажаного»."
+    exceptions:
+      - "подвійний знахідний (A 1.4.51 akaTitaM ca): дві karma-позиції"
+      - "деякі дієслова приймають karma в орудному"
+
+  - karaka_canonical: karaRa           # == panini/registry/karaka/karaRa.yaml
+    iast: karaṇa
+    defined_by: "1.4.42 sADakatamaM karaRa"
+    uk_case: орудний
+    uk_question: "ким? чим?"
+    confidence: high
+    notes: "Найефективніший засіб — критерій вужчий за побутовий інструмент."
+    exceptions:
+      - "предикативний орудний («бути учителем») — не karaRa"
+
+  - karaka_canonical: sampradAna       # == panini/registry/karaka/sampradAna.yaml
+    iast: sampradāna
+    defined_by: "1.4.32 karmaRA yam aBipraiti sa sampradAnam"
+    uk_case: давальний
+    uk_question: "кому?"
+    confidence: high
+    notes: "Означене через karman — залежна категорія."
+
+  - karaka_canonical: apAdAna          # == panini/registry/karaka/apadana.yaml
+    iast: apādāna
+    defined_by: "1.4.24 Druvam apAye 'pAdAnam"
+    uk_case: родовий (відокремлювальний)
+    uk_question: "від кого? від чого?"
+    confidence: medium
+    notes: "Фіксована точка при відділенні."
+    exceptions:
+      - "дієслова страху/заборони (1.4.25+) ламають просторову модель (caveat реєстру)"
+      - "укр. родовий також покриває sambandha — див. нижче"
+
+  - karaka_canonical: aDikaraRa        # == panini/registry/karaka/adhikarana.yaml
+    iast: adhikāraṇa
+    defined_by: "1.4.45 ADhAro 'DikaraRam"
+    uk_case: місцевий
+    uk_question: "на кому? на чому? де?"
+    confidence: medium
+    notes: "Вмістище/опора; укр. місцевий ширший (місце + тема мовлення)."
+    exceptions: []
+
+special_section:
+
+  # saMbandha — НЕ кáрака: родове відношення поза системою кáрак
+  # (Pāṇini виводить ṣaṣṭhī через saMbandha, A 2.3.50).
+  - relation: sambandha
+    iast: sambandha
+    uk_case: родовий (приналежності)
+    uk_question: "чиїй? чого?"
+    confidence: high
+    notes: "Структурно поза кáраками; у матриці для повноти укр.-санскритського мапінгу."
+
+  # Клиний/кличний: форма звертання, не аргумент дієслова.
+  - relation: saMbodhana (кличний)
+    uk_case: кличний
+    confidence: n/a
+    notes: "Звертання; кáраки не призначає."
+
+examples:
+
+  - id: ex-devadatta-pacati
+    source: "класичний приклад коментарської традиції"
+    sa: "devadattaH odanaM pacati"
+    uk: "Девадатта варить рис"
+    word_by_word:
+      - {word: "devadattaH", case: називний, karaka: kartf}
+      - {word: "odanaM",     case: знахідний, karaka: karman}
+
+  - id: ex-ukrainian-full-paradigm
+    source: "штучне речення, що покриває всі шість кáрак"
+    uk: "Брат пише листа ручкою сестрі на столі"
+    word_by_word:
+      - {word: "Брат",   case: називний, karaka: kartf}
+      - {word: "листа",  case: знахідний, karaka: karman}
+      - {word: "ручкою", case: орудний,   karaka: karaRa}
+      - {word: "сестрі", case: давальний, karaka: sampradAna}
+      - {word: "столі",  case: місцевий,  karaka: aDikaraRa}
+
+  - id: ex-apadana-motion
+    source: "рух від точки"
+    sa: "vRkSet mUṣakaM dhAvati"
+    uk: "Мишка тікає з поля"
+    word_by_word:
+      - {word: "з поля", case: родовий (відокремлювальний), karaka: apAdAna}
