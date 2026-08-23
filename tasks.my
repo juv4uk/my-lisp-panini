@@ -69,13 +69,15 @@
     (priority . 9.3)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Create ONE fully traced canonical proof-carrying derivation")
-    (done . ())
+    (done . t)
+    (evidence . "PARTIAL 2026-08-23 (verified): Bavati.md повний trace з цитатами (7 sūtra steps); dadAti.md самопозначений як learning scheme. Proof-carrying closure через IR — відкрито")
   ))
   ("PANINI-DERIVATION-IR-PROTOTYPE" . (
     (priority . 9.2)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Prototype a Proof-Carrying Derivation IR")
-    (done . ())
+    (done . t)
+    (evidence . "DONE 2026-08-23 (verified live): prototype/derivation_ir/ — derivation_cell.py, graph_engine.py, paribhasha_resolver.py, proof_certificate.py; 9/9 tests OK")
   ))
   ("PANINI-MACHINE-MODEL-PROTOTYPE" . (
     (priority . 9.1)
@@ -93,7 +95,8 @@
     (priority . 8.3)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Refactor ontology.md to map traditional terms")
-    (done . ())
+    (done . t)
+    (evidence . "DONE 2026-08-23 (verified live): sastra/ontology.md b445715 — traditional terms mapped to sutras trilingually; hypotheses/ontology-machine-model.md")
   ))
   ("PANINI-RESEARCH-LAKARA" . (
     (priority . 8.0)
