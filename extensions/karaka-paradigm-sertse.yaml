@@ -1,0 +1,68 @@
+# Paradigm: серце (Step 4 fragment — dict_uk n2n × kāraka matrix)
+# Друга парадигма когнатної пари: серце ↔ hṛdayam
+#
+# Джерела:
+#   морфологія: dict_uk data/affix/n2n.aff (lemma "серце /n2n.p2.ovi",
+#               тверда група на -о; .ovi = другий знахідний на -а можливий)
+#   семантика:  extensions/karaka-uk-cases.yaml
+#   когната:    extensions/cognates-uk-sa.yaml (серце ↔ hṛdayam, ПІЄ *ḱērd,
+#               embedding cos 0.708, rank 1/13)
+
+meta:
+  version: "0.1"
+  created: "2026-08-23"
+  lemma: серце
+  dict_uk_flag: "/n2n.p2.ovi"
+  dict_uk_affix: "data/affix/n2n.aff :: group n2n, тверда група"
+  karaka_matrix: "extensions/karaka-uk-cases.yaml"
+
+paradigm:
+
+  - uk_case: називний
+    form: серце
+    karaka: kartf
+    example_role: "«Серце каже» — метафоричний субʼєкт"
+    sanskrit_note: "hṛdayam — також називний у реченні"
+
+  - uk_case: родовий
+    form: серця
+    karaka: null
+    notes: >-
+      Частіше sambandha («спів серця») ніж apādāna.
+      Див. special_section karaka-uk-cases.yaml.
+
+  - uk_case: давальний
+    form: серцю
+    karaka: sampradAna
+    example_role: "«серцю» — чому віддане"
+
+  - uk_case: знахідний
+    form: серце
+    karaka: karman
+    notes: >-
+      Неістота (.p2 без .<) → форма = називний.
+      «Любити всім серцем» — тут орудний, не знахідний!
+
+  - uk_case: орудний
+    form: серцем
+    karaka: karaRa
+    example_role: "«всім серцем» — інструмент дії"
+
+  - uk_case: місцевий
+    form: на серці / у серці
+    karaka: aDikaraRa
+    example_role: "«у серці» — вмістище почуття"
+
+  - uk_case: кличний
+    form: серце!
+    karaka: null
+    notes: "Середній рід: кличний = називний (нульова морфологія)"
+
+sanskrit_mirror:
+  sa_word: "hṛdayam (हृदयम्)"
+  cognate_evidence: |
+    ПІЄ *ḱērd → санскр. ś/h-шар: hṛd; слов. с-шар: серд-
+    Звукові відповідності системні, не збіги (див. dual-witness v1 REJECTED).
+    Семантичний свідок: cos 0.708, rank 1/13 ✓
+    Фонетичний свідок: v1 naive Levenshtein провалився (0.000) —
+    очікується виправлення в v2 (приголосний скелет + PVC-16).
