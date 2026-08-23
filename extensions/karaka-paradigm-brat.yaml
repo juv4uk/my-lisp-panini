@@ -1,6 +1,7 @@
 # Paradigm: брат (Step 4 fragment — dict_uk morphology × kāraka matrix)
 # Перша повна парадигма, зшита з двох джерел:
 #   морфологія: dict_uk data/affix/n2.aff (lemma "брат /n20.a.p.ke.<")
+#     ЛІЦЕНЗІЯ ДЖЕРЕЛА: GPLv3 (ВЕСУМ, brown-uk) — див. DICT_UK-NOTICE.md
 #   семантика:  extensions/karaka-uk-cases.yaml (kāraka матриця)
 #
 # Кожна форма: відмінок (dict_uk) -> kāraka (де відмінок його призначає).
