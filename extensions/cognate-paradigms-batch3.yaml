@@ -1,0 +1,71 @@
+# Cognate Paradigms Batch 3 (Step 4 completion)
+# Останні 3 пари з cognates-uk-sa.yaml. Разом з batch 2 і окремими
+# парадигмами брат/серце — покриття 13/13 когнатних пар.
+
+meta:
+  version: "0.1"
+  created: "2026-08-23"
+  author: "Сакші (ox-alpha)"
+  completes: "13/13 cognate pairs from extensions/cognates-uk-sa.yaml"
+
+entries:
+
+  - sa_iast: "mātā / mātṛ"
+    devanagari: "माता / मातृ"
+    uk: "мати"
+    pie: "*méh₂tēr"
+    pos: noun-feminine
+    dict_uk_status: |
+      GAP: dict_uk base.lst не має іменника «мати» (mother) —
+      тільки омонімічне дієслово «мати = to have» (/v2.cf.advp).
+      Іменник присутній непрямо: «матінка», «матуся», «ненька»,
+      «матірка» — але не основна лема.
+    uk_declension_reconstructed:
+      # Відновлено за n1.aff (жіночa на -а) + стандартна академічна парадигма
+      nazynnyi: мати          # kartf: «мати любить»
+      rodovyi: матері         # sambandha: «матері руки»
+      davalnyi: матері        # sampradAna: «матері допомогти»
+      znakhidnyi: матір       # karman: «любити матір» (архаїчна форма)
+      orudnyi: матірʼю        # karaRa: рідко
+      mistsevyi: на матері
+      klychnyi: мамо!         # від «мама», не від «мати»
+    sanskrit_note: >-
+      mAtR — consonant stem (mātaram, mātrā). ПІЄ *méh₂tēr →
+      sa mātṛ, греч μήτηρ, лат māter, укр мати. Найкращий приклад
+      збереження давнього кореня у всіх мовах.
+    embedding_evidence: "cos 0.744, rank 1/13"
+
+  - sa_iast: "nāsā / nāsikā"
+    devanagari: "नासा"
+    uk: "ніс"
+    pie: "*néh₂s-"
+    pos: noun-masculine
+    dict_uk_flag: "/n21.a.p.@"
+    uk_declension:
+      nazynnyi: ніс           # kartf: «ніс дихає»
+      rodovyi: носа           # sambandha: «кінець носа»
+      davalnyi: носу/носові   # sampradAna/aDikaraRa
+      znakhidnyi: ніс         # .@ = другий знахідний на -а можливий але тут неістота → ніс
+      orudnyi: носом          # karaRa: «нюхати носом»
+      mistsevyi: на носі
+      klychnyi: носе!
+    sanskrit_note: >-
+      nAsA/nAsikA — жіночий рід у санскриті (укр ніс — чоловічий).
+      Рідова асиметрія типова для ПІЄ спадку.
+    embedding_evidence: "cos 0.638, rank 1/13"
+
+  - sa_iast: "tri"
+    devanagari: "त्रि"
+    uk: "три"
+    pie: "*tréyes"
+    pos: numeral
+    uk_declension:
+      nazynnyi/v_naz: три     # числівник, не відмінюється в сучасній укр
+      rodovyi/v_rod: трьох
+      davalnyi/v_dav: трьом
+      orudnyi/v_oru: трьома
+    sanskrit_note: >-
+      tri — ПІЄ *tréyes → sa tri, греч τρεῖς, лат trēs, укр три.
+      Найвищий embedding score серед усіх когнатів: cos 0.777, rank 1/13.
+      Числівники — найдавніший і найстабільніший шар лексики.
+    embedding_evidence: "cos 0.777 — MAXIMUM серед усіх 13 пар"
