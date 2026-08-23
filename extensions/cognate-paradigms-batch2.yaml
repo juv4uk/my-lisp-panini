@@ -1,0 +1,156 @@
+# Cognate Paradigms Batch 2 (Step 4 continuation)
+# Решта когнатних пар з cognates-uk-sa.yaml.
+#
+# ВАЖЛИВИЙ ЛІНГВІСТИЧНИЙ ФАКТ (виявлено при складанні):
+# Когнати покривають ТРИ різні частини мови:
+#   Іменники (kāraka застосовна напряму)
+#   Числівники (модифікатори; kārака успадковується від head-noun)
+#   Прикметники (модифікатори; узгодження з head-noun)
+# Kāraka = роль АРГУМЕНТА дієслова. Не-аргументи не мають власної
+# кáраки — вони її УСПАДКОВУЮТЬ від слова, яким модифікують.
+#
+# Джерела морфології: dict_uk base.lst + data/affix/{n2,n21,n30,numr,adj}.aff
+
+meta:
+  version: "0.1"
+  created: "2026-08-23"
+  author: "Сакші (ox-alpha)"
+  karaka_matrix: "extensions/karaka-uk-cases.yaml"
+  method: "POS-appropriate: nouns get direct kāraka; modifiers inherit from head"
+
+entries:
+
+  # ==================== ІМЕННИКИ ====================
+
+  - sa_iast: "dāma / dama"
+    devanagari: "दाम"
+    uk: "дім"
+    pie: "*dṓm"
+    pos: noun-masculine
+    dict_uk_flag: "/n21.p"
+    uk_declension:
+      nazynnyi: дім          # kartf: «дім гріє» (сонце гріє дім)
+      rodovyi: дому
+      davalnyi: дому
+      znakhidnyi: дім        # неістота → форма називного
+      orudnyi: домом         # karaRa: «покритий домом» (рідко)
+      mistsevyi: на домі     # aDikaraRa: «в домі»
+      klychnyi: дому!
+    sanskrit_note: >-
+      dAma — дарування/дім (A 4.1.6 dA ruvatoH). Семантика «оселя»
+      збігається з укр «дім».
+
+  - sa_iast: "naktam"
+    devanagari: "नक्तम्"
+    uk: "ніч"
+    pie: "*nókʷts"
+    pos: noun-feminine
+    dict_uk_flag: "/n30.p"
+    uk_declension:
+      nazynnyi: ніч          # kartf: «ніч настала»
+      rodovyi: ночі          # sambandha: «глибина ночі»
+      davalnyi: ночі         # sampradAna: «до ночі» (обставина)
+      znakhidnyi: ніч        # karman: «пережити ніч»
+      orudnyi: ніччю         # karaRa: «ночію» (архаїчно обставина часу)
+      mistsevyi: на ночі
+      klychnyi: ниче!
+    sanskrit_note: >-
+      naktam — середній рід у санскриті (укр ніч — жіночий).
+      Родова спорідненість n-k-t корінь.
+
+  - sa_iast: "nāma"
+    devanagari: "नाम"
+    uk: "імʼя"
+    pie: "*h₁nómn̥"
+    pos: noun-neuter
+    uk_declension:
+      nazynnyi: імʼя         # kartf: «імʼя звучить»
+      rodovyi: імені         # sambandha: «носій імені»
+      davalnyi: імені
+      znakhidnyi: імʼя
+      orudnyi: імʼям         # karaRa: «названий імʼям»
+      mistsevyi: в імені
+      klychnyi: імʼя!
+    sanskrit_note: >-
+      nāma — незмінюваний у деяких відмінках (neuter consonant-stem).
+      ПІЄ *-mn̥ суфікс → укр «-м'я» фонетична еволюція.
+
+  # ==================== ЧИСЛІВНИКИ ====================
+
+  - sa_iast: "daśa"
+    devanagari: "दश"
+    uk: "десять"
+    pie: "*déḱm̥t"
+    pos: numeral
+    uk_declension:
+      nazynnyi/v_naz: десять
+      rodovyi/v_rod: десяти
+      davalnyi/v_dav: десяти
+      orudnyi/v_oru: десятьма
+    kāraka_note: >-
+      Числівник-модифікатор: kārака успадковує від head-noun.
+      «Десять братів пишуть» → брати=kartf, десять=кількісний модифікатор.
+    sanskrit_note: "ПІЄ *déḱm̥t → sa daśa, греч δέκα, лат decem — класика"
+
+  - sa_iast: "dvā / dve"
+    devanagari: "द्वा / द्वे"
+    uk: "два"
+    pie: "*dwóh₁"
+    pos: numeral-dual
+    uk_declension:
+      nazynnyi/v_naz: два (чол/сер), дві (жін)
+      rodovyi/v_rod: двох
+      davalnyi/v_dav: двом
+      orudnyi/v_oru: двома
+    sanskrit_note: >-
+      dvā/dve — ДВАЛЬНЕ ЧИСЛО (dual) живе в санскриті як окрема категорія!
+      Українська втратила dual, але сліди: «очі» (історично dual форма),
+      «руками» (орудний від dual основи). ПІЄ дуал → санскрит зберіг,
+      словʼянські мови зберегли частково.
+
+  - sa_iast: "sapta"
+    devanagari: "सप्त"
+    uk: "сім"
+    pie: "*septḿ̥"
+    pos: numeral
+    uk_declension:
+      nazynnyi/v_naz: сім
+      rodovyi/v_rod: семи
+      davalnyi/v_dav: семи
+      orudnyy/v_oru: сьома
+    sanskrit_note: "ПІЄ *septḿ̥ → sa sapta, греч ἑπτά, лат septem. s↔с системна відповідність"
+
+  # ==================== ПРИКМЕТНИК ====================
+
+  - sa_iast: "nava"
+    devanagari: "नव"
+    uk: "новий"
+    pie: "*néwos"
+    pos: adjective
+    uk_declension:
+      m: {naz: новий, rod: нового, dav: новому, zna: нового, oru: новим, mis: новому}
+      f: {naz: нова, rod: нової, dav: новій, zna: нову, oru: новою, mis: новій}
+      n: {naz: нове, rod: нового, dav: новому, zna: нове, oru: новим, mis: новому}
+    kāraka_note: >-
+      Прикметник УЗГОДЖУЄТЬСЯ з head-noun у роді/відмінку;
+      kārака успадковується повністю.
+    sanskrit_note: >-
+      nava — невідмінюваний атрибутивний у складних словах
+      (navīna = новий, navodaya = схід сонця/new dawn).
+
+  - sa_iast: "√vid (veda)"
+    devanagari: "वेद"
+    uk: "відати (знати, арх.)"
+    pie: "*weyd-"
+    pos: verb-root
+    dict_uk_note: >-
+      dict_uk має тільки дієслово «мати» (to have), НЕ іменник «мати» (mother)!
+      Іменник мати/mATR відсутній у базовому списку — цікавий прогалина
+      українського словника (матір/мати як mother потребує окремого запису).
+    uk_conjugation_archaic:
+      infinitive: віда́ти
+      present_1sg: віда́ю (арх.)
+      imperative: відай
+    sanskrit_note: >-
+      √vid → veda (знання), Veda (священні тексти), vide (видить).
+      Та сама коренева система: vid ↔ видити/відати (слов.).
