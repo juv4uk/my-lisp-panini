@@ -138,7 +138,8 @@
     (priority . 7.6)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Research the Tripadi rule domain and its mechanics")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: tripadi.md v0.1 VERIFIED - anchor 8.2.1 pUrvatrAsiddham zvireno proty dvokh dzherel; asiDDatva principle documented with explicit simplification caveat; compiler-pass analogy in SCHOLARLY layer; arch requirement for machine model stated (frozen visible state at tripAdI entry); open questions listed honestly.")
   ))
   ("PANINI-RESEARCH-SAMHITA-PADA" . (
     (priority . 7.5)
