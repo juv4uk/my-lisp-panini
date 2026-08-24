@@ -25,6 +25,9 @@ Metalinguistic technical terms (e.g., *it*, *lopa*, *tiṅ*). Pāṇini defines 
 - **atideśa**: "Treat X as Y" rules, transferring properties from one class to a formally different one (e.g., 1.1.56 *sthānivad-bhāva*).
 - **paribhāṣā**: Metarules governing how other rules are applied and resolving conflicts.
 
+### 7. pratyāhāra (Compact Phoneme Set)
+Grounded in the *Śiva Sūtras* (1–14) and defined operationally by 1.1.71 (*ādir antyena sahetā*): the initial sound of one line together with the *it*-marker of any later line designates the set of all sounds between them, markers excluded. The canonical 14-sūtra list is imported from the upstream authority `shiva-sutras` (claims `SS-CANON-001` resolved, `SS-PRATYAHARA-001` supported, revision `a8391c4`); upstream has proved marker-minimality (`M_min = 14`, `SS-MARKERS-001/002`) and Class-B uniqueness for collision-free addressing (`SS-MARKERS-003`). Full epistemic treatment: `pratyahara.md`.
+
 ---
 
 ## Українська
@@ -52,6 +55,9 @@ Metalinguistic technical terms (e.g., *it*, *lopa*, *tiṅ*). Pāṇini defines 
 - **atideśa**: Правила "розглядай X як Y" (перенесення властивостей).
 - **paribhāṣā**: Метаправила про застосування інших правил та вирішення конфліктів.
 
+### 7. pratyāhāra (Компактна множина звуків)
+Грунтується на *Śiva Sūtras* (1–14) та визначається операційно сутрою 1.1.71 (*ādir antyena sahetā*): початковий звук лінії разом з *it*-маркером будь-якої наступної лінії позначає множину всіх звуків між ними, без самих маркерів. Канонічний список 14 сутр імпортовано з upstream-авторитету `shiva-sutras` (клейми `SS-CANON-001` resolved, `SS-PRATYAHARA-001` supported, ревізія `a8391c4`); upstream доведено маркерну мінімальність (`M_min = 14`, `SS-MARKERS-001/002`) та унікальність Class B для collision-free адресації (`SS-MARKERS-003`). Детальна епістемологія: `pratyahara.md`.
+
 ---
 
 ## Deutsch
@@ -78,3 +84,6 @@ Metalinguistische Fachbegriffe (z.B. *it*, *lopa*), um kompakt auf große Objekt
 - **niyama**: Einschränkungsregeln.
 - **atideśa**: "Behandle X als Y"-Regeln (Eigenschaftsübertragung).
 - **paribhāṣā**: Metaregeln zur Anwendung anderer Regeln.
+
+### 7. pratyāhāra (Kompakte Lautmenge)
+Verankert in den *Śiva Sūtras* (1–14) und operativ definiert durch 1.1.71 (*ādir antyena sahetā*): der Anfangslaut einer Zeile zusammen mit dem *it*-Marker einer beliebigen späteren Zeile bezeichnet die Menge aller Laute dazwischen, Marker ausgenommen. Die kanonische Liste der 14 Sūtras ist von der Upstream-Autorität `shiva-sutras` importiert (`SS-CANON-001` resolved, `SS-PRATYAHARA-001` supported, Revision `a8391c4`); upstream ist die Marker-Minimalität bewiesen (`M_min = 14`, `SS-MARKERS-001/002`) sowie die Class-B-Eindeutigkeit für kollisionsfreie Adressierung (`SS-MARKERS-003`). Vollständige epistemische Behandlung: `pratyahara.md`.
