@@ -43,9 +43,9 @@ Modern linguistic scholarship (Cardona, Kiparsky, Sharma) views the `it` system 
 
 ## [COMPUTATIONAL INTERPRETATION]
 
-Formally, an `it` marker acts as **Metadata**, an **Annotation**, or a **Compiler Directive**.
+Formally, an `it` marker acts as **Metadata** or an **Annotation**.
 
-- **Ephemeral State:** The `it` marker represents data that is crucial during the derivation phase (compile-time) but must be stripped out before the final output generation (runtime). This is analogous to type erasure in generics, or non-emitting macros.
+- **Ephemeral State:** The `it` marker represents data that is crucial during the derivation phase but must be stripped out before the final output is produced. This parallels type erasure in parametric systems.
 - **Multi-phase Evaluation:** The system requires a distinct lifecycle:
   1. *Lexical Phase:* Identification of markers attached to a token.
   2. *Derivation Phase:* Execution of rules conditional on the presence/absence of these markers.

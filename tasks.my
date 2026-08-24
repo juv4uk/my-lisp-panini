@@ -10,7 +10,8 @@
     (priority . 9.8)
     (capabilities . ("my-lisp-panini" "documentation"))
     (description . "Audit all sastra/ files against the Foundation Independence Test.")
-    (done . ())
+    (done . t)
+    (evidence . "AUDIT 2026-08-24: docs/research/foundation-independence-audit-2026-08-24.md -- усі 15 sastra файлів PASS після точкової правки it.md (прибрано Compiler/runtime аналогії з шару COMPUTATIONAL). Окремо зафіксовано: 7/15 файлів ще без 4-шарової структури -- це MIGRATE-* серія, не Independence провал.")
   ))
   ("PANINI-TAILSCALE-NODE-DOCUMENTATION" . (
     (priority . 9.6)
