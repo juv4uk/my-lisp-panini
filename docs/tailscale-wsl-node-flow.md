@@ -1,68 +1,68 @@
-# Tailscale WSL connection flow for remote swarm nodes
+# Tailscale WSL потік підключення для віддалених swarm-нод
 
-Status: VERIFIED-LIVE 2026-08-24 (all commands and addresses from a working
-session; topology captured via `tailscale status`).
+Статус: VERIFIED-LIVE 2026-08-24 (усі команди й адреси з робочої сесії;
+топологія знята через `tailscale status`).
 
-## Topology (this tailnet)
+## Топологія (цей tailnet)
 
-| Device | Tailnet IP | OS | Role |
+| Пристрій | Tailnet IP | ОС | Роль |
 |---|---|---|---|
-| `desktop-1` | `100.88.228.63` | linux (WSL2) | local dev box; **tailscaled runs inside WSL** |
-| `desktop` | `100.120.29.6` | windows | Windows host (separate device) |
-| `ubuntu-s-1vcpu-512mb-10gb-ams3` | `100.113.68.50` | linux droplet | **bootstrap node-1 :9101** |
+| `desktop-1` | `100.88.228.63` | linux (WSL2) | локальна дев-машина; **tailscaled працює всередині WSL** |
+| `desktop` | `100.120.29.6` | windows | Windows-хост (окремий пристрій) |
+| `ubuntu-s-1vcpu-512mb-10gb-ams3` | `100.113.68.50` | linux дроплет | **bootstrap node-1 :9101** |
 
-WSL is its own tailnet device — tailscaled (PID started at boot) runs inside
-the WSL namespace; the Windows host on the same tailnet is a different node.
+WSL — самостійний пристрій tailnet: tailscaled запущений у WSL-неймспейсі;
+Windows-хост того ж tailnet — інша нода.
 
-## The loopback rule (why remote peers can't see you)
+## Правило loopback (чому віддалені піри тебе не бачать)
 
-By default every swarm-node binds **127.0.0.1 only**:
+За замовчуванням кожна swarm-node слухає **тільки 127.0.0.1**:
 
 ```
-ss -tln | grep <port>   # -> 127.0.0.1:<port>
+ss -tln | grep <порт>   # -> 127.0.0.1:<порт>
 ```
 
-Loopback-bound nodes are invisible to the whole tailnet. Remote peers cannot
-dial in; only your **outbound** `--connect` reaches them.
+Loopback-ноди невидимі для всього tailnet. Віддалені піри не можуть
+дзвонити тобі; працює лише твій вихідний `--connect`.
 
-## Working pattern: outbound-only join (verified today)
+## Робочий патерн: outbound-only join (верифіковано сьогодні)
 
 ```bash
 cd ~/GitHub/my-lisp-panini
 setsid ./target/debug/swarm-node \
   --port 9106 --node-id my-lisp-panini-1 --project my-lisp-panini \
   --data-dir ~/.swarm-node/my-lisp-panini-1 \
-  --connect 100.113.68.50:9101 </dev/null >> /path/to/log 2>&1 & disown
+  --connect 100.113.68.50:9101 </dev/null >> /шлях/до/log 2>&1 & disown
 ```
 
-- Bootstrap = the droplet's :9101 (always-on). Gossip discovers the rest.
-- Verify: `ss -tln | grep <port>` then check the log for peer joins.
+- Bootstrap — дроплет :9101 (завжди увімкнений). Gossip знаходить решту mesh.
+- Верифікація: `ss -tln | grep <порт>`, потім лог на предмет peer joins.
 
-## Inbound recipe (remote must dial WSL directly)
+## Рецепт inbound (якщо віддалена нода має дзвонити у WSL напряму)
 
 ```bash
---bind 100.88.228.63 --port <port>   # tailnet interface of this WSL
+--bind 100.88.228.63 --port <порт>   # tailnet-інтерфейс цього WSL
 ```
 
-Also required outside WSL:
+Додатково поза WSL:
 
-1. Windows firewall allowance for that port on the Tailscale interface.
-2. Keep tailscaled inside WSL running (it dies with WSL restarts unless
-   configured as a boot service).
+1. Windows firewall: дозволити порт на Tailscale-інтерфейсі.
+2. Тримати tailscaled у WSL запущеним (помирає при рестарті WSL без
+   boot-сервісу).
 
-Trade-off note: loopback binding is also the current security default;
-enable inbound binding only for nodes that must be dialed.
+Нотатка про trade-off: loopback — це також поточний безпековий дефолт;
+inbound-bounding вмикай тільки для нод, які мають бути адресовані.
 
-## Operational constraints observed today
+## Обмеження, спостережені сьогодні
 
-- Always launch via `setsid ... </dev/null >> log 2>&1 & disown` — plain `&`
-  children die when the parent shell is torn down.
-- Under heavy box load (e.g., FPGA synthesis, RAM ~300 MB free) nodes get
-  reaped repeatedly — launch/relaunch after load normalizes.
-- `/tmp` is volatile on this box: logs and checkpoints belong under
-  `/home/agents/logs` and `/home/agents/backups`.
+- Завжди запускай через `setsid ... </dev/null >> log 2>&1 & disown` —
+  діти plain `&` помирають разом із батьківським шеллом.
+- Під важким навантаженням боксу (FPGA synthesis, RAM ~300 MB вільних)
+  ноди ріже OOM/reaper неодноразово — перезапускай після нормалізації.
+- `/tmp` на цьому боксі волатильний: логи й чекпоінти тримай у
+  `/home/agents/logs` та `/home/agents/backups`.
 
-## Health warnings seen
+## Попередження health
 
-- `tailscale status` health block: `/etc/resolv.conf overwritten`
-  (DNS-fight) — cosmetic here, but revisit if magic-DNS names are needed.
+- `tailscale status`: `/etc/resolv.conf overwritten` (DNS-fight) — тут
+  косметика, але повернись, якщо знадобляться magic-DNS імена.
