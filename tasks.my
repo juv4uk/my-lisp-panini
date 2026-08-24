@@ -17,7 +17,8 @@
     (priority . 9.6)
     (capabilities . ("my-lisp-panini" "documentation"))
     (description . "Document the Tailscale WSL connection flow for remote swarm nodes.")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: docs/tailscale-wsl-node-flow.md -- live topology (desktop-1 WSL/desktop/droplet-bootstrap), loopback-binding rule, outbound-only verified pattern, --bind inbound recipe (flag exists per --help), setsid/load constraints.")
   ))
   ("PANINI-UKRAINIAN-PRIMARY-DOCUMENTATION-MIGRATION" . (
     (priority . 9.5)
