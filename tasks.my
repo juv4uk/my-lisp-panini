@@ -3,7 +3,8 @@
     (priority . 9.8)
     (capabilities . ("my-lisp-panini" "rust" "tooling"))
     (description . "Automate validation of coordination/dependencies.yaml against upstream shiva-sutras.")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: coordination/dependencies.yaml created (upstream shiva-sutras pin a8391c4, 5 claims) + validate_dependencies.py (light read-only: revision-exists, claims-match-imports, HEAD-drift=WARN). Live run fails=0 warns=1.")
   ))
   ("PANINI-FOUNDATION-INDEPENDENCE-TEST-AUDIT" . (
     (priority . 9.8)
