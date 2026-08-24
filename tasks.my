@@ -53,19 +53,19 @@
     (description . "Migrate paribhasha.md to 4-layer architecture")
     (done . t)
   ))
- (done . t)
-    (evidence . "MIGRATED 2026-08-24: dhatu.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")IGRATE-DHATU" . (
+  ("PANINI-MIGRATE-DHATU" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate dhatu.md to 4-layer architecture")
-    (done . ())
+    (done . t)
+    (evidence . "MIGRATED 2026-08-24: dhatu.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")
   ))
- (done . t)
-    (evidence . "MIGRATED 2026-08-24: pratyaya.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")IGRATE-PRATYAYA" . (
+  ("PANINI-MIGRATE-PRATYAYA" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate pratyaya.md to 4-layer architecture")
-    (done . ())
+    (done . t)
+    (evidence . "MIGRATED 2026-08-24: pratyaya.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")
   ))
   ("PANINI-CANONICAL-DERIVATION" . (
     (priority . 9.3)
@@ -81,19 +81,19 @@
     (done . t)
     (evidence . "DONE 2026-08-23 (verified live): prototype/derivation_ir/ — derivation_cell.py, graph_engine.py, paribhasha_resolver.py, proof_certificate.py; 9/9 tests OK")
   ))
- (done . t)
-    (evidence . "VERIFIED-LIVE 2026-08-24: machine_model_v01.my pure-functional rule engine; oracle :9999 OK; 4/4 checks PASS via verify.py.")ACHINE-MODEL-PROTOTYPE" . (
+  ("PANINI-MACHINE-MODEL-PROTOTYPE" . (
     (priority . 9.1)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Design the first iteration of panini-machine-model-v0.1 in my-lisp.")
-    (done . ())
+    (done . t)
+    (evidence . "VERIFIED-LIVE 2026-08-24: machine_model_v01.my pure-functional rule engine; oracle :9999 OK; 4/4 checks PASS via machine_model_v01_verify.py.")
   ))
- (done . t)
-    (evidence . "VERIFIED-LIVE 2026-08-24: prototype/symbolic_inference.my -- anuvrtti-based inference: adhikara ctx accumulation (3.1.1 -> 3.1.2), context-gated rule firing (3.1.68 fires only when ctx complete). Oracle :9999 OK; 5/5 checks PASS via symbolic_inference_verify.py.")YMBOLIC-INFERENCE" . (
+  ("PANINI-SYMBOLIC-INFERENCE" . (
     (priority . 9.0)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Prototype the universal inference engine logic using anuvrtti.")
-    (done . ())
+    (done . t)
+    (evidence . "VERIFIED-LIVE 2026-08-24: symbolic_inference.my anuvrtti-based inference; adhikara ctx accumulation 3.1.1->3.1.2; context-gated firing 3.1.68. Oracle OK; 5/5 PASS.")
   ))
   ("PANINI-REFACTOR-ONTOLOGY" . (
     (priority . 8.3)
