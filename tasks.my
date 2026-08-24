@@ -117,7 +117,8 @@
     (priority . 7.9)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Differentiate sarvadhatuka and ardhadhatuka suffixes")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: panini/research/sarvadhatuka-classification.md - synthesis z in-repo verified material (3.4.113 provenance z bavati-audit, Bavati.md kroky 4-5: sap + guna), Sarvam probe documented; VikaranaClass enum + G2 corpus tie-out do ISA-RATIONAL gates.")
   ))
   ("PANINI-RESEARCH-UPADESA" . (
     (priority . 7.8)
