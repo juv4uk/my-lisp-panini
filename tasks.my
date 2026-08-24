@@ -53,13 +53,15 @@
     (description . "Migrate paribhasha.md to 4-layer architecture")
     (done . t)
   ))
-  ("PANINI-MIGRATE-DHATU" . (
+ (done . t)
+    (evidence . "MIGRATED 2026-08-24: dhatu.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")IGRATE-DHATU" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate dhatu.md to 4-layer architecture")
     (done . ())
   ))
-  ("PANINI-MIGRATE-PRATYAYA" . (
+ (done . t)
+    (evidence . "MIGRATED 2026-08-24: pratyaya.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")IGRATE-PRATYAYA" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate pratyaya.md to 4-layer architecture")
