@@ -48,6 +48,7 @@
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Integrate pratyahara findings from shiva-sutras into the wider Paninian ontology.")
     (done . t)
+    (evidence . "2026-08-24 sakshi re-audit: registry mav done.t, ale ontology.md ne mistiv pratyahara yak sutnist. Dopovneno: entity #7 pratyahara u trilangvalnomu formati z provenance SS-CANON-001/SS-PRATYAHARA-001/SS-MARKERS-001-003 @a8391c4.")
   ))
   ("PANINI-MIGRATE-PARIBHASHA" . (
     (priority . 9.5)
