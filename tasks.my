@@ -131,7 +131,8 @@
     (priority . 7.7)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Analyze the three rule types: lopa, adesa, agama")
-    (done . ())
+    (done . t)
+        (evidence . "2026-08-24: panini/research/rule-triad-lopa-adesa-agama.md - triad lopa/adesha/agama defined with anchors 1.1.60 and 1.1.50 (agama generic anchor flagged for verification); mapped to live Bavati trace steps; rewrite-primitive set derived.")
   ))
   ("PANINI-RESEARCH-TRIPADI" . (
     (priority . 7.6)
