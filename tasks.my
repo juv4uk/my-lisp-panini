@@ -110,7 +110,8 @@
     (priority . 8.0)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Define the lakara system (tenses and moods)")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: panini/research/lakara-system.md - 10-lakara table with anchors (3.2.123/124 verified; others flagged for verification), tin-paradigm selector model, SARVAM witness probe performed and rejected as authority (lossy transliteration, wrong translation). Source-based content.")
   ))
   ("PANINI-RESEARCH-SARVADHATUKA" . (
     (priority . 7.9)
