@@ -124,7 +124,8 @@
     (priority . 7.8)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Define upadesa vs. surface forms")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: panini/research/upadesa-vs-surface-forms.md - upadesa vs surface forms defined (anchor 1.3.2 upadeSe ajanunaasika it); dual-form lifecycle w/ vidyut precedent; tie-in ISA-RATIONAL G3. SARVAM witness: generic sense only, source misdetected as Marathi - rejected for technical term.")
   ))
   ("PANINI-RESEARCH-RULE-TYPES" . (
     (priority . 7.7)
