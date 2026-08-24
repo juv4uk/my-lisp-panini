@@ -81,7 +81,8 @@
     (done . t)
     (evidence . "DONE 2026-08-23 (verified live): prototype/derivation_ir/ — derivation_cell.py, graph_engine.py, paribhasha_resolver.py, proof_certificate.py; 9/9 tests OK")
   ))
-  ("PANINI-MACHINE-MODEL-PROTOTYPE" . (
+ (done . t)
+    (evidence . "VERIFIED-LIVE 2026-08-24: machine_model_v01.my pure-functional rule engine; oracle :9999 OK; 4/4 checks PASS via verify.py.")ACHINE-MODEL-PROTOTYPE" . (
     (priority . 9.1)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Design the first iteration of panini-machine-model-v0.1 in my-lisp.")
