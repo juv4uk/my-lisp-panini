@@ -179,7 +179,8 @@
     (priority . 7.0)
     (capabilities . (my-lisp-panini documentation))
     (description . "Restore 11 glossary term lines (dhatu x4, kartr x2, sampradana x2, upasarga x1, karaka x1, dhātu dup) in Sanskrit-Semantic-Model-Migration-Specification.md. Values known from sweep log, positions lost. See TODO marker in file.")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: Reconstructed glossary appendix added to Sanskrit-Semantic-Model-Migration-Specification.md. 11 terms documented as table with IAST + category + counts. Marked RECONSTRUCTED - needs Shiva/Panini review for full reintegration into Semantic Atom Registry.")
   ))
 
   ("TEXT-PRIMITIVE-PROPOSAL" . (
