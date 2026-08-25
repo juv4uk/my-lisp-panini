@@ -189,7 +189,14 @@
     (description . "Draft string-slice + *argv* capability proposal for my-lisp per Vyasa benchmark findings (recursive text traversal = bottleneck). See power step @19d8b64.")
     (done . t)
     (evidence . "2026-08-24: docs/text-primitive-proposal-v01.md -- DRAFT pending COMPILER STEWARD review (vyasa). Proposes string-slice + *argv* based on fpga-lisp@6c2e024 benchmark findings. Non-goals: no regex, no mutable strings, no unicode normalization.")
-  ))
+  )
+
+  ("VAULT-NOTES-CORRECTION" . (
+    (priority . 6.0)
+    (capabilities . (my-lisp-panini documentation))
+    (description . "Vault critic report found false claims in vault notes about repo states (e.g. 'docs/ 4 files' was actually 9+14). Update 🤖 Claude — X/00 - Індекс.md notes to reflect current reality per vault-critic-report.md.")
+    (done . ())
+  )))
 
   ("DRYAD-LICENSE-VERIFY" . (
     (priority . 6.5)
