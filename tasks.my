@@ -191,6 +191,13 @@
     (evidence . "2026-08-24: docs/text-primitive-proposal-v01.md -- DRAFT pending COMPILER STEWARD review (vyasa). Proposes string-slice + *argv* based on fpga-lisp@6c2e024 benchmark findings. Non-goals: no regex, no mutable strings, no unicode normalization.")
   ))
 
+  ("DRYAD-LICENSE-VERIFY" . (
+    (priority . 6.5)
+    (capabilities . (my-lisp-panini documentation license))
+    (description . "Verify Dryad dataset license for EPE data used in data-egg files. Typically CC0/CC-BY but needs confirmation. See LICENSE-MATRIX section 2.")
+    (done . ())
+  ))
+
   ("UK-SA-PUBLICATION-PREP" . (
     (priority . 7.5)
     (capabilities . (my-lisp-panini sanskrit documentation))
