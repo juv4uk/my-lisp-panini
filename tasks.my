@@ -191,4 +191,10 @@
     (evidence . "2026-08-24: docs/text-primitive-proposal-v01.md -- DRAFT pending COMPILER STEWARD review (vyasa). Proposes string-slice + *argv* based on fpga-lisp@6c2e024 benchmark findings. Non-goals: no regex, no mutable strings, no unicode normalization.")
   ))
 
+  ("UK-SA-PUBLICATION-PREP" . (
+    (priority . 7.5)
+    (capabilities . (my-lisp-panini sanskrit documentation))
+    (description . "Prepare Ukrainian phonology on Śiva-sūtras publication. #1 candidate per PUBLICATION-STRATEGY: extensions/ukrainian.yaml v0.3 + UPC-8 Ukrainian range. Needs article draft + comparison with existing works.")
+    (done . ())
+  ))
 )))
