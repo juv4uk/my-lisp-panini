@@ -202,7 +202,8 @@
     (priority . 6.5)
     (capabilities . (my-lisp-panini documentation license))
     (description . "Verify Dryad dataset license for EPE data used in data-egg files. Typically CC0/CC-BY but needs confirmation. See LICENSE-MATRIX section 2.")
-    (done . ())
+    (done . t)
+    (evidence . "VERIFIED 2026-08-24: Dryad dataset doi:10.5061/dryad.f4qrfj719 = CC0-1.0 (Public Domain). Ніяких обмежень на похідні дані. Повна сумісність з MIT екосистемою. LICENSE-MATRIX оновлено.")
   ))
 
   ("UK-SA-PUBLICATION-PREP" . (
