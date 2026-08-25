@@ -187,7 +187,8 @@
     (priority . 6.0)
     (capabilities . (my-lisp-panini tooling))
     (description . "Draft string-slice + *argv* capability proposal for my-lisp per Vyasa benchmark findings (recursive text traversal = bottleneck). See power step @19d8b64.")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-24: docs/text-primitive-proposal-v01.md -- DRAFT pending COMPILER STEWARD review (vyasa). Proposes string-slice + *argv* based on fpga-lisp@6c2e024 benchmark findings. Non-goals: no regex, no mutable strings, no unicode normalization.")
   ))
 
 )))
