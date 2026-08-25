@@ -204,4 +204,20 @@
     (description . "Prepare Ukrainian phonology on Śiva-sūtras publication. #1 candidate per PUBLICATION-STRATEGY: extensions/ukrainian.yaml v0.3 + UPC-8 Ukrainian range. Needs article draft + comparison with existing works.")
     (done . ())
   ))
+
+
+  ("SWARM-NODE-AUTO-SYNC" . (
+    (priority . 7.0)
+    (capabilities . (swarm-node rust tooling))
+    (description . "Implement periodic sync-tasks in swarm-node crate per docs/sync-tasks-anti-entropy-design.md (PROPOSAL status). Pain point #2 from bus coordination discussion.")
+    (done . ())
+  ))
+
+
+  ("CML-BACKEND-CODEGEN-VERIFY" . (
+    (priority . 7.0)
+    (capabilities . (cml compiler testing verification))
+    (description . "Verify cross-backend code generation: C99 output with precomputed header constants AND Verilog synthesizable modules both compile and pass parity tests against oracle :9999. See recommendations-cml-prototypes.md §5.")
+    (done . ())
+  ))
 )))
