@@ -1,231 +1,229 @@
 ((tasks . (
-  ("PANINI-DEPENDENCY-REGISTRY-AUTOMATION" . (
+("PANINI-DEPENDENCY-REGISTRY-AUTOMATION" . (
     (priority . 9.8)
     (capabilities . ("my-lisp-panini" "rust" "tooling"))
     (description . "Automate validation of coordination/dependencies.yaml against upstream shiva-sutras.")
     (done . t)
     (evidence . "2026-08-24: coordination/dependencies.yaml created (upstream shiva-sutras pin a8391c4, 5 claims) + validate_dependencies.py (light read-only: revision-exists, claims-match-imports, HEAD-drift=WARN). Live run fails=0 warns=1.")
   ))
-  ("PANINI-FOUNDATION-INDEPENDENCE-TEST-AUDIT" . (
+("PANINI-FOUNDATION-INDEPENDENCE-TEST-AUDIT" . (
     (priority . 9.8)
     (capabilities . ("my-lisp-panini" "documentation"))
     (description . "Audit all sastra/ files against the Foundation Independence Test.")
     (done . t)
     (evidence . "AUDIT 2026-08-24: docs/research/foundation-independence-audit-2026-08-24.md -- усі 15 sastra файлів PASS після точкової правки it.md (прибрано Compiler/runtime аналогії з шару COMPUTATIONAL). Окремо зафіксовано: 7/15 файлів ще без 4-шарової структури -- це MIGRATE-* серія, не Independence провал.")
   ))
-  ("PANINI-TAILSCALE-NODE-DOCUMENTATION" . (
+("PANINI-TAILSCALE-NODE-DOCUMENTATION" . (
     (priority . 9.6)
     (capabilities . ("my-lisp-panini" "documentation"))
     (description . "Document the Tailscale WSL connection flow for remote swarm nodes.")
     (done . t)
     (evidence . "2026-08-24: docs/tailscale-wsl-node-flow.md -- live topology (desktop-1 WSL/desktop/droplet-bootstrap), loopback-binding rule, outbound-only verified pattern, --bind inbound recipe (flag exists per --help), setsid/load constraints.")
   ))
-  ("PANINI-UKRAINIAN-PRIMARY-DOCUMENTATION-MIGRATION" . (
+("PANINI-UKRAINIAN-PRIMARY-DOCUMENTATION-MIGRATION" . (
     (priority . 9.5)
     (capabilities . ("my-lisp-panini" "documentation"))
     (description . "Migrate and consolidate the primary documentation to Ukrainian.")
     (done . t)
     (evidence . "docs/ (whole directory) - audit: 13/14 UA-primary verified; last EN doc (tailscale flow) migrated by author; task complete.")
   ))
-  ("PANINI-MIGRATE-SAMJNA" . (
+("PANINI-MIGRATE-SAMJNA" . (
     (priority . 9.9)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate samjna.md to 4-layer architecture")
     (done . t)
   ))
-  ("PANINI-MIGRATE-ANUVRTTI" . (
+("PANINI-MIGRATE-ANUVRTTI" . (
     (priority . 9.8)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate anuvrtti.md to 4-layer architecture")
     (done . t)
   ))
-  ("PANINI-MIGRATE-IT" . (
+("PANINI-MIGRATE-IT" . (
     (priority . 9.7)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate it.md to 4-layer architecture")
     (done . t)
   ))
-  ("PANINI-INTEGRATE-PRATYAHARA" . (
+("PANINI-INTEGRATE-PRATYAHARA" . (
     (priority . 9.6)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Integrate pratyahara findings from shiva-sutras into the wider Paninian ontology.")
     (done . t)
     (evidence . "2026-08-24 sakshi re-audit: registry mav done.t, ale ontology.md ne mistiv pratyahara yak sutnist. Dopovneno: entity #7 pratyahara u trilangvalnomu formati z provenance SS-CANON-001/SS-PRATYAHARA-001/SS-MARKERS-001-003 @a8391c4.")
   ))
-  ("PANINI-MIGRATE-PARIBHASHA" . (
+("PANINI-MIGRATE-PARIBHASHA" . (
     (priority . 9.5)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate paribhasha.md to 4-layer architecture")
     (done . t)
   ))
-  ("PANINI-MIGRATE-DHATU" . (
+("PANINI-MIGRATE-DHATU" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate dhatu.md to 4-layer architecture")
     (done . t)
     (evidence . "MIGRATED 2026-08-24: dhatu.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")
   ))
-  ("PANINI-MIGRATE-PRATYAYA" . (
+("PANINI-MIGRATE-PRATYAYA" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Migrate pratyaya.md to 4-layer architecture")
     (done . t)
     (evidence . "MIGRATED 2026-08-24: pratyaya.md perekladeni u 4-sharovu strukturu [PANINI]/[SCHOLARLY]/[COMPUTATIONAL]/[MY-LISP]; Foundation Independence Test proydenov (0 CS-sliv u sharah 1-3).")
   ))
-  ("PANINI-CANONICAL-DERIVATION" . (
+("PANINI-CANONICAL-DERIVATION" . (
     (priority . 9.3)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Create ONE fully traced canonical proof-carrying derivation")
     (done . t)
     (evidence . "PARTIAL 2026-08-23 (verified): Bavati.md повний trace з цитатами (7 sūtra steps); dadAti.md самопозначений як learning scheme. Proof-carrying closure через IR — відкрито")
   ))
-  ("PANINI-DERIVATION-IR-PROTOTYPE" . (
+("PANINI-DERIVATION-IR-PROTOTYPE" . (
     (priority . 9.2)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Prototype a Proof-Carrying Derivation IR")
     (done . t)
     (evidence . "DONE 2026-08-23 (verified live): prototype/derivation_ir/ — derivation_cell.py, graph_engine.py, paribhasha_resolver.py, proof_certificate.py; 9/9 tests OK")
   ))
-  ("PANINI-MACHINE-MODEL-PROTOTYPE" . (
+("PANINI-MACHINE-MODEL-PROTOTYPE" . (
     (priority . 9.1)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Design the first iteration of panini-machine-model-v0.1 in my-lisp.")
     (done . t)
     (evidence . "VERIFIED-LIVE 2026-08-24: machine_model_v01.my pure-functional rule engine; oracle :9999 OK; 4/4 checks PASS via machine_model_v01_verify.py.")
   ))
-  ("PANINI-SYMBOLIC-INFERENCE" . (
+("PANINI-SYMBOLIC-INFERENCE" . (
     (priority . 9.0)
     (capabilities . ("my-lisp-panini" "lisp"))
     (description . "Prototype the universal inference engine logic using anuvrtti.")
     (done . t)
     (evidence . "VERIFIED-LIVE 2026-08-24: symbolic_inference.my anuvrtti-based inference; adhikara ctx accumulation 3.1.1->3.1.2; context-gated firing 3.1.68. Oracle OK; 5/5 PASS.")
   ))
-  ("PANINI-REFACTOR-ONTOLOGY" . (
+("PANINI-REFACTOR-ONTOLOGY" . (
     (priority . 8.3)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Refactor ontology.md to map traditional terms")
     (done . t)
     (evidence . "DONE 2026-08-23 (verified live): sastra/ontology.md b445715 — traditional terms mapped to sutras trilingually; hypotheses/ontology-machine-model.md")
   ))
-  ("PANINI-RESEARCH-LAKARA" . (
+("PANINI-RESEARCH-LAKARA" . (
     (priority . 8.0)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Define the lakara system (tenses and moods)")
     (done . t)
     (evidence . "2026-08-24: panini/research/lakara-system.md - 10-lakara table with anchors (3.2.123/124 verified; others flagged for verification), tin-paradigm selector model, SARVAM witness probe performed and rejected as authority (lossy transliteration, wrong translation). Source-based content.")
   ))
-  ("PANINI-RESEARCH-SARVADHATUKA" . (
+("PANINI-RESEARCH-SARVADHATUKA" . (
     (priority . 7.9)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Differentiate sarvadhatuka and ardhadhatuka suffixes")
     (done . t)
     (evidence . "2026-08-24: panini/research/sarvadhatuka-classification.md - synthesis z in-repo verified material (3.4.113 provenance z bavati-audit, Bavati.md kroky 4-5: sap + guna), Sarvam probe documented; VikaranaClass enum + G2 corpus tie-out do ISA-RATIONAL gates.")
   ))
-  ("PANINI-RESEARCH-UPADESA" . (
+("PANINI-RESEARCH-UPADESA" . (
     (priority . 7.8)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Define upadesa vs. surface forms")
     (done . t)
     (evidence . "2026-08-24: panini/research/upadesa-vs-surface-forms.md - upadesa vs surface forms defined (anchor 1.3.2 upadeSe ajanunaasika it); dual-form lifecycle w/ vidyut precedent; tie-in ISA-RATIONAL G3. SARVAM witness: generic sense only, source misdetected as Marathi - rejected for technical term.")
   ))
-  ("PANINI-RESEARCH-RULE-TYPES" . (
+("PANINI-RESEARCH-RULE-TYPES" . (
     (priority . 7.7)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Analyze the three rule types: lopa, adesa, agama")
     (done . t)
         (evidence . "2026-08-24: panini/research/rule-triad-lopa-adesa-agama.md - triad lopa/adesha/agama defined with anchors 1.1.60 and 1.1.50 (agama generic anchor flagged for verification); mapped to live Bavati trace steps; rewrite-primitive set derived.")
   ))
-  ("PANINI-RESEARCH-TRIPADI" . (
+("PANINI-RESEARCH-TRIPADI" . (
     (priority . 7.6)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Research the Tripadi rule domain and its mechanics")
     (done . t)
     (evidence . "2026-08-24: tripadi.md v0.1 VERIFIED - anchor 8.2.1 pUrvatrAsiddham zvireno proty dvokh dzherel; asiDDatva principle documented with explicit simplification caveat; compiler-pass analogy in SCHOLARLY layer; arch requirement for machine model stated (frozen visible state at tripAdI entry); open questions listed honestly.")
   ))
-  ("PANINI-RESEARCH-SAMHITA-PADA" . (
+("PANINI-RESEARCH-SAMHITA-PADA" . (
     (priority . 7.5)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Document samhita and pada boundaries")
     (done . t)
     (evidence . "panini/research/samhita-vs-pada.md - anchor 6.1.72 samhitaayam; pada/samhitaa dual-mode; compiler-pass parallel.")
   ))
-  ("PANINI-RESEARCH-SVARA" . (
+("PANINI-RESEARCH-SVARA" . (
     (priority . 7.4)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Investigate the role of svara as a morphological trigger")
     (done . t)
     (evidence . "panini/research/svara-accent.md - udatta/anudatta/svarita; Astadhyayi minimal coverage; upstream phonological-dimensions H-SS-EXT-001 referenced as HYPOTHESIS.")
   ))
-  ("PANINI-RESEARCH-GANAPATHA" . (
+("PANINI-RESEARCH-GANAPATHA" . (
     (priority . 7.3)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Research the Ganapatha")
     (done . t)
     (evidence . "panini/research/pradi-ganapatha-provenance.md - prAdi-gana provenance case study; honest scope limitation documented.")
   ))
-  ("PANINI-CLEANUP-FOUNDATION" . (
+("PANINI-CLEANUP-FOUNDATION" . (
     (priority . 9.5)
     (capabilities . ("my-lisp-panini" "sanskrit"))
     (description . "Move remaining non-sastra files from foundation/ to registry/ and research/.")
     (done . t)
   ))
-  ("PANINI-VIDYUT-AUDIT" . (
+("PANINI-VIDYUT-AUDIT" . (
     (priority . 9.4)
     (capabilities . ("my-lisp-panini" "rust"))
     (description . "Analyze the open-source Rust project Vidyut (Ambuda).")
     (done . t)
   ))
-  ("GLOSSARY-RESTORATION" . (
+("GLOSSARY-RESTORATION" . (
     (priority . 7.0)
     (capabilities . (my-lisp-panini documentation))
     (description . "Restore 11 glossary term lines (dhatu x4, kartr x2, sampradana x2, upasarga x1, karaka x1, dhātu dup) in Sanskrit-Semantic-Model-Migration-Specification.md. Values known from sweep log, positions lost. See TODO marker in file.")
     (done . t)
     (evidence . "2026-08-24: Reconstructed glossary appendix added to Sanskrit-Semantic-Model-Migration-Specification.md. 11 terms documented as table with IAST + category + counts. Marked RECONSTRUCTED - needs Shiva/Panini review for full reintegration into Semantic Atom Registry.")
   ))
-
-  ("TEXT-PRIMITIVE-PROPOSAL" . (
+("TEXT-PRIMITIVE-PROPOSAL" . (
     (priority . 6.0)
     (capabilities . (my-lisp-panini tooling))
     (description . "Draft string-slice + *argv* capability proposal for my-lisp per Vyasa benchmark findings (recursive text traversal = bottleneck). See power step @19d8b64.")
     (done . t)
     (evidence . "2026-08-24: docs/text-primitive-proposal-v01.md -- DRAFT pending COMPILER STEWARD review (vyasa). Proposes string-slice + *argv* based on fpga-lisp@6c2e024 benchmark findings. Non-goals: no regex, no mutable strings, no unicode normalization.")
-  )
-
-  ("VAULT-NOTES-CORRECTION" . (
+  ))
+("VAULT-NOTES-CORRECTION" . (
     (priority . 6.0)
     (capabilities . (my-lisp-panini documentation))
     (description . "Vault critic report found false claims in vault notes about repo states (e.g. 'docs/ 4 files' was actually 9+14). Update 🤖 Claude — X/00 - Індекс.md notes to reflect current reality per vault-critic-report.md.")
     (done . ())
-  )))
-
-  ("DRYAD-LICENSE-VERIFY" . (
+  ))
+("DRYAD-LICENSE-VERIFY" . (
     (priority . 6.5)
     (capabilities . (my-lisp-panini documentation license))
     (description . "Verify Dryad dataset license for EPE data used in data-egg files. Typically CC0/CC-BY but needs confirmation. See LICENSE-MATRIX section 2.")
     (done . t)
     (evidence . "VERIFIED 2026-08-24: Dryad dataset doi:10.5061/dryad.f4qrfj719 = CC0-1.0 (Public Domain). Ніяких обмежень на похідні дані. Повна сумісність з MIT екосистемою. LICENSE-MATRIX оновлено.")
   ))
-
-  ("UK-SA-PUBLICATION-PREP" . (
+("UK-SA-PUBLICATION-PREP" . (
     (priority . 7.5)
     (capabilities . (my-lisp-panini sanskrit documentation))
     (description . "Prepare Ukrainian phonology on Śiva-sūtras publication. #1 candidate per PUBLICATION-STRATEGY: extensions/ukrainian.yaml v0.3 + UPC-8 Ukrainian range. Needs article draft + comparison with existing works.")
     (done . ())
   ))
-
-
-  ("SWARM-NODE-AUTO-SYNC" . (
+("SWARM-NODE-AUTO-SYNC" . (
     (priority . 7.0)
     (capabilities . (swarm-node rust tooling))
     (description . "Implement periodic sync-tasks in swarm-node crate per docs/sync-tasks-anti-entropy-design.md (PROPOSAL status). Pain point #2 from bus coordination discussion.")
     (done . ())
   ))
-
-
-  ("CML-BACKEND-CODEGEN-VERIFY" . (
+("CML-BACKEND-CODEGEN-VERIFY" . (
     (priority . 7.0)
     (capabilities . (cml compiler testing verification))
     (description . "Verify cross-backend code generation: C99 output with precomputed header constants AND Verilog synthesizable modules both compile and pass parity tests against oracle :9999. See recommendations-cml-prototypes.md §5.")
+    (done . ())
+  ))
+("ONTOLOGY-SARVAM-VERIFY-PREP" . (
+    (priority . 6.0)
+    (capabilities . (my-lisp-panini sanskrit sarvam))
+    (description . "Prepare evidence package for Shiva review of 40 auto-extracted ontology concepts. Extract contexts, verify IAST spellings against canonical data, flag terms where Sarvam witness quality was insufficient.")
     (done . ())
   ))
 )))
