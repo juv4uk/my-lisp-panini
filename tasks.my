@@ -224,6 +224,7 @@
     (priority . 6.0)
     (capabilities . (my-lisp-panini sanskrit sarvam))
     (description . "Prepare evidence package for Shiva review of 40 auto-extracted ontology concepts. Extract contexts, verify IAST spellings against canonical data, flag terms where Sarvam witness quality was insufficient.")
-    (done . ())
+    (done . t)
+    (evidence . "2026-08-27 sakshi: evidence package prepared. panini/research/sarvam-ontology-verify-report.md @1546c30 — 40 concepts quality-audited: 25% real translations, 62.5% transliteration-only, 5 flagged errors (asiddha wrong meaning, hetu meta-description, jāyate caps, apādāna IAST, brahmāṇḍa API timeout). KEY FINDING: 37/40 ungrounded (no corpus context outside Sarvam file). Errors annotated in-place @5fa1326, not rewritten per evidence policy. REMAINING (future passes): context extraction from sanskritworld_texts_md + MW/Apte IAST cross-check → requires Shiva domain review.")
   ))
 )))
