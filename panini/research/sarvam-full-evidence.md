@@ -15,8 +15,8 @@
 - **anusaṃdhāna** → Anusandhana
 - **anuvṛtti** → Anuvritti
 - **apavāda** → Apavada
-- **apādāna** → Apadaana
-- **asiddha** → Siddha
+- **apādāna** → Apadaana <!-- SAKSHI-FIX 2026-08-27: Sarvam втратив діакритики; правильно Apādāna -->
+- **asiddha** → Siddha <!-- SAKSHI-FLAG 2026-08-27: СЕМАНТИЧНА ПОМИЛКА — asiddha = "не усталений" (негація); Sarvam дав протилежне значення -->
 - **aṣṭādhyāyī** → Ashtadhyayi
 - **bhaviṣyati** → Bhavishyati
 - **bhāva** → Bhav
@@ -38,12 +38,12 @@
 - **gaṇita** → Mathematics
 - **gīta** → Gita
 - **harṣa** → Harsha
-- **hetu** → The reason is that the word "hetu" is derived from the Sanskrit word "hetu," which means "reason" or "cause."
+- **hetu** → The reason is that the word "hetu" is derived from the Sanskrit word "hetu," which means "reason" or "cause." <!-- SAKSHI-FLAG 2026-08-27: meta-опис замість перекладу; коректна глоса = "cause, reason" -->
 - **itihāsa** → History
 - **jyotiṣa** → Jyotisha
 - **jñāna** → Knowledge
 - **jāla** → Jala
-- **jāyate** → JAYATE
+- **jāyate** → JAYATE <!-- SAKSHI-FLAG 2026-08-27: ALL-CAPS артефакт; коректна глоса = "is born, arises" -->
 - **jīva** → Jeeva
 - **kalpanā** → Kalpana
 - **kalā** → Kala
@@ -210,7 +210,7 @@
 - auṣadha → The translation of the given Marathi text "औषध" to English i
 - avasthā → The translation of the given Marathi text "अवस्था" to Englis
 - bhūmikā → The translation of the given Marathi text "भूमिका" to Englis
-- brahmāṇḍa → ERR:The read operation timed out
+- brahmāṇḍa → ERR:The read operation timed out <!-- SAKSHI-FLAG 2026-08-27: API timeout — запис невалідний, потребує повторного виклику -->
 - buddhi → The translation of the given Marathi text "बुद्धि" to Englis
 - dhātu → The translation of the given Marathi text "धातू" to English 
 - doṣa → The translation of the given input text "doṣa" from Marathi 
