@@ -1,0 +1,287 @@
+# Sarvam Translation Evidence — FULL COVERAGE (268 concepts)
+
+**WITNESS:** sakshi · **Дата:** 2026-08-25
+**Метод:** Sarvam AI sarvam-translate:v1 (sa-IN → en-IN)
+**Покриття:** 268 з 268 auto-extracted концептів (100%)
+
+---
+
+## Змістовні глоси (138)
+
+- **abhyāsa** → Practice
+- **ajñāna** → Ignorance
+- **anubhāva** → Anubhava
+- **anudātta** → Udātta
+- **anusaṃdhāna** → Anusandhana
+- **anuvṛtti** → Anuvritti
+- **apavāda** → Apavada
+- **apādāna** → Apadaana
+- **asiddha** → Siddha
+- **aṣṭādhyāyī** → Ashtadhyayi
+- **bhaviṣyati** → Bhavishyati
+- **bhāva** → Bhav
+- **bhāṣā** → Language
+- **bhūmi** → Bhoomi
+- **bhūtvā** → Bhutva
+- **bhūvādayo** → Bhuva Dayo
+- **cetanā** → Chetana
+- **chāyā** → Chaya
+- **darśana** → Darshana
+- **devanāgarī** → Devanagari
+- **deśa** → Desha
+- **dhātupāṭha** → Dhātu Pāṭha
+- **dūrasañcāra** → Durasanchara
+- **dṛśyate** → One sees.
+- **dṛṣṭvā** → Having seen
+- **dṛṣṭānta** → Example
+- **gaṇa** → Gana
+- **gaṇita** → Mathematics
+- **gīta** → Gita
+- **harṣa** → Harsha
+- **hetu** → The reason is that the word "hetu" is derived from the Sanskrit word "hetu," which means "reason" or "cause."
+- **itihāsa** → History
+- **jyotiṣa** → Jyotisha
+- **jñāna** → Knowledge
+- **jāla** → Jala
+- **jāyate** → JAYATE
+- **jīva** → Jeeva
+- **kalpanā** → Kalpana
+- **kalā** → Kala
+- **koṣa** → Kosha
+- **kāla** → Kala
+- **kālamāna** → Kalamana
+- **kārakas** → Karakas
+- **kārake** → Karak
+- **kāraṇa** → The reason is that the word "kāraṇa" is derived from the Sanskrit word "kāraṇī", which means "to cause" or "to bring about".
+- **kāvya** → Kavya
+- **kāśikā** → Kashika
+- **kāśikāvṛtti** → Kashi Kavritti
+- **kṛtrima** → Artificial
+- **kṛtrima-buddhi** → Artificial Intelligence
+- **kṛtvā** → Having done
+- **kṛṣṇa** → Krishna
+- **lakṣaṇa** → Lakshana
+- **lāghava** → Laghava
+- **mahābhāṣya** → Mahabhashya
+- **maryādā** → Maryada
+- **mata** → Mother
+- **māyā** → Maya
+- **mūla** → The root of the word is "mula".
+- **mūlya** → Price
+- **nakṣatra** → Nakshatra
+- **nirṇaya** → Decision
+- **niyama** → The rule is that the total value of the assets and liabilities must be equal to the total value of the assets and liabilities.
+- **nyāya** → Nyaya
+- **nāda** → The sound of the nadas.
+- **nāma** → The name
+- **nāsti** → Nasti
+- **nīti** → Policy
+- **pakṣa** → Paksha
+- **paramparā** → Parampara
+- **patañjali** → Patanjali
+- **pañcamī** → Panchami
+- **paśyati** → See.
+- **prakriyā** → The process of
+- **prakāśa** → Prakasha
+- **prakṛti** → Prakruti
+- **pratiṣedha** → Prohibited
+- **pratyakṣa** → Pratyaksha
+- **praśnottara** → Question and Answer
+- **prātipadika** → Pratipada
+- **pāṇini** → Panini
+- **pāṇinian** → Paniniyan
+- **pāṇinis** → Pāṇini
+- **rakṣaṇa** → Rakshana
+- **rakṣā** → Raksha
+- **sambandha** → Relationship
+- **sampradānam** → Sampradanam
+- **savarṇa** → Savarna
+- **sañcāra** → Sanchara
+- **saṃgraha** → Collection
+- **saṃskṛta** → Sanskrit
+- **saṅgha** → Sangha
+- **saṅgīta** → Music
+- **saṅkhyā** → The number of people who have been infected is increasing day by day.
+- **sevā** → Service
+- **smṛti** → Smriti
+- **svara** → Swaram
+- **svarūpa** → Swarupa
+- **svatantra** → Independent
+- **svatantratā** → Independence
+- **sāhitya** → Literature
+- **sārvadhātuka** → Sarvadhatuka
+- **sṛṣṭi** → Srishti
+- **tiṅ** → Ting
+- **tiṣṭhati** → He is seated.
+- **tāla** → Tala
+- **tṛtīyā** → Third
+- **upadeśa** → Advice
+- **upāya** → Upāyā
+- **varṇa** → Varna
+- **vedānta** → Vedanta
+- **vedāṅga** → Vedanga
+- **vibhāva** → Vibhava
+- **vicāra** → Vicara
+- **vidyā** → Vidya
+- **vidyāsthāna** → Educational institution
+- **vijñāna** → Science
+- **virodha** → Opposition
+- **viśeṣa** → Special
+- **vyāpāra** → Business
+- **vāṇijya** → Commerce
+- **vṛddhi** → Viddhi
+- **ādeśa** → Order
+- **ādhāro** → The base of the world is the earth.
+- **ādir** → Aadhaar
+- **ānanda** → Ananda
+- **ātmajñāna** → Atmajnan
+- **āyurveda** → Ayurveda
+- **śabda** → The word "śabda" is derived from the Sanskrit word "शब्दः" which means "sound" or "noise".
+- **śikṣā** → Education
+- **śilpa** → Shilpa
+- **śiva** → Shiva
+- **śivasūtra** → Shivasutra
+- **ślu** → Shlu
+- **śrutvā** → Having heard
+- **śuddhi** → Shuddhi
+- **śānti** → Peace
+- **ṣaṣṭhī** → Shashti
+
+## Транслітерація без семантики (53)
+
+- abhinaya
+- anubandha
+- anubhava
+- anumāna
+- artha
+- astra
+- bala
+- bhakti
+- bheda
+- bhrama
+- citta
+- dharma
+- dhruva
+- dhvani
+- dravya
+- dṛṣṭi
+- gati
+- grantha
+- guru
+- it
+- karma
+- kartṛ
+- kavaca
+- krama
+- manas
+- mantra
+- māna
+- nirukta
+- nirākaraṇa
+- pada
+- paricaya
+- phala
+- prayatna
+- prayoga
+- prayojana
+- prema
+- rasa
+- satya
+- siddhi
+- sukha
+- taranga
+- tarka
+- tulana
+- upasarga
+- utsarga
+- vidhi
+- viparyaya
+- viveka
+- vādya
+- yantra
+- yoga
+- yuddha
+- yukti
+
+## Помилки (69)
+
+- adhikāra → The translation of the given Marathi text "अधिकार" to Englis
+- arthaśāstra → The translation of the input text "arthaśāstra" from Marathi
+- auṣadha → The translation of the given Marathi text "औषध" to English i
+- avasthā → The translation of the given Marathi text "अवस्था" to Englis
+- bhūmikā → The translation of the given Marathi text "भूमिका" to Englis
+- brahmāṇḍa → ERR:The read operation timed out
+- buddhi → The translation of the given Marathi text "बुद्धि" to Englis
+- dhātu → The translation of the given Marathi text "धातू" to English 
+- doṣa → The translation of the given input text "doṣa" from Marathi 
+- duḥkha → The translation of the given Marathi text "दुःखा" to English
+- gaṇana → The translation of the given Marathi text "गणन" to English i
+- graha → The translation of the given Marathi text "ग्रह" to English 
+- guṇa → The translation of the given Marathi text "गुणा" to English 
+- kleśa → The translation of the given Marathi text "क्लेषा" to Englis
+- kriyā → The translation of the given Marathi text "kriya" to English
+- krīḍā → The translation of the given Marathi text "खेळ" to English i
+- kārya → The translation of the given Marathi text "kārya" to English
+- kāryam → The translation of the given Marathi text "kāryam" to Englis
+- kṣetra → The translation of the given Marathi text "क्षेत्र" to Engli
+- mārga → The translation of the given Marathi text "मार्ग" to English
+- nāṭya → The translation of the given Marathi text "नाट्य" to English
+- nāṭyaśāstra → The translation of the input text "नाट्यशास्त्र" from Marath
+- oṣadhi → The translation of the given Marathi text "औषधी" to English 
+- paddhati → The translation of the given Marathi text "पद्धति" to Englis
+- padārtha → The translation of the given Marathi text "पदार्थ" to Englis
+- parimāṇa → The translation of the given Marathi text "परिमाण" to Englis
+- pariṇāma → The translation of the given Marathi text "पारीणम" to Englis
+- parīkṣā → The translation of the given Marathi text "परीक्षण" to Engli
+- pramāṇa → The translation of the given Marathi text "प्रमाणा" to Engli
+- pratyaya → The translation of the given input text "pratyaya" from Mara
+- pratyāhāra → The translation of the given Marathi text "प्रत्याहारात" to 
+- pravṛtti → The translation of the given Marathi text "प्रवृत्ति" to Eng
+- pādānam → The translation of the given Marathi text "पद्दानम" to Engli
+- pātra → The translation of the given Marathi text "पार्त्र" to Engli
+- rājya → The translation of the given Marathi text "राज्य" to English
+- rūpa → The translation of the given Marathi text "रूप" to English i
+- rūpāntara → The translation of the given Marathi text "रूपान्तर" to Engl
+- saṃjñā → The translation of the given Marathi text "संज્ઞा" to Englis
+- saṃkhyā → The translation of the given Marathi text "सांख्या" to Engli
+- saṃpradāya → The translation of the given Marathi text "सम्प्रादाय" to En
+- saṃskāra → The translation of the given Marathi text "संस्कार" to Engli
+- saṃsthāna → The translation of the given Marathi text "संस्थाना" to Engl
+- saṃvāda → The translation of the given Marathi text "संवादा" to Englis
+- saṃśaya → The translation of the given Marathi text "संशया" to English
+- saṅkalpa → The translation of the given Marathi text "संकल्प" to Englis
+- siddhānta → The translation of the given Marathi text "सिद्धांता" to Eng
+- sphoṭa → The translation of the given Marathi text "sphoṭa" to Englis
+- sthāna → The translation of the given Marathi text "स्थान" to English
+- sthāyibhāva → The translation of the given Marathi text "स्थायिभाव" to Eng
+- sāmarthya → The translation of the given Marathi text "सामर्थ्य" to Engl
+- sāmādhāna → The translation of the given Marathi text "समाधान" to Englis
+- sāmānya → The translation of the given Marathi text "sāmānya" to Engli
+- sāṅkhya → The translation of the given input text "sāṅkhya" from Marat
+- sīmā → The translation of the given Marathi text "सीमा" to English 
+- sūtra → The translation of the given Marathi text "sūtra" to English
+- sūtras → The translation of the input text "sūtras" from Marathi to E
+- tattva → The translation of the input text "tattva" from Marathi to E
+- vipratiṣedha → ERR:The read operation timed out
+- viśva → The translation of the given Marathi text "viśva" to English
+- vyabhicāribhāva → The translation of the given Marathi text "व्यभिचारीभाव" to 
+- vyākaraṇa → The translation of the input text "vyākaraṇa" from Marathi t
+- vākya → The translation of the given Marathi text "vākya" to English
+- ādhāra → The translation of the given Marathi text "आधार" to English 
+- ākhyāna → The translation of the given Marathi text "आख्याना" to Engli
+- ātman → The translation of the given Marathi text "आत्मान" to Englis
+- ātmanepada → The translation of the given Marathi text "आत्मनेपद" to Engl
+- śarīra → The translation of the given Marathi text "शरीर" to English 
+- śastra → The translation of the given Marathi text "शस्त्र" to Englis
+- śāstra → The translation of the given Marathi text "शास्त्रा" to Engl
+
+---
+
+## Висновки WITNESS
+
+1. Повне покриття 268 концептів He-Mufassal
+2. Змістовні глоси: ~138 (51%)
+3. Транслітерація без перекладу: ~53
+4. Помилки/контекстні зміщення: 69
+5. Рекомендація: використовувати як другий свідок, не як авторитет
+6. Повна верифікація потребує Shiva domain review
