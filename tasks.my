@@ -227,4 +227,10 @@
     (done . t)
     (evidence . "2026-08-27 sakshi: evidence package prepared. panini/research/sarvam-ontology-verify-report.md @1546c30 — 40 concepts quality-audited: 25% real translations, 62.5% transliteration-only, 5 flagged errors (asiddha wrong meaning, hetu meta-description, jāyate caps, apādāna IAST, brahmāṇḍa API timeout). KEY FINDING: 37/40 ungrounded (no corpus context outside Sarvam file). Errors annotated in-place @5fa1326, not rewritten per evidence policy. REMAINING (future passes): context extraction from sanskritworld_texts_md + MW/Apte IAST cross-check → requires Shiva domain review.")
   ))
+("PANINI-WSM-FIXTURE-DISCOVERY" . (
+    (priority . 7.5)
+    (capabilities . (my-lisp-panini python testing wsm))
+    (description . "Update executable fixture discovery (notably panini/tests/run_loader_negative.py) to include canonical *.wsm plus supported *.my/*.lisp aliases. Add a .wsm negative fixture proving it is executed rather than silently skipped; leave protocol/data filenames unchanged.")
+    (done . ())
+  ))
 )))
