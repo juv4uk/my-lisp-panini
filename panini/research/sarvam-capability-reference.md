@@ -99,7 +99,7 @@ opportunity, should direct HTTP calls outside MCP ever be needed.
 |---|---|---|---|
 | `translate` | ✅ | ✅ (Sarvam-Translate claims 22 languages, Sanskrit among them) | no |
 | `transliterate` | ✅ (in the schema!) | ❌ (officially not in the list of 11 supported languages) | ❌ **confirmed by an API error** this session |
-| `stt_transcribe`/`stt_batch_submit` | ✅ | ⚠️ contradictory (not found in any external list) | no |
+| `stt_transcribe`/`stt_batch_submit` | ✅ | ⚠️ contradictory (not found in any external list) | **no — CHECKED live 2026-08-30: explicitly rejected** |
 | `tts_speak`/`tts_stream`/`dub` | ❌ (absent from the enum) | ❌ (11 languages, no Sanskrit) | no |
 | `localize` | ✅ | not checked separately | no |
 
@@ -108,6 +108,48 @@ optimistic about Sanskrit support than either the real API (confirmed
 for `transliterate`) or the external documentation. **Before any new
 use of `sa-IN` in this repository — a trial call first, not trust in
 the enum list.**
+
+### Sanskrit STT — live admission probe (2026-08-30, PANINI-SARVAM-SANSKRIT-STT-LIVE-VERIFY)
+
+Two-stage evidence, deliberately NOT collapsed into one claim:
+
+- **Stage A — API admission probe: sa-IN explicitly REJECTED.**
+  A minimal valid 8 kHz PCM tone WAV (`/tmp/opencode/admission_probe_tone.wav`)
+  was sent to `sarvam_tools_stt_transcribe` with `language_code=sa-IN`.
+  The real API returned `invalid_request_error`:
+  `"Language 'sa-IN' is not supported by saarika:v2.5 model."`
+  (request_id `20260830_a9a8f532-f336-42a9-96d4-fdb7ddacd1ae`).
+  So **admission = NO**: `sa-IN` is accepted in the tool's schema enum,
+  but the live API rejects it outright — same class of discrepancy
+  already confirmed for `transliterate`. No transcription was produced.
+  Note: through the MCP wrapper the audio reaches the `saarika:v2.5`
+  engine (the capability reference below cites `saaras:v3`); the
+  rejection is the authoritative API answer regardless of engine label.
+  - `sa-IN parameter accepted: NO`
+  - `Sanskrit transcription verified: NOT YET`
+
+- **Stage B — semantic STT verification: BLOCKED at the API level.**
+  A tone (or silence) proves only API admission of the language tag,
+  never that real Sanskrit speech is recognized and transcribed
+  correctly. Properly it requires a real, license-clean Sanskrit speech
+  sample (own recording preferred) through the same call path. But since
+  Stage A established that the API **rejects `sa-IN` outright**, Stage B
+  cannot proceed through any `sa-IN` call — the endpoint refuses the
+  language tag before touching the audio. A `hi-IN` call would run Hindi
+  STT and prove nothing about Sanskrit (hi-IN verifies the pipeline, not
+  Sanskrit support). So: Sanskrit transcription remains UNVERIFIED and
+  **blocked on there being no Sanskrit STT code path at all**, not on a
+  missing sample.
+
+- **TTS synthesis limitation, noted (not repaired here):** the TTS wrapper
+  in this session could not synthesize a sample because `bulbul:v2` is
+  deprecated (use `bulbul:v3`) and `bulbul:v3` rejects the pitch/loudness
+  params the wrapper always sends. Repairing the wrapper is a separate
+  task, out of scope for this verification — a real Sanskrit recording is
+  the correct input for Stage B anyway.
+
+Status: `sa-IN` STT admission CONFIRMED REJECTED; Sanskrit transcription
+UNVERIFIED. Do not use `sa-IN` for STT until Stage B clears on real speech.
 
 ### Sources
 
