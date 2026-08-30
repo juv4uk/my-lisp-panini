@@ -206,6 +206,7 @@
     (priority . 7.5)
     (capabilities . (my-lisp-panini sanskrit documentation))
     (description . "Prepare Ukrainian phonology on Śiva-sūtras publication. #1 candidate per PUBLICATION-STRATEGY: extensions/ukrainian.yaml v0.3 + UPC-8 Ukrainian range. Needs article draft + comparison with existing works.")
+    (status . "DONE 2026-08-30 by Ganaka (v0.1 repo-local draft COMMITTED, NOT published): panini/research/uk-sa-phonology-draft-2026-08-30.md — Ukrainian tech draft of Śiva-sūtras phonology layer with source map and CONFIRMED/PARTIAL/HYPOTHESIS/UNRESOLVED separation. Key deliverables: full UPC-8 Ukrainian inventory (44 phonemes = 13 shared + 31 new, codes 0x19..0x2F/0x33 etc), documented S1/S2 divergence on /g/ and /x/,/f/ placement, honest labeling of palatalization/iotated/palatalization-as-geometry as PARTIAL/HYPOTHESIS. PUBLICATION-STRATEGY file not found (UNRESOLVED). External-lit comparison deferred (separate step). Format/channel still owner decision.")
     (done . ())
   ))
 ("SWARM-NODE-AUTO-SYNC" . (
