@@ -113,4 +113,4 @@ vendored third-party material are not translated. See
 
 ## License · Ліцензія · Lizenz
 
-[MIT](LICENSE)
+[ВОЛЬНІСТЬ](LICENSE)
