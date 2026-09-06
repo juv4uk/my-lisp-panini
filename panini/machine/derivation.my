@@ -12,6 +12,14 @@
 ;;
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: ting.my, phonology.my, sandhi.my
+;;
+;; SLP1 ENCODING NOTE:
+;;   SLP1 sibilants: z=ś (श), S=ṣ (ष), s=स
+;;   SLP1 vowels: f=ṛ (ऋ), F=ṝ (ॠ), R=ṇ (ण — consonant, NOT ṛ!)
+;;   SLP1 nasals: N=ṅ (ङ), Y=ञ, R=ṇ (ण)
+;;   Pre-existing issue: vikaraṇa Śap uses S (ṣ) instead of z (ś) — see ting.my
+;;   This does not affect surface forms (S is an it-marker, deleted in it-lopa)
+;;   but is a wrong Pāṇinian encoding.
 
 (load "panini/machine/ting.my")
 
@@ -58,6 +66,8 @@
 ;; Extended: applies to short AND long vowels.
 ;;   Short: u→o, i→e, f→ar, x→al
 ;;   Long:  U→o, I→e, F→ar, X→al
+;;
+;; SLP1 note: f=ṛ (short vocalic r), F=ṝ (long vocalic r)
 ;; ==========================================
 
 (def apply-guRa-extended
@@ -150,23 +160,30 @@
     (symbol-list->string (derive-verb dhatu class-num ting-label is-atmanepada))))
 
 ;; Named derivations (3rd sg)
+;; SLP1: z=ś, S=ṣ, f=ṛ. paz=पश्, kfS=कृष्, dfz=दृश्
 (def derive-pacati   (lambda () (derive-verb (quote (p a c)) 6 (quote tip) (quote ()))))
 (def derive-bhavati  (lambda () (derive-verb (quote (b h U)) 1 (quote tip) (quote ()))))
 (def derive-labhate  (lambda () (derive-verb (quote (l a b h)) 1 (quote ta) t)))
 (def derive-tudati   (lambda () (derive-verb (quote (t u d)) 6 (quote tip) (quote ()))))
-(def derive-paSyati  (lambda () (derive-verb (quote (p a S)) 4 (quote tip) (quote ()))))
+(def derive-pazyati  (lambda () (derive-verb (quote (p a z)) 4 (quote tip) (quote ()))))
+(def derive-kfSati   (lambda () (derive-verb (quote (k f S)) 6 (quote tip) (quote ()))))
+(def derive-dfzyati (lambda () (derive-verb (quote (d f z)) 4 (quote tip) (quote ()))))
 (def derive-corayati (lambda () (derive-verb (quote (c u r)) 10 (quote tip) (quote ()))))
 
 ;; 1st person (with vṛddhi)
 (def derive-pacAmi   (lambda () (derive-verb (quote (p a c)) 6 (quote mip) (quote ()))))
 (def derive-bhavAmi  (lambda () (derive-verb (quote (b h U)) 1 (quote mip) (quote ()))))
 (def derive-tudAmi   (lambda () (derive-verb (quote (t u d)) 6 (quote mip) (quote ()))))
-(def derive-paSyAmi  (lambda () (derive-verb (quote (p a S)) 4 (quote mip) (quote ()))))
+(def derive-pazyAmi  (lambda () (derive-verb (quote (p a z)) 4 (quote mip) (quote ()))))
+(def derive-kfSAmi   (lambda () (derive-verb (quote (k f S)) 6 (quote mip) (quote ()))))
+(def derive-dfzyAmi (lambda () (derive-verb (quote (d f z)) 4 (quote mip) (quote ()))))
 (def derive-corayAmi (lambda () (derive-verb (quote (c u r)) 10 (quote mip) (quote ()))))
 
 ;; 3rd pl (with jhi ādeśa)
 (def derive-pacanti   (lambda () (derive-verb (quote (p a c)) 6 (quote jhi) (quote ()))))
 (def derive-bhavanti  (lambda () (derive-verb (quote (b h U)) 1 (quote jhi) (quote ()))))
 (def derive-tudanti   (lambda () (derive-verb (quote (t u d)) 6 (quote jhi) (quote ()))))
-(def derive-paSyanti  (lambda () (derive-verb (quote (p a S)) 4 (quote jhi) (quote ()))))
+(def derive-pazyanti  (lambda () (derive-verb (quote (p a z)) 4 (quote jhi) (quote ()))))
+(def derive-kfSanti   (lambda () (derive-verb (quote (k f S)) 6 (quote jhi) (quote ()))))
+(def derive-dfzyanti (lambda () (derive-verb (quote (d f z)) 4 (quote jhi) (quote ()))))
 (def derive-corayanti (lambda () (derive-verb (quote (c u r)) 10 (quote jhi) (quote ()))))
