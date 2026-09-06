@@ -1,5 +1,7 @@
 ;; Panini machine compatibility tests; dependencies are loaded by the entrypoint.
 
+(load "panini/machine/phonology.my")
+
 (def assert-equal
   (lambda (expected actual label)
     (cond
@@ -10,7 +12,40 @@
   (lambda ()
     (assert-equal (quote (a i u f x e o E O)) AC "AC fixture")
     (assert-equal (quote (i u f x)) IK "IK fixture")
-    (assert-equal (quote (e o E O)) EC "EC fixture")))
+    (assert-equal (quote (e o E O)) EC "EC fixture")
+    (assert-equal (quote (Y m N R n)) NAM "NaM fixture (5 nasals)")
+    (assert-equal (quote (y v r l)) YAN "YAN fixture")
+    (assert-equal (quote (J B G Q D j b g q d)) JHASH "JHASH fixture")))
+
+(def test-phonology-predicates
+  (lambda ()
+    (assert-equal t (in-ac? (quote a)) "in-ac? a = vowel")
+    (assert-equal t (in-ac? (quote E)) "in-ac? E = vowel")
+    (assert-equal (quote ()) (in-ac? (quote k)) "in-ac? k = not vowel")
+    (assert-equal t (in-hal? (quote k)) "in-hal? k = consonant")
+    (assert-equal t (in-hal? (quote S)) "in-hal? S = consonant")
+    (assert-equal (quote ()) (in-hal? (quote a)) "in-hal? a = not consonant")
+    (assert-equal t (in-ik? (quote u)) "in-ik? u = simple vowel")
+    (assert-equal (quote ()) (in-ik? (quote e)) "in-ik? e = not simple")
+    (assert-equal t (in-ec? (quote e)) "in-ec? e = diphthong")
+    (assert-equal t (in-yan? (quote y)) "in-yan? y = semivowel")
+    (assert-equal t (in-yan? (quote l)) "in-yan? l = semivowel")
+    (assert-equal (quote ()) (in-yan? (quote k)) "in-yan? k = not semivowel")
+    (assert-equal t (in-nam? (quote Y)) "in-nam? Y = nasal")
+    (assert-equal t (in-nam? (quote n)) "in-nam? n = nasal")
+    (assert-equal (quote ()) (in-nam? (quote k)) "in-nam? k = not nasal")
+    (assert-equal t (in-jhash? (quote J)) "in-jhash? J = voiced asp")
+    (assert-equal t (in-jhash? (quote d)) "in-jhash? d = voiced unasp")
+    (assert-equal (quote ()) (in-jhash? (quote k)) "in-jhash? k = not voiced")
+    (assert-equal t (in-khar? (quote K)) "in-khar? K = voiceless")
+    (assert-equal t (in-khar? (quote s)) "in-khar? s = voiceless")
+    (assert-equal (quote ()) (in-khar? (quote g)) "in-khar? g = not voiceless")
+    (assert-equal t (vowel? (quote a)) "vowel? a = t")
+    (assert-equal (quote ()) (vowel? (quote k)) "vowel? k = ()")
+    (assert-equal t (consonant? (quote p)) "consonant? p = t")
+    (assert-equal (quote ()) (consonant? (quote i)) "consonant? i = ()")
+    (assert-equal t (in-al? (quote a)) "in-al? a (42-sound inventory)")
+    (assert-equal t (in-al? (quote l)) "in-al? l (42-sound inventory)")))
 
 (def test-eco-sandhi
   (lambda ()
@@ -248,6 +283,7 @@
   (lambda ()
     (print "Running Panini Machine Tests...")
     (test-pratyahara)
+    (test-phonology-predicates)
     (test-eco-sandhi)
     (test-guna)
     (test-prototype-derivations)
@@ -271,4 +307,3 @@
     (let ((bu (assoc (quote BU) *test-dhatu-registry*)))
       (let ((_ (assert-equal (quote 1) (cdr (assoc (quote class) (cdr bu))) "yaml parser extracted BU class 1")))
         (assert-equal (quote (parasmaipadin seT)) (cdr (assoc (quote properties) (cdr bu))) "yaml parser extracted BU parasmaipadin seT")))))
-
