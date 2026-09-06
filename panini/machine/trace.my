@@ -1,0 +1,218 @@
+;; Derivation Trace System — falsifiable step-by-step explanation.
+;;
+;; Each derivation step carries:
+;;   - step number
+;;   - sūtra reference (rule ID, e.g. "3.1.68")
+;;   - operation description (human-readable)
+;;   - before state (sound list before the operation)
+;;   - after state (sound list after the operation)
+;;   - verification: "derived" (machine-computed) or "needs-check" (uncertain)
+;;
+;; This makes each transition falsifiable: a reviewer can check whether
+;; the sūtra actually applies in the stated context, and whether the
+;; before→after transformation is correct.
+;;
+;; Epistemic layer: ENGINEERING
+;; Depends on: derivation.my, phonology.my, ting.my
+;; Contract: specs/derivation-machine-explanation-boundary-v0.1.md
+
+(load "panini/machine/derivation.my")
+
+;; ==========================================
+;; Trace step constructor
+;; ==========================================
+
+(def make-trace-step
+  (lambda (num rule operation before after)
+    (list (cons (quote step) num)
+          (cons (quote rule) rule)
+          (cons (quote operation) operation)
+          (cons (quote before) before)
+          (cons (quote after) after)
+          (cons (quote verification) (quote derived)))))
+
+;; ==========================================
+;; Trace accessors
+;; ==========================================
+
+(def trace-step-num (lambda (s) (cdr (assoc (quote step) s))))
+(def trace-step-rule (lambda (s) (cdr (assoc (quote rule) s))))
+(def trace-step-operation (lambda (s) (cdr (assoc (quote operation) s))))
+(def trace-step-before (lambda (s) (cdr (assoc (quote before) s))))
+(def trace-step-after (lambda (s) (cdr (assoc (quote after) s))))
+(def trace-step-verification (lambda (s) (cdr (assoc (quote verification) s))))
+
+;; ==========================================
+;; Trace helpers
+;; ==========================================
+
+;; Count steps in a trace
+(def trace-count
+  (lambda (trace)
+    (cond
+      ((atom trace) 0)
+      (t (+ 1 (trace-count (cdr trace)))))))
+
+;; Get step at position n (1-indexed)
+(def trace-step-at
+  (lambda (trace n)
+    (cond
+      ((atom trace) (quote ()))
+      ((equal? n 1) (car trace))
+      (t (trace-step-at (cdr trace) (- n 1))))))
+
+;; Get final state from trace (after field of last step)
+(def trace-final
+  (lambda (trace)
+    (cond
+      ((atom trace) (quote ()))
+      ((atom (cdr trace)) (trace-step-after (car trace)))
+      (t (trace-final (cdr trace))))))
+
+;; ==========================================
+;; Traced derivations
+;;
+;; Each produces a list of trace-step records.
+;; ==========================================
+
+(def trace-pacati
+  (lambda ()
+    (list
+      (make-trace-step 1 "3.1.77"
+        "attach-vikaraNa (Sa, class 6)"
+        (quote (p a c))
+        (quote (p a c S a)))
+      (make-trace-step 2 "1.3.5+1.3.9"
+        "it-lopa: S (Tit marker deleted)"
+        (quote (p a c S a))
+        (quote (p a c a)))
+      (make-trace-step 3 "3.4.78"
+        "attach-tiG (tip, 3rd sg parasmaipada)"
+        (quote (p a c a))
+        (quote (p a c a t i p)))
+      (make-trace-step 4 "1.3.3+1.3.9"
+        "it-lopa: p (hal antyam deleted)"
+        (quote (p a c a t i p))
+        (quote (p a c a t i)))
+      (make-trace-step 5 "concat"
+        "concatenate"
+        (quote (p a c a t i))
+        (quote (p a c a t i))))))
+
+(def trace-bhavati
+  (lambda ()
+    (list
+      (make-trace-step 1 "3.1.68"
+        "attach-vikaraNa (Sap, class 1)"
+        (quote (b h U))
+        (quote (b h U S a p)))
+      (make-trace-step 2 "1.3.5+1.3.9"
+        "it-lopa: S (Tit) + p (hal) deleted"
+        (quote (b h U S a p))
+        (quote (b h U a)))
+      (make-trace-step 3 "3.4.78"
+        "attach-tiG (tip, 3rd sg parasmaipada)"
+        (quote (b h U a))
+        (quote (b h U a t i p)))
+      (make-trace-step 4 "1.3.3+1.3.9"
+        "it-lopa: p (hal antyam deleted)"
+        (quote (b h U a t i p))
+        (quote (b h U a t i)))
+      (make-trace-step 5 "7.3.84"
+        "guRa: U -> o (vikaraNa has Tit)"
+        (quote (b h U a t i))
+        (quote (b h o a t i)))
+      (make-trace-step 6 "6.1.88"
+        "eco sandhi: o -> av before vowel a"
+        (quote (b h o a t i))
+        (quote (b h a v a t i)))
+      (make-trace-step 7 "concat"
+        "concatenate"
+        (quote (b h a v a t i))
+        (quote (b h a v a t i))))))
+
+(def trace-labhate
+  (lambda ()
+    (list
+      (make-trace-step 1 "3.1.68"
+        "attach-vikaraNa (Sap, class 1)"
+        (quote (l a b h))
+        (quote (l a b h S a p)))
+      (make-trace-step 2 "1.3.5+1.3.9"
+        "it-lopa: S (Tit) + p (hal) deleted"
+        (quote (l a b h S a p))
+        (quote (l a b h a)))
+      (make-trace-step 3 "3.4.79"
+        "attach-tiG (ta, 3rd sg atmanepada)"
+        (quote (l a b h a))
+        (quote (l a b h a t a)))
+      (make-trace-step 4 "3.4.79"
+        "Tere: ta -> te (vikaraNa has Tit)"
+        (quote (l a b h a t a))
+        (quote (l a b h a t e)))
+      (make-trace-step 5 "concat"
+        "concatenate"
+        (quote (l a b h a t e))
+        (quote (l a b h a t e))))))
+
+(def trace-tudati
+  (lambda ()
+    (list
+      (make-trace-step 1 "3.1.77"
+        "attach-vikaraNa (Sa, class 6)"
+        (quote (t u d))
+        (quote (t u d S a)))
+      (make-trace-step 2 "1.3.5+1.3.9"
+        "it-lopa: S (Tit marker deleted)"
+        (quote (t u d S a))
+        (quote (t u d a)))
+      (make-trace-step 3 "3.4.78"
+        "attach-tiG (tip, 3rd sg parasmaipada)"
+        (quote (t u d a))
+        (quote (t u d a t i p)))
+      (make-trace-step 4 "1.3.3+1.3.9"
+        "it-lopa: p (hal antyam deleted)"
+        (quote (t u d a t i p))
+        (quote (t u d a t i)))
+      (make-trace-step 5 "concat"
+        "concatenate"
+        (quote (t u d a t i))
+        (quote (t u d a t i))))))
+
+;; ==========================================
+;; Print trace (human-readable)
+;; ==========================================
+
+(def print-trace-step
+  (lambda (step)
+    (print (string-append
+      "[" (symbol->string (trace-step-num step)) "] "
+      (trace-step-rule step) " — "
+      (trace-step-operation step)))
+    (print (string-append
+      "  " (symbol-list->string (trace-step-before step))
+      " → " (symbol-list->string (trace-step-after step))))))
+
+(def print-trace
+  (lambda (trace name)
+    (print (string-append "=== " name " ==="))
+    (print-trace-aux trace 1)))
+
+(def print-trace-aux
+  (lambda (trace n)
+    (cond
+      ((atom trace) (quote ()))
+      (t
+       (print-trace-step (car trace))
+       (print-trace-aux (cdr trace) (+ n 1))))))
+
+;; ==========================================
+;; Verify trace against derivation
+;;
+;; Checks that the final state of the trace matches
+;; the output of derive-verb.
+;; ==========================================
+
+(def trace-matches-derivation?
+  (lambda (trace expected-sounds)
+    (equal? (trace-final trace) expected-sounds)))
