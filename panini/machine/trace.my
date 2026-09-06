@@ -2,19 +2,14 @@
 ;;
 ;; Each derivation step carries:
 ;;   - step number
-;;   - sūtra reference (rule ID, e.g. "3.1.68")
-;;   - operation description (human-readable)
-;;   - before state (sound list before the operation)
-;;   - after state (sound list after the operation)
-;;   - verification: "derived" (machine-computed) or "needs-check" (uncertain)
-;;
-;; This makes each transition falsifiable: a reviewer can check whether
-;; the sūtra actually applies in the stated context, and whether the
-;; before→after transformation is correct.
+;;   - sūtra reference (rule ID)
+;;   - operation description
+;;   - before state (sound list)
+;;   - after state (sound list)
+;;   - verification: "derived"
 ;;
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: derivation.my, phonology.my, ting.my
-;; Contract: specs/derivation-machine-explanation-boundary-v0.1.md
 
 (load "panini/machine/derivation.my")
 
@@ -46,14 +41,12 @@
 ;; Trace helpers
 ;; ==========================================
 
-;; Count steps in a trace
 (def trace-count
   (lambda (trace)
     (cond
       ((atom trace) 0)
       (t (+ 1 (trace-count (cdr trace)))))))
 
-;; Get step at position n (1-indexed)
 (def trace-step-at
   (lambda (trace n)
     (cond
@@ -61,7 +54,6 @@
       ((equal? n 1) (car trace))
       (t (trace-step-at (cdr trace) (- n 1))))))
 
-;; Get final state from trace (after field of last step)
 (def trace-final
   (lambda (trace)
     (cond
@@ -71,8 +63,6 @@
 
 ;; ==========================================
 ;; Traced derivations
-;;
-;; Each produces a list of trace-step records.
 ;; ==========================================
 
 (def trace-pacati
@@ -179,6 +169,64 @@
         (quote (t u d a t i))
         (quote (t u d a t i))))))
 
+;; 3rd pl traces (jhi → nti via ādeśa)
+
+(def trace-pacanti
+  (lambda ()
+    (list
+      (make-trace-step 1 "3.1.77"
+        "attach-vikaraNa (Sa, class 6)"
+        (quote (p a c))
+        (quote (p a c S a)))
+      (make-trace-step 2 "1.3.5+1.3.9"
+        "it-lopa: S (Tit marker deleted)"
+        (quote (p a c S a))
+        (quote (p a c a)))
+      (make-trace-step 3 "3.4.78"
+        "attach-tiG (Ji, 3rd pl parasmaipada)"
+        (quote (p a c a))
+        (quote (p a c a J i)))
+      (make-trace-step 4 "8.4.62"
+        "adeSa: J -> n (jhaSam jaS tribhiH)"
+        (quote (p a c a J i))
+        (quote (p a c a n t i)))
+      (make-trace-step 5 "concat"
+        "concatenate"
+        (quote (p a c a n t i))
+        (quote (p a c a n t i))))))
+
+(def trace-bhavanti
+  (lambda ()
+    (list
+      (make-trace-step 1 "3.1.68"
+        "attach-vikaraNa (Sap, class 1)"
+        (quote (b h U))
+        (quote (b h U S a p)))
+      (make-trace-step 2 "1.3.5+1.3.9"
+        "it-lopa: S (Tit) + p (hal) deleted"
+        (quote (b h U S a p))
+        (quote (b h U a)))
+      (make-trace-step 3 "3.4.78"
+        "attach-tiG (Ji, 3rd pl parasmaipada)"
+        (quote (b h U a))
+        (quote (b h U a J i)))
+      (make-trace-step 4 "8.4.62"
+        "adeSa: J -> n (jhaSam jaS tribhiH)"
+        (quote (b h U a J i))
+        (quote (b h U a n t i)))
+      (make-trace-step 5 "7.3.84"
+        "guRa: U -> o (vikaraNa has Tit)"
+        (quote (b h U a n t i))
+        (quote (b h o a n t i)))
+      (make-trace-step 6 "6.1.88"
+        "eco sandhi: o -> av before vowel a"
+        (quote (b h o a n t i))
+        (quote (b h a v a n t i)))
+      (make-trace-step 7 "concat"
+        "concatenate"
+        (quote (b h a v a n t i))
+        (quote (b h a v a n t i))))))
+
 ;; ==========================================
 ;; Print trace (human-readable)
 ;; ==========================================
@@ -208,9 +256,6 @@
 
 ;; ==========================================
 ;; Verify trace against derivation
-;;
-;; Checks that the final state of the trace matches
-;; the output of derive-verb.
 ;; ==========================================
 
 (def trace-matches-derivation?
