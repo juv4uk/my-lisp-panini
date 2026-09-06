@@ -1,0 +1,138 @@
+;; Tiṅ System — verbal endings (3.4.78 + 3.4.79)
+;;
+;; The 18 tiṅ endings are the inflectional suffixes that attach to
+;; a dhātu + vikaraṇa complex. Each ending encodes person, number,
+;; and voice (parasmaipada / ātmanepada).
+;;
+;; Epistemic layer: ENGINEERING
+;; Depends on: phonology.my (for it-lopa: hal antyam 1.3.3)
+;; Upstream: SS-PRATYAHARA-001
+
+(load "panini/machine/phonology.my")
+
+;; ==========================================
+;; 1.3.3 hal antyam + 1.3.9 tasya lopaḥ
+;; A final consonant is an it-marker and is deleted.
+;; ==========================================
+
+(def hal? (lambda (sound) (in-hal? sound)))
+
+(def apply-hal-antyam-lopa
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds)) (quote ()))
+      (t (cons (car sounds) (apply-hal-antyam-lopa (cdr sounds)))))))
+
+;; 1.3.5 ādir ñiṭ + 1.3.9: initial ṭ-marked sound is it and deleted.
+;; We use explicit it-marker lists rather than detecting ṭ markers
+;; from the sound representation.
+
+(def remove-it-markers
+  (lambda (sounds markers)
+    (cond
+      ((atom sounds) (quote ()))
+      ((member? (car sounds) markers)
+       (remove-it-markers (cdr sounds) markers))
+      (t (cons (car sounds) (remove-it-markers (cdr sounds) markers))))))
+
+;; ==========================================
+;; Tiṅ endings (3.4.78: tip tas jhi | sip thas tha | mip vas mas)
+;; ==========================================
+
+;; Parasmaipada (9 endings)
+;; Each entry: (label . sounds-with-it-markers)
+;; it-markers are final consonants (removed by hal-antyam-lopa)
+
+(def ting-parasmaipada
+  (quote (
+    (tip  . (t i p))      ;; 3rd sg — p is it → ti
+    (tas  . (t a s))       ;; 3rd dual — s is it → ta
+    (jhi  . (j h i))       ;; 3rd pl — i is not hal, no lopa → jhi (special: jha → jaś)
+    (sip  . (s i p))       ;; 2nd sg — p is it → si
+    (thas . (t h a s))     ;; 2nd dual — s is it → tha
+    (tha  . (t h a))       ;; 2nd pl — no it
+    (mip  . (m i p))       ;; 1st sg — p is it → mi
+    (vas  . (v a s))       ;; 1st dual — s is it → va
+    (mas  . (m a s))       ;; 1st pl — s is it → ma
+  )))
+
+;; Atmanepada (9 endings, 3.4.79)
+(def ting-atmanepada
+  (quote (
+    (ta   . (t a))         ;; 3rd sg
+    (AtAm . (A t A m))     ;; 3rd dual — m is it → AtA
+    (ja   . (j a))         ;; 3rd pl
+    (thAs . (t h A s))     ;; 2nd sg — s is it → thA
+    (AthAm . (A t h A m))  ;; 2nd dual — m is it → AthA
+    (Dvam . (D v a m))     ;; 2nd pl — m is it → Dva
+    (iTw  . (i T w))       ;; 1st sg — w is it → iT
+    (vahi . (v a h i))     ;; 1st dual
+    (mahIM . (m a h I M))  ;; 1st pl — M is it → mahI
+  )))
+
+;; Lookup tiṅ ending by label
+(def ting-lookup
+  (lambda (label table)
+    (cdr (assoc label table))))
+
+;; Get parasmaipada ending (cleaned of it-markers)
+(def get-ting-para
+  (lambda (label)
+    (apply-hal-antyam-lopa (ting-lookup label ting-parasmaipada))))
+
+;; Get atmanepada ending (cleaned of it-markers)
+(def get-ting-atma
+  (lambda (label)
+    (apply-hal-antyam-lopa (ting-lookup label ting-atmanepada))))
+
+;; ==========================================
+;; Vikaraṇa table (infix before tiṅ)
+;; ==========================================
+;; 3.1.68: kartari Śap (class 1 — bhvādi)
+;; 3.1.77: tudādibhyaḥ Śa (class 6 — tudādi)
+;;
+;; Śap = S + a + p, where S (ṭit, 1.3.5) and p (hal, 1.3.3) are it → 'a'
+;; Śa  = S + a, where S (ṭit, 1.3.5) is it → 'a'
+;; Both give surface 'a', but Śap has ṭit which triggers guṇa.
+
+(def vikarana-table
+  (quote (
+    (1  . ((S a p)  (S p)))   ;; Śap: it-markers S(ṭit) + p(hal)
+    (6  . ((S a)    (S)))      ;; Śa:  it-marker S(ṭit) only
+  )))
+
+(def get-vikarana
+  (lambda (class-num)
+    (car (cdr (assoc class-num vikarana-table)))))
+
+(def get-vikarana-it-markers
+  (lambda (class-num)
+    (car (cdr (cdr (assoc class-num vikarana-table))))))
+
+;; Check if vikaraṇa has ṭit (triggers guṇa and ṭere)
+(def vikarana-has-tit?
+  (lambda (class-num)
+    (cond
+      ((equal? class-num 1) t)    ;; Śap has ṭit
+      ((equal? class-num 6) (quote ()))  ;; Śa has no ṭit
+      (t (quote ())))))
+
+;; Get cleaned vikaraṇa (it-markers removed)
+(def get-vikarana-clean
+  (lambda (class-num)
+    (remove-it-markers
+      (get-vikarana class-num)
+      (get-vikarana-it-markers class-num))))
+
+;; ==========================================
+;; 3.4.79: ṭita ātmanepadānāṃ ṭere
+;; "When vikaraṇa has ṭit, ātmanepada 'ta' becomes 'te'"
+;; ==========================================
+
+(def apply-tere
+  (lambda (ting-clean has-tit is-atmanepada)
+    (cond
+      ((and is-atmanepada has-tit (equal? ting-clean (quote (t a))))
+       (quote (t e)))
+      (t ting-clean))))
