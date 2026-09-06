@@ -4,8 +4,9 @@
 ;;   1. it-lopa: remove it-markers from vikaraṇa and tiṅ (1.3.3 + 1.3.5 + 1.3.9)
 ;;      Special: jhi (Ji) → ādeśa "nti" (8.4.62: jhaSāṃ jaS tribhiḥ)
 ;;   2. ṭere: substitute ta → te for ātmanepada when vikaraṇa has ṭit (3.4.79)
-;;   3. vṛddhi: lengthen vikaraṇa a→ā before 1st person tiṅ (7.3.101)
+;;   3. vṛddhi: lengthen vikaraṇa final a→ā before 1st person tiṅ (7.3.101)
 ;;   4. guṇa: replace dhātu vowel with guṇa grade when vikaraṇa has ṭit (7.3.84)
+;;      Extended: applies to short AND long vowels (u→o, U→o, i→e, I→e, etc.)
 ;;   5. eco sandhi: e/o → ay/av before vowel (6.1.88)
 ;;   6. concatenate
 ;;
@@ -15,7 +16,10 @@
 (load "panini/machine/ting.my")
 
 ;; ==========================================
-;; 7.3.101: vṛddhi — vikaraṇa a→ā before 1st person tiṅ
+;; 7.3.101: vṛddhi — vikaraṇa final a→ā before 1st person tiṅ
+;;
+;; Extended scope: checks if vikaraṇa ENDS in 'a', not exact match [a].
+;; This handles class 4 (Śya → sya): final 'a' in 'sya' → 'syā'.
 ;; ==========================================
 
 (def first-person-ting?
@@ -24,17 +28,50 @@
         (equal? ting-label (quote vas))
         (equal? ting-label (quote mas)))))
 
+(def vikarana-ends-in-a?
+  (lambda (vik)
+    (cond
+      ((atom vik) (quote ()))
+      ((atom (cdr vik)) (equal? (car vik) (quote a)))
+      (t (vikarana-ends-in-a? (cdr vik))))))
+
+(def replace-last-a
+  (lambda (vik)
+    (cond
+      ((atom vik) (quote ()))
+      ((atom (cdr vik))
+       (cond
+         ((equal? (car vik) (quote a)) (quote (A)))
+         (t (list (car vik)))))
+      (t (cons (car vik) (replace-last-a (cdr vik)))))))
+
 (def apply-vrddhi
   (lambda (vikarana-clean ting-label)
     (cond
       ((and (first-person-ting? ting-label)
-            (equal? vikarana-clean (quote (a))))
-       (quote (A)))
+            (vikarana-ends-in-a? vikarana-clean))
+       (replace-last-a vikarana-clean))
       (t vikarana-clean))))
 
 ;; ==========================================
-;; Guṇa grade substitution (7.3.84, simplified)
+;; Guṇa grade substitution (7.3.84)
+;; Extended: applies to short AND long vowels.
+;;   Short: u→o, i→e, f→ar, x→al
+;;   Long:  U→o, I→e, F→ar, X→al
 ;; ==========================================
+
+(def apply-guRa-extended
+  (lambda (sound)
+    (cond
+      ((equal? sound (quote U)) (quote o))
+      ((equal? sound (quote u)) (quote o))
+      ((equal? sound (quote I)) (quote e))
+      ((equal? sound (quote i)) (quote e))
+      ((equal? sound (quote F)) (quote ar))
+      ((equal? sound (quote f)) (quote ar))
+      ((equal? sound (quote X)) (quote al))
+      ((equal? sound (quote x)) (quote al))
+      (t sound))))
 
 (def apply-guṇa-to-dhatu
   (lambda (dhatu-sounds has-tit)
@@ -42,21 +79,19 @@
       ((not has-tit) dhatu-sounds)
       ((atom dhatu-sounds) dhatu-sounds)
       (t (cons (car dhatu-sounds)
-               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds) (car dhatu-sounds)))))))
+               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds)))))))
 
 (def apply-guṇa-to-dhatu-rest
-  (lambda (rest prev)
+  (lambda (rest)
     (cond
       ((atom rest) (quote ()))
       ((atom (cdr rest))
        (cond
          ((vowel? (car rest))
-          (cond
-            ((equal? (apply-guRa (car rest)) (car rest)) (list (car rest)))
-            (t (list (apply-guRa (car rest))))))
+          (list (apply-guRa-extended (car rest))))
          (t (list (car rest)))))
       (t (cons (car rest)
-               (apply-guṇa-to-dhatu-rest (cdr rest) (car rest)))))))
+               (apply-guṇa-to-dhatu-rest (cdr rest)))))))
 
 ;; ==========================================
 ;; Eco sandhi expansion (6.1.88)
@@ -85,9 +120,6 @@
 
 ;; ==========================================
 ;; Main derivation function
-;;
-;; Uses get-ting-para / get-ting-atma from ting.my which now handles
-;; jhi → "nti" (ādeśa) internally.
 ;; ==========================================
 
 (def derive-verb
@@ -110,55 +142,31 @@
      (vikarana-has-tit? class-num))))
 
 ;; ==========================================
-;; Convenience: derive to string
+;; Convenience
 ;; ==========================================
 
 (def derive-verb-string
   (lambda (dhatu class-num ting-label is-atmanepada)
     (symbol-list->string (derive-verb dhatu class-num ting-label is-atmanepada))))
 
-;; ==========================================
-;; Named derivations
-;; ==========================================
+;; Named derivations (3rd sg)
+(def derive-pacati   (lambda () (derive-verb (quote (p a c)) 6 (quote tip) (quote ()))))
+(def derive-bhavati  (lambda () (derive-verb (quote (b h U)) 1 (quote tip) (quote ()))))
+(def derive-labhate  (lambda () (derive-verb (quote (l a b h)) 1 (quote ta) t)))
+(def derive-tudati   (lambda () (derive-verb (quote (t u d)) 6 (quote tip) (quote ()))))
+(def derive-paSyati  (lambda () (derive-verb (quote (p a S)) 4 (quote tip) (quote ()))))
+(def derive-corayati (lambda () (derive-verb (quote (c u r)) 10 (quote tip) (quote ()))))
 
-(def derive-pacati
-  (lambda ()
-    (derive-verb (quote (p a c)) 6 (quote tip) (quote ()))))
+;; 1st person (with vṛddhi)
+(def derive-pacAmi   (lambda () (derive-verb (quote (p a c)) 6 (quote mip) (quote ()))))
+(def derive-bhavAmi  (lambda () (derive-verb (quote (b h U)) 1 (quote mip) (quote ()))))
+(def derive-tudAmi   (lambda () (derive-verb (quote (t u d)) 6 (quote mip) (quote ()))))
+(def derive-paSyAmi  (lambda () (derive-verb (quote (p a S)) 4 (quote mip) (quote ()))))
+(def derive-corayAmi (lambda () (derive-verb (quote (c u r)) 10 (quote mip) (quote ()))))
 
-(def derive-bhavati
-  (lambda ()
-    (derive-verb (quote (b h U)) 1 (quote tip) (quote ()))))
-
-(def derive-labhate
-  (lambda ()
-    (derive-verb (quote (l a b h)) 1 (quote ta) t)))
-
-(def derive-tudati
-  (lambda ()
-    (derive-verb (quote (t u d)) 6 (quote tip) (quote ()))))
-
-;; 1st person forms (with vṛddhi)
-(def derive-pacAmi
-  (lambda ()
-    (derive-verb (quote (p a c)) 6 (quote mip) (quote ()))))
-
-(def derive-bhavAmi
-  (lambda ()
-    (derive-verb (quote (b h U)) 1 (quote mip) (quote ()))))
-
-(def derive-tudAmi
-  (lambda ()
-    (derive-verb (quote (t u d)) 6 (quote mip) (quote ()))))
-
-;; 3rd pl forms (with jhi → nti ādeśa)
-(def derive-pacanti
-  (lambda ()
-    (derive-verb (quote (p a c)) 6 (quote jhi) (quote ()))))
-
-(def derive-bhavanti
-  (lambda ()
-    (derive-verb (quote (b h U)) 1 (quote jhi) (quote ()))))
-
-(def derive-tudanti
-  (lambda ()
-    (derive-verb (quote (t u d)) 6 (quote jhi) (quote ()))))
+;; 3rd pl (with jhi ādeśa)
+(def derive-pacanti   (lambda () (derive-verb (quote (p a c)) 6 (quote jhi) (quote ()))))
+(def derive-bhavanti  (lambda () (derive-verb (quote (b h U)) 1 (quote jhi) (quote ()))))
+(def derive-tudanti   (lambda () (derive-verb (quote (t u d)) 6 (quote jhi) (quote ()))))
+(def derive-paSyanti  (lambda () (derive-verb (quote (p a S)) 4 (quote jhi) (quote ()))))
+(def derive-corayanti (lambda () (derive-verb (quote (c u r)) 10 (quote jhi) (quote ()))))
