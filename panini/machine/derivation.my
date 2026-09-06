@@ -1,20 +1,47 @@
 ;; Verbal Derivation Engine — dhātu + vikaraṇa + tiṅ → surface form
 ;;
-;; Combines the tiṅ system, vikaraṇa table, guṇa grade, and eco sandhi
-;; to produce surface verbal forms.
+;; Combines the tiṅ system, vikaraṇa table, guṇa grade, vṛddhi,
+;; and eco sandhi to produce surface verbal forms.
 ;;
 ;; Pipeline:
 ;;   1. it-lopa: remove it-markers from vikaraṇa and tiṅ (1.3.3 + 1.3.5 + 1.3.9)
-;;   2. ṭere: substitute ta → te for ātmanepada when vikaraṇa has ṭit (3.3.79)
-;;   3. guṇa: replace dhātu vowel with guṇa grade when vikaraṇa has ṭit (7.3.84)
-;;   4. eco sandhi: e/o → ay/av before vowel (6.1.88)
-;;   5. concatenate
+;;   2. ṭere: substitute ta → te for ātmanepada when vikaraṇa has ṭit (3.4.79)
+;;   3. vṛddhi: lengthen vikaraṇa a→ā before 1st person tiṅ (7.3.101)
+;;   4. guṇa: replace dhātu vowel with guṇa grade when vikaraṇa has ṭit (7.3.84)
+;;   5. eco sandhi: e/o → ay/av before vowel (6.1.88)
+;;   6. concatenate
 ;;
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: ting.my, phonology.my, sandhi.my
 ;; Upstream: SS-PRATYAHARA-001, L-001-001
 
 (load "panini/machine/ting.my")
+
+;; ==========================================
+;; 7.3.101: vṛddhi — vikaraṇa a→ā before 1st person tiṅ
+;;
+;; The 1st person tiṅ endings (mip, vas, mas → mi, va, ma after it-lopa)
+;; trigger lengthening of the immediately preceding vikaraṇa vowel 'a' → 'ā'.
+;;
+;; Examples:
+;;   pac + a + mi → pacāmi    (not pacami)
+;;   bhav + a + mi → bhavāmi  (not bhavami)
+;;   tud + a + mi → tudāmi    (not tudami)
+;; ==========================================
+
+(def first-person-ting?
+  (lambda (ting-label)
+    (or (equal? ting-label (quote mip))
+        (equal? ting-label (quote vas))
+        (equal? ting-label (quote mas)))))
+
+(def apply-vrddhi
+  (lambda (vikarana-clean ting-label)
+    (cond
+      ((and (first-person-ting? ting-label)
+            (equal? vikarana-clean (quote (a))))
+       (quote (A)))
+      (t vikarana-clean))))
 
 ;; ==========================================
 ;; Guṇa grade substitution (7.3.84, simplified)
@@ -25,32 +52,27 @@
 (def apply-guṇa-to-dhatu
   (lambda (dhatu-sounds has-tit)
     (cond
-      ((not has-tit) dhatu-sounds)  ;; no ṭit → no guṇa
+      ((not has-tit) dhatu-sounds)
       ((atom dhatu-sounds) dhatu-sounds)
       (t (cons (car dhatu-sounds)
-               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds) (car dhatu-sounds)))))))
+               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds) (car dhatu-sounds))))))
 
-;; Helper: find and replace the last vowel in the list
 (def apply-guṇa-to-dhatu-rest
   (lambda (rest prev)
     (cond
-      ((atom rest) (quote ()))  ;; no more sounds — prev was last, but not a vowel
+      ((atom rest) (quote ()))
       ((atom (cdr rest))
-       ;; Current sound is last — check if it's a vowel
        (cond
          ((vowel? (car rest))
-          ;; Replace last vowel with guṇa grade
           (cond
-            ((equal? (apply-guRa (car rest)) (car rest)) (list (car rest)))  ;; no change
+            ((equal? (apply-guRa (car rest)) (car rest)) (list (car rest)))
             (t (list (apply-guRa (car rest))))))
-         (t (list (car rest)))))  ;; last is not vowel, no guṇa
+         (t (list (car rest)))))
       (t (cons (car rest)
                (apply-guṇa-to-dhatu-rest (cdr rest) (car rest)))))))
 
 ;; ==========================================
 ;; Eco sandhi expansion (6.1.88)
-;; e → (a y), o → (a v), E → (A y), O → (A v) before vowel
-;; Applied to the full combined sound list.
 ;; ==========================================
 
 (def expand-eco-in-list
@@ -71,7 +93,7 @@
             (t (cons s (expand-eco-in-list (cdr sounds))))))
         (car sounds)
         (cond
-          ((atom (cdr sounds)) (quote ()))  ;; no next
+          ((atom (cdr sounds)) (quote ()))
           (t (car (cdr sounds)))))))))
 
 ;; ==========================================
@@ -79,34 +101,27 @@
 ;;
 ;; derive-verb: dhātu-sounds, class-num, ting-label, is-atmanepada → sound list
 ;;
-;; Example:
-;;   (derive-verb (quote (p a c)) 6 (quote tip) (quote ()))
-;;   → (p a c a t i)   ;; "pacati"
-;;
-;;   (derive-verb (quote (b h U)) 1 (quote tip) (quote ()))
-;;   → (b h a v a t i) ;; "bhavati"
-;;
-;;   (derive-verb (quote (l a b h)) 1 (quote ta) t)
-;;   → (l a b h a t e) ;; "labhate"
+;; Pipeline: it-lopa → ṭere → vṛddhi → guṇa → eco → concat
 ;; ==========================================
 
 (def derive-verb
   (lambda (dhatu class-num ting-label is-atmanepada)
-    ((lambda (vikarana-clean has-tit ting-raw)
+    ((lambda (vikarana-clean has-tit)
        ((lambda (ting-clean)
           ((lambda (ting-final)
-             ((lambda (dhatu-guṇa)
-                ((lambda (combined)
-                   (expand-eco-in-list combined))
-                 (append dhatu-guṇa (append vikarana-clean ting-final))))
-              (apply-guṇa-to-dhatu dhatu has-tit)))
+             ((lambda (vikarana-vrddhi)
+                ((lambda (dhatu-guṇa)
+                   ((lambda (combined)
+                      (expand-eco-in-list combined))
+                     (append dhatu-guṇa (append vikarana-vrddhi ting-final))))
+                  (apply-guṇa-to-dhatu dhatu has-tit)))
+              (apply-vrddhi vikarana-clean ting-label)))
            (apply-tere ting-clean has-tit is-atmanepada)))
         (cond
           (is-atmanepada (apply-hal-antyam-lopa (ting-lookup ting-label ting-atmanepada)))
           (t (apply-hal-antyam-lopa (ting-lookup ting-label ting-parasmaipada))))))
      (get-vikarana-clean class-num)
-     (vikarana-has-tit? class-num)
-     ting-label)))
+     (vikarana-has-tit? class-num))))
 
 ;; ==========================================
 ;; Convenience: derive to string
@@ -135,3 +150,16 @@
 (def derive-tudati
   (lambda ()
     (derive-verb (quote (t u d)) 6 (quote tip) (quote ()))))
+
+;; 1st person forms (with vṛddhi)
+(def derive-pacAmi
+  (lambda ()
+    (derive-verb (quote (p a c)) 6 (quote mip) (quote ()))))
+
+(def derive-bhavAmi
+  (lambda ()
+    (derive-verb (quote (b h U)) 1 (quote mip) (quote ()))))
+
+(def derive-tudAmi
+  (lambda ()
+    (derive-verb (quote (t u d)) 6 (quote mip) (quote ()))))
