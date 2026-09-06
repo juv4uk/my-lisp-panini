@@ -1,10 +1,8 @@
 ;; Verbal Derivation Engine — dhātu + vikaraṇa + tiṅ → surface form
 ;;
-;; Combines the tiṅ system, vikaraṇa table, guṇa grade, vṛddhi,
-;; and eco sandhi to produce surface verbal forms.
-;;
 ;; Pipeline:
 ;;   1. it-lopa: remove it-markers from vikaraṇa and tiṅ (1.3.3 + 1.3.5 + 1.3.9)
+;;      Special: jhi (Ji) → ādeśa "nti" (8.4.62: jhaSāṃ jaS tribhiḥ)
 ;;   2. ṭere: substitute ta → te for ātmanepada when vikaraṇa has ṭit (3.4.79)
 ;;   3. vṛddhi: lengthen vikaraṇa a→ā before 1st person tiṅ (7.3.101)
 ;;   4. guṇa: replace dhātu vowel with guṇa grade when vikaraṇa has ṭit (7.3.84)
@@ -13,20 +11,11 @@
 ;;
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: ting.my, phonology.my, sandhi.my
-;; Upstream: SS-PRATYAHARA-001, L-001-001
 
 (load "panini/machine/ting.my")
 
 ;; ==========================================
 ;; 7.3.101: vṛddhi — vikaraṇa a→ā before 1st person tiṅ
-;;
-;; The 1st person tiṅ endings (mip, vas, mas → mi, va, ma after it-lopa)
-;; trigger lengthening of the immediately preceding vikaraṇa vowel 'a' → 'ā'.
-;;
-;; Examples:
-;;   pac + a + mi → pacāmi    (not pacami)
-;;   bhav + a + mi → bhavāmi  (not bhavami)
-;;   tud + a + mi → tudāmi    (not tudami)
 ;; ==========================================
 
 (def first-person-ting?
@@ -45,8 +34,6 @@
 
 ;; ==========================================
 ;; Guṇa grade substitution (7.3.84, simplified)
-;; Applied to dhātu's final vowel when vikaraṇa has ṭit.
-;; Uses apply-guRa from phonology.my.
 ;; ==========================================
 
 (def apply-guṇa-to-dhatu
@@ -55,7 +42,7 @@
       ((not has-tit) dhatu-sounds)
       ((atom dhatu-sounds) dhatu-sounds)
       (t (cons (car dhatu-sounds)
-               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds) (car dhatu-sounds))))))
+               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds) (car dhatu-sounds)))))))
 
 (def apply-guṇa-to-dhatu-rest
   (lambda (rest prev)
@@ -99,9 +86,8 @@
 ;; ==========================================
 ;; Main derivation function
 ;;
-;; derive-verb: dhātu-sounds, class-num, ting-label, is-atmanepada → sound list
-;;
-;; Pipeline: it-lopa → ṭere → vṛddhi → guṇa → eco → concat
+;; Uses get-ting-para / get-ting-atma from ting.my which now handles
+;; jhi → "nti" (ādeśa) internally.
 ;; ==========================================
 
 (def derive-verb
@@ -118,8 +104,8 @@
               (apply-vrddhi vikarana-clean ting-label)))
            (apply-tere ting-clean has-tit is-atmanepada)))
         (cond
-          (is-atmanepada (apply-hal-antyam-lopa (ting-lookup ting-label ting-atmanepada)))
-          (t (apply-hal-antyam-lopa (ting-lookup ting-label ting-parasmaipada))))))
+          (is-atmanepada (get-ting-atma ting-label))
+          (t (get-ting-para ting-label)))))
      (get-vikarana-clean class-num)
      (vikarana-has-tit? class-num))))
 
@@ -163,3 +149,16 @@
 (def derive-tudAmi
   (lambda ()
     (derive-verb (quote (t u d)) 6 (quote mip) (quote ()))))
+
+;; 3rd pl forms (with jhi → nti ādeśa)
+(def derive-pacanti
+  (lambda ()
+    (derive-verb (quote (p a c)) 6 (quote jhi) (quote ()))))
+
+(def derive-bhavanti
+  (lambda ()
+    (derive-verb (quote (b h U)) 1 (quote jhi) (quote ()))))
+
+(def derive-tudanti
+  (lambda ()
+    (derive-verb (quote (t u d)) 6 (quote jhi) (quote ()))))
