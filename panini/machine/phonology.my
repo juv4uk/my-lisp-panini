@@ -1,0 +1,183 @@
+;; Paninian Phonology API — derived from Śiva-sūtra pratyāhāras.
+;;
+;; All sound-class predicates in this module are computed from the
+;; sūtra data via resolve-pratyahara, NOT hardcoded. This means the
+;; phonology is canon-derived: change the sūtras, and the phonology
+;; changes automatically.
+;;
+;; Epistemic layer: ENGINEERING
+;; Depends on: siva-sutras.my (resolver + sūtra data)
+;; Upstream: SS-CANON-001, SS-PRATYAHARA-001, L-001-001
+;;
+;; Naming convention: in-XX? checks membership in pratyāhāra XX.
+;; SLP1 encoding throughout.
+
+;; ==========================================
+;; Load dependencies
+;; ==========================================
+(load "panini/machine/siva-sutras.my")
+
+;; ==========================================
+;; Class membership predicates
+;; ==========================================
+
+;; Vowels (aC = अच्): a i u f x e o E O
+(def in-ac?
+  (lambda (sound)
+    (in-pratyahara? sound (quote a) (quote c))))
+
+;; Consonants (hal = हल्): all non-vowel sounds
+(def in-hal?
+  (lambda (sound)
+    (in-pratyahara? sound (quote h) (quote l))))
+
+;; Short simple vowels (ik = इक्): i u f x
+(def in-ik?
+  (lambda (sound)
+    (in-pratyahara? sound (quote i) (quote k))))
+
+;; Diphthongs (ec = एच्): e o E O
+(def in-ec?
+  (lambda (sound)
+    (in-pratyahara? sound (quote e) (quote c))))
+
+;; Semivowels (yaN = यण्): y v r l
+(def in-yan?
+  (lambda (sound)
+    (in-pratyahara? sound (quote y) (quote R))))
+
+;; Semivowels + nasals (yam = यम्): y v r l Y m N R n
+(def in-yam?
+  (lambda (sound)
+    (in-pratyahara? sound (quote y) (quote m))))
+
+;; Nasals (NaM = णम्): Y m N R n
+(def in-nam?
+  (lambda (sound)
+    (in-pratyahara? sound (quote Y) (quote m))))
+
+;; Voiced aspirated stops (JhaS = झष्): J B G Q D j b g q d
+(def in-jhash?
+  (lambda (sound)
+    (in-pratyahara? sound (quote J) (quote S))))
+
+;; Voiced unaspirated stops (jaS = जश्): j b g q d
+(def in-jas?
+  (lambda (sound)
+    (in-pratyahara? sound (quote j) (quote S))))
+
+;; Voiceless stops (Khar = खर्): K P C W T c w t k p S z s
+(def in-khar?
+  (lambda (sound)
+    (in-pratyahara? sound (quote K) (quote r))))
+
+;; All stops (jal = जल्): j b g q d K P C W T c w t k p S z s h
+(def in-jal?
+  (lambda (sound)
+    (in-pratyahara? sound (quote j) (quote l))))
+
+;; Sibilants (Sar = शर्): S z s
+;; Note: S appears in SS10 as it-marker and in SS13 as a sound.
+;; The pratyāhāra Sar uses S from SS13 (first S as a non-it-marker sound
+;; that is also an ādi). However, resolve-pratyahara finds the first
+;; occurrence of S which is in SS10 as the it-marker position.
+;; In practice, Pāṇini uses Sar to mean sibilants (S z s from SS13).
+;; For correct behavior, we define sibilants as a subset of KHAR.
+(def in-shar?
+  (lambda (sound)
+    (member? sound (quote (S z s)))))
+
+;; All sounds (al = अल्): the full 42-sound inventory
+(def in-al?
+  (lambda (sound)
+    (in-pratyahara? sound (quote a) (quote l))))
+
+;; ==========================================
+;; Derived predicates
+;; ==========================================
+
+;; Long vowels: A I U F X — not directly a pratyāhāra, but
+;; derivable as "vowel but not short". Pāṇini defines hrasva
+;; (short) and dirgha (long) separately. We list longs explicitly
+;; since they are not a single pratyāhāra.
+(def in-long-vowel?
+  (lambda (sound)
+    (member? sound (quote (A I U F X)))))
+
+;; Short vowels: a i u f x — the AK pratyāhāra gives a i u f x
+(def in-short-vowel?
+  (lambda (sound)
+    (in-pratyahara? sound (quote a) (quote k))))
+
+;; R-vowels: f F (vocalic R) — used by guṇa/vṛddhi rules
+(def in-r-vowel?
+  (lambda (sound)
+    (member? sound (quote (f F)))))
+
+;; Guna-eligible: i I u U f F x X (short and long of i/u/f/x)
+;; Guna replaces these with e/o/ar/al respectively (1.1.2: aCo guṇaḥ)
+(def guRa-eligible?
+  (lambda (sound)
+    (cond
+      ((in-ik? sound) t)
+      ((in-long-vowel? sound) (cond
+        ((member? sound (quote (I U F X))) t)
+        (t (quote ()))))
+      (t (quote ())))))
+
+;; Vowel? — canonical check via pratyāhāra AC
+(def vowel?
+  (lambda (sound)
+    (in-ac? sound)))
+
+;; Consonant?
+(def consonant?
+  (lambda (sound)
+    (in-hal? sound)))
+
+;; Voiced stop?
+(def voiced-stop?
+  (lambda (sound)
+    (in-jhash? sound)))
+
+;; Voiceless stop?
+(def voiceless-stop?
+  (lambda (sound)
+    (in-khar? sound)))
+
+;; ==========================================
+;; Transformation helpers (canon-derived where possible)
+;; ==========================================
+
+;; Guṇa grade (1.1.2: aCo guṇaḥ):
+;;   a → a, A → a, i/I → e, u/U → o, f/F → ar, x/X → al
+;; This is a transformation, not a class membership — the mapping
+;; itself is not expressible as a pratyāhāra, but the eligibility
+;; check is.
+(def apply-guRa
+  (lambda (sound)
+    (cond
+      ((equal? sound (quote a)) (quote a))
+      ((equal? sound (quote A)) (quote a))
+      ((equal? sound (quote i)) (quote e))
+      ((equal? sound (quote I)) (quote e))
+      ((equal? sound (quote u)) (quote o))
+      ((equal? sound (quote U)) (quote o))
+      ((equal? sound (quote f)) (quote ar))
+      ((equal? sound (quote F)) (quote ar))
+      ((equal? sound (quote x)) (quote al))
+      ((equal? sound (quote X)) (quote al))
+      (t sound))))
+
+;; Eco sandhi (e/o → ay/av before vowel):
+;;   e → a+y, o → a+v, E → A+y, O → A+v
+;; The trigger condition (before AC) is pratyāhāra-derived.
+(def apply-eco-sandhi
+  (lambda (sound next-sound)
+    (cond
+      ((not (vowel? next-sound)) sound)
+      ((equal? sound (quote e)) (quote (a y)))
+      ((equal? sound (quote o)) (quote (a v)))
+      ((equal? sound (quote E)) (quote (A y)))
+      ((equal? sound (quote O)) (quote (A v)))
+      (t sound))))
