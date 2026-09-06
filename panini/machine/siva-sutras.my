@@ -1,9 +1,40 @@
-;; Śiva Sūtra data and tested pratyāhāra subsets.
+;; Śiva Sūtra data and pratyāhāra resolver.
+;;
+;; Implements ādir antyena sahetā (Aṣṭādhyāyī 1.1.71):
+;; a pratyāhāra label = ādi (first sound) + it-marker (terminator).
+;; The expansion is all non-it-marker sounds from ādi to the sūtra
+;; whose it-marker is the terminator (inclusive of that sūtra's sounds,
+;; exclusive of the marker itself).
+;;
+;; Epistemic layer: ENGINEERING (computational tool)
+;; Upstream claims: SS-CANON-001, SS-PRATYAHARA-001 (shiva-sutras)
+;; L-001-001: blind recovery confirmed these classes are textually recoverable.
+
+;; ==========================================
+;; Śiva Sūtra data (SLP1, custom variant: w = ṭ)
+;; ==========================================
 
 (def *siva-sutras*
   (quote ((a i u R) (f x k) (e o N) (E O c) (h y v r w) (l R)
     (Y m N R n m) (J B Y) (G Q D z) (j b g q d S)
     (K P C W T c w t v) (k p y) (S z s r) (h l))))
+
+;; ==========================================
+;; Helpers
+;; ==========================================
+
+(def append
+  (lambda (a b)
+    (cond
+      ((atom a) b)
+      (t (cons (car a) (append (cdr a) b))))))
+
+(def but-last
+  (lambda (lst)
+    (cond
+      ((atom lst) (quote ()))
+      ((atom (cdr lst)) (quote ()))
+      (t (cons (car lst) (but-last (cdr lst)))))))
 
 (def get-all-it-markers
   (lambda (sutras)
@@ -13,10 +44,71 @@
 
 (def *it-markers* (get-all-it-markers *siva-sutras*))
 
-;; These checked sets remain an explicit v0.1 machine fixture, not a
-;; replacement for the source-governed pratyāhāra registry.
-(def AC (quote (a i u f x e o E O)))
-(def HAL (quote (h y v r l Y m N R n J B G Q D j b g q d K P C W T c w t V k p S z s)))
-(def IK (quote (i u f x)))
-(def EC (quote (e o E O)))
-(def YAN (quote (y v r l)))
+;; ==========================================
+;; Pratyāhāra resolver
+;; ==========================================
+
+;; Collect sounds from adi's position within a sūtra (excluding that sūtra's it-marker)
+(def collect-from-adi
+  (lambda (adi sutra)
+    (cond
+      ((atom sutra) (quote ()))
+      ((atom (cdr sutra)) (quote ()))
+      ((equal? adi (car sutra)) (but-last sutra))
+      (t (collect-from-adi adi (cdr sutra))))))
+
+;; Collect all non-marker sounds from subsequent sūtras
+;; until we reach the sūtra whose it-marker equals the target marker
+(def collect-rest
+  (lambda (marker sutras)
+    (cond
+      ((atom sutras) (quote ()))
+      ((equal? (list-last (car sutras)) marker)
+       (but-last (car sutras)))
+      (t (append (but-last (car sutras))
+                 (collect-rest marker (cdr sutras)))))))
+
+;; Find the sūtra containing adi and resolve
+(def resolve-from-sutras
+  (lambda (adi marker sutras)
+    (cond
+      ((atom sutras) (quote ()))
+      ((member? adi (car sutras))
+       (append (collect-from-adi adi (car sutras))
+               (collect-rest marker (cdr sutras))))
+      (t (resolve-from-sutras adi marker (cdr sutras))))))
+
+;; Main entry point: resolve a pratyāhāra given ādi and it-marker
+;; Example: (resolve-pratyahara (quote a) (quote c)) → (a i u f x e o E O)
+(def resolve-pratyahara
+  (lambda (adi marker)
+    (resolve-from-sutras adi marker *siva-sutras*)))
+
+;; Check if a sound belongs to a pratyāhāra
+(def in-pratyahara?
+  (lambda (sound adi marker)
+    (member? sound (resolve-pratyahara adi marker))))
+
+;; ==========================================
+;; Verified pratyāhāra fixtures (computed from sūtra data)
+;; ==========================================
+;; These replace the previous hardcoded sets. They are now DERIVED
+;; from the sūtra data by resolve-pratyahara, not hand-written.
+;;
+;; L-001 finding: the previous HAL fixture contained a phantom 'V'
+;; that does not exist in any sūtra. The resolver-derived HAL is
+;; correct and contains 33 sounds (no phantom V).
+
+(def AC (resolve-pratyahara (quote a) (quote c)))
+(def HAL (resolve-pratyahara (quote h) (quote l)))
+(def IK (resolve-pratyahara (quote i) (quote k)))
+(def EC (resolve-pratyahara (quote e) (quote c)))
+(def YAN (resolve-pratyahara (quote y) (quote R)))
+
+;; Additional derived pratyāhāras (for inference engine use)
+(def AL (resolve-pratyahara (quote a) (quote l)))
+(def JAL (resolve-pratyahara (quote j) (quote l)))
+(def KHAR (resolve-pratyahara (quote K) (quote r)))
+(def JAS (resolve-pratyahara (quote j) (quote S)))
+(def BASH (resolve-pratyahara (quote b) (quote S)))
+(def JHASH (resolve-pratyahara (quote J) (quote S)))
