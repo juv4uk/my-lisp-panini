@@ -1,10 +1,42 @@
 (imports
   (source "juv4uk/shiva-sutras")
+  (revision "364079d")
   (claims
-    (claim SS-CANON-001 (revision "a8391c4") (status resolved))
-    (claim SS-PRATYAHARA-001 (revision "a8391c4") (status supported))
-    (claim SS-MARKERS-001 (revision "a8391c4") (status supported))
-    (claim SS-MARKERS-002 (revision "a8391c4") (status supported))
-    (claim SS-MARKERS-003 (revision "a8391c4") (status supported))
+    ;; Canon and formal model
+    (claim SS-CANON-001 (revision "364079d") (status resolved))
+    (claim SS-PRATYAHARA-001 (revision "364079d") (status supported))
+    (claim SS-ORDER-001 (revision "364079d") (status proved))
+    (claim SS-MARKERS-001 (revision "364079d") (status proved-in-model))
+    (claim SS-MARKERS-002 (revision "364079d") (status proved-in-model))
+    (claim SS-MARKERS-003 (revision "364079d") (status proved-in-model))
+    ;; Corpus
+    (claim SS-CORPUS-001 (revision "364079d") (status resolved))
+    ;; Epistemic
+    (claim SS-EPISTEMIC-001 (revision "364079d") (status proved))
+    (claim SS-EPISTEMIC-002 (revision "364079d") (status measured))
+    ;; L-001 blind reconstruction (NEW — outcome A)
+    (claim L-001-001 (revision "364079d") (status measured))
+    (claim L-001-002 (revision "364079d") (status supported))
+    (claim L-001-003 (revision "364079d") (status supported))
+    (claim L-001-004 (revision "364079d") (status supported))
   )
 )
+
+;; Revision history:
+;;   a8391c4 (2026-08-15): initial import, 5 claims, 3 downgraded
+;;   364079d (2026-09-07): full sync with shiva-sutras claims-export.yaml
+;;     - Added 7 missing claims (SS-ORDER-001, SS-CORPUS-001, SS-EPISTEMIC-001/002, L-001-001..004)
+;;     - Revision pin updated to 364079d
+;;     - Statuses preserved at upstream values (no downgrades)
+;;
+;; Downstream usage:
+;;   L-001-001 (blind recovery, 94.9% recall) directly supports the
+;;   pratyāhāra resolver in panini/machine/siva-sutras.my — the
+;;   sound classes are now DERIVED from sūtra data, not hardcoded.
+;;
+;; Epistemic note:
+;;   The resolver is ENGINEERING layer. It uses SS-CANON-001 (canon
+;;   data) and SS-PRATYAHARA-001 (ādir antyena sahetā mechanism).
+;;   L-001-001 confirms these classes are textually recoverable.
+;;   The resolver does NOT depend on L-001 findings for correctness —
+;;   it implements 1.1.71 directly. L-001 validates the input data.
