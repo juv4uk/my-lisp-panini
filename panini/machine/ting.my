@@ -7,6 +7,20 @@
 (load "panini/machine/phonology.my")
 
 ;; ==========================================
+;; SLP1 ENCODING REFERENCE
+;; ==========================================
+;; Sibilants: z=ś (श), S=ṣ (ष), s=स
+;; Vowels:   f=ṛ (ऋ), F=ṝ (ॠ), x=ḷ (ऌ), X=ḹ (ॡ)
+;; Nasals:   N=ṅ (ङ), Y=ñ (ञ), R=ṇ (ण), n=न, m=म
+;; Aspirates: D=dh (ध), Q=ḍh (ढ), B=bh (भ), G=gh (घ)
+;; Retroflex: w=ṭ (ट), W=ṭh (ठ), q=ḍ (ड), Q=ḍh (ढ)
+;;
+;; PREVIOUS BUG (fixed this commit):
+;;   Śap was encoded as Sap (S=ṷ) — should be zap (z=ś)
+;;   Ṇic was encoded as Ṅaya (N=ṅ) — should use R=ṇ
+;;   ḍhvam was encoded as Dvam (D=dh) — should be Qvam (Q=ḍh)
+
+;; ==========================================
 ;; 1.3.3 hal antyam + 1.3.9 tasya lopaḥ
 ;; ==========================================
 
@@ -30,6 +44,8 @@
 ;; ==========================================
 ;; Tiṅ endings (3.4.78 + 3.4.79)
 ;; jhi encoded as (J i) — J is ñiṭ → ādeśa "nti" (8.4.62)
+;;
+;; FIXED: ḍhvam now Qvam (Q=ḍh), not Dvam (D=dh)
 ;; ==========================================
 
 (def ting-parasmaipada
@@ -41,7 +57,7 @@
 (def ting-atmanepada
   (quote (
     (ta   . (t a)) (AtAm . (A t A m)) (ja   . (j a))
-    (thAs . (t h A s)) (AthAm . (A t h A m)) (Dvam . (D v a m))
+    (thAs . (t h A s)) (AthAm . (A t h A m)) (Qvam . (Q v a m))
     (iTw  . (i T w)) (vahi . (v a h i)) (mahIM . (m a h I M)))))
 
 (def ting-lookup
@@ -60,19 +76,33 @@
     (apply-hal-antyam-lopa (ting-lookup label ting-atmanepada))))
 
 ;; ==========================================
-;; Vikaraṇa table (expanded: classes 1, 4, 6, 10)
+;; Vikaraṇa table (SLP1-corrected)
 ;; ==========================================
-;; Class 1:  Śap  → a   (S=ṭit, p=hal)
-;; Class 4:  Śya  → sya (S=ṭit)
-;; Class 6:  Śa   → a   (S=ṭit)
-;; Class 10: Ṇaya → aya (N=ṭit) [encoded as Ṇay to produce "aya" surface]
+;; Class 1:  Śap  → a   (z=ś is ṭit, p=hal)     [FIXED: S→z]
+;; Class 4:  Śya  → sya (z=ś is ṭit)            [FIXED: S→z]
+;; Class 6:  Śa   → a   (z=ś is ṭit)             [FIXED: S→z]
+;; Class 10: Ṇaya → aya (R=ṇ is ṭit)             [FIXED: N→R]
+;;
+;; OPEN PĀṆINIAN QUESTION (class 10):
+;;   Pāṇini uses Ṇic (3.1.25), which after it-lopa gives "i".
+;;   The surface form should be "aya", derived as:
+;;     Ṇic → i (it-lopa of ṇ,c)
+;;     Śap → a (it-lopa of ś,p)
+;;     vikaraṇa = i + a
+;;     guṇa on dhātu (7.3.84): cur → cor (u→o)
+;;     i → e → eco(e+a→aya) → "corayati" ✓
+;;   BUT: 7.3.84 guṇa applies to DHĀTU vowel, not vikaraṇa vowel.
+;;   What rule turns vikaraṇa "i" into "e"? 
+;;   yaṇ (6.1.77) gives i+a→ya, producing "coryati" (wrong).
+;;   This requires consulting Kāśikā on 7.3.84.
+;;   ENGINEERING SHORTCUT: encode "aya" directly with R=ṇ as it-marker.
 
 (def vikarana-table
   (quote (
-    (1  . ((S a p)  (S p)))
-    (4  . ((S y a)  (S)))
-    (6  . ((S a)    (S)))
-    (10 . ((N a y a)  (N))))))
+    (1  . ((z a p)  (z p)))
+    (4  . ((z y a)  (z)))
+    (6  . ((z a)    (z)))
+    (10 . ((R a y a)  (R))))))
 
 (def get-vikarana
   (lambda (class-num)
@@ -82,8 +112,11 @@
   (lambda (class-num)
     (car (cdr (cdr (assoc class-num vikarana-table))))))
 
-;; ṭit check: class 1 (Śap has 2 it-markers = ṭit), class 10 (Ṇaya has 1)
-;; Guṇa applies to classes with ṭit: 1, 4, 10 (but not 6)
+;; ṭit check: guṇa applies to classes with ṭit (more than 1 it-marker or explicit)
+;; Class 1: Śap has 2 markers (z,p) = ṭit ✓
+;; Class 4: Śya has 1 marker (z) = ṭit ✓ (ś is ṭit by 1.3.5 ādir ñiṭi)
+;; Class 6: Śa has 1 marker (z) = NOT ṭit (only hal antyam, no ñiṭ)
+;; Class 10: Ṇaya has 1 marker (R) = ṭit ✓ (ṇ is ṭit by Śiva-sūtras)
 (def vikarana-has-tit?
   (lambda (class-num)
     (cond
