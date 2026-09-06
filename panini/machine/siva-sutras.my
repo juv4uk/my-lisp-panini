@@ -68,14 +68,19 @@
       (t (append (but-last (car sutras))
                  (collect-rest marker (cdr sutras)))))))
 
-;; Find the sūtra containing adi and resolve
+;; Find the sūtra containing adi and resolve.
+;; FIX (v2): if adi's sūtra it-marker == target marker, stop immediately
+;; (same-sūtra pratyāhāra, e.g. NaM = Y+m within SS7).
 (def resolve-from-sutras
   (lambda (adi marker sutras)
     (cond
       ((atom sutras) (quote ()))
       ((member? adi (car sutras))
-       (append (collect-from-adi adi (car sutras))
-               (collect-rest marker (cdr sutras))))
+       (cond
+         ((equal? (list-last (car sutras)) marker)
+          (collect-from-adi adi (car sutras)))
+         (t (append (collect-from-adi adi (car sutras))
+                    (collect-rest marker (cdr sutras))))))
       (t (resolve-from-sutras adi marker (cdr sutras))))))
 
 ;; Main entry point: resolve a pratyāhāra given ādi and it-marker
@@ -92,18 +97,15 @@
 ;; ==========================================
 ;; Verified pratyāhāra fixtures (computed from sūtra data)
 ;; ==========================================
-;; These replace the previous hardcoded sets. They are now DERIVED
-;; from the sūtra data by resolve-pratyahara, not hand-written.
-;;
-;; L-001 finding: the previous HAL fixture contained a phantom 'V'
-;; that does not exist in any sūtra. The resolver-derived HAL is
-;; correct and contains 33 sounds (no phantom V).
+;; These are DERIVED from the sūtra data by resolve-pratyahara,
+;; not hand-written. Verified against Python reference implementation.
 
 (def AC (resolve-pratyahara (quote a) (quote c)))
 (def HAL (resolve-pratyahara (quote h) (quote l)))
 (def IK (resolve-pratyahara (quote i) (quote k)))
 (def EC (resolve-pratyahara (quote e) (quote c)))
 (def YAN (resolve-pratyahara (quote y) (quote R)))
+(def NAM (resolve-pratyahara (quote Y) (quote m)))
 
 ;; Additional derived pratyāhāras (for inference engine use)
 (def AL (resolve-pratyahara (quote a) (quote l)))
@@ -112,3 +114,6 @@
 (def JAS (resolve-pratyahara (quote j) (quote S)))
 (def BASH (resolve-pratyahara (quote b) (quote S)))
 (def JHASH (resolve-pratyahara (quote J) (quote S)))
+(def YAM (resolve-pratyahara (quote y) (quote m)))
+(def SHAR (resolve-pratyahara (quote S) (quote r)))
+(def AK (resolve-pratyahara (quote a) (quote k)))
