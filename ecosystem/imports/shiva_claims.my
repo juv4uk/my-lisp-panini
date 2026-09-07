@@ -28,6 +28,6 @@
 ;; 364079d (2026-09-07): full sync with shiva-sutras claims-export.yaml
 ;; d3eab18 (2026-09-07): journals 0020-0021 (classes 5,8; operation types)
 ;; 3de5c6f (2026-09-07): journal 0022 (loṭ imperative + savarṇa dīrgha)
-;; 4e73ae1 (2026-09-07): MyLisp → my-lisp rename (trademark respect)
+;; 4e73ae1 (2026-09-07): project-name normalization to my-lisp (trademark respect)
 ;; 04bde4d (2026-09-07): journal 0023 (laṅ imperfect + augment a-)
 ;; Machine: 3 lakāras (laṭ + loṭ + laṅ), 7 classes, 60/60 on laṭ+loṭ
