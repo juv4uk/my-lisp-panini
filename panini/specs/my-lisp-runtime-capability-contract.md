@@ -1,11 +1,11 @@
-# My Lisp runtime capability contract / Контракт можливостей runtime My Lisp / My-Lisp-Runtimefähigkeitsvertrag
+# my-lisp runtime capability contract / Контракт можливостей runtime my-lisp / My-Lisp-Runtimefähigkeitsvertrag
 
 ## English
 
 ### Purpose
 
 Panini acceptance evidence applies to one exact executable, not merely to a
-nearby My Lisp source checkout. This contract records the minimum observable
+nearby my-lisp source checkout. This contract records the minimum observable
 capabilities required by the current machine fixtures and prevents an
 unexplained source/binary mismatch from being reported as a Panini regression.
 
@@ -15,7 +15,7 @@ Run the offline probe with the executable and, when available, its source
 checkout:
 
 ```sh
-python3 panini/tests/probe_mylisp_runtime.py \
+python3 panini/tests/probe_my_lisp_runtime.py \
   --runtime /path/to/my-lisp \
   --source-repo /path/to/my-lisp-source
 ```
@@ -24,29 +24,29 @@ The probe requires `sha256-hex` with the SHA-256 digest of `"abc"`,
 `string-append`, ordinary file execution, and a clean completion marker. A
 handoff records runtime path, source revision, exact command, probe result,
 acceptance result, and loader-negative result. The probe never builds or edits
-My Lisp.
+my-lisp.
 
 ### Boundary
 
 Passing proves only that this runtime can execute the current Panini fixture
 surface. It does not approve parser/evaluator integration, establish a
-Pāṇinian claim, or authorize changes to My Lisp.
+Pāṇinian claim, or authorize changes to my-lisp.
 
 ## Українська
 
 ### Призначення
 
 Panini acceptance evidence стосується одного точного executable, а не просто
-сусіднього checkout вихідного коду My Lisp. Цей контракт фіксує мінімальні
+сусіднього checkout вихідного коду my-lisp. Цей контракт фіксує мінімальні
 спостережувані можливості, потрібні поточним machine fixtures, і не дозволяє
 подавати не пояснений source/binary mismatch як регресію Паніні.
 
 ### Обов'язковий доказ
 
-Запускайте offline probe з executable і, за наявності, його source checkout:
+Запускайте offline probe з executable і, за наявностј, його source checkout:
 
 ```sh
-python3 panini/tests/probe_mylisp_runtime.py \
+python3 panini/tests/probe_my_lisp_runtime.py \
   --runtime /path/to/my-lisp \
   --source-repo /path/to/my-lisp-source
 ```
@@ -54,13 +54,13 @@ python3 panini/tests/probe_mylisp_runtime.py \
 Probe вимагає `sha256-hex` із SHA-256 digest для `"abc"`, `string-append`,
 звичайне виконання файлу та чистий completion marker. Handoff фіксує runtime
 path, source revision, точну команду, результат probe, acceptance і
-loader-negative result. Probe ніколи не будує й не редагує My Lisp.
+loader-negative result. Probe ніколи не будує й не редагує my-lisp.
 
 ### Межа
 
 Проходження доводить лише, що саме цей runtime виконує поточну Panini fixture
 surface. Воно не затверджує parser/evaluator integration, не встановлює
-панініївського твердження та не дозволяє змінювати My Lisp.
+панініївського твердження та не дозволяє змінювати my-lisp.
 
 ## Deutsch
 
@@ -76,7 +76,7 @@ dass ein unerklärter Source/Binary-Mismatch als Panini-Regression erscheint.
 Den Offline-Probe mit Executable und, wenn vorhanden, Source-Checkout starten:
 
 ```sh
-python3 panini/tests/probe_mylisp_runtime.py \
+python3 panini/tests/probe_my_lisp_runtime.py \
   --runtime /path/to/my-lisp \
   --source-repo /path/to/my-lisp-source
 ```
@@ -85,10 +85,10 @@ Der Probe verlangt `sha256-hex` mit dem SHA-256-Digest von `"abc"`,
 `string-append`, normale Dateiausführung und einen sauberen Abschlussmarker.
 Ein Handoff hält Runtime-Pfad, Source-Revision, genauen Befehl, Probe-Ergebnis,
 Acceptance-Ergebnis und Loader-Negativ-Ergebnis fest. Der Probe baut oder
-bearbeitet My Lisp nie.
+bearbeitet my-lisp nie.
 
 ### Grenze
 
 Ein Bestehen beweist nur, dass diese Runtime die aktuelle Panini-Fixture-
 Oberfläche ausführen kann. Es bestätigt keine Parser-/Evaluatorintegration,
-keine Pāṇini-Behauptung und erlaubt keine Änderungen an My Lisp.
+keine Pāṇini-Behauptung und erlaubt keine Änderungen an my-lisp.
