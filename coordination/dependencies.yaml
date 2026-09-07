@@ -1,20 +1,25 @@
 # Dependency registry — my-lisp-panini
 # Validated by validate_dependencies.py (light: git existence + drift report).
-registry_version: 1
+registry_version: 2
 
 upstream:
   - id: shiva-sutras
     role: upstream-research-authority   # Siva-sutras / pratyahara canon
     remote: juv4uk/shiva-sutras
     local_path: /home/agents/GitHub/shiva-sutras
-    pinned_revision: a8391c4
+    pinned_revision: 30b0c5d
     imports_file: ecosystem/imports/shiva_claims.my
     claims:
-      - { id: SS-CANON-001,     status: resolved }
-      - { id: SS-PRATYAHARA-001, status: supported }
-      - { id: SS-MARKERS-001,   status: supported }
-      - { id: SS-MARKERS-002,   status: supported }
-      - { id: SS-MARKERS-003,   status: supported }
+      - { id: SS-CANON-001,       status: resolved }
+      - { id: SS-PRATYAHARA-001,  status: supported }
+      - { id: SS-MARKERS-001,     status: supported }
+      - { id: SS-MARKERS-002,     status: supported }
+      - { id: SS-MARKERS-003,     status: supported }
+      - { id: L-001-001,          status: measured }
+      - { id: L-001-002,          status: supported }
+      - { id: L-001-003,          status: supported }
+      - { id: L-001-004,          status: supported }
+      - { id: L-001-005,          status: supported }
 
 validation:
   hard_checks:
