@@ -16,24 +16,24 @@ previously listed only 7, silently omitting 17 as the directory grew).
   Foundation to a machine model.
 - [panini-derivation-machine-v0.1-milestone.md](panini-derivation-machine-v0.1-milestone.md)
   is the normative milestone superseding any near-term plan to integrate
-  Pāṇinian vocabulary into My Lisp before derivation evidence exists.
+  Pāṇinian vocabulary into my-lisp before derivation evidence exists.
 - [my-lisp-p5-gate.md](my-lisp-p5-gate.md) permits only a joint,
-  evidence-bound parser/evaluator review with My Lisp's P5 stage; it does not
+  evidence-bound parser/evaluator review with my-lisp's P5 stage; it does not
   authorize a rename or premature integration.
 - [panini-machine-model-reconciliation.md](panini-machine-model-reconciliation.md)
   replaces an earlier closure statement that overclaimed theoretical
   completeness, with an explicit boundary (2026-08-14).
 
-### Bridge to My Lisp (hypotheses, not implementations)
+### Bridge to my-lisp (hypotheses, not implementations)
 
 - [bridge-to-my-lisp.md](bridge-to-my-lisp.md) lists provisional interface
-  hypotheses; it is not a decision to modify My Lisp.
+  hypotheses; it is not a decision to modify my-lisp.
 - [my-lisp-semantic-id-mapping.md](my-lisp-semantic-id-mapping.md) is a
-  design-only mapping between Pāṇinian and My Lisp semantic IDs; not a
+  design-only mapping between Pāṇinian and my-lisp semantic IDs; not a
   runtime registry or parser/evaluator change.
-- [mylisp-runtime-capability-contract.md](mylisp-runtime-capability-contract.md)
+- [my-lisp-runtime-capability-contract.md](my-lisp-runtime-capability-contract.md)
   fixes acceptance evidence to one exact executable, not a nearby checkout.
-- [machine-mylisp-compatibility-boundary.md](machine-mylisp-compatibility-boundary.md)
+- [machine-my-lisp-compatibility-boundary.md](machine-my-lisp-compatibility-boundary.md)
   records blockers found by a read-only execution audit (2026-08-13); a
   verification boundary, not a runtime change.
 - [machine-execution-path-v0.1.md](machine-execution-path-v0.1.md) names the
@@ -61,7 +61,7 @@ previously listed only 7, silently omitting 17 as the directory grew).
   `research/tripadi-rule-exception-audit.md`; authorizes no parser, evaluator,
   or registry change.
 - [derivation-corpus-stress-protocol-v0.1.md](derivation-corpus-stress-protocol-v0.1.md)
-  is a research protocol; it does not add a My Lisp feature.
+  is a research protocol; it does not add a my-lisp feature.
 
 ### Provenance and epistemic control
 
@@ -105,25 +105,25 @@ previously listed only 7, silently omitting 17 as the directory grew).
   machine model.
 - [panini-derivation-machine-v0.1-milestone.md](panini-derivation-machine-v0.1-milestone.md) —
   нормативний milestone, що скасовує будь-який найближчий план інтеграції
-  панінійської термінології в My Lisp до появи доказів деривації.
+  панінійської термінології в my-lisp до появи доказів деривації.
 - [my-lisp-p5-gate.md](my-lisp-p5-gate.md) дозволяє лише спільний,
-  доказово обґрунтований парсер/evaluator-рев'ю зі стадією P5 My Lisp; не
+  доказово обґрунтований парсер/evaluator-рев'ю зі стадією P5 my-lisp; не
   дозволяє перейменування чи передчасну інтеграцію.
 - [panini-machine-model-reconciliation.md](panini-machine-model-reconciliation.md)
   замінює попереднє твердження про завершення, що перебільшувало теоретичну
   повноту, явною межею (2026-08-14).
 
-### Міст до My Lisp (гіпотези, не реалізації)
+### Міст до my-lisp (гіпотези, не реалізації)
 
 - [bridge-to-my-lisp.md](bridge-to-my-lisp.md) перелічує попередні гіпотези
-  інтерфейсу; це не рішення змінювати My Lisp.
+  інтерфейсу; це не рішення змінювати my-lisp.
 - [my-lisp-semantic-id-mapping.md](my-lisp-semantic-id-mapping.md) — лише
-  дизайн-відповідність між панінійськими й My Lisp semantic ID; не runtime
+  дизайн-відповідність між панінійськими й my-lisp semantic ID; не runtime
   реєстр і не зміна парсера/evaluator-а.
-- [mylisp-runtime-capability-contract.md](mylisp-runtime-capability-contract.md)
+- [my-lisp-runtime-capability-contract.md](my-lisp-runtime-capability-contract.md)
   прив'язує доказову базу прийняття до одного конкретного виконуваного
   файлу, не до "приблизного" checkout.
-- [machine-mylisp-compatibility-boundary.md](machine-mylisp-compatibility-boundary.md)
+- [machine-my-lisp-compatibility-boundary.md](machine-my-lisp-compatibility-boundary.md)
   фіксує блокери, знайдені read-only аудитом виконання (2026-08-13); межа
   верифікації, не зміна runtime.
 - [machine-execution-path-v0.1.md](machine-execution-path-v0.1.md) називає
@@ -151,7 +151,7 @@ previously listed only 7, silently omitting 17 as the directory grew).
   `research/tripadi-rule-exception-audit.md`; не дозволяє зміни парсера,
   evaluator-а чи реєстру.
 - [derivation-corpus-stress-protocol-v0.1.md](derivation-corpus-stress-protocol-v0.1.md) —
-  дослідницький протокол; не додає нову можливість My Lisp.
+  дослідницький протокол; не додає нову можливість my-lisp.
 
 ### Походження й епістемічний контроль
 
@@ -197,26 +197,26 @@ dem Wachstum des Verzeichnisses stillschweigend ausgelassen).
   Foundation zu einem Maschinenmodell fest.
 - [panini-derivation-machine-v0.1-milestone.md](panini-derivation-machine-v0.1-milestone.md)
   ist der normative Meilenstein, der jeden kurzfristigen Plan zur Integration
-  paninischer Terminologie in My Lisp vor Vorliegen von Ableitungsevidenz
+  paninischer Terminologie in my-lisp vor Vorliegen von Ableitungsevidenz
   ersetzt.
 - [my-lisp-p5-gate.md](my-lisp-p5-gate.md) erlaubt nur eine gemeinsame,
-  evidenzbasierte Parser-/Evaluator-Prüfung mit der P5-Stufe von My Lisp;
+  evidenzbasierte Parser-/Evaluator-Prüfung mit der P5-Stufe von my-lisp;
   keine Umbenennung oder verfrühte Integration.
 - [panini-machine-model-reconciliation.md](panini-machine-model-reconciliation.md)
   ersetzt eine frühere Abschlussaussage, die theoretische Vollständigkeit
   überbehauptete, durch eine explizite Grenze (2026-08-14).
 
-### Brücke zu My Lisp (Hypothesen, keine Implementierungen)
+### Brücke zu my-lisp (Hypothesen, keine Implementierungen)
 
 - [bridge-to-my-lisp.md](bridge-to-my-lisp.md) listet vorläufige
-  Schnittstellenhypothesen; keine Entscheidung, My Lisp zu ändern.
+  Schnittstellenhypothesen; keine Entscheidung, my-lisp zu ändern.
 - [my-lisp-semantic-id-mapping.md](my-lisp-semantic-id-mapping.md) ist eine
   reine Design-Zuordnung zwischen paninischen und My-Lisp-Semantic-IDs; kein
   Laufzeitregister, keine Parser-/Evaluator-Änderung.
-- [mylisp-runtime-capability-contract.md](mylisp-runtime-capability-contract.md)
+- [my-lisp-runtime-capability-contract.md](my-lisp-runtime-capability-contract.md)
   bindet die Abnahme-Evidenz an genau eine ausführbare Datei, nicht an einen
   ungefähren Checkout.
-- [machine-mylisp-compatibility-boundary.md](machine-mylisp-compatibility-boundary.md)
+- [machine-my-lisp-compatibility-boundary.md](machine-my-lisp-compatibility-boundary.md)
   hält Blocker fest, die ein Nur-Lese-Ausführungsaudit fand (2026-08-13); eine
   Verifikationsgrenze, keine Laufzeitänderung.
 - [machine-execution-path-v0.1.md](machine-execution-path-v0.1.md) benennt
@@ -246,7 +246,7 @@ dem Wachstum des Verzeichnisses stillschweigend ausgelassen).
   `research/tripadi-rule-exception-audit.md`; erlaubt keine Parser-,
   Evaluator- oder Registeränderung.
 - [derivation-corpus-stress-protocol-v0.1.md](derivation-corpus-stress-protocol-v0.1.md)
-  ist ein Forschungsprotokoll; fügt My Lisp kein Feature hinzu.
+  ist ein Forschungsprotokoll; fügt my-lisp kein Feature hinzu.
 
 ### Herkunft und epistemische Kontrolle
 
@@ -260,7 +260,7 @@ dem Wachstum des Verzeichnisses stillschweigend ausgelassen).
 - [anuvrtti-representation-boundary.md](anuvrtti-representation-boundary.md)
   und [karaka-role-cardinality.md](karaka-role-cardinality.md) dokumentieren
   explizite Repräsentationsgrenzen.
-- [hypothesis-ledger.md](hypothesis-ledger.md) verfolgt Hypothesen, statt sie
+- [hypothesis-ledger.md](hypothesis-ledger.md) verfolgt Hypothesen, statu sie
   als gesicherte paninische Tatsachen darzustellen.
 - [siva-sutra-pinned-acquisition-protocol-v0.1.md](siva-sutra-pinned-acquisition-protocol-v0.1.md)
   ist eine Beschaffungsrichtlinie; schafft für sich genommen keine
