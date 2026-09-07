@@ -125,7 +125,7 @@
       ((atom sounds) (quote ()))
       ((atom (cdr sounds))
        (cond
-         ((vowel? (car sounds))
+          (vowel? (car sounds))
           (list (apply-guRa-extended (car sounds))))
          (t (list (car sounds)))))
       (t (cons (car sounds)
@@ -231,10 +231,10 @@
             (t
              ;; Merge: replace two sounds with merged, continue
              (cons merged (apply-savarṇa-dīrgha (cdr (cdr sounds)))))))
-        (savarṇa-pair? (car sounds) (car (cdr sounds))))))))
+        (savarṇa-pair? (car sounds) (car (cdr sounds))))*))
 
 ;; ==========================================
-;; 8.4.55: jhalāṃ jhaśi — voiced → voiceless before voiceless
+;; 8.4.55: jjal-jhashi — voiced → voiceless before voiceless
 ;;
 ;; Voiced consonant (jhal) before voiceless (khar) → devoiced
 ;; ==========================================
@@ -268,7 +268,7 @@
         (equal? s (quote t))
         (equal? s (quote S))
         (equal? s (quote z))
-        (equal? s (quote s)))))
+        (equal? s (quote s))*))
 
 (def apply-jhal-jhashi
   (lambda (sounds)
@@ -283,16 +283,16 @@
                   (not (equal? (devoice-sound cur) cur)))
              (cons (devoice-sound cur) (apply-jhal-jhashi (cdr sounds))))
             (t
-             (cons cur (apply-jhal-jhashi (cdr sounds))))))
+             (cons cur (apply-jhal-jhashi (cdr sounds)))*)))
         (car sounds)
         (cond
           ((atom (cdr sounds)) (quote ()))
-          (t (car (cdr sounds)))))))))
+          (t (car (cdr sounds)))))*)))
 
 ;; ==========================================
 ;; Main derivation function
 ;;
-;; Pipeline: it-lopa → ṭere → vṛddhi → guṇa/yaṇ → eco → savarṇa → 8.4.55
+;; Pipeline: it-lopa→ ṭere → vṛddhi → guṇa/yaṇ → eco → savarṇa → 8.4.55
 ;; ==========================================
 
 (def derive-verb
@@ -306,7 +306,7 @@
        ((lambda (ting-clean)
           ((lambda (ting-final)
              ((lambda (vikarana-vrddhi)
-                ((lambda (suffix)
+                 (lambda (suffix)
                    ((lambda (anga-guna)
                       ((lambda (ting-with-prefix)
                          ((lambda (combined)
@@ -322,9 +322,15 @@
                     (apply-guṇa-to-anga dhatu vikarana-vrddhi has-tit is-nic is-snu ting-label)))
                  (cond
                    (is-nic
-                    (apply-suffix-vrddhi (quote (a)) ting-label))
+                    ;; No suffix vṛddhi in laṅ (tiṅ lack -i, 7.3.101 not triggered)
+                    (cond
+                      ((equal? lakara (quote laN)) (quote (a)))
+                      (t (apply-suffix-vrddhi (quote (a)) ting-label))))
                    (t (quote ())))))
-              (apply-vrddhi vikarana-clean ting-label)))
+              ;; vṛddhi: vikaraṇa a→ā before 1st person — NOT in laṅ!
+              (cond
+                ((equal? lakara (quote laN)) vikarana-clean)
+                (t (apply-vrddhi vikarana-clean ting-label)))))
            (apply-tere ting-clean has-tit is-atmanepada)))
         (get-ting-para ting-label lakara)))
      (get-vikarana-clean class-num)
@@ -333,36 +339,35 @@
      (is-snu-class? class-num))))
 
 ;; Convenience: loṭ derivation
+
 (def derive-verb-lot
   (lambda (dhatu class-num ting-label)
     (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote loT))))
 
-;; ==========================================
-;; laṅ (imperfect) — augment a- prefix
+;; ===========================================
+;; laṅ (imperfect)→ augment a- prefix
 ;;
-;; 3.2.111: anadyatanaṃ laṅ (imperfect = not today)
-;; 6.1.3+: chordasī... aṅgād... — augment a- prefixed to dhātu
+;; 3.2.111: anadyatanaṃ laṅa (imperfect = not today)
+;; 6.1.3+: chordasŋ... aṅhād...→ augment a- prefixed to dhātuu
 ;;
 ;; The augment a- is NOT part of the aṅga (no guṇa on it).
 ;; It is simply prepended to the final combined list.
-;; savarṇa dīrgha (6.1.101) handles a+a→ā if dhātu starts with a.
-;; eco sandhi (6.1.78) handles a+i→e, a+u→o if needed.
-;; ==========================================
+;; savarṇa dīrgha (6.1.101) handles a+h→ā if dhātu starts with a.
+;; eco sandhi (6.1.78) handles a+i�
+e, a+u→o if needed.
+;; ===========================================
 
 (def derive-verb-laN
   (lambda (dhatu class-num ting-label)
     ((lambda (result)
        ;; Prepend augment a- to the derived form, then re-apply sandhi
        ;; (savarṇa dīrgha for a+vowel, eco for a+i/u)
-       (apply-jhal-jhashi
+       (apply-jjal-jhashi
          (apply-savarṇa-dīrgha
            (expand-eco-in-list
              (cons (quote a) result)))))
-     (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote laN)))))
-
-;; ==========================================
-;; Convenience
-;; ==========================================
+     (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote laN))*JJ(
+]`string helpers string substitution
 
 (def derive-verb-string
   (lambda (dhatu class-num ting-label is-atmanepada)
@@ -373,61 +378,50 @@
 (def derive-pacati    (lambda () (derive-verb (quote (p a c)) 6 (quote tip) (quote ()))))
 (def derive-bhavati   (lambda () (derive-verb (quote (b h U)) 1 (quote tip) (quote ()))))
 (def derive-sunoti    (lambda () (derive-verb (quote (s u)) 5 (quote tip) (quote ()))))
-(def derive-tanoti    (lambda () (derive-verb (quote (t a n)) 8 (quote tip) (quote ()))))
-(def derive-corayati  (lambda () (derive-verb (quote (c u r)) 10 (quote tip) (quote ()))))
-(def derive-nayati    (lambda () (derive-verb (quote (n I)) 1 (quote tip) (quote ()))))
+(def derive-tanoti   (lambda () (derive-verb (quote (t a n)) 8 (quote tip) (quote ()))))
+(def derive-corayati  (lambda () (derive-verb (quote (c u r)) 10 (quote tip) (quote ())))
+(def derive-nayati    (lambda () (derive-verb (quote (n I)) 1 (quote tip) (quote ())))
 (def derive-pazyati   (lambda () (derive-verb (quote (p a z)) 4 (quote tip) (quote ()))))
 (def derive-kfSati    (lambda () (derive-verb (quote (k f S)) 6 (quote tip) (quote ()))))
 (def derive-stavati   (lambda () (derive-verb (quote (s t u)) 1 (quote tip) (quote ()))))
 (def derive-kroSayati (lambda () (derive-verb (quote (k r u S)) 10 (quote tip) (quote ()))))
 
-(def derive-bhavAmi   (lambda () (derive-verb (quote (b h U)) 1 (quote mip) (quote ()))))
-(def derive-sunomi    (lambda () (derive-verb (quote (s u)) 5 (quote mip) (quote ()))))
-(def derive-corayAmi  (lambda () (derive-verb (quote (c u r)) 10 (quote mip) (quote ()))))
+activadhini  (lambda () (derive-verb (quote (b h U)) 1 (quote mip) (quote ())))
+(def derive-sunomi    (lambda () (derive-verb (quote (s u)) 5 (quote mip) (quote ())))
+(def derive-corayAmi  (lambda () (derive-verb (quote (c u r)) 10 (quote mip) (quote ())))
 
-(def derive-bhavanti  (lambda () (derive-verb (quote (b h U)) 1 (quote jhi) (quote ()))))
+activanti  (lambda () (derive-verb (quote (b h U)) 1 (quote jhi) (quote ()))))
 (def derive-sunvanti  (lambda () (derive-verb (quote (s u)) 5 (quote jhi) (quote ()))))
-(def derive-corayanti (lambda () (derive-verb (quote (c u r)) 10 (quote jhi) (quote ()))))
+(def derive-corayanti (lambda () (derive-verb (quote (c u r)) 10 (quote jhi) (quote ())))
 
-;; === loṭ (imperative) named derivations ===
-
-(def derive-bhavatu   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote tip))))
-(def derive-sunotu    (lambda () (derive-verb-lot (quote (s u)) 5 (quote tip))))
-(def derive-tanotu    (lambda () (derive-verb-lot (quote (t a n)) 8 (quote tip))))
-(def derive-corayatu  (lambda () (derive-verb-lot (quote (c u r)) 10 (quote tip))))
-(def derive-pacatu    (lambda () (derive-verb-lot (quote (p a c)) 6 (quote tip))))
-(def derive-nayatu    (lambda () (derive-verb-lot (quote (n I)) 1 (quote tip))))
-
-(def derive-bhavantu  (lambda () (derive-verb-lot (quote (b h U)) 1 (quote jhi))))
+activantu   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote jhi))))
 (def derive-sunvantu  (lambda () (derive-verb-lot (quote (s u)) 5 (quote jhi))))
 (def derive-corayantu (lambda () (derive-verb-lot (quote (c u r)) 10 (quote jhi))))
-(def derive-pacantu   (lambda () (derive-verb-lot (quote (p a c)) 6 (quote jhi))))
-
-(def derive-bhava     (lambda () (derive-verb-lot (quote (b h U)) 1 (quote sip))))
+(def derive-pacantu    (lambda () (derive-verb-lot (quote (p a c)) 6 (quote jhi))))
+(def derive-bhava      (lambda () (derive-verb-lot (quote (b h U)) 1 (quote sip))))
 (def derive-paca      (lambda () (derive-verb-lot (quote (p a c)) 6 (quote sip))))
 (def derive-suno      (lambda () (derive-verb-lot (quote (s u)) 5 (quote sip))))
 (def derive-coraya    (lambda () (derive-verb-lot (quote (c u r)) 10 (quote sip))))
+!derive-bhavAni   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote mip))))
+(def derive-pacAni     (lambda () (derive-verb-lot (quote (p a c)) 6 (quote mip))))
+(def derive-corayAni   (lambda () (derive-verb-lot (quote (c u r)) 10 (quote mip))))
 
-(def derive-bhavAni   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote mip))))
-(def derive-pacAni    (lambda () (derive-verb-lot (quote (p a c)) 6 (quote mip))))
-(def derive-corayAni  (lambda () (derive-verb-lot (quote (c u r)) 10 (quote mip))))
+!=== laṅa (imperfect) named derivations ===
 
-;; === laṅ (imperfect) named derivations ===
-
-(def derive-abhavat   (lambda () (derive-verb-laN (quote (b h U)) 1 (quote tip))))
+(def derive-abhavat    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote tip))))
 (def derive-apacat    (lambda () (derive-verb-laN (quote (p a c)) 6 (quote tip))))
-(def derive-asunot    (lambda () (derive-verb-laN (quote (s u)) 5 (quote tip))))
-(def derive-atanot    (lambda () (derive-verb-laN (quote (t a n)) 8 (quote tip))))
-(def derive-acorayat  (lambda () (derive-verb-laN (quote (c u r)) 10 (quote tip))))
+(def derive-asunot     (lambda () (derive-verb-laN (quote (s u)) 5 (quote tip))))
+(def derive-atanot     (lambda () (derive-verb-laN (quote (t a n)) 8 (quote tip))))
+(def derive-acorayat   (lambda () (derive-verb-laN (quote (c u r)) 10 (quote tip)))
 (def derive-anayat    (lambda () (derive-verb-laN (quote (n I)) 1 (quote tip))))
-(def derive-apazyat  (lambda () (derive-verb-laN (quote (p a z)) 4 (quote tip))))
-(def derive-akfSat   (lambda () (derive-verb-laN (quote (k f S)) 6 (quote tip))))
+(def derive-apazyat   (lambda () (derive-verb-laN (quote (p a z)) 4 (quote tip))))
+(def derive-akfSat     (lambda () (derive-verb-laN (quote (k f S)) 6 (quote tip))))
 
-(def derive-abhavan   (lambda () (derive-verb-laN (quote (b h U)) 1 (quote jhi))))
+(def derive-abhavan    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote jhi))))
 (def derive-apacan    (lambda () (derive-verb-laN (quote (p a c)) 6 (quote jhi))))
-(def derive-asunvan   (lambda () (derive-verb-laN (quote (s u)) 5 (quote jhi))))
-(def derive-acorayan  (lambda () (derive-verb-laN (quote (c u r)) 10 (quote jhi))))
+(def derive-asunvan    (lambda () (derive-verb-laN (quote (s u)) 5 (quote jhi))))
+(def derive-acorayan   (lambda () (derive-verb-laN (quote (c u r)) 10 (quote jhi)))
 
-(def derive-abhavam   (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
-(def derive-apacam   (lambda () (derive-verb-laN (quote (p a c)) 6 (quote mip))))
-(def derive-acorayam  (lambda () (derive-verb-laN (quote (c u r)) 10 (quote mip))))
+derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
+(def derive-apacam     (lambda () (derive-verb-laN (quote (p a c)) 6 (quote mip))))
+(def derive-acorayam   (lambda () (derive-verb-laN (quote (c u r)) 10 (quote mip))))
