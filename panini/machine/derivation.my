@@ -2,32 +2,27 @@
 ;;
 ;; Pipeline:
 ;;   1. it-lopa: remove it-markers from vikaraṇa and tiṅ (1.3.3 + 1.3.5 + 1.3.9)
-;;      Special: jhi (Ji) → ādeśa "nti" (8.4.62: jhaSāṃ jaS tribhiḥ)
+;;      Special: jhi (Ji) → ādeśa "nti" (8.4.62)
 ;;   2. ṭere: substitute ta → te for ātmanepada when vikaraṇa has ṭit (3.4.79)
 ;;   3. vṛddhi: lengthen vikaraṇa final a→ā before 1st person tiṅ (7.3.101)
-;;   4. guṇa: replace dhātu vowel with guṇa grade when vikaraṇa has ṭit (7.3.84)
-;;      Extended: applies to short AND long vowels (u→o, U→o, i→e, I→e, etc.)
-;;   5. eco sandhi: e/o → ay/av before vowel (6.1.88)
+;;   4. guṇa: replace vowels with guṇa grade when vikaraṇa has ṭit (7.3.84)
+;;      For class 10 (Ṇic): guṇa applies to ENTIRE aṅga (dhātu + Ṇic "i")
+;;      → u→o AND i→e → eco → aya (Journal 0017)
+;;      For other classes: guṇa applies to dhātu vowel only
+;;   5. eco sandhi: e/o → ay/av before vowel (6.1.78)
 ;;   6. concatenate
 ;;
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: ting.my, phonology.my, sandhi.my
 ;;
 ;; SLP1 ENCODING NOTE:
-;;   SLP1 sibilants: z=ś (श), S=ṣ (ष), s=स
-;;   SLP1 vowels: f=ṛ (ऋ), F=ṝ (ॠ), R=ṇ (ण — consonant, NOT ṛ!)
-;;   SLP1 nasals: N=ṅ (ङ), Y=ञ, R=ṇ (ण)
-;;   Pre-existing issue: vikaraṇa Śap uses S (ṣ) instead of z (ś) — see ting.my
-;;   This does not affect surface forms (S is an it-marker, deleted in it-lopa)
-;;   but is a wrong Pāṇinian encoding.
+;;   z=ś, S=ṣ, f=ṛ, R=ṇ (consonant), F=ṝ
+;;   Ṇic = (R i c): R=ṇ is ṇiṭ by 1.3.5, c=hal antyam by 1.3.3
 
 (load "panini/machine/ting.my")
 
 ;; ==========================================
 ;; 7.3.101: vṛddhi — vikaraṇa final a→ā before 1st person tiṅ
-;;
-;; Extended scope: checks if vikaraṇa ENDS in 'a', not exact match [a].
-;; This handles class 4 (Śya → sya): final 'a' in 'sya' → 'syā'.
 ;; ==========================================
 
 (def first-person-ting?
@@ -53,6 +48,8 @@
          (t (list (car vik)))))
       (t (cons (car vik) (replace-last-a (cdr vik)))))))
 
+;; For class 10 (Ṇic): vikaraṇa is "i", no 'a' to lengthen.
+;; Śap suffix "a" is separate and gets vṛddhi for 1st person.
 (def apply-vrddhi
   (lambda (vikarana-clean ting-label)
     (cond
@@ -61,13 +58,30 @@
        (replace-last-a vikarana-clean))
       (t vikarana-clean))))
 
+;; Vṛddhi for Śap suffix (class 10): a→ā before 1st person
+(def apply-suffix-vrddhi
+  (lambda (suffix ting-label)
+    (cond
+      ((and (first-person-ting? ting-label)
+            (equal? suffix (quote (a))))
+       (quote (A)))
+      (t suffix))))
+
 ;; ==========================================
 ;; Guṇa grade substitution (7.3.84)
-;; Extended: applies to short AND long vowels.
-;;   Short: u→o, i→e, f→ar, x→al
-;;   Long:  U→o, I→e, F→ar, X→al
 ;;
-;; SLP1 note: f=ṛ (short vocalic r), F=ṝ (long vocalic r)
+;; 7.3.84: sārvadhātukārdhadhātukayoḥ
+;; Kāśikā: "sārvadhātuke ārdhadhātuke ca pratyaye parataḥ
+;;          igantasya aṅgasya guṇo bhavati"
+;; = guṇa of the aṅga occurs when sārvadhātuka suffix follows
+;;
+;; For class 10 (Ṇic): aṅga = dhātu + "i" (from Ṇic)
+;;   Guṇa applies to ALL vowels in the aṅga: u→o AND i→e
+;;   Then eco: e+a → aya → "corayati" (Journal 0017)
+;;   Same mechanism as "nayati" (nī→e→eco→aya)
+;;
+;; For other classes: aṅga = dhātu (vikaraṇa is the suffix)
+;;   Guṇa applies to dhātu vowel only
 ;; ==========================================
 
 (def apply-guRa-extended
@@ -83,28 +97,43 @@
       ((equal? sound (quote x)) (quote al))
       (t sound))))
 
-(def apply-guṇa-to-dhatu
-  (lambda (dhatu-sounds has-tit)
+;; Apply guṇa to ALL vowels in a sound list (for class 10 aṅga)
+(def apply-guṇa-all-vowels
+  (lambda (sounds)
     (cond
-      ((not has-tit) dhatu-sounds)
-      ((atom dhatu-sounds) dhatu-sounds)
-      (t (cons (car dhatu-sounds)
-               (apply-guṇa-to-dhatu-rest (cdr dhatu-sounds)))))))
+      ((atom sounds) (quote ()))
+      (t (cons (apply-guRa-extended (car sounds))
+               (apply-guṇa-all-vowels (cdr sounds)))))))
 
-(def apply-guṇa-to-dhatu-rest
-  (lambda (rest)
+;; Apply guṇa to LAST vowel only (for class 1 dhātu)
+(def apply-guṇa-last-vowel
+  (lambda (sounds)
     (cond
-      ((atom rest) (quote ()))
-      ((atom (cdr rest))
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds))
        (cond
-         ((vowel? (car rest))
-          (list (apply-guRa-extended (car rest))))
-         (t (list (car rest)))))
-      (t (cons (car rest)
-               (apply-guṇa-to-dhatu-rest (cdr rest)))))))
+         ((vowel? (car sounds))
+          (list (apply-guRa-extended (car sounds))))
+         (t (list (car sounds)))))
+      (t (cons (car sounds)
+               (apply-guṇa-last-vowel (cdr sounds)))))))
+
+;; Apply guṇa to aṅga based on class
+;; Class 10: aṅga = dhātu + vikaraṇa "i" → guṇa ALL vowels
+;; Other classes with ṭit: aṅga = dhātu → guṇa LAST vowel only
+(def apply-guṇa-to-anga
+  (lambda (dhatu vikarana-clean has-tit is-nic)
+    (cond
+      ((not has-tit) (append dhatu vikarana-clean))
+      (is-nic
+       ;; Class 10: aṅga = dhātu + "i", guṇa ALL vowels
+       (apply-guṇa-all-vowels (append dhatu vikarana-clean)))
+      (t
+       ;; Other ṭit classes: guṇa last vowel of dhātu
+       (append (apply-guṇa-last-vowel dhatu) vikarana-clean)))))
 
 ;; ==========================================
-;; Eco sandhi expansion (6.1.88)
+;; Eco sandhi expansion (6.1.78)
 ;; ==========================================
 
 (def expand-eco-in-list
@@ -134,22 +163,31 @@
 
 (def derive-verb
   (lambda (dhatu class-num ting-label is-atmanepada)
-    ((lambda (vikarana-clean has-tit)
+    ((lambda (vikarana-clean has-tit is-nic)
        ((lambda (ting-clean)
           ((lambda (ting-final)
              ((lambda (vikarana-vrddhi)
-                ((lambda (dhatu-guṇa)
-                   ((lambda (combined)
-                      (expand-eco-in-list combined))
-                     (append dhatu-guṇa (append vikarana-vrddhi ting-final))))
-                  (apply-guṇa-to-dhatu dhatu has-tit)))
+                ;; For class 10: suffix is Śap "a" (separate from vikaraṇa "i")
+                ;; For other classes: vikaraṇa IS the suffix
+                ((lambda (suffix)
+                   ((lambda (anga-guṇa)
+                      ((lambda (combined)
+                         (expand-eco-in-list combined))
+                        (append anga-guṇa (append suffix ting-final))))
+                    (apply-guṇa-to-anga dhatu vikarana-vrddhi has-tit is-nic)))
+                 (cond
+                   (is-nic
+                    ;; Class 10: Śap suffix "a", with vṛddhi for 1st person
+                    (apply-suffix-vrddhi (quote (a)) ting-label))
+                   (t (quote ())))))  ;; Other classes: suffix is empty (vikaraṇa already has "a")
               (apply-vrddhi vikarana-clean ting-label)))
            (apply-tere ting-clean has-tit is-atmanepada)))
         (cond
           (is-atmanepada (get-ting-atma ting-label))
           (t (get-ting-para ting-label)))))
      (get-vikarana-clean class-num)
-     (vikarana-has-tit? class-num))))
+     (vikarana-has-tit? class-num)
+     (is-nic-class? class-num))))
 
 ;; ==========================================
 ;; Convenience
