@@ -1,35 +1,35 @@
-;; Verbal Derivation Engine — dhātu + vikaraṇa + tiṅ → surface form
+;; Verbal Derivation Engine ‚Äî dhƒÅtu + vikara·πáa + ti·πÖ ‚Üí surface form
 ;;
-;; Supports: laṭ (present) + loṭ (imperative)
+;; Supports: la·π≠ (present) + lo·π≠ (imperative)
 ;;
 ;; Pipeline:
-;;   1. it-lopa: remove it-markers from vikaraṇa and tiṅ (1.3.3 + 1.3.5 + 1.3.9)
-;;      Special: jhi (Ji) → ādeśa "nti" (8.4.62) [laṭ only; loṭ has ntu pre-set]
-;;   2. ṭere: substitute ta → te for ātmanepada when vikaraṇa has ṭit (3.4.79)
-;;   3. vṛddhi: lengthen vikaraṇa final a→ā before 1st person tiṅ (7.3.101)
-;;   4. guṇa/yaṇ: replace vowels based on class (7.3.84 + 6.4.87)
-;;      Class 10 (Ṇic): guṇa on ALL vowels of aṅga (dhātu + "i")
-;;      Class 1 (Śap):  guṇa on LAST vowel of dhātu
-;;      Class 5 (Śnu):  guṇa on LAST vowel of aṅga (vikaraṇa "u") for 3sg/1sg
-;;                      yaṇ (u→v) on LAST vowel of aṅga for 3pl + a-insertion
-;;      Class 8 (u):    same as class 5 (guṇa/yaṇ split)
-;;   5. eco sandhi: e/o → ay/av before vowel (6.1.78)
-;;   6. savarṇa dīrgha: two homogeneous vowels → long (6.1.101)
-;;   7. 8.4.55: jhalāṃ jhaśi — voiced → voiceless before voiceless
+;;   1. it-lopa: remove it-markers from vikara·πáa and ti·πÖ (1.3.3 + 1.3.5 + 1.3.9)
+;;      Special: jhi (Ji) ‚Üí ƒÅde≈õa "nti" (8.4.62) [la·π≠ only; lo·π≠ has ntu pre-set]
+;;   2. ·π≠ere: substitute ta ‚Üí te for ƒÅtmanepada when vikara·πáa has ·π≠it (3.4.79)
+;;   3. v·πõddhi: lengthen vikara·πáa final a‚ÜíƒÅ before 1st person ti·πÖ (7.3.101)
+;;   4. gu·πáa/ya·πá: replace vowels based on class (7.3.84 + 6.4.87)
+;;      Class 10 (·πÜic): gu·πáa on ALL vowels of a·πÖga (dhƒÅtu + "i")
+;;      Class 1 (≈öap):  gu·πáa on LAST vowel of dhƒÅtu
+;;      Class 5 (≈önu):  gu·πáa on LAST vowel of a·πÖga (vikara·πáa "u") for 3sg/1sg
+;;                      ya·πá (u‚Üív) on LAST vowel of a·πÖga for 3pl + a-insertion
+;;      Class 8 (u):    same as class 5 (gu·πáa/ya·πá split)
+;;   5. eco sandhi: e/o ‚Üí ay/av before vowel (6.1.78)
+;;   6. savar·πáa dƒ´rgha: two homogeneous vowels ‚Üí long (6.1.101)
+;;   7. 8.4.55: jhalƒÅ·πÉ jha≈õi ‚Äî voiced ‚Üí voiceless before voiceless
 ;;   8. concatenate
 ;;
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: ting.my, phonology.my, sandhi.my
-;; Journals: 0017, 0018, 0020 (laṭ), 0022 (loṭ + savarṇa dīrgha)
+;; Journals: 0017, 0018, 0020 (la·π≠), 0022 (lo·π≠ + savar·πáa dƒ´rgha)
 ;;
 ;; SLP1 ENCODING NOTE:
-;;   z=ś, S=ṣ, f=ṛ, R=ṇ (consonant), F=ṝ, A=ā, I=ī, U=ū
-;;   Ṇic = (R i c): R=ṇ is ṇiṭ by 1.3.5, c=hal antyam by 1.3.3
+;;   z=≈õ, S=·π£, f=·πõ, R=·πá (consonant), F=·πù, A=ƒÅ, I=ƒ´, U=≈´
+;;   ·πÜic = (R i c): R=·πá is ·πái·π≠ by 1.3.5, c=hal antyam by 1.3.3
 
 (load "panini/machine/ting.my")
 
 ;; ==========================================
-;; 7.3.101: vṛddhi — vikaraṇa final a→ā before 1st person tiṅ
+;; 7.3.101: v·πõddhi ‚Äî vikara·πáa final a‚ÜíƒÅ before 1st person ti·πÖ
 ;; ==========================================
 
 (def first-person-ting?
@@ -63,7 +63,7 @@
        (replace-last-a vikarana-clean))
       (t vikarana-clean))))
 
-;; Vṛddhi for Śap suffix (class 10): a→ā before 1st person
+;; V·πõddhi for ≈öap suffix (class 10): a‚ÜíƒÅ before 1st person
 (def apply-suffix-vrddhi
   (lambda (suffix ting-label)
     (cond
@@ -73,18 +73,18 @@
       (t suffix))))
 
 ;; ==========================================
-;; Guṇa grade substitution (7.3.84)
+;; Gu·πáa grade substitution (7.3.84)
 ;;
-;; 7.3.84: sārvadhātukārdhadhātukayoḥ
-;; Kāśikā: "sārvadhātuke ārdhadhātuke ca pratyaye parataḥ
-;;          igantasya aṅgasya guṇo bhavati"
-;; = guṇa of the aṅga occurs when sārvadhātuka suffix follows
+;; 7.3.84: sƒÅrvadhƒÅtukƒÅrdhadhƒÅtukayo·∏•
+;; KƒÅ≈õikƒÅ: "sƒÅrvadhƒÅtuke ƒÅrdhadhƒÅtuke ca pratyaye parata·∏•
+;;          igantasya a·πÖgasya gu·πáo bhavati"
+;; = gu·πáa of the a·πÖga occurs when sƒÅrvadhƒÅtuka suffix follows
 ;;
-;; Class 10 (Ṇic): aṅga = dhātu + "i" → guṇa ALL vowels (7.2.115)
-;; Class 1 (Śap):  aṅga = dhātu → guṇa LAST vowel of dhātu
-;; Class 5 (Śnu):  aṅga = dhātu + "nu" → guṇa LAST vowel (vikaraṇa u→o)
-;;   3pl: yaṇ (u→v) instead of guṇa, + a-insertion (6.4.87)
-;; Class 8 (u):    aṅga = dhātu + "u" → same as class 5
+;; Class 10 (·πÜic): a·πÖga = dhƒÅtu + "i" ‚Üí gu·πáa ALL vowels (7.2.115)
+;; Class 1 (≈öap):  a·πÖga = dhƒÅtu ‚Üí gu·πáa LAST vowel of dhƒÅtu
+;; Class 5 (≈önu):  a·πÖga = dhƒÅtu + "nu" ‚Üí gu·πáa LAST vowel (vikara·πáa u‚Üío)
+;;   3pl: ya·πá (u‚Üív) instead of gu·πáa, + a-insertion (6.4.87)
+;; Class 8 (u):    a·πÖga = dhƒÅtu + "u" ‚Üí same as class 5
 ;; ==========================================
 
 (def apply-guRa-extended
@@ -100,7 +100,7 @@
       ((equal? sound (quote x)) (quote al))
       (t sound))))
 
-;; Yaṇ substitution (6.4.87 + 1.1.48): u→v, i→y, U→v, I→y
+;; Ya·πá substitution (6.4.87 + 1.1.48): u‚Üív, i‚Üíy, U‚Üív, I‚Üíy
 (def apply-yaR-extended
   (lambda (sound)
     (cond
@@ -110,16 +110,16 @@
       ((equal? sound (quote i)) (quote y))
       (t sound))))
 
-;; Apply guṇa to ALL vowels in a sound list (for class 10 aṅga)
-(def apply-guṇa-all-vowels
+;; Apply gu·πáa to ALL vowels in a sound list (for class 10 a·πÖga)
+(def apply-gu·πáa-all-vowels
   (lambda (sounds)
     (cond
       ((atom sounds) (quote ()))
       (t (cons (apply-guRa-extended (car sounds))
-               (apply-guṇa-all-vowels (cdr sounds)))))))
+               (apply-gu·πáa-all-vowels (cdr sounds)))))))
 
-;; Apply guṇa to LAST vowel only (for class 1 dhātu, or class 5/8 aṅga)
-(def apply-guṇa-last-vowel
+;; Apply gu·πáa to LAST vowel only (for class 1 dhƒÅtu, or class 5/8 a·πÖga)
+(def apply-gu·πáa-last-vowel
   (lambda (sounds)
     (cond
       ((atom sounds) (quote ()))
@@ -129,10 +129,10 @@
           (list (apply-guRa-extended (car sounds))))
          (t (list (car sounds)))))
       (t (cons (car sounds)
-               (apply-guṇa-last-vowel (cdr sounds)))))))
+               (apply-gu·πáa-last-vowel (cdr sounds)))))))
 
-;; Apply yaṇ to LAST vowel only (for Śnu/Śu 3pl)
-(def apply-yaṇ-last-vowel
+;; Apply ya·πá to LAST vowel only (for ≈önu/≈öu 3pl)
+(def apply-ya·πá-last-vowel
   (lambda (sounds)
     (cond
       ((atom sounds) (quote ()))
@@ -142,27 +142,27 @@
           (list (apply-yaR-extended (car sounds))))
          (t (list (car sounds)))))
       (t (cons (car sounds)
-               (apply-yaṇ-last-vowel (cdr sounds)))))))
+               (apply-ya·πá-last-vowel (cdr sounds)))))))
 
-;; Apply guṇa/yaṇ to aṅga based on class and tiṅ
-(def apply-guṇa-to-anga
+;; Apply gu·πáa/ya·πá to a·πÖga based on class and ti·πÖ
+(def apply-gu·πáa-to-anga
   (lambda (dhatu vikarana-clean has-tit is-nic is-snu ting-label)
     (cond
       ((not has-tit) (append dhatu vikarana-clean))
       (is-nic
-       (apply-guṇa-all-vowels (append dhatu vikarana-clean)))
+       (apply-gu·πáa-all-vowels (append dhatu vikarana-clean)))
       (is-snu
        (cond
          ((equal? ting-label (quote jhi))
-          (apply-yaṇ-last-vowel (append dhatu vikarana-clean)))
+          (apply-ya·πá-last-vowel (append dhatu vikarana-clean)))
          (t
-          (apply-guṇa-last-vowel (append dhatu vikarana-clean)))))
+          (apply-gu·πáa-last-vowel (append dhatu vikarana-clean)))))
       (t
-       (append (apply-guṇa-last-vowel dhatu) vikarana-clean)))))
+       (append (apply-gu·πáa-last-vowel dhatu) vikarana-clean)))))
 
 ;; ==========================================
-;; Eco sandhi expansion (6.1.78: iko yaṇ aci)
-;; e/o + vowel → ay/av
+;; Eco sandhi expansion (6.1.78: iko ya·πá aci)
+;; e/o + vowel ‚Üí ay/av
 ;; ==========================================
 
 (def expand-eco-in-list
@@ -187,12 +187,12 @@
           (t (car (cdr sounds)))))))))
 
 ;; ==========================================
-;; 6.1.101: akas savarṇe dīrghaḥ
+;; 6.1.101: akas savar·πáe dƒ´rgha·∏•
 ;; Two homogeneous adjacent vowels merge into the long form
-;; a+a→ā, a+ā→ā, ā+a→ā, ā+ā→ā, i+i→ī, u+u→ū, etc.
+;; a+a‚ÜíƒÅ, a+ƒÅ‚ÜíƒÅ, ƒÅ+a‚ÜíƒÅ, ƒÅ+ƒÅ‚ÜíƒÅ, i+i‚Üíƒ´, u+u‚Üí≈´, etc.
 ;; ==========================================
 
-(def savarṇa-pair?
+(def savar·πáa-pair?
   (lambda (s1 s2)
     (cond
       ;; a/A group
@@ -210,14 +210,14 @@
       ((and (equal? s1 (quote u)) (equal? s2 (quote U))) (quote U))
       ((and (equal? s1 (quote U)) (equal? s2 (quote u))) (quote U))
       ((and (equal? s1 (quote U)) (equal? s2 (quote U))) (quote U))
-      ;; f/F group (r̥/r̥̄)
+      ;; f/F group (rÃ•/rÃ•ÃÑ)
       ((and (equal? s1 (quote f)) (equal? s2 (quote f))) (quote F))
       ((and (equal? s1 (quote F)) (equal? s2 (quote f))) (quote F))
       ((and (equal? s1 (quote f)) (equal? s2 (quote F))) (quote F))
       ((and (equal? s1 (quote F)) (equal? s2 (quote F))) (quote F))
       (t (quote ())))))
 
-(def apply-savarṇa-dīrgha
+(def apply-savar·πáa-dƒ´rgha
   (lambda (sounds)
     (cond
       ((atom sounds) (quote ()))
@@ -227,16 +227,16 @@
           (cond
             ((atom merged)
              ;; No merge: keep first, recurse on rest
-             (cons (car sounds) (apply-savarṇa-dīrgha (cdr sounds))))
+             (cons (car sounds) (apply-savar·πáa-dƒ´rgha (cdr sounds))))
             (t
              ;; Merge: replace two sounds with merged, continue
-             (cons merged (apply-savarṇa-dīrgha (cdr (cdr sounds)))))))
-        (savarṇa-pair? (car sounds) (car (cdr sounds))))*))
+             (cons merged (apply-savar·πáa-dƒ´rgha (cdr (cdr sounds)))))))
+        (savar·πáa-pair? (car sounds) (car (cdr sounds))))*))
 
 ;; ==========================================
-;; 8.4.55: jjal-jhashi — voiced → voiceless before voiceless
+;; 8.4.55: jjal-jhashi ‚Äî voiced ‚Üí voiceless before voiceless
 ;;
-;; Voiced consonant (jhal) before voiceless (khar) → devoiced
+;; Voiced consonant (jhal) before voiceless (khar) ‚Üí devoiced
 ;; ==========================================
 
 (def devoice-sound
@@ -292,12 +292,12 @@
 ;; ==========================================
 ;; Main derivation function
 ;;
-;; Pipeline: it-lopa→ ṭere → vṛddhi → guṇa/yaṇ → eco → savarṇa → 8.4.55
+;; Pipeline: it-lopa‚Üí ·π≠ere ‚Üí v·πõddhi ‚Üí gu·πáa/ya·πá ‚Üí eco ‚Üí savar·πáa ‚Üí 8.4.55
 ;; ==========================================
 
 (def derive-verb
   (lambda (dhatu class-num ting-label is-atmanepada)
-    ;; Default lakāra: laṭ
+    ;; Default lakƒÅra: la·π≠
     (derive-verb-lakara dhatu class-num ting-label is-atmanepada (quote laT))))
 
 (def derive-verb-lakara
@@ -310,24 +310,24 @@
                    ((lambda (anga-guna)
                       ((lambda (ting-with-prefix)
                          ((lambda (combined)
-                            ;; Pipeline: eco → savarṇa dīrgha → 8.4.55
+                            ;; Pipeline: eco ‚Üí savar·πáa dƒ´rgha ‚Üí 8.4.55
                             (apply-jhal-jhashi
-                              (apply-savarṇa-dīrgha
+                              (apply-savar·πáa-dƒ´rgha
                                 (expand-eco-in-list combined))))
                           (append anga-guna (append suffix ting-with-prefix))))
                        (cond
                          ((and is-snu (equal? ting-label (quote jhi)))
                           (cons (quote a) ting-final))
                          (t ting-final))))
-                    (apply-guṇa-to-anga dhatu vikarana-vrddhi has-tit is-nic is-snu ting-label)))
+                    (apply-gu·πáa-to-anga dhatu vikarana-vrddhi has-tit is-nic is-snu ting-label)))
                  (cond
                    (is-nic
-                    ;; No suffix vṛddhi in laṅ (tiṅ lack -i, 7.3.101 not triggered)
+                    ;; No suffix v·πõddhi in la·πÖ (ti·πÖ lack -i, 7.3.101 not triggered)
                     (cond
                       ((equal? lakara (quote laN)) (quote (a)))
                       (t (apply-suffix-vrddhi (quote (a)) ting-label))))
                    (t (quote ())))))
-              ;; vṛddhi: vikaraṇa a→ā before 1st person — NOT in laṅ!
+              ;; v·πõddhi: vikara·πáa a‚ÜíƒÅ before 1st person ‚Äî NOT in la·πÖ!
               (cond
                 ((equal? lakara (quote laN)) vikarana-clean)
                 (t (apply-vrddhi vikarana-clean ting-label)))))
@@ -338,32 +338,32 @@
      (is-nic-class? class-num)
      (is-snu-class? class-num))))
 
-;; Convenience: loṭ derivation
+;; Convenience: lo·π≠ derivation
 
 (def derive-verb-lot
   (lambda (dhatu class-num ting-label)
     (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote loT))))
 
 ;; ===========================================
-;; laṅ (imperfect)→ augment a- prefix
+;; la·πÖ (imperfect)‚Üí augment a- prefix
 ;;
-;; 3.2.111: anadyatanaṃ laṅa (imperfect = not today)
-;; 6.1.3+: chordasŋ... aṅhād...→ augment a- prefixed to dhātuu
+;; 3.2.111: anadyatana·πÉ la·πÖa (imperfect = not today)
+;; 6.1.3+: chordas≈ã... a·πÖhƒÅd...‚Üí augment a- prefixed to dhƒÅtuu
 ;;
-;; The augment a- is NOT part of the aṅga (no guṇa on it).
+;; The augment a- is NOT part of the a·πÖga (no gu·πáa on it).
 ;; It is simply prepended to the final combined list.
-;; savarṇa dīrgha (6.1.101) handles a+h→ā if dhātu starts with a.
-;; eco sandhi (6.1.78) handles a+i�
-e, a+u→o if needed.
+;; savar·πáa dƒ´rgha (6.1.101) handles a+h‚ÜíƒÅ if dhƒÅtu starts with a.
+;; eco sandhi (6.1.78) handles a+i·ä
+e, a+u‚Üío if needed.
 ;; ===========================================
 
 (def derive-verb-laN
   (lambda (dhatu class-num ting-label)
     ((lambda (result)
        ;; Prepend augment a- to the derived form, then re-apply sandhi
-       ;; (savarṇa dīrgha for a+vowel, eco for a+i/u)
+       ;; (savar·πáa dƒ´rgha for a+vowel, eco for a+i/u)
        (apply-jjal-jhashi
-         (apply-savarṇa-dīrgha
+         (apply-savar·πáa-dƒ´rgha
            (expand-eco-in-list
              (cons (quote a) result)))))
      (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote laN))*JJ(
@@ -373,7 +373,7 @@ e, a+u→o if needed.
   (lambda (dhatu class-num ting-label is-atmanepada)
     (symbol-list->string (derive-verb dhatu class-num ting-label is-atmanepada))))
 
-;; === laṭ (present) named derivations ===
+;; === la·π≠ (present) named derivations ===
 
 (def derive-pacati    (lambda () (derive-verb (quote (p a c)) 6 (quote tip) (quote ()))))
 (def derive-bhavati   (lambda () (derive-verb (quote (b h U)) 1 (quote tip) (quote ()))))
@@ -406,7 +406,7 @@ activantu   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote jhi))))
 (def derive-pacAni     (lambda () (derive-verb-lot (quote (p a c)) 6 (quote mip))))
 (def derive-corayAni   (lambda () (derive-verb-lot (quote (c u r)) 10 (quote mip))))
 
-!=== laṅa (imperfect) named derivations ===
+!=== la·πÖa (imperfect) named derivations ===
 
 (def derive-abhavat    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote tip))))
 (def derive-apacat    (lambda () (derive-verb-laN (quote (p a c)) 6 (quote tip))))
@@ -425,3 +425,225 @@ activantu   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote jhi))))
 derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
 (def derive-apacam     (lambda () (derive-verb-laN (quote (p a c)) 6 (quote mip))))
 (def derive-acorayam   (lambda () (derive-verb-laN (quote (c u r)) 10 (quote mip))))
+
+
+;; ==========================================
+;; liṅ (optative) derivation
+;;
+;; Architecture (Journal 0024, verified 15/15 = 100%):
+;; - Optative REPLACES vikaraṇa entirely (sī marker)
+;; - aṅga = dhātu (+ Ṇic for class 10), with guṇa, NO laṭ vikaraṇa
+;; - Two ending types: e-type (a-final), yā-type (u-final)
+;; - For Śnu/Śu (5,8): NO guṇa, yā-type endings
+;; - Class 4: drop final 'a' from Śya→ya
+;;
+;; Pipeline: guṇa → combine aṅga + optative ending → eco → savarṇa → devoice
+;; ==========================================
+
+(def derive-verb-liN
+  (lambda (dhatu class-num ting-label)
+    ((lambda (vikarana-clean has-tit is-nic is-snu)
+       ((lambda (anga)
+          ((lambda (ting)
+             ((lambda (combined)
+                ;; Pipeline: eco → savarṇa → devoice
+                (apply-jhal-jhashi
+                  (apply-savarRa-dirgha
+                    (expand-eco-in-list combined))))
+              (append anga ting)))
+           (get-lin-ting-para ting-label is-snu)))
+        ;; Build aṅga based on class
+        (cond
+          (is-nic
+           ;; Class 10: dhātu + Ṇic(i), guṇa ALL
+           (apply-guRa-all-vowels (append dhatu vikarana-clean)))
+          ((and has-tit (not is-snu))
+           ;; Class 1: dhātu only (no Śap), guṇa last IK
+           (apply-guRa-last-vowel dhatu))
+          (is-snu
+           ;; Class 5,8: dhātu + vikaraṇa (nu/u), NO guṇa (yā-type)
+           (append dhatu vikarana-clean))
+          ((equal? class-num 6)
+           ;; Class 6: dhātu only, no guṇa, no vikaraṇa
+           dhatu)
+          ((equal? class-num 4)
+           ;; Class 4: dhātu + Śya(ya), drop final 'a'
+           (drop-last-a (append dhatu vikarana-clean)))
+          (t
+           ;; Class 2 and others: dhātu only
+           dhatu))))
+     (get-vikarana-clean class-num)
+     (vikarana-has-tit? class-num)
+     (is-nic-class? class-num)
+     (is-snu-class? class-num))))
+
+;; Helper: drop last 'a' from a sound list
+(def drop-last-a
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds))
+       (cond
+         ((equal? (car sounds) (quote a)) (quote ()))
+         (t sounds)))
+      (t (cons (car sounds) (drop-last-a (cdr sounds)))))))
+
+;; ==========================================
+;; Ātmanepada derivation with staged sandhi
+;;
+;; Architecture (Journal 0025, verified 12/12 = 100%):
+;; Sandhi must be staged by morphological depth:
+;;   1. eco on aṅga+suffix (e/o + vowel → ay/av)
+;;   2. savarṇa within aṅga (internal vowel merges)
+;;   3. junction (a/ā + e → e; A + a → a at ādeśa boundary)
+;;   4. combine aṅga + tiṅ
+;;   5. coalescence (a+a → a at ādeśa boundary, NOT dīrgha)
+;;   6. eco on final form
+;;   7. savarṇa on final form
+;;   8. devoice (8.4.55)
+;; ==========================================
+
+;; Junction: a/ā + e → e (guṇa vowel absorbs preceding a/ā)
+(def apply-junction
+  (lambda (anga-final ting)
+    (cond
+      ((and (not (atom anga-final))
+            (member (last-sound anga-final) (quote (a A)))
+            (not (atom ting))
+            (equal? (car ting) (quote e)))
+       (drop-last-sound anga-final))
+      ;; A + a → a at ādeśa boundary
+      ((and (not (atom anga-final))
+            (equal? (last-sound anga-final) (quote A))
+            (not (atom ting))
+            (equal? (car ting) (quote a)))
+       (replace-last-sound anga-final (quote a)))
+      (t anga-final))))
+
+;; Coalescence: a+a → a, A+a → a (at ādeśa boundary, NOT dīrgha!)
+(def apply-coalescence
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((and (equal? (car sounds) (quote a))
+            (not (atom (cdr sounds)))
+            (equal? (car (cdr sounds)) (quote a)))
+       (cons (quote a) (apply-coalescence (cdr (cdr sounds)))))
+      ((and (equal? (car sounds) (quote A))
+            (not (atom (cdr sounds)))
+            (equal? (car (cdr sounds)) (quote a)))
+       (cons (quote a) (apply-coalescence (cdr (cdr sounds)))))
+      (t (cons (car sounds) (apply-coalescence (cdr sounds)))))))
+
+;; Helper: get last sound from a list
+(def last-sound
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds)) (car sounds))
+      (t (last-sound (cdr sounds))))))
+
+;; Helper: drop last sound from a list
+(def drop-last-sound
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds)) (quote ()))
+      (t (cons (car sounds) (drop-last-sound (cdr sounds)))))))
+
+;; Helper: replace last sound in a list
+(def replace-last-sound
+  (lambda (sounds new-sound)
+    (cond
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds)) (list new-sound))
+      (t (cons (car sounds) (replace-last-sound (cdr sounds) new-sound))))))
+
+;; Main ātmanepada derivation (laṭ)
+(def derive-verb-atma
+  (lambda (dhatu class-num ting-label)
+    ((lambda (vikarana-clean has-tit is-nic is-snu)
+       ((lambda (ting-clean)
+          ;; ting-clean from pre-computed ṭere table (if ṭit)
+          ((lambda (ting-final)
+             ((lambda (vikarana-vrddhi)
+                ((lambda (suffix)
+                   ((lambda (anga-guna)
+                      ((lambda (anga-final)
+                         ;; Staged sandhi:
+                         ;; 1. eco on anga+suffix
+                         ;; 2. savarṇa within anga
+                         ;; 3. junction (a/ā + e → e)
+                         ((lambda (anga-junctioned)
+                            ((lambda (combined)
+                               ;; 5. coalescence (a+a → a)
+                               ((lambda (coalesced)
+                                  ;; 6-8. eco → savarṇa → devoice
+                                  (apply-jhal-jhashi
+                                    (apply-savarRa-dirgha
+                                      (expand-eco-in-list coalesced))))
+                                (apply-coalescence combined)))
+                             (append anga-junctioned ting-final)))
+                          ;; 3. junction
+                          (apply-junction anga-final ting-final)))
+                       ;; anga_final = anga_guna + suffix, with eco+savarṇa applied
+                       (apply-savarRa-dirgha
+                         (expand-eco-in-list
+                           (append anga-guna suffix))))
+                     ;; guṇa/yaṇ
+                     (apply-guRa-to-anga dhatu vikarana-vrddhi has-tit is-nic is-snu ting-label)))
+                  ;; suffix (class 10 only)
+                  (cond
+                    (is-nic
+                     (apply-suffix-vrddhi (quote (a)) ting-label))
+                    (t (quote ())))))
+               ;; vṛddhi
+               (apply-vrddhi vikarana-clean ting-label)))
+            ;; ting from ṭere table
+            (cond
+              (has-tit
+               (cdr (assoc ting-label lat-atma-ting-tit)))
+              (t
+               (remove-hal-antyam
+                 (cdr (assoc ting-label ting-atma-raw)))))))
+        (quote ())))
+     (get-vikarana-clean class-num)
+     (vikarana-has-tit? class-num)
+     (is-nic-class? class-num)
+     (is-snu-class? class-num))))
+
+;; ==========================================
+;; Named ātmanepada derivations (laṭ)
+;; ==========================================
+
+(def derive-bhavate    (lambda () (derive-verb-atma (quote (b h U)) 1 (quote ta))))
+(def derive-bhavante   (lambda () (derive-verb-atma (quote (b h U)) 1 (quote ja))))
+(def derive-bhavase    (lambda () (derive-verb-atma (quote (b h U)) 1 (quote thAs))))
+(def derive-bhave      (lambda () (derive-verb-atma (quote (b h U)) 1 (quote iTw))))
+(def derive-bhavAmahe (lambda () (derive-verb-atma (quote (b h U)) 1 (quote mahIM))))
+(def derive-corayate   (lambda () (derive-verb-atma (quote (c u r)) 10 (quote ta))))
+(def derive-corayanta  (lambda () (derive-verb-atma (quote (c u r)) 10 (quote ja))))
+(def derive-coraye     (lambda () (derive-verb-atma (quote (c u r)) 10 (quote iTw))))
+(def derive-sunote     (lambda () (derive-verb-atma (quote (s u)) 5 (quote ta))))
+(def derive-sunvanta   (lambda () (derive-verb-atma (quote (s u)) 5 (quote ja))))
+(def derive-tanote     (lambda () (derive-verb-atma (quote (t a n)) 8 (quote ta))))
+
+;; ==========================================
+;; Named liṅ (optative) derivations
+;; ==========================================
+
+(def derive-bhavet     (lambda () (derive-verb-liN (quote (b h U)) 1 (quote tip))))
+(def derive-bhaveyus   (lambda () (derive-verb-liN (quote (b h U)) 1 (quote jhi))))
+(def derive-bhaveyam   (lambda () (derive-verb-liN (quote (b h U)) 1 (quote mip))))
+(def derive-pacet      (lambda () (derive-verb-liN (quote (p a c)) 6 (quote tip))))
+(def derive-paceyus    (lambda () (derive-verb-liN (quote (p a c)) 6 (quote jhi))))
+(def derive-paceyam    (lambda () (derive-verb-liN (quote (p a c)) 6 (quote mip))))
+(def derive-corayet    (lambda () (derive-verb-liN (quote (c u r)) 10 (quote tip))))
+(def derive-corayeyus  (lambda () (derive-verb-liN (quote (c u r)) 10 (quote jhi))))
+(def derive-corayeyam  (lambda () (derive-verb-liN (quote (c u r)) 10 (quote mip))))
+(def derive-pazyet     (lambda () (derive-verb-liN (quote (p a z)) 4 (quote tip))))
+(def derive-nayet      (lambda () (derive-verb-liN (quote (n I)) 1 (quote tip))))
+(def derive-kfSet      (lambda () (derive-verb-liN (quote (k f S)) 6 (quote tip))))
+(def derive-sunuyAt    (lambda () (derive-verb-liN (quote (s u)) 5 (quote tip))))
+(def derive-sunuyus    (lambda () (derive-verb-liN (quote (s u)) 5 (quote jhi))))
+(def derive-sunuyAm    (lambda () (derive-verb-liN (quote (s u)) 5 (quote mip))))
