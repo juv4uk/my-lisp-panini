@@ -1,0 +1,35 @@
+# .github/workflows/drift-check.yml
+#
+# Daily drift check: verifies that my-lisp-panini pins match shiva-sutras HEAD.
+# Runs validate_sync.py and reports drift as a GitHub Actions annotation.
+#
+# Requires secret: SYNC_TOKEN (GitHub PAT with repo scope)
+
+name: Drift Check
+
+on:
+  schedule:
+    # Run daily at 09:00 UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate sync
+        env:
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          pip install requests
+          output=$(python coordination/validate_sync.py --token "$SYNC_TOKEN" --report text 2>&1) || true
+          echo "$output"
+          # Check for critical issues
+          if echo "$output" | grep -q "CRITICAL\|DRIFT\|ELEVATION\|ORPHAN"; then
+            echo "::warning::Coordination drift detected. Check output above."
+            exit 1
+          fi
+          echo "::notice::Repos are in sync."
