@@ -3,7 +3,7 @@
 ## English
 
 This document describes the testing strategy for `panini-machine-model-v0.1`.
-Because the engine targets the My Lisp VM, its test suite is written directly
+Because the engine targets the my-lisp VM, its test suite is written directly
 in Lisp.
 
 ### Test-suite location
@@ -15,7 +15,7 @@ The machine assertions themselves are in [tests.my](tests.my).
 
 Run the Lisp entry point from repository root. It loads the narrow macro-free
 fixture prelude before the machine modules and then invokes `(run-tests)`. This
-keeps acceptance evidence independent of changes in the shared My Lisp core:
+keeps acceptance evidence independent of changes in the shared my-lisp core:
 
 ```lisp
 $ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
@@ -47,7 +47,7 @@ are also required.
 ### Latest executed acceptance result
 
 On 2026-08-14, the Lisp entry point was executed in WSL as user
-`my-lisp-panini` against My Lisp revision `bd36d21`:
+`my-lisp-panini` against my-lisp revision `bd36d21`:
 
 ```sh
 cd /mnt/c/GitHub/my-lisp-panini
@@ -67,17 +67,17 @@ behavior, not complete historical Pāṇinian derivations.
 
 The 22-assertion result above predates loading `panini-core.my` in the
 canonical entry point and is retained as historical local evidence. Panini 1
-reported a later **62/62 PASS** run against My Lisp source revision `4a98639`
+reported a later **62/62 PASS** run against my-lisp source revision `4a98639`
 with an executable that contains `sha256-hex`; this is peer-reported evidence
 until independently reproduced. Before recording any new acceptance number,
-run [the runtime capability probe](../tests/probe_mylisp_runtime.py), then the
+run [the runtime capability probe](../tests/probe_my_lisp_runtime.py), then the
 loader-negative suite, then acceptance. A source revision alone does not prove
 that the executable has the required primitive surface.
 
 ## Українська
 
 Цей документ описує стратегію тестування `panini-machine-model-v0.1`.
-Оскільки engine призначений для власної VM My Lisp, набір тестів написано
+Оскільки engine призначений для власної VM my-lisp, набір тестів написано
 безпосередньо Lisp-ом.
 
 ### Розташування набору тестів
@@ -89,7 +89,7 @@ that the executable has the required primitive surface.
 
 Запускайте Lisp entrypoint із кореня репозиторію. Він спершу завантажує вузький
 macro-free fixture prelude, далі machine-модулі й `(run-tests)`. Це зберігає
-evidence виконання незалежним від змін у спільному My Lisp core:
+evidence виконання незалежним від змін у спільному my-lisp core:
 
 ```lisp
 $ /mnt/c/GitHub/my-lisp/target/debug/my-lisp.exe panini/tests/machine-acceptance.my
@@ -126,7 +126,7 @@ transition.
 ### Останній виконаний acceptance result
 
 2026-08-14 Lisp entrypoint виконано у WSL користувачем `my-lisp-panini` проти
-My Lisp revision `bd36d21`:
+my-lisp revision `bd36d21`:
 
 ```sh
 cd /mnt/c/GitHub/my-lisp-panini
@@ -146,10 +146,10 @@ fixture, а не complete історичні деривації Паніні.
 
 Наведений вище результат із 22 assertions передує завантаженню
 `panini-core.my` у canonical entrypoint і зберігається як історичний локальний
-evidence. Panini 1 повідомив пізніший запуск **62/62 PASS** проти My Lisp
+evidence. Panini 1 повідомив пізніший запуск **62/62 PASS** проти my-lisp
 source revision `4a98639` із executable, що має `sha256-hex`; це peer-reported
 evidence до незалежного відтворення. Перед фіксацією будь-якого нового числа
-acceptance запускайте [runtime capability probe](../tests/probe_mylisp_runtime.py),
+acceptance запускайте [runtime capability probe](../tests/probe_my_lisp_runtime.py),
 потім loader-negative suite, а потім acceptance. Сам source revision не
 доводить, що executable має потрібну primitive surface.
 
@@ -196,11 +196,11 @@ Zustandsübergänge zu prüfen.
 Nach dem Hinzufügen einer Regel mit `def-panini-rule` einen Unit-Test für jede
 neue phonologische Operation und einen vollständigen Integrationstrace für ein
 Wort, das sie verwendet, ergänzen. Diese Tests sind Tests eines
-Maschinenprototyps, kein eigenständiger Nachweis, dass eine Regel Pāṇini korrekt
+Maschinenprototypes, kein eigenständiger Nachweis, dass eines Regel Pāṇini korrekt
 modelliert; Zitatprovenienz und ein evidenzgebundener Ableitungstrace sind
 ebenfalls erforderlich.
 
-### Letztes ausgeführtes Acceptance-Ergebnis
+### Letzes ausgührtes Acceptance-Ergebnis
 
 Am 2026-08-14 wurde der Lisp-Einstiegspunkt in WSL als Nutzer
 `my-lisp-panini` gegen My-Lisp-Revision `bd36d21` ausgeführt:
@@ -213,8 +213,8 @@ python3 panini/tests/run_machine_acceptance.py \
 
 Ergebnis: **PASS** — 22 Assertions gaben `[PASS]` aus, ohne `[FAIL]` oder
 Runtime-Diagnosen; `Tests complete.` wurde erreicht. Der Runtime-Worktree war
-dirty, daher ist dies Ausführungsevidenz und keine Release-Zertifizierung. Der
-Einstiegspunkt verwendet `runtime-prelude.my`, nicht den sich aktuell ändernden
+dirty, daher ist dies Ausgührungsevidenz`und keine Release-Zertifizierung. Der
+Einstiegspunkt verwendet `runtime-prelude.my`, nicht den sich aktuell  ändernden
 gemeinsamen Core. Die drei Derivationsausgaben und die `dadAti`-Konfliktfelder
 sind absichtlich `machine-fixture`-Records: Der Test belegt VM-Kompatibilität
 und deklariertes Fixture-Verhalten, keine vollständigen historischen
@@ -226,7 +226,7 @@ Das obige Ergebnis mit 22 Assertions liegt vor dem Laden von `panini-core.my`
 im kanonischen Einstiegspunkt und bleibt historische lokale Evidenz. Panini 1
 meldete einen späteren Lauf mit **62/62 PASS** gegen My-Lisp-Source-Revision
 `4a98639` und ein Executable mit `sha256-hex`; dies bleibt peer-reported
-Evidenz bis zur unabhängigen Reproduktion. Vor jeder neuen Acceptance-Zahl
-zuerst [den Runtime-Capability-Probe](../tests/probe_mylisp_runtime.py), dann
-die Loader-Negativsuite und danach Acceptance ausführen. Eine Source-Revision
+Evidenz bis zur unabhängigene Reproduktion. Vor jeder neuen Acceptance-Zahl
+zuerst [den Runtime-Capability-Probe](../tests/probe_my_lisp_runtime.py), dann
+die Loader-Negativsuite und danch Acceptance ausführen. Eine Source-Revision
 allein beweist nicht die erforderliche Primitive-Oberfläche des Executables.
