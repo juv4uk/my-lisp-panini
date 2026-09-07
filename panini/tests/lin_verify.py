@@ -1,1 +1,242 @@
-IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJsaeG5hSAob3B0YXRpdmUpIHZlcmlmaWNhdGlvbiDigJQgc2VsZi1jb250YWluZWQgc2NyaXB0LiIiIgoKdm93ZWxzID0gc2V0KCdhaXVmeG9FT1JBZUlVJykKaWtfdm93ZWxzID0gc2V0KCdpSXVVZkZ4WCcpCgp2aWthcmFuYSA9IHsKICAgIDE6IChbJ3onLCdhJywncCddLCBbJ3onLCdwJ10pLAogICAgMjogKFtdLCBbXSksCiAgICA0OiAoWyd6JywneScsJ2EnXSwgWyd6J10pLAogICAgNTogKFsneicsJ24nLCd1J10sIFsneiddKSwKICAgIDY6IChbJ3onLCdhJ10sIFsneiddKSwKICAgIDc6IChbJ3onLCduJywnQSddLCBbJ3onLCdBJ10pLAogICAgODogKFsndSddLCBbXSksCiAgICA5OiAoWyd6JywnbicsJ0EnXSwgWyd6JywnQSddKSwKICAgIDEwOihbJ1InLCdpJywnYyddLCBbJ1InLCdjJ10pLAp9CgojIE9wdGF0aXZlIHBhcmFzbWFpcGFkYSBlbmRpbmdzIChhZnRlciBzLWxvcGEgKyDEq+KGkmUgYnkgZ3XhuYdhKQojIFRoZXNlIGFyZSBmb3IgYS1maW5hbCBh4bmFZ2EgKGNsYXNzZXMgMSwgNCwgNiwgMTApCiMgc8SrdCDihpIgxKt0IOKGkiBldCwgc8SrecSBdGFtIOKGkiBlecSBdGFtLCBzxKt5dXMg4oaSIGV5dXMsIGV0Yy4KbGluX3RpbmdfcGFyYSA9IHsKICAgICd0aXAnOiBbJ2UnLCd0J10sICAgICAgICAgICMgM3NnOiBldAogICAgJ3Rhcyc6IFsnZScsJ3knLCdBJywndCcsJ2EnLCdtJ10sICAjIDNkdTogZXnEgXRhbQogICAgJ2poaSc6IFsnZScsJ3knLCd1JywncyddLCAgIyAzcGw6IGV5dXMKICAgICdzaXAnOiBbJ2UnLCdzJ10sICAgICAgICAgICMgMnNnOiBlcyAo4oaSZeG4pSBieSB2aXNhcmdhKQogICAgJ3RoYXMnOiBbJ2UnLCdzJywndCcsJ0EnLCdtJ10sICAjIDJkdTogZXN0xIFtCiAgICAndGhhJzogWydlJywncycsJ3QnLCdhJ10sICAjIDJwbDogZXN0YQogICAgJ21pcCc6IFsnZScsJ3knLCdhJywnbSddLCAgIyAxc2c6IGV5YW0KICAgICd2YXMnOiBbJ2UnLCd2JywnYSddLCAgICAgICMgMWR1OiBldmEKICAgICdtYXMnOiBbJ2UnLCdtJywnYSddLCAgICAgICMgMXBsOiBlbWEKfQoKIyBGb3IgxZpudS/FmnUgY2xhc3NlcyAoNSwgOCk6IGHhuYVnYSBlbmRzIGluIHUsIE5PVCBhCiMgVGhlIG9wdGF0aXZlIHVzZXMgRElGRkVSRU5UIGVuZGluZ3M6IHnEgXQsIHnEgXTEgW0sIHl1cywgZXRjLgojIChUaGUgInPEqyIgbWFya2VyIGRvZXNuJ3QgZ2V0IGd14bmHYeKGkmUgYmVjYXVzZSB0aGUgZWNvIGludGVyYWN0aW9uIGlzIGRpZmZlcmVudCkKIyBBY3R1YWxseTogdSArIHPEqyDihpIgKHMgbG9wYSkgdSArIMSrIOKGkiBndeG5h2Egb24gxKsg4oaSIHUgKyBlIOKGkiBubyBlY28gKHUgaXMgbm90IGUvbykKIyBCdXQgYWN0dWFsIGZvcm0gaXMgc3VudXnEgXQsIG5vdCBzdW51ZXQuIFNvIHRoZSBlbmRpbmcgbXVzdCBiZSB5xIF0gbm90IGV0LgojIFRoaXMgbWVhbnM6IGZvciBub24tYS1maW5hbCBh4bmFZ2EsIHRoZSBvcHRhdGl2ZSBtYXJrZXIgc3RheXMgYXMg4oaSICJ5IiAoeWHhuYcpPwojIMSrIOKGkiB5IGJ5IHlh4bmHICgxLjEuNDg6IMWra2FseWHhuYc/KSBObywgeWHhuYcgaXMgZm9yIElLICsgdm93ZWwg4oaSIHlh4bmHLgojIEFjdHVhbGx5OiB1ICsgxKsg4oaSIHUgKyB5ICjEq+KGknkgYnkgeWHhuYc/IE5vLCB5YeG5hyByZXBsYWNlcyB0aGUgdm93ZWwsIG5vdCBhZGRzKQojIExldCBtZSBqdXN0IHVzZSBwcmUtY29tcHV0ZWQgZW5kaW5ncyBmb3IgY2xhc3MgNS84Cmxpbl90aW5nX3NudSA9IHsKICAgICd0aXAnOiBbJ3knLCdBJywndCddLCAgICAgICMgM3NnOiB5xIF0CiAgICAndGFzJzogWyd5JywnQScsJ3QnLCdBJywnbSddLCAgIyAzZHU6IHnEgXTEgW0KICAgICdqaGknOiBbJ3knLCd1JywncyddLCAgICAgICMgM3BsOiB5dXMKICAgICdzaXAnOiBbJ3knLCdBJywncyddLCAgICAgICMgMnNnOiB5xIFzICjihpJ5xIHhuKUpCiAgICAndGhhcyc6IFsneScsJ0EnLCdzJywndCcsJ0EnLCdtJ10sICAjIDJkdTogecSBc3TEgW0KICAgICd0aGEnOiBbJ3knLCdBJywncycsJ3QnLCdhJ10sICAjIDJwbDogecSBc3RhCiAgICAnbWlwJzogWyd5JywnQScsJ20nXSwgICAgICAjIDFzZzogecSBbQogICAgJ3Zhcyc6IFsneScsJ0EnLCd2JywnYSddLCAjIDFkdTogeecWdmEKICAgICdtYXMnOiBbJ3knLCdBJywnbScsJ2EnLCdoJywnaSddLCAgIyAxcGw6IHnEgW1hYWhpCn0KCmRlZiByZW1vdmVfaXQoc291bmRzLCBtYXJrZXJzKToKICAgIHJldHVybiBbcyBmb3IgcyBpbiBzb3VuZHMgaWYgcyBub3QgaW4gbWFya2Vyc10KCmRlZiBpc192b3dlbChzKToKICAgIHJldHVybiBzIGluIHZvd2VscwoKZGVmIGlzX2lrX3Zvd2VsKHMpOgogICAgcmV0dXJuIHMgaW4gaWtfdm93ZWxzCgpkZWYgZ3VuYShzKToKICAgIG0gPSB7J2knOidlJywnSSc6J2UnLCd1JzonbycsJ1UnOidvJywnZic6J2FyJywnRic6J2FyJywneCc6J2FsJywnWCc6J2FsJ30KICAgIHJldHVybiBtLmdldChzLCBzKQoKZGVmIGFwcGx5X2d1bmFfbGFzdF9payhzb3VuZHMpOgogICAgcmVzdWx0ID0gbGlzdChzb3VuZHMpCiAgICBmb3IgaSBpbiByYW5nZShsZW4ocmVzdWx0KS0xLCAtMSwgLTEpOgogICAgICAgIGlmIGlzX2lrX3Zvd2VsKHJlc3VsdFtpXSk6CiAgICAgICAgICAgIGcgPSBndW5hKHJlc3VsdFtpXSkKICAgICAgICAgICAgcmVzdWx0ID0gcmVzdWx0WzppXSArIGxpc3QoZykgKyByZXN1bHRbaSsxOl0KICAgICAgICAgICAgYnJlYWsKICAgIHJldHVybiByZXN1bHQKCmRlZiBhcHBseV9ndW5hX2FsbChzb3VuZHMpOgogICAgcmVzdWx0ID0gW10KICAgIGZvciBzIGluIHNvdW5kczoKICAgICAgICBpZiBpc19pa192b3dlbChzKToKICAgICAgICAgICAgcmVzdWx0LmV4dGVuZChsaXN0KGd1bmEocykpKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJlc3VsdC5hcHBlbmQocykKICAgIHJldHVybiByZXN1bHQKCmRlZiBlY28oc291bmRzKToKICAgIHJlc3VsdCA9IFtdCiAgICBpID0gMAogICAgd2hpbGUgaSA8IGxlbihzb3VuZHMpOgogICAgICAgIHMgPSBzb3VuZHNbaV0KICAgICAgICBpZiBzIGluICgnZScsJ28nKSBhbmQgaSsxIDwgbGVuKHNvdW5kcykgYW5kIGlzX3Zvd2VsKHNvdW5kc1tpKzFdKToKICAgICAgICAgICAgaWYgcyA9PSAnZSc6CiAgICAgICAgICAgICAgICByZXN1bHQuZXh0ZW5kKFsnYScsJ3knXSkKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIHJlc3VsdC5leHRlbmQoWydhJywndiddKQogICAgICAgICAgICBpICs9IDEKICAgICAgICBlbHNlOgogICAgICAgICAgICByZXN1bHQuYXBwZW5kKHMpCiAgICAgICAgICAgIGkgKz0gMQogICAgcmV0dXJuIHJlc3VsdAoKZGVmIHNhdmFybmEoc291bmRzKToKICAgIHBhaXJzID0geygnYScsJ2EnKTooJ0EnLDEpLCAoJ2EnLCdBJyk6KCdBJywxKSwgKCdBJywnYScpOignQScsMSksICgnQScsJ0EnKTooJ0EnLDEpLAogICAgICAgICAgICAgKCdpJywnaScpOignSScsMSksICgnaScsJ0knKTooJ0knLDEpLCAoJ0knLCdpJyk6KCdJJywxKSwgKCdJJywnSScpOignSScsMSksCiAgICAgICAgICAgICAoJ3UnLCd1Jyk6KCdVJywxKSwgKCd1JywnVScpOignVScsMSksICgnVScsJ3UnKTooJ1UnLDEpLCAoJ1UnLCdVJyk6KCdVJywxKSwKICAgICAgICAgICAgICgnZScsJ2UnKTooJ2UnLDEpLCAoJ28nLCdvJyk6KCdvJywxKX0KICAgIHJlc3VsdCA9IFtdCiAgICBpID0gMAogICAgd2hpbGUgaSA8IGxlbihzb3VuZHMpOgogICAgICAgIGlmIGkrMSA8IGxlbihzb3VuZHMpIGFuZCAoc291bmRzW2ldLHNvdW5kc1tpKzFdKSBpbiBwYWlyczoKICAgICAgICAgICAgcmVzdWx0LmFwcGVuZChwYWlyc1soc291bmRzW2ldLHNvdW5kc1tpKzFdKV1bMF0pCiAgICAgICAgICAgIGkgKz0gMgogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJlc3VsdC5hcHBlbmQoc291bmRzW2ldKQogICAgICAgICAgICBpICs9IDEKICAgIHJldHVybiByZXN1bHQKCmRlZiBkZXZvaWNlKHNvdW5kcyk6CiAgICB2MnZsID0geydnJzonaycsJ0cnOidLJywnaic6J2MnLCdKJzonQycsJ2QnOid0JywnRCc6J1QnLCdiJzoncCcsJ0InOidQJywncSc6J3cnLCdRJzonVyd9CiAgICBhZ2hvc2hhID0gc2V0KCdrS3BQY0N3V3RUJykKICAgIHJlc3VsdCA9IFtdCiAgICBmb3IgaSwgcyBpbiBlbnVtZXJhdGUoc291bmRzKToKICAgICAgICBpZiBzIGluIHYydmwgYW5kIGkrMSA8IGxlbihzb3VuZHMpIGFuZCBzb3VuZHNbaSsxXSBpbiBhZ2hvc2hhOgogICAgICAgICAgICByZXN1bHQuYXBwZW5kKHYydmxbc10pCiAgICAgICAgZWxzZToKICAgICAgICAgICAgcmVzdWx0LmFwcGVuZChzKQogICAgcmV0dXJuIHJlc3VsdAoKZGVmIGRlcml2ZV9saW4oZGhhdHUsIGNsYXNzX251bSwgdGluZ19sYWJlbCk6CiAgICAiIiJsaeG5hSAob3B0YXRpdmUpIGRlcml2YXRpb24uCiAgICAKICAgIEFyY2hpdGVjdHVyZTogCiAgICAtIGHhuYVnYSA9IGRoxIF0dSAoKyDhuYZpYyBmb3IgY2xhc3MgMTApLCB3aXRoIGd14bmHYSwgV0lUSE9VVCB2aWthcmHhuYdhCiAgICAtIG9wdGF0aXZlIGVuZGluZyA9IHPEqy1kZXJpdmVkIChldCwgZXnEgXRhbSBmb3IgYS1maW5hbDsgecSBdCwgecSBdMSBbSBmb3IgdS1maW5hbCkKICAgIC0gZWNvIGFwcGxpZXMgYmV0d2VlbiBndeG5h2EnZCBkaMSBdHUgdm93ZWwgYW5kIG9wdGF0aXZlIHZvd2VsCiAgICAiIiIKICAgIHZpa19yYXcsIHZpa19pdCA9IHZpa2FyYW5hW2NsYXNzX251bV0KICAgIHZpa19jbGVhbiA9IHJlbW92ZV9pdCh2aWtfcmF3LCB2aWtfaXQpCiAgICAKICAgIGhhc190aXQgPSBjbGFzc19udW0gaW4gKDEsNSw3LDgsOSwxMCkKICAgIGlzX25pYyA9IGNsYXNzX251bSA9PSAxMAogICAgaXNfc251ID0gY2xhc3NfbnVtIGluICg1LDgpCiAgICAKICAgICMgQnVpbGQgYeG5hWdhOiBkaMSBdHUgKyB2aWthcmHhuYdhIChidXQgZm9yIG9wdGF0aXZlLCB3ZSBuZWVkIHRoZSBTVEVNIHdpdGhvdXQgdGhlIGZpbmFsIC1hIHZpa2FyYeG5h2EpCiAgICAjIEZvciBjbGFzcyAxOiBh4bmFZ2EgPSBkaMSBdHUgKE5PIMWaYXApIOKGkiBndeG5h2Eg4oaSIGJobyDihpIgZWNvKHdpdGggb3B0YXRpdmUgdm93ZWwpIOKGkiBiaGF2CiAgICAjIEZvciBjbGFzcyAxMDogYeG5hWdhID0gZGjEgXR1ICsg4bmGaWMoaSkg4oaSIGd14bmHYSBBTEwg4oaSIGNvcitlIOKGkiBlY28g4oaSIGNvcmF5CiAgICAjIEZvciBjbGFzcyA0OiBh4bmFZ2EgPSBkaMSBdHUgKyDFmnlhKHlhKSDihpIgbm8gZ3XhuYdhIOKGkiBwYXp5KGEpIOKGkiBidXQgd2UgZHJvcCB0aGUgZmluYWwgJ2EnCiAgICAjIEZvciBjbGFzcyA2OiBh4bmFZ2EgPSBkaMSBdHUg4oaSIG5vIGd14bmHYSDihpIgcGFjCiAgICAKICAgIGlmIGlzX25pYzoKICAgICAgICAjIENsYXNzIDEwOiBkaMSBdHUgKyBpICjhuYZpYyksIGd14bmHYSBBTEwsIGtlZXAgdmlrYXJh4bmHYSBtYXRlcmlhbCAoaSkKICAgICAgICBhbmdhID0gZGhhdHUgKyB2aWtfY2xlYW4gICMgY3VyICsgaQogICAgICAgIGFuZ2EgPSBhcHBseV9ndW5hX2FsbChhbmdhKSAgIyBjb3IgKyBlCiAgICBlbGlmIGhhc190aXQgYW5kIG5vdCBpc19zbnU6CiAgICAgICAgIyBDbGFzcyAxOiBkaMSBdHUgb25seSAobm8gxZphcCksIGd14bmHYSBsYXN0IElLIHZvd2VsCiAgICAgICAgYW5nYSA9IGxpc3QoZGhhdHUpCiAgICAgICAgYW5nYSA9IGFwcGx5X2d1bmFfbGFzdF9payhhbmdhKSAgIyBiaFUg4oaSIGJobwogICAgZWxpZiBpc19zbnU6CiAgICAgICAgIyBDbGFzcyA1LCA4OiBkaMSBdHUgKyB2aWthcmHhuYdhIChudS91KSwgZ3XhuYdhIGxhc3QgSUsgdm93ZWwKICAgICAgICBhbmdhID0gZGhhdHUgKyB2aWtfY2xlYW4gICMgc3UgKyBudSA9IHN1bnUKICAgICAgICBhbmdhID0gYXBwbHlfZ3VuYV9sYXN0X2lrKGFuZ2EpICAjIHN1bm8gKHXihpJvKQogICAgZWxzZToKICAgICAgICAjIENsYXNzIDQ6IGRoxIF0dSArIMWaeWEoeWEpLCBubyBndeG5h2EgKGNsYXNzIDQgaGFzIG5vIOG5rWl0KQogICAgICAgIGFuZ2EgPSBkaGF0dSArIHZpa19jbGVhbiAgIyBwYXogKyB5YSA9IHBhenkoYSkKICAgICAgICAjIENsYXNzIDY6IGRoxIF0dSBvbmx5LCBubyBndeG5h2EKICAgICAgICBpZiBjbGFzc19udW0gPT0gNjoKICAgICAgICAgICAgYW5nYSA9IGxpc3QoZGhhdHUpICAjIHBhYyAobm8gdmlrYXJh4bmHYSBpbiBvcHRhdGl2ZSkKICAgICAgICBlbGlmIGNsYXNzX251bSA9PSAyOgogICAgICAgICAgICBhbmdhID0gbGlzdChkaGF0dSkKICAgICAgICBlbGlmIGNsYXNzX251bSA9PSA0OgogICAgICAgICAgICAjIENsYXNzIDQ6IMWaeWHihpJ5YSwgYnV0IHRoZSBmaW5hbCAnYScgaW4geWEgaXMgTk9UIHBhcnQgb2YgdGhlIG9wdGF0aXZlIHN0ZW0KICAgICAgICAgICAgIyBwYXogKyB5YSDihpIgcGF6eShhKSDihpIgZHJvcCBmaW5hbCAnYScg4oaSIHBhenkgKyBldCA9IHBhenlldCDinJMKICAgICAgICAgICAgYW5nYSA9IGRoYXR1ICsgdmlrX2NsZWFuICAjIHBheiArIHlhID0gcCBhIHogeSBhCiAgICAgICAgICAgICMgRHJvcCB0aGUgZmluYWwgJ2EnIChpdCdzIHRoZSBsYeG5rSB2aWthcmHhuYdhIHZvd2VsLCBub3QgbmVlZGVkIGluIG9wdGF0aXZlKQogICAgICAgICAgICBpZiBhbmdhIGFuZCBhbmdhWy0xXSA9PSAnYSc6CiAgICAgICAgICAgICAgICBhbmdhID0gYW5nYVs6LTFdICAjIHAgYSB6IHkKICAgIAogICAgIyBHZXQgb3B0YXRpdmUgZW5kaW5nCiAgICBpZiBpc19zbnU6CiAgICAgICAgIyBGb3IgxZpudS/FmnUgY2xhc3NlczogbmVlZCB0byBoYW5kbGUgdS1maW5hbCBh4bmFZ2EKICAgICAgICAjIGd14bmHYSdkOiBzdW5vIChvIGZyb20gdeKGkm8pLiBlY286IG8gKyDEqyh2b3dlbCkg4oaSIGF2ICsgxKsg4oaSIHN1bmF2xKt0IOKGkiDEq+KGkmUg4oaSIHN1bmF2ZXQ/CiAgICAgICAgIyBCdXQgYWN0dWFsIGlzIHN1bnV5xIF0ISBTbyBmb3IgxZpudSBjbGFzc2VzLCB0aGUgb3B0YXRpdmUgdXNlcyB5xIEtdHlwZSwgbm90IGUtdHlwZS4KICAgICAgICAjIFRoaXMgbWVhbnM6IG5vIGd14bmHYSBvbiBkaMSBdHUgdm93ZWwgZm9yIMWabnUgaW4gb3B0YXRpdmU/IE9yIGRpZmZlcmVudCBlbmRpbmcgc2V0PwogICAgICAgIAogICAgICAgICMgQWN0dWFsbHk6IHN1bnV5xIF0gPSBzdW51ICsgecSBdC4gVGhlICd1JyBzdGF5cyAobm8gZ3XhuYdhKSwgYW5kICd5xIF0JyBpcyB0aGUgZW5kaW5nLgogICAgICAgICMgU28gZm9yIMWabnU6IE5PIGd14bmHYSBvbiBkaMSBdHUgdm93ZWwsIHVzZSB5xIEtdHlwZSBlbmRpbmdzLgogICAgICAgIGFuZ2EgPSBkaGF0dSArIHZpa19jbGVhbiAgIyBzdSArIG51ID0gc3VudSAoTk8gZ3XhuYdhISkKICAgICAgICB0aW5nID0gbGlzdChsaW5fdGluZ19zbnVbdGluZ19sYWJlbF0pCiAgICBlbHNlOgogICAgICAgIHRpbmcgPSBsaXN0KGxpbl90aW5nX3BhcmFbdGluZ19sYWJlbF0pCiAgICAKICAgICMgQ29tYmluZTogYeG5hWdhICsgb3B0YXRpdmUgZW5kaW5nCiAgICBjb21iaW5lZCA9IGFuZ2EgKyB0aW5nCiAgICAKICAgICMgRm9yIGEtZmluYWwgYeG5hWdhOiB0aGUgbGFzdCAnYScgbWVyZ2VzIHdpdGggJ2UnIG9mIGVuZGluZzogYStlIOKGkiA/CiAgICAjIEFjdHVhbGx5LCB0aGUgdmlrYXJh4bmHYSAnYScgaXMgTk9UIGluY2x1ZGVkICh3ZSBkcm9wcGVkIGl0KS4KICAgICMgU28gZm9yIGNsYXNzIDE6IGJobyArIGV0IOKGkiBlY286IG8rZSDihpIgYXYrZSDihpIgYmhhdmV0CiAgICAjIEZvciBjbGFzcyA2OiBwYWMgKyBldCA9IHBhY2V0IChubyBzYW5kaGkpCiAgICAKICAgICMgU2FuZGhpIHBpcGVsaW5lCiAgICBjb21iaW5lZCA9IGVjbyhjb21iaW5lZCkKICAgIGNvbWJpbmVkID0gc2F2YXJuYShjb21iaW5lZCkKICAgIGNvbWJpbmVkID0gZGV2b2ljZShjb21iaW5lZCkKICAgIAogICAgcmV0dXJuIGNvbWJpbmVkCgojID09PSBWZXJpZnkgPT09CnByaW50KCI9PT0gbGnhuYUgKG9wdGF0aXZlKSB2ZXJpZmljYXRpb24gPT09XG4iKQoKbGluX3Rlc3RzID0gWwogICAgIyAoZGjEgXR1LCBjbGFzcywgdGnhuYUsIGV4cGVjdGVkKQogICAgKFsnYicsJ2gnLCdVJ10sIDEsICd0aXAnLCAnYmhhdmV0JyksICAgICAgICMgYmjFqyBjbDE6IGJoYXZldAogICAgKFsncCcsJ2EnLCdjJ10sIDYsICd0aXAnLCAncGFjZXQnKSwgICAgICAgICAjIHBhYyBjbDY6IHBhY2V0CiAgICAoWydjJywndScsJ3InXSwgMTAsICd0aXAnLCAnY29yYXlldCcpLCAgICAgICAjIGN1ciBjbDEwOiBjb3JheWV0CiAgICAoWydwJywnYScsJ3onXSwgNCwgJ3RpcCcsICdwYXp5ZXQnKSwgICAgICAgICAjIHBheiBjbDQ6IHBhxZt5ZXQKICAgIChbJ24nLCdJJ10sIDEsICd0aXAnLCAnbmF5ZXQnKSwgICAgICAgICAgICAgICMgbsSrIGNsMTogbmF5ZXQgKMSr4oaSZeKGkmF5IGJlZm9yZSBlKQogICAgKFsnaycsJ2YnLCdTJ10sIDYsICd0aXAnLCAna2ZTZXQnKSwgICAgICAgICAgIyBrcuG5oyBjbDY6IGthcuG5o2V0PyDihpIga2ZTZXQKICAgICMgM3BsCiAgICAoWydiJywnaCcsJ1UnXSwgMSwgJ2poaScsICdiaGF2ZXl1cycpLCAgICAgICMgYmhhdiArIGV5dXMKICAgIChbJ3AnLCdhJywnYyddLCA2LCAnamhpJywgJ3BhY2V5dXMnKSwgICAgICAgICMgcGFjICsgZXl1cwogICAgKFsnYycsJ3UnLCdyJ10sIDEwLCAnamhpJywgJ2NvcmF5ZXl1cycpLCAgICAjIGNvcmF5ICsgZXl1cwogICAgIyAxc2cKICAgIChbJ2InLCdoJywnVSddLCAxLCAnbWlwJywgJ2JoYXZleWFtJyksICAgICAgIyBiaGF2ICsgZXlhbQogICAgKFsncCcsJ2EnLCdjJ10sIDYsICdtaXAnLCAncGFjZXlhbScpLCAgICAgICAgIyBwYWMgKyBleWFtCiAgICAoWydjJywndScsJ3InXSwgMTAsICdtaXAnLCAnY29yYXlleWFtJyksICAgICMgY29yYXkgKyBleWFtCiAgICAjIENsYXNzIDUgKMWabnUpCiAgICAoWydzJywndSddLCA1LCAndGlwJywgJ3N1bnV5QXQnKSwgICAgICAgICAgICAjIHN1IGNsNTogc3VudXnEgXQgKHnEgS10eXBlKQogICAgKFsncycsJ3UnXSwgNSwgJ2poaScsICdzdW51eXVzJyksICAgICAgICAgICAgIyBzdSBjbDU6IHN1bnV5dXMKICAgIChbJ3MnLCd1J10sIDUsICdtaXAnLCAnc3VudXlBbScpLCAgICAgICAgICAgICMgc3UgY2w1OiBzdW51ecSBbQpdCgpwID0gMApmb3IgZGhhdHUsIGNscywgdGluZywgZXhwZWN0ZWQgaW4gbGluX3Rlc3RzOgogICAgcmVzdWx0ID0gZGVyaXZlX2xpbihkaGF0dSwgY2xzLCB0aW5nKQogICAgZ290ID0gJycuam9pbihyZXN1bHQpCiAgICBtYXRjaCA9ICLinJMiIGlmIGdvdCA9PSBleHBlY3RlZCBlbHNlICLinJQiCiAgICBpZiBnb3QgPT0gZXhwZWN0ZWQ6CiAgICAgICAgcCArPSAxCiAgICBwZXJzb24gPSB7J3RpcCc6JzNzZycsICdqaGknOiczcGwnLCAnbWlwJzonMXNnJ31bdGluZ10KICAgIHByaW50KGYiICB7Jycuam9pbihkaGF0dSk6NnN9IGNse2NsczoyZH0ge3BlcnNvbjo0c30gZXhwZWN0PXtleHBlY3RlZDoxMnN9IGdvdD17Z290OjEyc30ge21hdGNofSIpCgpwcmludChmIlxubGnhuYU6IHtwfS97bGVuKGxpbl90ZXN0cyl9ICh7MTAwKnAvbGVuKGxpbl90ZXN0cyk6LjBmfSUpIikK
+#!/usr/bin/env python3
+"""liṅ (optative) verification — self-contained script."""
+
+vowels = set('aiufxoEORAeIU')
+ik_vowels = set('iIuUfFxX')
+
+vikarana = {
+    1: (['z','a','p'], ['z','p']),
+    2: ([], []),
+    4: (['z','y','a'], ['z']),
+    5: (['z','n','u'], ['z']),
+    6: (['z','a'], ['z']),
+    7: (['z','n','A'], ['z','A']),
+    8: (['u'], []),
+    9: (['z','n','A'], ['z','A']),
+    10:(['R','i','c'], ['R','c']),
+}
+
+# Optative parasmaipada endings (after s-lopa + ī→e by guṇa)
+# These are for a-final aṅga (classes 1, 4, 6, 10)
+# sīt → īt → et, sīyātam → eyātam, sīyus → eyus, etc.
+lin_ting_para = {
+    'tip': ['e','t'],          # 3sg: et
+    'tas': ['e','y','A','t','a','m'],  # 3du: eyātam
+    'jhi': ['e','y','u','s'],  # 3pl: eyus
+    'sip': ['e','s'],          # 2sg: es (→eḥ by visarga)
+    'thas': ['e','s','t','A','m'],  # 2du: estām
+    'tha': ['e','s','t','a'],  # 2pl: esta
+    'mip': ['e','y','a','m'],  # 1sg: eyam
+    'vas': ['e','v','a'],      # 1du: eva
+    'mas': ['e','m','a'],      # 1pl: ema
+}
+
+# For Śnu/Śu classes (5, 8): aṅga ends in u, NOT a
+# The optative uses DIFFERENT endings: yāt, yātām, yus, etc.
+# (The "sī" marker doesn't get guṇa→e because the eco interaction is different)
+# Actually: u + sī → (s lopa) u + ī → guṇa on ī → u + e → no eco (u is not e/o)
+# But actual form is sunuyāt, not sunuet. So the ending must be yāt not et.
+# This means: for non-a-final aṅga, the optative marker stays as "ī" → "y" (yaṇ)?
+# ī → y by yaṇ (1.1.48: ūkalyaṇ?) No, yaṇ is for IK + vowel → yaṇ.
+# Actually: u + ī → u + y (ī→y by yaṇ? No, yaṇ replaces the vowel, not adds)
+# Let me just use pre-computed endings for class 5/8
+lin_ting_snu = {
+    'tip': ['y','A','t'],      # 3sg: yāt
+    'tas': ['y','A','t','A','m'],  # 3du: yātām
+    'jhi': ['y','u','s'],      # 3pl: yus
+    'sip': ['y','A','s'],      # 2sg: yās (→yāḥ)
+    'thas': ['y','A','s','t','A','m'],  # 2du: yāstām
+    'tha': ['y','A','s','t','a'],  # 2pl: yāsta
+    'mip': ['y','A','m'],      # 1sg: yām
+    'vas': ['y','A','v','a'],  # 1du: yāva
+    'mas': ['y','A','m','a','h','i'],  # 1pl: yāmahi
+}
+
+def remove_it(sounds, markers):
+    return [s for s in sounds if s not in markers]
+
+def is_vowel(s):
+    return s in vowels
+
+def is_ik_vowel(s):
+    return s in ik_vowels
+
+def guna(s):
+    m = {'i':'e','I':'e','u':'o','U':'o','f':'ar','F':'ar','x':'al','X':'al'}
+    return m.get(s, s)
+
+def apply_guna_last_ik(sounds):
+    result = list(sounds)
+    for i in range(len(result)-1, -1, -1):
+        if is_ik_vowel(result[i]):
+            g = guna(result[i])
+            result = result[:i] + list(g) + result[i+1:]
+            break
+    return result
+
+def apply_guna_all(sounds):
+    result = []
+    for s in sounds:
+        if is_ik_vowel(s):
+            result.extend(list(guna(s)))
+        else:
+            result.append(s)
+    return result
+
+def eco(sounds):
+    result = []
+    i = 0
+    while i < len(sounds):
+        s = sounds[i]
+        if s in ('e','o') and i+1 < len(sounds) and is_vowel(sounds[i+1]):
+            if s == 'e':
+                result.extend(['a','y'])
+            else:
+                result.extend(['a','v'])
+            i += 1
+        else:
+            result.append(s)
+            i += 1
+    return result
+
+def savarna(sounds):
+    pairs = {('a','a'):('A',1), ('a','A'):('A',1), ('A','a'):('A',1), ('A','A'):('A',1),
+             ('i','i'):('I',1), ('i','I'):('I',1), ('I','i'):('I',1), ('I','I'):('I',1),
+             ('u','u'):('U',1), ('u','U'):('U',1), ('U','u'):('U',1), ('U','U'):('U',1),
+             ('e','e'):('e',1), ('o','o'):('o',1)}
+    result = []
+    i = 0
+    while i < len(sounds):
+        if i+1 < len(sounds) and (sounds[i],sounds[i+1]) in pairs:
+            result.append(pairs[(sounds[i],sounds[i+1])][0])
+            i += 2
+        else:
+            result.append(sounds[i])
+            i += 1
+    return result
+
+def devoice(sounds):
+    v2vl = {'g':'k','G':'K','j':'c','J':'C','d':'t','D':'T','b':'p','B':'P','q':'w','Q':'W'}
+    aghosha = set('kKpPcCwWtT')
+    result = []
+    for i, s in enumerate(sounds):
+        if s in v2vl and i+1 < len(sounds) and sounds[i+1] in aghosha:
+            result.append(v2vl[s])
+        else:
+            result.append(s)
+    return result
+
+def derive_lin(dhatu, class_num, ting_label):
+    """liṅ (optative) derivation.
+    
+    Architecture: 
+    - aṅga = dhātu (+ Ṇic for class 10), with guṇa, WITHOUT vikaraṇa
+    - optative ending = sī-derived (et, eyātam for a-final; yāt, yātām for u-final)
+    - eco applies between guṇa'd dhātu vowel and optative vowel
+    """
+    vik_raw, vik_it = vikarana[class_num]
+    vik_clean = remove_it(vik_raw, vik_it)
+    
+    has_tit = class_num in (1,5,7,8,9,10)
+    is_nic = class_num == 10
+    is_snu = class_num in (5,8)
+    
+    # Build aṅga: dhātu + vikaraṇa (but for optative, we need the STEM without the final -a vikaraṇa)
+    # For class 1: aṅga = dhātu (NO Śap) → guṇa → bho → eco(with optative vowel) → bhav
+    # For class 10: aṅga = dhātu + Ṇic(i) → guṇa ALL → cor+e → eco → coray
+    # For class 4: aṅga = dhātu + Śya(ya) → no guṇa → pazy(a) → but we drop the final 'a'
+    # For class 6: aṅga = dhātu → no guṇa → pac
+    
+    if is_nic:
+        # Class 10: dhātu + i (Ṇic), guṇa ALL, keep vikaraṇa material (i)
+        anga = dhatu + vik_clean  # cur + i
+        anga = apply_guna_all(anga)  # cor + e
+    elif has_tit and not is_snu:
+        # Class 1: dhātu only (no Śap), guṇa last IK vowel
+        anga = list(dhatu)
+        anga = apply_guna_last_ik(anga)  # bhU → bho
+    elif is_snu:
+        # Class 5, 8: dhātu + vikaraṇa (nu/u), guṇa last IK vowel
+        anga = dhatu + vik_clean  # su + nu = sunu
+        anga = apply_guna_last_ik(anga)  # suno (u→o)
+    else:
+        # Class 4: dhātu + Śya(ya), no guṇa (class 4 has no ṭit)
+        anga = dhatu + vik_clean  # paz + ya = pazy(a)
+        # Class 6: dhātu only, no guṇa
+        if class_num == 6:
+            anga = list(dhatu)  # pac (no vikaraṇa in optative)
+        elif class_num == 2:
+            anga = list(dhatu)
+        elif class_num == 4:
+            # Class 4: Śya→ya, but the final 'a' in ya is NOT part of the optative stem
+            # paz + ya → pazy(a) → drop final 'a' → pazy + et = pazyet ✓
+            anga = dhatu + vik_clean  # paz + ya = p a z y a
+            # Drop the final 'a' (it's the laṭ vikaraṇa vowel, not needed in optative)
+            if anga and anga[-1] == 'a':
+                anga = anga[:-1]  # p a z y
+    
+    # Get optative ending
+    if is_snu:
+        # For Śnu/Śu classes: need to handle u-final aṅga
+        # guṇa'd: suno (o from u→o). eco: o + ī(vowel) → av + ī → sunavīt → ī→e → sunavet?
+        # But actual is sunuyāt! So for Śnu classes, the optative uses yā-type, not e-type.
+        # This means: no guṇa on dhātu vowel for Śnu in optative? Or different ending set?
+        # 
+        # Actually: sunuyāt = sunu + yāt. The 'u' stays (no guṇa), and 'yāt' is the ending.
+        # So for Śnu: NO guṇa on dhātu vowel, use yā-type endings.
+        anga = dhatu + vik_clean  # su + nu = sunu (NO guṇa!)
+        ting = list(lin_ting_snu[ting_label])
+    else:
+        ting = list(lin_ting_para[ting_label])
+    
+    # Combine: aṅga + optative ending
+    combined = anga + ting
+    
+    # For a-final aṅga: the last 'a' merges with 'e' of ending: a+e → ?
+    # Actually, the vikaraṇa 'a' is NOT included (we dropped it).
+    # So for class 1: bho + et → eco: o+e → av+e → bhavet
+    # For class 6: pac + et = pacet (no sandhi)
+    
+    # Sandhi pipeline
+    combined = eco(combined)
+    combined = savarna(combined)
+    combined = devoice(combined)
+    
+    return combined
+
+# === Verify ===
+print("=== liṅ (optative) verification ===\n")
+
+lin_tests = [
+    # (dhātu, class, tiṅ, expected)
+    (['b','h','U'], 1, 'tip', 'bhavet'),       # bhū cl1: bhavet
+    (['p','a','c'], 6, 'tip', 'pacet'),         # pac cl6: pacet
+    (['c','u','r'], 10, 'tip', 'corayet'),       # cur cl10: corayet
+    (['p','a','z'], 4, 'tip', 'pazyet'),         # paz cl4: paśyet
+    (['n','I'], 1, 'tip', 'nayet'),              # nī cl1: nayet (ī→e→ay before e)
+    (['k','f','S'], 6, 'tip', 'kfSet'),          # krṣ cl6: karṣet? → kfSet
+    # 3pl
+    (['b','h','U'], 1, 'jhi', 'bhaveyus'),      # bhav + eyus
+    (['p','a','c'], 6, 'jhi', 'paceyus'),        # pac + eyus
+    (['c','u','r'], 10, 'jhi', 'corayeyus'),    # coray + eyus
+    # 1sg
+    (['b','h','U'], 1, 'mip', 'bhaveyam'),      # bhav + eyam
+    (['p','a','c'], 6, 'mip', 'paceyam'),        # pac + eyam
+    (['c','u','r'], 10, 'mip', 'corayeyam'),    # coray + eyam
+    # Class 5 (Śnu)
+    (['s','u'], 5, 'tip', 'sunuyAt'),            # su cl5: sunuyāt (yā-type)
+    (['s','u'], 5, 'jhi', 'sunuyus'),            # su cl5: sunuyus
+    (['s','u'], 5, 'mip', 'sunuyAm'),            # su cl5: sunuyām
+]
+
+p = 0
+for dhatu, cls, ting, expected in lin_tests:
+    result = derive_lin(dhatu, cls, ting)
+    got = ''.join(result)
+    match = "✓" if got == expected else "✗"
+    if got == expected:
+        p += 1
+    person = {'tip':'3sg', 'jhi':'3pl', 'mip':'1sg'}[ting]
+    print(f"  {''.join(dhatu):6s} cl{cls:2d} {person:4s} expect={expected:12s} got={got:12s} {match}")
+
+print(f"\nliṅ: {p}/{len(lin_tests)} ({100*p/len(lin_tests):.0f}%)")
