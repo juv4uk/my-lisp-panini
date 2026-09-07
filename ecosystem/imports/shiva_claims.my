@@ -1,36 +1,31 @@
 (imports
   (source "juv4uk/shiva-sutras")
-  (revision "d3eab18")
+  (revision "3de5c6f")
   (claims
     ;; Canon and formal model
-    (claim SS-CANON-001 (revision "d3eab18") (status resolved))
-    (claim SS-PRATYAHARA-001 (revision "d3eab18") (status supported))
-    (claim SS-ORDER-001 (revision "d3eab18") (status proved))
-    (claim SS-MARKERS-001 (revision "d3eab18") (status proved-in-model))
-    (claim SS-MARKERS-002 (revision "d3eab18") (status proved-in-model))
-    (claim SS-MARKERS-003 (revision "d3eab18") (status proved-in-model))
+    (claim SS-CANON-001 (revision "3de5c6f") (status resolved))
+    (claim SS-PRATYAHARA-001 (revision "3de5c6f") (status supported))
+    (claim SS-ORDER-001 (revision "3de5c6f") (status proved))
+    (claim SS-MARKERS-001 (revision "3de5c6f") (status proved-in-model))
+    (claim SS-MARKERS-002 (revision "3de5c6f") (status proved-in-model))
+    (claim SS-MARKERS-003 (revision "3de5c6f") (status proved-in-model))
     ;; Corpus
-    (claim SS-CORPUS-001 (revision "d3eab18") (status resolved))
+    (claim SS-CORPUS-001 (revision "3de5c6f") (status resolved))
     ;; Epistemic
-    (claim SS-EPISTEMIC-001 (revision "d3eab18") (status proved))
-    (claim SS-EPISTEMIC-002 (revision "d3eab18") (status measured))
+    (claim SS-EPISTEMIC-001 (revision "3de5c6f") (status proved))
+    (claim SS-EPISTEMIC-002 (revision "3de5c6f") (status measured))
     ;; L-001 blind reconstruction (outcome A)
-    (claim L-001-001 (revision "d3eab18") (status measured))
-    (claim L-001-002 (revision "d3eab18") (status supported))
-    (claim L-001-003 (revision "d3eab18") (status supported))
-    (claim L-001-004 (revision "d3eab18") (status supported))
-    (claim L-001-005 (revision "d3eab18") (status supported))
+    (claim L-001-001 (revision "3de5c6f") (status measured))
+    (claim L-001-002 (revision "3de5c6f") (status supported))
+    (claim L-001-003 (revision "3de5c6f") (status supported))
+    (claim L-001-004 (revision "3de5c6f") (status supported))
+    (claim L-001-005 (revision "3de5c6f") (status supported))
   )
 )
 
 ;; Revision history:
 ;;   a8391c4 (2026-08-15): initial import, 5 claims, 3 downgraded
 ;;   364079d (2026-09-07): full sync with shiva-sutras claims-export.yaml
-;;     - Added 7 missing claims (SS-ORDER-001, SS-CORPUS-001, SS-EPISTEMIC-001/002, L-001-001..004)
-;;     - Revision pin updated to 364079d
-;;     - Statuses preserved at upstream values (no downgrades)
-;;   d3eab18 (2026-09-07): updated pin to latest HEAD
-;;     - Journals 0020-0021 added (classes 5, 8; operation types, lakāra design)
-;;     - Machine score: 38/39 (97.4%) on 13 dhātus × 7 classes
-;;     - Added L-001-005 claim
-;;     - All statuses preserved at upstream values
+;;   d3eab18 (2026-09-07): journals 0020-0021 (classes 5,8; operation types)
+;;   3de5c6f (2026-09-07): journal 0022 (loṭ imperative + savarṇa dīrgha)
+;;     Machine: 60/60 (100%) on laṭ + loṭ, 12 dhātus × 7 classes
