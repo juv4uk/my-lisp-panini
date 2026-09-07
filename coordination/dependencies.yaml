@@ -1,13 +1,13 @@
 # Dependency registry — my-lisp-panini
 # Validated by validate_dependencies.py (light: git existence + drift report).
-registry_version: 3
+registry_version: 4
 
 upstream:
  - id: shiva-sutras
    role: upstream-research-authority # Siva-sutras / pratyahara canon
    remote: juv4uk/shiva-sutras
    local_path: /home/agents/GitHub/shiva-sutras
-   pinned_revision: 91d246f
+   pinned_revision: c01d03a
    imports_file: ecosystem/imports/shiva_claims.my
    claims:
    - { id: SS-CANON-001, status: resolved }
