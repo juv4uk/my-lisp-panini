@@ -33,10 +33,10 @@ reason policy для конфлікту. Vidyut надихає деякі роз
 #### Межа та власники
 
 `derivation-ir-v0.1` є обмінним контрактом між майбутнім rule engine,
-пояснювальним trace та зовнішніми fixtures. Він не є My Lisp AST і не дозволяє
+пояснювальним trace та зовнішніми fixtures. Він не є my-lisp AST і не дозволяє
 вмикати semantic calls до проходження P5 gate. Реалізація під
-`panini/machine/` належить machine maintainer; зміна surface My Lisp належить
-власнику My Lisp; Panini Foundation визначає тут лише доказові інваріанти.
+`panini/machine/` належить machine maintainer; зміна surface my-lisp належить
+власнику my-lisp; Panini Foundation визначає тут лише доказові інваріанти.
 
 #### Кореневий запис
 
@@ -147,18 +147,18 @@ trace events. `opaque` застосовується для результату,
 
 1. Один serialized IR приклад містить хоча б `dhAtu`, `pratyaya`, два immutable
    states, machine-rule reference та transition trace.
-2. Validator відхиляє IAST/Devanāgarī у `source_form`/`surface_form` і змішаний
+2. Validator відхиляє IAST/Devanāgarī у `source_form`/`surface_form` і змішание
    або непроіменований namespace metadata.
 3. Validator відхиляє executable operation на `sutra-reference` без
    `interpreted-rule`/`machine-rule` bridge та provenance.
 4. Один conflict fixture проходить через event contract: candidates, policy,
    decision, після чого окремий transition.
-5. До `MYLISP-P5-PANINI-FOUNDATION-GATE-REVIEW` IR лишається data fixture;
+5. До `MY-LISP-P5-PANINI-FOUNDATION-GATE-REVIEW` IR лишається data fixture;
    він не змінює parser/evaluator semantics.
 
 Пов'язані документи: `derivation-ir-trace-events-v0.1.md`,
 `trace-evidence-model-v0.1.md`, `provenance-type-schema-v0.1.md`,
-`machine-mylisp-compatibility-boundary.md`.
+`machine-my-lisp-compatibility-boundary.md`.
 
 ## Deutsch
 
