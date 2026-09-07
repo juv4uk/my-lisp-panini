@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Run the canonical Panini Machine gate against one My Lisp executable.
+"""Run the canonical Panini Machine gate against one my-lisp executable.
 
 The gate is intentionally evidence-preserving: it always runs capability
 probe, negative loader checks, and acceptance in that order. A failed probe
 does not suppress later checks, because those checks may reveal an independent
-loader or fixture result. This script neither builds nor modifies My Lisp.
+loader or fixture result. This script neither builds nor modifies my-lisp.
 """
 
 from __future__ import annotations
@@ -28,12 +28,12 @@ def run(label: str, command: list[str]) -> bool:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--runtime", required=True, type=Path, help="path to the My Lisp executable")
-    parser.add_argument("--source-repo", type=Path, help="optional My Lisp checkout for revision provenance")
+    parser.add_argument("--runtime", required=True, type=Path, help="path to the my-lisp executable")
+    parser.add_argument("--source-repo", type=Path, help="optional my-lisp checkout for revision provenance")
     args = parser.parse_args()
 
     python = sys.executable
-    probe = [python, "panini/tests/probe_mylisp_runtime.py", "--runtime", str(args.runtime)]
+    probe = [python, "panini/tests/probe_my_lisp_runtime.py", "--runtime", str(args.runtime)]
     if args.source_repo is not None:
         probe.extend(("--source-repo", str(args.source_repo)))
 
