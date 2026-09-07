@@ -1,25 +1,33 @@
 # Dependency registry — my-lisp-panini
 # Validated by validate_dependencies.py (light: git existence + drift report).
-registry_version: 2
+registry_version: 3
 
 upstream:
  - id: shiva-sutras
    role: upstream-research-authority # Siva-sutras / pratyahara canon
    remote: juv4uk/shiva-sutras
    local_path: /home/agents/GitHub/shiva-sutras
-   pinned_revision: df372d9
+   pinned_revision: 91d246f
    imports_file: ecosystem/imports/shiva_claims.my
    claims:
    - { id: SS-CANON-001, status: resolved }
    - { id: SS-PRATYAHARA-001, status: supported }
-   - { id: SS-MARKERS-001, status: supported }
-   - { id: SS-MARKERS-002, status: supported }
-   - { id: SS-MARKERS-003, status: supported }
+   - { id: SS-ORDER-001, status: proved }
+   - { id: SS-MARKERS-001, status: proved-in-model }
+   - { id: SS-MARKERS-002, status: proved-in-model }
+   - { id: SS-MARKERS-003, status: proved-in-model }
+   - { id: SS-CORPUS-001, status: resolved }
+   - { id: SS-EPISTEMIC-001, status: proved }
+   - { id: SS-EPISTEMIC-002, status: measured }
+   - { id: H-SS-EXT-001, status: supported }
+   - { id: H-SS-EXT-002, status: hypothesis }
+   - { id: H-SS-EXT-003, status: supported }
    - { id: L-001-001, status: measured }
    - { id: L-001-002, status: supported }
    - { id: L-001-003, status: supported }
    - { id: L-001-004, status: supported }
-   - { id: L-001-005, status: supported }
+   - { id: L-001-005, status: proved-in-model }
+   - { id: L-001-006, status: proved-in-model }
 
 validation:
   hard_checks:
