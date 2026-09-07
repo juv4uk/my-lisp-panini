@@ -4,26 +4,26 @@ registry_version: 2
 
 upstream:
  - id: shiva-sutras
- role: upstream-research-authority # Siva-sutras / pratyahara canon
- remote: juv4uk/shiva-sutras
- local_path: /home/agents/GitHub/shiva-sutras
- pinned_revision: 04bde4d
- imports_file: ecosystem/imports/shiva_claims.my
- claims:
- - { id: SS-CANON-001, status: resolved }
- - { id: SS-PRATYAHARA-001, status: supported }
- - { id: SS-MARKERS-001, status: supported }
- - { id: SS-MARKERS-002, status: supported }
- - { id: SS-MARKERS-003, status: supported }
- - { id: L-001-001, status: measured }
- - { id: L-001-002, status: supported }
- - { id: L-001-003, status: supported }
- - { id: L-001-004, status: supported }
- - { id: L-001-005, status: supported }
+   role: upstream-research-authority # Siva-sutras / pratyahara canon
+   remote: juv4uk/shiva-sutras
+   local_path: /home/agents/GitHub/shiva-sutras
+   pinned_revision: df372d9
+   imports_file: ecosystem/imports/shiva_claims.my
+   claims:
+   - { id: SS-CANON-001, status: resolved }
+   - { id: SS-PRATYAHARA-001, status: supported }
+   - { id: SS-MARKERS-001, status: supported }
+   - { id: SS-MARKERS-002, status: supported }
+   - { id: SS-MARKERS-003, status: supported }
+   - { id: L-001-001, status: measured }
+   - { id: L-001-002, status: supported }
+   - { id: L-001-003, status: supported }
+   - { id: L-001-004, status: supported }
+   - { id: L-001-005, status: supported }
 
 validation:
- hard_checks:
- - pinned_revision_exists
- - claims_match_imports_file
- report_only:
- - upstream_head_drift
+  hard_checks:
+    - pinned_revision_exists
+    - claims_match_imports_file
+  report_only:
+    - upstream_head_drift
