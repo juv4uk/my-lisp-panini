@@ -1,98 +1,88 @@
-;; Tiṅ System — verbal endings (3.4.78 + 3.4.79)
+;; Tiṅ system — 18 endings + vikaraṇa table + it-lopa.
 ;;
-;; Epistemic layer: ENGINEERING
+;; Epistemic layer: PĀṆINIAN FORMAL USE + ENGINEERING
 ;; Depends on: phonology.my
-;; Upstream: SS-PRATYAHARA-001
+;; Sources: Aṣṭādhyāyī 3.1.68-81, Kāśikā on 3.1.73
 
 (load "panini/machine/phonology.my")
 
 ;; ==========================================
-;; SLP1 ENCODING REFERENCE
-;; ==========================================
-;; Sibilants: z=ś (श), S=ṣ (ष), s=स
-;; Vowels:   f=ṛ (ऋ), F=ṝ (ॠ), x=ḷ (ऌ), X=ḹ (ॡ)
-;; Nasals:   N=ṅ (ङ), Y=ñ (ञ), R=ṇ (ण), n=न, m=म
-;; Aspirates: D=dh (ध), Q=ḍh (ढ), B=bh (भ), G=gh (घ)
-;; Retroflex: w=ṭ (ट), W=ṭh (ठ), q=ḍ (ड), Q=ḍh (ढ)
-
-;; ==========================================
-;; 1.3.3 hal antyam + 1.3.9 tasya lopaḥ
+;; Tiṅ endings (3.4.77-78, 3.4.78-79)
+;; SLP1 encoding
 ;; ==========================================
 
-(def hal? (lambda (sound) (in-hal? sound)))
+(def ting-para-raw
+  (quote ((tip . (t i p))    ;; 3rd sg
+          (tas . (t a s))    ;; 3rd dual
+          (jhi . (J i))      ;; 3rd pl
+          (sip . (s i p))    ;; 2nd sg
+          (thas . (t h a s)) ;; 2nd dual
+          (tha . (t h a))    ;; 2nd pl
+          (mip . (m i p))    ;; 1st sg
+          (vas . (v a s))    ;; 1st dual
+          (mas . (m a s))))) ;; 1st pl
 
-(def apply-hal-antyam-lopa
-  (lambda (sounds)
-    (cond
-      ((atom sounds) (quote ()))
-      ((atom (cdr sounds)) (quote ()))
-      (t (cons (car sounds) (apply-hal-antyam-lopa (cdr sounds)))))))
+(def ting-atma-raw
+  (quote ((ta . (t a))         ;; 3rd sg
+          (AtAm . (A t A m))   ;; 3rd dual
+          (ja . (j a))         ;; 3rd pl
+          (thAs . (t h A s))   ;; 2nd sg
+          (AthAm . (A t h A m));; 2nd dual
+          (Dvam . (D v a m))   ;; 2nd pl
+          (iTw . (i T w))      ;; 1st sg
+          (vahi . (v a h i))   ;; 1st dual
+          (mahIM . (m a h I M))))) ;; 1st pl
+
+;; ==========================================
+;; 1.3.3: hal antyam — last sound if hal → it
+;; 1.3.4: na vibhaktau tusmāḥ — t,u,s,m at end (not vibhakti) → it
+;; 1.3.5: ādir ñiṭuḍavaḥ — initial ñ,ṭ,ḍ → it
+;; 1.3.9: tasya lopaḥ — it sounds are deleted
+;; ==========================================
 
 (def remove-it-markers
-  (lambda (sounds markers)
+  (lambda (sounds it-markers)
     (cond
       ((atom sounds) (quote ()))
-      ((member? (car sounds) markers)
-       (remove-it-markers (cdr sounds) markers))
-      (t (cons (car sounds) (remove-it-markers (cdr sounds) markers))))))
+      ((member (car sounds) it-markers)
+       (remove-it-markers (cdr sounds) it-markers))
+      (t (cons (car sounds)
+               (remove-it-markers (cdr sounds) it-markers))))))
 
-;; ==========================================
-;; Tiṅ endings (3.4.78 + 3.4.79)
-;; jhi encoded as (J i) — J is ñiṭ → ādeśa "nti" (8.4.62)
-;; ==========================================
-
-(def ting-parasmaipada
-  (quote (
-    (tip  . (t i p)) (tas  . (t a s)) (jhi  . (J i))
-    (sip  . (s i p)) (thas . (t h a s)) (tha  . (t h a))
-    (mip  . (m i p)) (vas  . (v a s)) (mas  . (m a s)))))
-
-(def ting-atmanepada
-  (quote (
-    (ta   . (t a)) (AtAm . (A t A m)) (ja   . (j a))
-    (thAs . (t h A s)) (AthAm . (A t h A m)) (Qvam . (Q v a m))
-    (iTw  . (i T w)) (vahi . (v a h i)) (mahIM . (m a h I M)))))
-
-(def ting-lookup
-  (lambda (label table)
-    (cdr (assoc label table))))
-
-;; get-ting-para: jhi → "nti" (ādeśa), others → hal-antyam-lopa
-(def get-ting-para
-  (lambda (label)
+;; 8.2.66 + 8.4.62: jhi → nti (J→n, then voiced→voiceless before khar not needed here)
+(def apply-jhi-adesha
+  (lambda (ting-label ting-clean)
     (cond
-      ((equal? label (quote jhi)) (quote (n t i)))
-      (t (apply-hal-antyam-lopa (ting-lookup label ting-parasmaipada))))))
-
-(def get-ting-atma
-  (lambda (label)
-    (apply-hal-antyam-lopa (ting-lookup label ting-atmanepada))))
+      ((equal? ting-label (quote jhi)) (quote (n t i)))
+      (t ting-clean))))
 
 ;; ==========================================
-;; Vikaraṇa table (SLP1-corrected, proper Pāṇinian)
+;; Vikaraṇa table (ALL 10 CLASSES, SLP1-corrected)
+;;
+;; Sources: Aṣṭādhyāyī 3.1.68-81
+;;   3.1.68: Śap (class 1)
+;;   3.1.69: ŚyaN (class 4)
+;;   3.1.73: Śnu (class 5) — Kāśikā: "śapo 'pavādaḥ / sunoti"
+;;   3.1.77: Śa (class 6)
+;;   3.1.78: ŚnāM (class 7) — M=anusvāra is it
+;;   3.1.79: u (class 8) — plain "u", NOT "Śu"!
+;;   3.1.81: Śnā (class 9)
+;;   3.1.25: Ṇic (class 10)
+;;
+;; Key: Śnu's u is NOT it (only ś). Class 8 uses plain "u".
 ;; ==========================================
-;; Class 1:  Śap  → a   (z=ś is NOT ñiṭ, p=hal antyam)
-;;   BUT: Śap IS sārvadhātuka → guṇa applies (7.3.84)
-;;   The ṭit status of Śap comes from tradition, not 1.3.5 directly.
-;;
-;; Class 4:  Śya  → sya (z=ś, NOT ṭit → no guṇa)
-;; Class 6:  Śa   → a   (z=ś, NOT ṭit → no guṇa)
-;; Class 10: Ṇic  → i   (R=ṇ is ṇiṭ by 1.3.5, c=hal antyam)
-;;   Ṇic has ṇiṭ → guṇa applies (7.2.115 + 7.3.84)
-;;   The "i" becomes part of the AṄGA, not the suffix.
-;;   Guṇa applies to ALL vowels in the aṅga: u→o AND i→e.
-;;   Then eco (6.1.78): e+a → aya → "corayati" ✓
-;;   (Same mechanism as "nayati": nī→e→eco→aya)
-;;
-;; RESOLVED (Journal 0017): Ṇic → i → guṇa(i→e) → eco(e+a→aya) → aya
-;; Previous shortcut (Ṇaya→aya) replaced with proper derivation.
 
 (def vikarana-table
   (quote (
-    (1  . ((z a p)  (z p)))
-    (4  . ((z y a)  (z)))
-    (6  . ((z a)    (z)))
-    (10 . ((R i c)  (R c))))))  ;; Ṇic → "i" after it-lopa
+    (1  . ((z a p)   (z p)))      ;; Śap → a; ś,p = it
+    (2  . (()        ()))          ;; no vikaraṇa (adhātuka)
+    (4  . ((z y a)   (z)))         ;; Śya → ya; ś = it
+    (5  . ((z n u)   (z)))         ;; Śnu → nu; ś = it (u stays!)
+    (6  . ((z a)     (z)))         ;; Śa → a; ś = it
+    (7  . ((z n A)   (z A)))       ;; Śnā(M) → nā; ś,ā = it (M not encoded)
+    (8  . ((u)       ()))          ;; u → u; no it (3.1.79: plain "u")
+    (9  . ((z n A)   (z A)))       ;; Śnā → nā; ś,ā = it
+    (10 . ((R i c)   (R c))))))    ;; Ṇic → i; ṇ,c = it
 
 (def get-vikarana
   (lambda (class-num)
@@ -103,21 +93,36 @@
     (car (cdr (cdr (assoc class-num vikarana-table))))))
 
 ;; ṭit check: which classes trigger guṇa (7.3.84)?
-;; Class 1: Śap — traditionally ṭit, guṇa applies (bhavati, nayati)
-;; Class 4: Śya — NOT ṭit, no guṇa (pazyati, not pazoyati)
-;; Class 6: Śa  — NOT ṭit, no guṇa (pacati, not pacoti)
-;; Class 10: Ṇic — ṇiṭ by 1.3.5, guṇa applies (corayati)
+;; Class 1:  Śap — ṭit (tradition), guṇa on dhātu vowel
+;; Class 4:  Śya — NOT ṭit, no guṇa
+;; Class 5:  Śnu — ṭit, guṇa/yaṇ on vikaraṇa vowel (Journal 0018)
+;; Class 6:  Śa  — NOT ṭit, no guṇa
+;; Class 7:  Śnā — ṭit (guṇa, but nā is complex — deferred)
+;; Class 8:  u   — ṭit (ārdhadhātuka, 7.3.84 applies)
+;; Class 9:  Śnā — ṭit (deferred)
+;; Class 10: Ṇic — ṇiṭ, guṇa on ALL vowels of aṅga (Journal 0017)
 (def vikarana-has-tit?
   (lambda (class-num)
     (cond
       ((equal? class-num 1) t)
       ((equal? class-num 4) (quote ()))
-      ((equal? class-num 10) t)
+      ((equal? class-num 5) t)
       ((equal? class-num 6) (quote ()))
+      ((equal? class-num 7) t)
+      ((equal? class-num 8) t)
+      ((equal? class-num 9) t)
+      ((equal? class-num 10) t)
       (t (quote ())))))
 
-;; Class 10 special: Ṇic "i" becomes part of the AṄGA, not the suffix.
-;; Śap "a" is the sārvadhātuka suffix for class 10 too.
+;; Śnu/Śu classes: 5, 8 (special guṇa/yaṇ handling, 6.4.87)
+(def is-snu-class?
+  (lambda (class-num)
+    (cond
+      ((equal? class-num 5) t)
+      ((equal? class-num 8) t)
+      (t (quote ())))))
+
+;; Class 10 special: Ṇic "i" becomes part of the AṄGA
 (def is-nic-class?
   (lambda (class-num)
     (equal? class-num 10)))
