@@ -14,11 +14,6 @@
 ;; Nasals:   N=ṅ (ङ), Y=ñ (ञ), R=ṇ (ण), n=न, m=म
 ;; Aspirates: D=dh (ध), Q=ḍh (ढ), B=bh (भ), G=gh (घ)
 ;; Retroflex: w=ṭ (ट), W=ṭh (ठ), q=ḍ (ड), Q=ḍh (ढ)
-;;
-;; PREVIOUS BUG (fixed this commit):
-;;   Śap was encoded as Sap (S=ṷ) — should be zap (z=ś)
-;;   Ṇic was encoded as Ṅaya (N=ṅ) — should use R=ṇ
-;;   ḍhvam was encoded as Dvam (D=dh) — should be Qvam (Q=ḍh)
 
 ;; ==========================================
 ;; 1.3.3 hal antyam + 1.3.9 tasya lopaḥ
@@ -44,8 +39,6 @@
 ;; ==========================================
 ;; Tiṅ endings (3.4.78 + 3.4.79)
 ;; jhi encoded as (J i) — J is ñiṭ → ādeśa "nti" (8.4.62)
-;;
-;; FIXED: ḍhvam now Qvam (Q=ḍh), not Dvam (D=dh)
 ;; ==========================================
 
 (def ting-parasmaipada
@@ -76,33 +69,30 @@
     (apply-hal-antyam-lopa (ting-lookup label ting-atmanepada))))
 
 ;; ==========================================
-;; Vikaraṇa table (SLP1-corrected)
+;; Vikaraṇa table (SLP1-corrected, proper Pāṇinian)
 ;; ==========================================
-;; Class 1:  Śap  → a   (z=ś is ṭit, p=hal)     [FIXED: S→z]
-;; Class 4:  Śya  → sya (z=ś is ṭit)            [FIXED: S→z]
-;; Class 6:  Śa   → a   (z=ś is ṭit)             [FIXED: S→z]
-;; Class 10: Ṇaya → aya (R=ṇ is ṭit)             [FIXED: N→R]
+;; Class 1:  Śap  → a   (z=ś is NOT ñiṭ, p=hal antyam)
+;;   BUT: Śap IS sārvadhātuka → guṇa applies (7.3.84)
+;;   The ṭit status of Śap comes from tradition, not 1.3.5 directly.
 ;;
-;; OPEN PĀṆINIAN QUESTION (class 10):
-;;   Pāṇini uses Ṇic (3.1.25), which after it-lopa gives "i".
-;;   The surface form should be "aya", derived as:
-;;     Ṇic → i (it-lopa of ṇ,c)
-;;     Śap → a (it-lopa of ś,p)
-;;     vikaraṇa = i + a
-;;     guṇa on dhātu (7.3.84): cur → cor (u→o)
-;;     i → e → eco(e+a→aya) → "corayati" ✓
-;;   BUT: 7.3.84 guṇa applies to DHĀTU vowel, not vikaraṇa vowel.
-;;   What rule turns vikaraṇa "i" into "e"? 
-;;   yaṇ (6.1.77) gives i+a→ya, producing "coryati" (wrong).
-;;   This requires consulting Kāśikā on 7.3.84.
-;;   ENGINEERING SHORTCUT: encode "aya" directly with R=ṇ as it-marker.
+;; Class 4:  Śya  → sya (z=ś, NOT ṭit → no guṇa)
+;; Class 6:  Śa   → a   (z=ś, NOT ṭit → no guṇa)
+;; Class 10: Ṇic  → i   (R=ṇ is ṇiṭ by 1.3.5, c=hal antyam)
+;;   Ṇic has ṇiṭ → guṇa applies (7.2.115 + 7.3.84)
+;;   The "i" becomes part of the AṄGA, not the suffix.
+;;   Guṇa applies to ALL vowels in the aṅga: u→o AND i→e.
+;;   Then eco (6.1.78): e+a → aya → "corayati" ✓
+;;   (Same mechanism as "nayati": nī→e→eco→aya)
+;;
+;; RESOLVED (Journal 0017): Ṇic → i → guṇa(i→e) → eco(e+a→aya) → aya
+;; Previous shortcut (Ṇaya→aya) replaced with proper derivation.
 
 (def vikarana-table
   (quote (
     (1  . ((z a p)  (z p)))
     (4  . ((z y a)  (z)))
     (6  . ((z a)    (z)))
-    (10 . ((R a y a)  (R))))))
+    (10 . ((R i c)  (R c))))))  ;; Ṇic → "i" after it-lopa
 
 (def get-vikarana
   (lambda (class-num)
@@ -112,19 +102,25 @@
   (lambda (class-num)
     (car (cdr (cdr (assoc class-num vikarana-table))))))
 
-;; ṭit check: guṇa applies to classes with ṭit (more than 1 it-marker or explicit)
-;; Class 1: Śap has 2 markers (z,p) = ṭit ✓
-;; Class 4: Śya has 1 marker (z) = ṭit ✓ (ś is ṭit by 1.3.5 ādir ñiṭi)
-;; Class 6: Śa has 1 marker (z) = NOT ṭit (only hal antyam, no ñiṭ)
-;; Class 10: Ṇaya has 1 marker (R) = ṭit ✓ (ṇ is ṭit by Śiva-sūtras)
+;; ṭit check: which classes trigger guṇa (7.3.84)?
+;; Class 1: Śap — traditionally ṭit, guṇa applies (bhavati, nayati)
+;; Class 4: Śya — NOT ṭit, no guṇa (pazyati, not pazoyati)
+;; Class 6: Śa  — NOT ṭit, no guṇa (pacati, not pacoti)
+;; Class 10: Ṇic — ṇiṭ by 1.3.5, guṇa applies (corayati)
 (def vikarana-has-tit?
   (lambda (class-num)
     (cond
       ((equal? class-num 1) t)
-      ((equal? class-num 4) t)
+      ((equal? class-num 4) (quote ()))
       ((equal? class-num 10) t)
       ((equal? class-num 6) (quote ()))
       (t (quote ())))))
+
+;; Class 10 special: Ṇic "i" becomes part of the AṄGA, not the suffix.
+;; Śap "a" is the sārvadhātuka suffix for class 10 too.
+(def is-nic-class?
+  (lambda (class-num)
+    (equal? class-num 10)))
 
 (def get-vikarana-clean
   (lambda (class-num)
