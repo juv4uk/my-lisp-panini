@@ -342,6 +342,12 @@
        (get-laN-ting-para ting-label))
       ((equal? lakara (quote liN))
        (get-lin-ting-para ting-label is-snu))
+      ((equal? lakara (quote lRw))
+       ;; lṛṭ uses SAME tiṅ as laṭ (3.4.77: lasya)
+       (apply-jhi-adesha
+         ting-label
+         (remove-hal-antyam
+           (cdr (assoc ting-label ting-para-raw)))))
       (t
        ;; laṭ (default)
        (apply-jhi-adesha
