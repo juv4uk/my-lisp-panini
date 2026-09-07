@@ -1,25 +1,30 @@
 (imports
   (source "juv4uk/shiva-sutras")
-  (revision "df372d9")
+  (revision "91d246f")
   (claims
     ;; Canon and formal model
-    (claim SS-CANON-001 (revision "df372d9") (status resolved))
-    (claim SS-PRATYAHARA-001 (revision "df372d9") (status supported))
-    (claim SS-ORDER-001 (revision "df372d9") (status proved))
-    (claim SS-MARKERS-001 (revision "df372d9") (status proved-in-model))
-    (claim SS-MARKERS-002 (revision "df372d9") (status proved-in-model))
-    (claim SS-MARKERS-003 (revision "df372d9") (status proved-in-model))
+    (claim SS-CANON-001 (revision "91d246f") (status resolved))
+    (claim SS-PRATYAHARA-001 (revision "91d246f") (status supported))
+    (claim SS-ORDER-001 (revision "91d246f") (status proved))
+    (claim SS-MARKERS-001 (revision "91d246f") (status proved-in-model))
+    (claim SS-MARKERS-002 (revision "91d246f") (status proved-in-model))
+    (claim SS-MARKERS-003 (revision "91d246f") (status proved-in-model))
     ;; Corpus
-    (claim SS-CORPUS-001 (revision "df372d9") (status resolved))
+    (claim SS-CORPUS-001 (revision "91d246f") (status resolved))
     ;; Epistemic
-    (claim SS-EPISTEMIC-001 (revision "df372d9") (status proved))
-    (claim SS-EPISTEMIC-002 (revision "df372d9") (status measured))
+    (claim SS-EPISTEMIC-001 (revision "91d246f") (status proved))
+    (claim SS-EPISTEMIC-002 (revision "91d246f") (status measured))
+    ;; Cross-language hypotheses
+    (claim H-SS-EXT-001 (revision "91d246f") (status supported))
+    (claim H-SS-EXT-002 (revision "91d246f") (status hypothesis))
+    (claim H-SS-EXT-003 (revision "91d246f") (status supported))
     ;; L-001 blind reconstruction (outcome A)
-    (claim L-001-001 (revision "df372d9") (status measured))
-    (claim L-001-002 (revision "df372d9") (status supported))
-    (claim L-001-003 (revision "df372d9") (status supported))
-    (claim L-001-004 (revision "df372d9") (status supported))
-    (claim L-001-005 (revision "df372d9") (status supported))
+    (claim L-001-001 (revision "91d246f") (status measured))
+    (claim L-001-002 (revision "91d246f") (status supported))
+    (claim L-001-003 (revision "91d246f") (status supported))
+    (claim L-001-004 (revision "91d246f") (status supported))
+    (claim L-001-005 (revision "91d246f") (status proved-in-model))
+    (claim L-001-006 (revision "91d246f") (status proved-in-model))
   )
 )
 
@@ -31,4 +36,5 @@
 ;; 4e73ae1 (2026-09-07): project-name normalization to my-lisp (trademark respect)
 ;; 04bde4d (2026-09-07): journal 0023 (laṅ imperfect + augment a-)
 ;; df372d9 (2026-09-07): journals 0024-0025 (liṅ optative + ātmanepada middle voice)
+;; 91d246f (2026-09-07): journal 0027 (automated coordination), all 18 claims synced
 ;; Machine: 4 lakāras (laṭ + loṭ + laṅ + liṅ), 7 classes, 2 voices, 116/116=100%
