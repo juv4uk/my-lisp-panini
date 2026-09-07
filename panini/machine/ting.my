@@ -1,13 +1,13 @@
-;; Tiṅ system — 18 endings + vikaraṇa table + it-lopa.
+;; Tiṅ system — 18 endings + vikaraṇa table + it-lopa + lakāra.
 ;;
 ;; Epistemic layer: PĀṆINIAN FORMAL USE + ENGINEERING
 ;; Depends on: phonology.my
-;; Sources: Aṣṭādhyāyī 3.1.68-81, Kāśikā on 3.1.73
+;; Sources: Aṣṭādhyāyī 3.1.68-81, 3.4.77-85, Kāśikā on 3.1.73
 
 (load "panini/machine/phonology.my")
 
 ;; ==========================================
-;; Tiṅ endings (3.4.77-78, 3.4.78-79)
+;; Tiṅ endings — laṭ (present, 3.4.77-78)
 ;; SLP1 encoding
 ;; ==========================================
 
@@ -32,6 +32,34 @@
           (iTw . (i T w))      ;; 1st sg
           (vahi . (v a h i))   ;; 1st dual
           (mahIM . (m a h I M))))) ;; 1st pl
+
+;; ==========================================
+;; Tiṅ endings — loṭ (imperative, 3.4.85-89)
+;;
+;; loṭ tiṅ differ from laṭ:
+;;   3sg: tip → tu (3.4.88)
+;;   3du: tas → tām
+;;   3pl: jhi → ntu (i→u change)
+;;   2sg: sip → hi → lopa (zero ending)
+;;   2du: thas → tam
+;;   2pl: tha → ta
+;;   1sg: mip → ani (3.4.89)
+;;   1du: vas → ava
+;;   1pl: mas → ama
+;;
+;; Pre-cleaned (no hal-lopa needed, no jhi→nti needed)
+;; ==========================================
+
+(def lot-ting-para
+  (quote ((tip . (t u))       ;; 3sg: tu
+          (tas . (t A m))     ;; 3du: tām
+          (jhi . (n t u))     ;; 3pl: ntu
+          (sip . ())           ;; 2sg: zero (hi → lopa)
+          (thas . (t a m))    ;; 2du: tam
+          (tha . (t a))        ;; 2pl: ta
+          (mip . (a n i))     ;; 1sg: ani
+          (vas . (a v a))     ;; 1du: ava
+          (mas . (a m a)))))  ;; 1pl: ama
 
 ;; ==========================================
 ;; 1.3.3: hal antyam — last sound if hal → it
@@ -132,6 +160,47 @@
     (remove-it-markers
       (get-vikarana class-num)
       (get-vikarana-it-markers class-num))))
+
+;; ==========================================
+;; Lakāra dispatch: get tiṅ by lakāra
+;; ==========================================
+
+;; laṭ: raw tiṅ with hal-lopa + jhi→nti
+(def get-lat-ting-para
+  (lambda (ting-label)
+    (apply-jhi-adesha
+      ting-label
+      (remove-hal-antyam
+        (cdr (assoc ting-label ting-para-raw))))))
+
+;; loṭ: pre-cleaned tiṅ (no processing needed)
+(def get-lot-ting-para
+  (lambda (ting-label)
+    (cdr (assoc ting-label lot-ting-para))))
+
+;; Generic: get tiṅ by lakāra
+(def get-ting-para
+  (lambda (ting-label lakara)
+    (cond
+      ((equal? lakara (quote loT))
+       (get-lot-ting-para ting-label))
+      (t
+       ;; laṭ (default)
+       (apply-jhi-adesha
+         ting-label
+         (remove-hal-antyam
+           (cdr (assoc ting-label ting-para-raw))))))))
+
+;; Helper: remove last sound if hal (1.3.3)
+(def remove-hal-antyam
+  (lambda (sounds)
+    (cond
+      ((atom sounds) (quote ()))
+      ((atom (cdr sounds))
+       (cond
+         ((in-hal? (car sounds)) (quote ()))
+         (t sounds)))
+      (t (cons (car sounds) (remove-hal-antyam (cdr sounds)))))))
 
 ;; ==========================================
 ;; 3.4.79: ṭere
