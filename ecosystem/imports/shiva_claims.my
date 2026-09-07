@@ -1,25 +1,25 @@
 (imports
  (source "juv4uk/shiva-sutras")
- (revision "4e73ae1")
+ (revision "04bde4d")
  (claims
  ;; Canon and formal model
- (claim SS-CANON-001 (revision "4e73ae1") (status resolved))
- (claim SS-PRATYAHARA-001 (revision "4e73ae1") (status supported))
- (claim SS-ORDER-001 (revision "4e73ae1") (status proved))
- (claim SS-MARKERS-001 (revision "4e73ae1") (status proved-in-model))
- (claim SS-MARKERS-002 (revision "4e73ae1") (status proved-in-model))
- (claim SS-MARKERS-003 (revision "4e73ae1") (status proved-in-model))
+ (claim SS-CANON-001 (revision "04bde4d") (status resolved))
+ (claim SS-PRATYAHARA-001 (revision "04bde4d") (status supported))
+ (claim SS-ORDER-001 (revision "04bde4d") (status proved))
+ (claim SS-MARKERS-001 (revision "04bde4d") (status proved-in-model))
+ (claim SS-MARKERS-002 (revision "04bde4d") (status proved-in-model))
+ (claim SS-MARKERS-003 (revision "04bde4d") (status proved-in-model))
  ;; Corpus
- (claim SS-CORPUS-001 (revision "4e73ae1") (status resolved))
+ (claim SS-CORPUS-001 (revision "04bde4d") (status resolved))
  ;; Epistemic
- (claim SS-EPISTEMIC-001 (revision "4e73ae1") (status proved))
- (claim SS-EPISTEMIC-002 (revision "4e73ae1") (status measured))
+ (claim SS-EPISTEMIC-001 (revision "04bde4d") (status proved))
+ (claim SS-EPISTEMIC-002 (revision "04bde4d") (status measured))
  ;; L-001 blind reconstruction (outcome A)
- (claim L-001-001 (revision "4e73ae1") (status measured))
- (claim L-001-002 (revision "4e73ae1") (status supported))
- (claim L-001-003 (revision "4e73ae1") (status supported))
- (claim L-001-004 (revision "4e73ae1") (status supported))
- (claim L-001-005 (revision "4e73ae1") (status supported))
+ (claim L-001-001 (revision "04bde4d") (status measured))
+ (claim L-001-002 (revision "04bde4d") (status supported))
+ (claim L-001-003 (revision "04bde4d") (status supported))
+ (claim L-001-004 (revision "04bde4d") (status supported))
+ (claim L-001-005 (revision "04bde4d") (status supported))
  )
 )
 
@@ -29,4 +29,5 @@
 ;; d3eab18 (2026-09-07): journals 0020-0021 (classes 5,8; operation types)
 ;; 3de5c6f (2026-09-07): journal 0022 (loṭ imperative + savarṇa dīrgha)
 ;; 4e73ae1 (2026-09-07): MyLisp → my-lisp rename (trademark respect)
-;; Machine: 60/60 (100%) on laṭ + loṭ, 12 dhātus × 7 classes
+;; 04bde4d (2026-09-07): journal 0023 (laṅ imperfect + augment a-)
+;; Machine: 3 lakāras (laṭ + loṭ + laṅ), 7 classes, 60/60 on laṭ+loṭ
