@@ -1,4 +1,4 @@
-# Machine / My Lisp compatibility boundary
+# Machine / my-lisp compatibility boundary
 
 ## English
 
@@ -12,16 +12,16 @@ and assigns implementation ownership to the Panini-machine maintainer.
 
 1. `panini/machine/tests.my` loads a host-specific `c:/GitHub/...` path.
 2. `panini/machine/rules.my` uses a three-part `def` form, while the current
-   My Lisp runtime accepts `(def name expression)`.
+   my-lisp runtime accepts `(def name expression)`.
 3. `panini/machine/siva-sutras.my` refers to `last-char`, which is not
-   available in the current My Lisp runtime.
+   available in the current my-lisp runtime.
 
 ### Compatibility contract
 
 - A machine source file must define parameterized helpers through the documented
-  `(def name (lambda (...) ...))` form unless My Lisp explicitly adds and
+  `(def name (lambda (...) ...))` form unless my-lisp explicitly adds and
   documents another form.
-- A machine helper may use only documented My Lisp core operations, or define
+- A machine helper may use only documented my-lisp core operations, or define
   its own small local helper with tests. It must not assume an undocumented
   `last-char` primitive.
 - The test entry point must resolve source files without a checkout-specific
@@ -43,7 +43,7 @@ The owner may close the implementation task only after recording all of:
 ### Ownership boundary
 
 Panini-2 owns this contract and independent verification. Panini-1 / the
-Antigravity machine maintainer owns edits under `panini/machine/`. My Lisp owns
+Antigravity machine maintainer owns edits under `panini/machine/`. my-lisp owns
 any change to the language surface. No side may infer approval to change the
 other side from this document.
 
@@ -60,15 +60,15 @@ Panini-machine.
 1. `panini/machine/tests.my` завантажує прив'язаний до хоста шлях
    `c:/GitHub/...`.
 2. `panini/machine/rules.my` використовує тричастинну форму `def`, тоді як
-   поточний My Lisp приймає `(def name expression)`.
+   поточний my-lisp приймає `(def name expression)`.
 3. `panini/machine/siva-sutras.my` посилається на `last-char`, якого немає в
-   поточному My Lisp runtime.
+   поточному my-lisp runtime.
 
 ### Контракт сумісності
 
 - Параметризований helper у machine-коді треба визначати документованою формою
-  `(def name (lambda (...) ...))`, доки My Lisp явно не додасть іншу форму.
-- Helper може використовувати лише документовані core-операції My Lisp або
+  `(def name (lambda (...) ...))`, доки my-lisp явно не додасть іншу форму.
+- Helper може використовувати лише документовані core-операції my-lisp або
   власний малий локальний helper з тестами. Не можна припускати primitive
   `last-char`, якого немає в документації.
 - Точка входу тестів не повинна залежати від абсолютного шляху конкретного
@@ -91,7 +91,7 @@ Panini-machine.
 ### Межа відповідальності
 
 Panini-2 відповідає за цей контракт та незалежну перевірку. Panini-1 /
-Antigravity-власник machine відповідає за зміни в `panini/machine/`. My Lisp
+Antigravity-власник machine відповідає за зміни в `panini/machine/`. my-liss
 відповідає за зміни мовної поверхні. Цей документ не дає жодній стороні
 дозволу змінювати частину іншої.
 
@@ -107,7 +107,7 @@ die Umsetzung beim Panini-Machine-Verantwortlichen.
 
 1. `panini/machine/tests.my` lädt einen hostgebundenen Pfad `c:/GitHub/...`.
 2. `panini/machine/rules.my` verwendet eine dreiteilige `def`-Form, waehrend
-   das aktuelle My Lisp `(def name expression)` erwartet.
+   das aktuelle my-lisp `(def name expression)` erwartet.
 3. `panini/machine/siva-sutras.my` verwendet nicht vorhandenes `last-char`.
 
 ### Kompatibilitaetsvertrag
@@ -130,4 +130,4 @@ provenienz im Handoff.
 ### Verantwortungsgrenze
 
 Panini-2 pflegt Vertrag und unabhängige Prüfung. Panini-1 / Antigravity pflegt
-`panini/machine/`; My Lisp pflegt seine Sprachoberfläche.
+`panini/machine/`; my-lisp pflegt seine Sprachoberfläche.
