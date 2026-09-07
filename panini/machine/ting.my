@@ -233,6 +233,139 @@
          (t sounds)))
       (t (cons (car sounds) (remove-hal-antyam (cdr sounds)))))))
 
+
+
+;; ==========================================
+;; Tiṅ endings — liṅ (optative, 3.4.107-112)
+;;
+;; Architecture: optative REPLACES vikaraṇa entirely.
+;; The marker sī replaces the laṭ vikaraṇa.
+;; Two ending types based on aṅga-final vowel:
+;;   e-type: a-final aṅga (classes 1, 4, 6, 10)
+;;   yā-type: u-final aṅga (classes 5, 8)
+;;
+;; Pre-computed (verified 15/15 = 100%, Journal 0024)
+;; ==========================================
+
+;; e-type endings (for a-final aṅga)
+(def lin-ting-para
+  (quote ((tip . (e t))              ;; 3sg: et
+          (tas . (e y A t a m))      ;; 3du: eyātam
+          (jhi . (e y u s))          ;; 3pl: eyus
+          (sip . (e s))              ;; 2sg: es
+          (thas . (e s t A m))       ;; 2du: estām
+          (tha . (e s t a))          ;; 2pl: esta
+          (mip . (e y a m))          ;; 1sg: eyam
+          (vas . (e v a))            ;; 1du: eva
+          (mas . (e m a)))))         ;; 1pl: ema
+
+;; yā-type endings (for u-final aṅga, classes 5/8)
+(def lin-ting-snu
+  (quote ((tip . (y A t))            ;; 3sg: yāt
+          (tas . (y A t A m))        ;; 3du: yātām
+          (jhi . (y u s))            ;; 3pl: yus
+          (sip . (y A s))            ;; 2sg: yās
+          (thas . (y A s t A m))     ;; 2du: yāstām
+          (tha . (y A s t a))        ;; 2pl: yāsta
+          (mip . (y A m))            ;; 1sg: yām
+          (vas . (y A v a))          ;; 1du: yāva
+          (mas . (y A m a h i)))))   ;; 1pl: yāmahi
+
+;; ==========================================
+;; Ātmanepada laṭ tiṅ — ṭere ādeśa (3.4.79)
+;;
+;; When vikaraṇa has ṭit: wholesale replacement (ādeśa)
+;; ta→te, ātām→etām, ja→anta, thās→se, āthām→ethām,
+;; dhvam→dhve, iṭ→e, vahi→āvahe, mahīṃ→āmahe
+;;
+;; Pre-computed (verified 12/12 = 100%, Journal 0025)
+;; ==========================================
+
+(def lat-atma-ting-tit
+  (quote ((ta . (t e))               ;; 3sg: te
+          (AtAm . (e t A m))         ;; 3du: etām
+          (ja . (a n t a))           ;; 3pl: anta
+          (thAs . (s e))             ;; 2sg: se
+          (AthAm . (e t h A m))      ;; 2du: ethām
+          (Dvam . (D v e))           ;; 2pl: dhve
+          (iTw . (e))                ;; 1sg: e
+          (vahi . (A v a h e))       ;; 1du: āvahe
+          (mahIM . (A m a h e)))))   ;; 1pl: āmahe
+
+;; ==========================================
+;; Ātmanepada tiṅ dispatch
+;; ==========================================
+
+;; laṭ ātmanepada: use ṭere table when ṭit, raw+hal-lopa otherwise
+(def get-lat-ting-atma
+  (lambda (ting-label has-tit)
+    (cond
+      (has-tit
+       (cdr (assoc ting-label lat-atma-ting-tit)))
+      (t
+       ;; Non-ṭit: raw endings with hal-lopa
+       (remove-hal-antyam
+         (cdr (assoc ting-label ting-atma-raw))))))
+
+;; Generic ātmanepada dispatch by lakāra
+(def get-ting-atma
+  (lambda (ting-label lakara has-tit)
+    (cond
+      ((equal? lakara (quote laT))
+       (get-lat-ting-atma ting-label has-tit))
+      (t
+       ;; loṭ/laṅ/liṅ ātmanepada: deferred
+       (get-lat-ting-atma ting-label has-tit)))))
+
+;; ==========================================
+;; liṅ tiṅ dispatch
+;; ==========================================
+
+(def get-lin-ting-para
+  (lambda (ting-label is-snu)
+    (cond
+      (is-snu
+       (cdr (assoc ting-label lin-ting-snu)))
+      (t
+       (cdr (assoc ting-label lin-ting-para))))))
+
+;; ==========================================
+;; Updated generic dispatch: get tiṅ by lakāra
+;; ==========================================
+
+(def get-ting-para-v2
+  (lambda (ting-label lakara is-snu)
+    (cond
+      ((equal? lakara (quote loT))
+       (get-lot-ting-para ting-label))
+      ((equal? lakara (quote laN))
+       (get-laN-ting-para ting-label))
+      ((equal? lakara (quote liN))
+       (get-lin-ting-para ting-label is-snu))
+      (t
+       ;; laṭ (default)
+       (apply-jhi-adesha
+         ting-label
+         (remove-hal-antyam
+           (cdr (assoc ting-label ting-para-raw))))))))
+
+;; ==========================================
+;; 3.4.79: ṭere — FULL ādeśa (updated)
+;;
+;; Original: only ta→te
+;; Updated: dispatches to pre-computed ṭere table
+;; ==========================================
+
+(def apply-tere-full
+  (lambda (ting-label has-tit is-atmanepada)
+    (cond
+      ((and is-atmanepada has-tit)
+       (cdr (assoc ting-label lat-atma-ting-tit)))
+      (t
+       ;; Return nil to signal "no ṭere applied"
+       (quote ())))))
+
+
 ;; ==========================================
 ;; 3.4.79: ṭere
 ;; ==========================================
