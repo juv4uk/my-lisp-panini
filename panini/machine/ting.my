@@ -178,12 +178,24 @@
   (lambda (ting-label)
     (cdr (assoc ting-label lot-ting-para))))
 
+;; laṅ (imperfect): uses the SAME tiṅ as laṭ (3.2.111 + 3.4.78)
+;; The only difference is the augment a- prefixed to the dhātu (6.1.3+).
+;; Tiṅ processing is identical to laṭ: hal-lopa + jhi→nti.
+(def get-laN-ting-para
+  (lambda (ting-label)
+    (apply-jhi-adesha
+      ting-label
+      (remove-hal-antyam
+        (cdr (assoc ting-label ting-para-raw))))))
+
 ;; Generic: get tiṅ by lakāra
 (def get-ting-para
   (lambda (ting-label lakara)
     (cond
       ((equal? lakara (quote loT))
        (get-lot-ting-para ting-label))
+      ((equal? lakara (quote laN))
+       (get-laN-ting-para ting-label))
       (t
        ;; laṭ (default)
        (apply-jhi-adesha
