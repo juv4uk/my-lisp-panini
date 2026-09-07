@@ -338,6 +338,29 @@
     (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote loT))))
 
 ;; ==========================================
+;; laṅ (imperfect) — augment a- prefix
+;;
+;; 3.2.111: anadyatanaṃ laṅ (imperfect = not today)
+;; 6.1.3+: chordasī... aṅgād... — augment a- prefixed to dhātu
+;;
+;; The augment a- is NOT part of the aṅga (no guṇa on it).
+;; It is simply prepended to the final combined list.
+;; savarṇa dīrgha (6.1.101) handles a+a→ā if dhātu starts with a.
+;; eco sandhi (6.1.78) handles a+i→e, a+u→o if needed.
+;; ==========================================
+
+(def derive-verb-laN
+  (lambda (dhatu class-num ting-label)
+    ((lambda (result)
+       ;; Prepend augment a- to the derived form, then re-apply sandhi
+       ;; (savarṇa dīrgha for a+vowel, eco for a+i/u)
+       (apply-jhal-jhashi
+         (apply-savarṇa-dīrgha
+           (expand-eco-in-list
+             (cons (quote a) result)))))
+     (derive-verb-lakara dhatu class-num ting-label (quote ()) (quote laN)))))
+
+;; ==========================================
 ;; Convenience
 ;; ==========================================
 
@@ -388,3 +411,23 @@
 (def derive-bhavAni   (lambda () (derive-verb-lot (quote (b h U)) 1 (quote mip))))
 (def derive-pacAni    (lambda () (derive-verb-lot (quote (p a c)) 6 (quote mip))))
 (def derive-corayAni  (lambda () (derive-verb-lot (quote (c u r)) 10 (quote mip))))
+
+;; === laṅ (imperfect) named derivations ===
+
+(def derive-abhavat   (lambda () (derive-verb-laN (quote (b h U)) 1 (quote tip))))
+(def derive-apacat    (lambda () (derive-verb-laN (quote (p a c)) 6 (quote tip))))
+(def derive-asunot    (lambda () (derive-verb-laN (quote (s u)) 5 (quote tip))))
+(def derive-atanot    (lambda () (derive-verb-laN (quote (t a n)) 8 (quote tip))))
+(def derive-acorayat  (lambda () (derive-verb-laN (quote (c u r)) 10 (quote tip))))
+(def derive-anayat    (lambda () (derive-verb-laN (quote (n I)) 1 (quote tip))))
+(def derive-apazyat  (lambda () (derive-verb-laN (quote (p a z)) 4 (quote tip))))
+(def derive-akfSat   (lambda () (derive-verb-laN (quote (k f S)) 6 (quote tip))))
+
+(def derive-abhavan   (lambda () (derive-verb-laN (quote (b h U)) 1 (quote jhi))))
+(def derive-apacan    (lambda () (derive-verb-laN (quote (p a c)) 6 (quote jhi))))
+(def derive-asunvan   (lambda () (derive-verb-laN (quote (s u)) 5 (quote jhi))))
+(def derive-acorayan  (lambda () (derive-verb-laN (quote (c u r)) 10 (quote jhi))))
+
+(def derive-abhavam   (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
+(def derive-apacam   (lambda () (derive-verb-laN (quote (p a c)) 6 (quote mip))))
+(def derive-acorayam  (lambda () (derive-verb-laN (quote (c u r)) 10 (quote mip))))
