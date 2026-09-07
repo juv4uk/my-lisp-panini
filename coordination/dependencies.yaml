@@ -7,7 +7,7 @@ upstream:
     role: upstream-research-authority   # Siva-sutras / pratyahara canon
     remote: juv4uk/shiva-sutras
     local_path: /home/agents/GitHub/shiva-sutras
-    pinned_revision: 30b0c5d
+    pinned_revision: d3eab18
     imports_file: ecosystem/imports/shiva_claims.my
     claims:
       - { id: SS-CANON-001,       status: resolved }
