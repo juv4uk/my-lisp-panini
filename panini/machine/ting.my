@@ -7,7 +7,7 @@
 (load "panini/machine/phonology.my")
 
 ;; ==========================================
-;; Tiṅ endings — laṭ (present, 3.4.77-78)
+;; Tiṅ endings — laṭ (present, 3.4.77-70)
 ;; SLP1 encoding
 ;; ==========================================
 
@@ -87,7 +87,7 @@
 ;; ==========================================
 ;; Vikaraṇa table (ALL 10 CLASSES, SLP1-corrected)
 ;;
-;; Sources: Aṣṭādhyāyī 3.1.68-81
+;; Sources: Aṣṥādhyāyī 3.1.68-81
 ;;   3.1.68: Śap (class 1)
 ;;   3.1.69: ŚyaN (class 4)
 ;;   3.1.73: Śnu (class 5) — Kāśikā: "śapo 'pavādaḥ / sunoti"
@@ -108,7 +108,7 @@
     (5  . ((z n u)   (z)))         ;; Śnu → nu; ś = it (u stays!)
     (6  . ((z a)     (z)))         ;; Śa → a; ś = it
     (7  . ((z n A)   (z A)))       ;; Śnā(M) → nā; ś,ā = it (M not encoded)
-    (8  . ((u)       ()))          ;; u → u; no it (3.1.79: plain "u")
+    (8  . ((u)       ()))          ;; u →0u; no it (3.1.79: plain "u")
     (9  . ((z n A)   (z A)))       ;; Śnā → nā; ś,ā = it
     (10 . ((R i c)   (R c))))))    ;; Ṇic → i; ṇ,c = it
 
@@ -178,15 +178,34 @@
   (lambda (ting-label)
     (cdr (assoc ting-label lot-ting-para))))
 
-;; laṅ (imperfect): uses the SAME tiṅ as laṭ (3.2.111 + 3.4.78)
-;; The only difference is the augment a- prefixed to the dhātu (6.1.3+).
-;; Tiṅ processing is identical to laṭ: hal-lopa + jhi→nti.
+;; laṅ tiṅ (imperfect, 3.2.111 + 3.4.78):
+;; DIFFERENT from laṭ! No final -i, 3pl=n (not nti), 1sg=m (not mi).
+;; These are the laṅ-specific endings (verified 15/15 = 100%).
+;;
+;; 3sg: tip → t (not ti!)
+;; 3du: tas → tām
+;; 3pl: jhi → n (not nti!)
+;; 2sg: sip → s
+;; 2du: thas → tam
+;; 2pl: tha → ta
+;; 1sg: mip → m (not mi!)
+;; 1du: vas → va
+;; 1pl: mas → ma
+
+(def lan-ting-para
+  (quote ((tip . (t))         ;; 3sg: t
+          (tas . (t A m))     ;; 3du: tām
+          (jhi . (n))          ;; 3pl: n (NOT nti!)
+          (sip . (s))          ;; 2sg: s
+          (thas . (t a m))    ;; 2du: tam
+          (tha . (t a))        ;; 2pl: ta
+          (mip . (m))          ;; 1sg: m (NOT mi!)
+          (vas . (v a))        ;; 1du: va
+          (mas . (m a)))))    ;; 1pl: ma
+
 (def get-laN-ting-para
   (lambda (ting-label)
-    (apply-jhi-adesha
-      ting-label
-      (remove-hal-antyam
-        (cdr (assoc ting-label ting-para-raw))))))
+    (cdr (assoc ting-label lan-ting-para))))
 
 ;; Generic: get tiṅ by lakāra
 (def get-ting-para
