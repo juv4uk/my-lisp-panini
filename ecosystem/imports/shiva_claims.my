@@ -1,26 +1,26 @@
 (imports
- (source "juv4uk/shiva-sutras")
- (revision "04bde4d")
- (claims
- ;; Canon and formal model
- (claim SS-CANON-001 (revision "04bde4d") (status resolved))
- (claim SS-PRATYAHARA-001 (revision "04bde4d") (status supported))
- (claim SS-ORDER-001 (revision "04bde4d") (status proved))
- (claim SS-MARKERS-001 (revision "04bde4d") (status proved-in-model))
- (claim SS-MARKERS-002 (revision "04bde4d") (status proved-in-model))
- (claim SS-MARKERS-003 (revision "04bde4d") (status proved-in-model))
- ;; Corpus
- (claim SS-CORPUS-001 (revision "04bde4d") (status resolved))
- ;; Epistemic
- (claim SS-EPISTEMIC-001 (revision "04bde4d") (status proved))
- (claim SS-EPISTEMIC-002 (revision "04bde4d") (status measured))
- ;; L-001 blind reconstruction (outcome A)
- (claim L-001-001 (revision "04bde4d") (status measured))
- (claim L-001-002 (revision "04bde4d") (status supported))
- (claim L-001-003 (revision "04bde4d") (status supported))
- (claim L-001-004 (revision "04bde4d") (status supported))
- (claim L-001-005 (revision "04bde4d") (status supported))
- )
+  (source "juv4uk/shiva-sutras")
+  (revision "df372d9")
+  (claims
+    ;; Canon and formal model
+    (claim SS-CANON-001 (revision "df372d9") (status resolved))
+    (claim SS-PRATYAHARA-001 (revision "df372d9") (status supported))
+    (claim SS-ORDER-001 (revision "df372d9") (status proved))
+    (claim SS-MARKERS-001 (revision "df372d9") (status proved-in-model))
+    (claim SS-MARKERS-002 (revision "df372d9") (status proved-in-model))
+    (claim SS-MARKERS-003 (revision "df372d9") (status proved-in-model))
+    ;; Corpus
+    (claim SS-CORPUS-001 (revision "df372d9") (status resolved))
+    ;; Epistemic
+    (claim SS-EPISTEMIC-001 (revision "df372d9") (status proved))
+    (claim SS-EPISTEMIC-002 (revision "df372d9") (status measured))
+    ;; L-001 blind reconstruction (outcome A)
+    (claim L-001-001 (revision "df372d9") (status measured))
+    (claim L-001-002 (revision "df372d9") (status supported))
+    (claim L-001-003 (revision "df372d9") (status supported))
+    (claim L-001-004 (revision "df372d9") (status supported))
+    (claim L-001-005 (revision "df372d9") (status supported))
+  )
 )
 
 ;; Revision history:
@@ -30,4 +30,5 @@
 ;; 3de5c6f (2026-09-07): journal 0022 (loṭ imperative + savarṇa dīrgha)
 ;; 4e73ae1 (2026-09-07): project-name normalization to my-lisp (trademark respect)
 ;; 04bde4d (2026-09-07): journal 0023 (laṅ imperfect + augment a-)
-;; Machine: 3 lakāras (laṭ + loṭ + laṅ), 7 classes, 60/60 on laṭ+loṭ
+;; df372d9 (2026-09-07): journals 0024-0025 (liṅ optative + ātmanepada middle voice)
+;; Machine: 4 lakāras (laṭ + loṭ + laṅ + liṅ), 7 classes, 2 voices, 116/116=100%
