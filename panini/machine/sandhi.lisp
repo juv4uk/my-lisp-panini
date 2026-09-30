@@ -9,9 +9,9 @@
 ;; Upstream: SS-PRATYAHARA-001, L-001-001
 ;;
 ;; Implemented rules:
-;;   6.1.77  iko yaN aci         — IK vowels → YAN semivowels before vowels
+;;   6.1.77  iko yaṇ aci         — IK vowels → YAN semivowels before vowels
 ;;   8.3.23  mo'nusvāraḥ         — final m → anusvāra (M) before consonants
-;;   6.1.88  vṛddhir eco         — (delegated to apply-eco-sandhi in phonology.my)
+;;   6.1.88  vṛddhireci         — (delegated to apply-eco-sandhi in phonology.my)
 ;;   8.4.55  khari savarṇe       — stop devoicing before voiceless consonants
 ;;   8.3.59  ādeśapratyayāḥ      — word-initial vowel changes (placeholder)
 
@@ -28,7 +28,7 @@
       (t (list-nth (- n 1) (cdr lst))))))
 
 ;; ==========================================
-;; 6.1.77: iko yaN aci
+;; 6.1.77: iko yaṇ aci
 ;; "Of IK [i u f x], [the replacement is] YAN [y v r l], before AC [vowels]"
 ;;
 ;; When a word ends in an IK vowel and the next word starts with
