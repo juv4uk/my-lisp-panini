@@ -112,9 +112,9 @@
 ;;   Requires: proper jhi handling + 8.4.62.
 ;;
 ;; GAP 2: gam (class 1) — produces "gamati" instead of "gacchati"
-;;   Missing: 8.2.30 is coH kuH (c→k) in the registry; the m→cch claim is wrong, see 7.3.77 below
-;;   Actually: 7.3.77 (izugamiyamAM CaH) — gam gets guṇa/vṛddhi before vowel,
-;;   but the real rule is: gam → gacch (special stem formation)
+;;   Missing: 7.3.77 (izugamiyamAM CaH): before a sit affix, gam/is/yam get the substitute ccha (gam → gaccha).
+;;   (An earlier note here cited 8.2.30 and claimed gam gets guṇa/vṛddhi; 8.2.30 is coH kuH (c→k),
+;;   and Kāśikā on 7.3.77 gives ccha-substitution: icchati, gacchati, yacchati — not guṇa/vṛddhi.)
 ;;   This is an irregular stem change, not a regular sandhi.
 ;;
 ;; GAP 3: labh parasmaipada — produces "labhati" instead of "labhate"

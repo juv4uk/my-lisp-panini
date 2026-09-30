@@ -652,7 +652,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
 ;; lṛṭ (future simple) derivations
 ;; 3.1.33: sya replaces vikaraṇa
 ;; 7.2.35: iṭ before sya (unless oral stop final)
-;; 8.3.59 (ādeśapratyayayoḥ): s→ṣ after i/u/ṛ/r/k
+;; 8.3.57 (iṇkoḥ) context + 8.3.59 (ādeśapratyayayoḥ): s→ṣ after i/u/ṛ/r/k
 ;; ==========================================
 
 ;; iṭ insertion: check if stem ends in oral stop
@@ -678,7 +678,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
        (append (butlast stem) (quote (t))))
       (t stem))))
 
-;; s → ṣ after i/u/f/r/k (8.3.59 ādeśapratyayayoḥ)
+;; s → ṣ after i/u/f/r/k (8.3.57 iṇkoḥ context + 8.3.59 ādeśapratyayayoḥ)
 (def s-to-S-after-ruki
   (lambda (chars)
     (cond
