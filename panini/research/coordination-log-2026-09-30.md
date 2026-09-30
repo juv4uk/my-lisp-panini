@@ -192,6 +192,13 @@ padānta (6.1.109 не блокує ay/av); `savarṇa-pair?` — жорстка
 - **[COMPUTATIONAL INTERPRETATION]:** не додавав.
 - **[MY-LISP HYPOTHESIS]:** не додавав; питання про представлення маркера-вершини лишається за координатором у shiva-sutras.
 
+### Нові кодеки master shiva-sutras і сліпа перевірка гіпотез qwen3:4b (2026-10-01)
+
+- **Мердж у shiva-sutras (за даними координатора, мною не перевірено як дія):** PR #54 natva, #55 vowel variants, #56 work record, #57 assumptions, #58 sutra graph; `origin/master` = `b37205f` на момент мого fetch, пізніше `9552865`. Гілка `work/apavada-curated-layer-sonnet`: (запуск) існування гілки перевірялося `git branch -r`; вміст не читав.
+- **(читання + запуск) Кодеки `akshara7.py`, `graph7.py`, `graph14.py`, `trishula14.py` (prototype/) і `prototype/varna7-prana14/`:** `SUTRAS` в `akshara7.py` після відображення IAST→SLP1 ТОЧНО збігається з `siva_sutras` у `panini/tests/pratyahara-exhaustive-v0.1.yaml` (14 сутр, 14 маркерів; запуск python3 показав `True`); 42 відмінних звуки на шляху, `SOUND_ORDER` = 42 того ж складу; повторне `h` лишається однією вершиною (`graph7`: «repeated sounds remain one vertex»). Заяв, що суперечили б SS-CANON-001, SS-PRATYAHARA-001 чи SS-MARKERS-001 (M_min=14), я не знайшов.
+- **Зауваження (не протиріччя):** `varna7.py` у docstring/README каже, що регіон SAMJNA містить «it-markers», але реальний список `SAMJNA_NAMES` (32 імені) містить лише ASCII-знаки (space, newline, …, at), it-маркерів немає; тож VARṆA-7 не може представити 14 маркерів. `varna7` визнає, що `savarna(e, ai)=True`, а `Kāśikā їх savarṇa не називає` (згідно з README); я цього за Kāśikā 1.1.9 не перевіряв.
+- **(запуск + читання) Сліпа перевірка 20 із 149 гіпотез `proposals.tsv` (qwen3:4b; `in_graph=False`), seed=2026:** правильно 3, хибно 14, не ясно 3. Критерій: Kāśikā на src прямо каже, що src є апавадою саме dst (тобто dst вводить той афікс/правило). Правильні: 3.2.118→3.2.115 (liṭo 'pavādaḥ), 4.3.19→4.3.18 (ṭhako 'pavādaḥ), 3.4.103→3.4.102 (sīyuṭo 'pavādaḥ). Закономірність: модель пропонує сусідню сутру (N−1); вона правильна лише там, де сусідка випадково вводить названий афікс (3 з 20). Решта хибних: Kāśikā називає афікс (aṇ, iñ, ghañ, śap, ac тощо), а dst його не вводить. Не перевірено: решта 129 гіпотез; шар SCHOLARLY.
+
 ## Відкриті рішення (за sdvova)
 
 - Що брати цій сесії: #15 (виправити мітки) чи пріоритет №7 (одна доказова деривація).
