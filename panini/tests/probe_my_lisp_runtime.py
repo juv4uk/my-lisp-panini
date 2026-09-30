@@ -15,7 +15,7 @@ from pathlib import Path
 
 SHA256_ABC = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
 PANINI = Path(__file__).resolve().parents[1]
-FIXTURE = PANINI / "tests" / "runtime-capability-probe.my"
+FIXTURE = PANINI / "tests" / "runtime-capability-probe.lisp"
 
 def revision(source_repo: Path | None) -> str:
     if source_repo is None:

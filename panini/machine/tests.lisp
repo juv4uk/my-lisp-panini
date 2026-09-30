@@ -1,6 +1,6 @@
 ;; Panini machine compatibility tests; dependencies are loaded by the entrypoint.
 
-(load "panini/machine/phonology.my")
+(load "panini/machine/phonology.lisp")
 
 (def assert-equal
   (lambda (expected actual label)

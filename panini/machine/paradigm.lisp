@@ -9,7 +9,7 @@
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: derivation.my (full pipeline)
 
-(load "panini/machine/derivation.my")
+(load "panini/machine/derivation.lisp")
 
 ;; ==========================================
 ;; Parasmaipada paradigm (9 forms)

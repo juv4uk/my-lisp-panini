@@ -6,7 +6,7 @@
 ;; 3. Final state matches derive-verb output
 ;; 4. Each step is marked "derived" (falsifiable)
 
-(load "panini/machine/trace.my")
+(load "panini/machine/trace.lisp")
 
 (def test-trace-pacati
   (lambda ()

@@ -15,7 +15,7 @@
 ;;   8.4.55  khari savarṇe       — stop devoicing before voiceless consonants
 ;;   8.3.59  ādeśapratyayāḥ      — word-initial vowel changes (placeholder)
 
-(load "panini/machine/phonology.my")
+(load "panini/machine/phonology.lisp")
 
 ;; ==========================================
 ;; Helper: nth element of a list (0-indexed)

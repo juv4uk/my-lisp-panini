@@ -1,6 +1,6 @@
 ;; Tests for sandhi engine — all rules verified against Aṣṭādhyāyī examples.
 
-(load "panini/machine/sandhi.my")
+(load "panini/machine/sandhi.lisp")
 
 (def test-sandhi-iko-yan-aci
   (lambda ()

@@ -2,7 +2,7 @@
 ;;
 ;; All derivations verified against Python reference implementation.
 
-(load "panini/machine/derivation.my")
+(load "panini/machine/derivation.lisp")
 
 (def test-ting-table
   (lambda ()

@@ -26,7 +26,7 @@
 ;;   z=ś, S=ṣ, f=ṛ, R=ṇ (consonant), F=ṝ, A=ā, I=ī, U=ū
 ;;   Ṇic = (R i c): R=ṇ is ṇiṭ by 1.3.5, c=hal antyam by 1.3.3
 
-(load "panini/machine/ting.my")
+(load "panini/machine/ting.lisp")
 
 ;; ==========================================
 ;; 7.3.101: vṛddhi — vikaraṇa final a→ā before 1st person tiṅ
