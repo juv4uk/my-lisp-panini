@@ -29,9 +29,11 @@ Dieses Dokument begründet die formale Epistemologie des **it**- (*anubandha*)-S
 
 3. **Heterogeneity of Effects:**
    - There are dozens of specific `it` sounds, each governing distinct grammatical effects.
-   - **Ṇit** (*ṇ*-marker): Blocks *guṇa* and *vṛddhi* strengthening; triggers *samprasāraṇa* (6.1.15).
-   - **Ñit** (*ñ*-marker): Causes *vṛddhi* (7.2.115); when on a *dhātu*, allows both active and middle endings (*ubhayapada*, 1.3.72).
-   - **pit** (*p*-marker): Indicates grave (*anudātta*) accent (3.1.4); explicitly allows *guṇa*/*vṛddhi* for *sārvadhātuka* affixes.
+   - **Ñit / Ṇit** (*ñ*-, *ṇ*-marker on a *pratyaya*): an *ajanta aṅga* takes *vṛddhi* before it (7.2.115 *aco ñṇiti*; Kāśikā: «ñiti ṇiti ca pratyaye vṛddhir bhavati»).
+   - **Kit / Ṅit** (*k*-, *ṅ*-marker; also *gīt*): *guṇa* and *vṛddhi* that would otherwise apply are blocked (1.1.5 *kṅiti ca*); *samprasāraṇa* for *vac/svap/yaj…* applies before *kit* (6.1.15 *vacisvapiyajādīnāṃ kiti*).
+   - **Ñit** (*ñ*-marker on a *dhātu*): such a *dhātu* takes *ātmanepada* when the fruit of the action goes to the agent (1.3.72 *svaritañitaḥ kartrabhiprāye kriyāphale*; Kāśikā: «ātmanepadaṃ bhavati, kartāraṃ cet kriyāphalam abhipraiti»).
+   - **pit** (*p*-marker): the *pratyaya* is *anudātta* (3.1.4 *anudāttau suppitau*). A *sārvadhātuka* that is not *pit* behaves as *ṅit* (1.2.4 *sārvadhātukam apit*), so *guṇa* is blocked there; a *pit* one is not so treated, which is why *guṇa* (7.3.84) applies (*karoti*). No sūtra states this as an explicit permission.
+   - Source check: see `panini/research/it-md-claims-audit-2026-09-30.md` (registry + Kāśikā); the [SCHOLARLY] layer below was not re-verified.
 
 ## [SCHOLARLY INTERPRETATION]
 
