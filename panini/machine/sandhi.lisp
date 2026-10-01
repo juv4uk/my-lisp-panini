@@ -9,13 +9,13 @@
 ;; Upstream: SS-PRATYAHARA-001, L-001-001
 ;;
 ;; Implemented rules:
-;;   6.1.77  iko yaN aci         — IK vowels → YAN semivowels before vowels
+;;   6.1.77  iko yaṇ aci         — IK vowels → YAN semivowels before vowels
 ;;   8.3.23  mo'nusvāraḥ         — final m → anusvāra (M) before consonants
-;;   6.1.88  vṛddhir eco         — (delegated to apply-eco-sandhi in phonology.my)
-;;   8.4.55  khari savarṇe       — stop devoicing before voiceless consonants
+;;   6.1.88  vṛddhireci          — (delegated to apply-eco-sandhi in phonology.my)
+;;   8.4.55  khari ca               — stop devoicing before voiceless consonants
 ;;   8.3.59  ādeśapratyayāḥ      — word-initial vowel changes (placeholder)
 
-(load "panini/machine/phonology.my")
+(load "panini/machine/phonology.lisp")
 
 ;; ==========================================
 ;; Helper: nth element of a list (0-indexed)
@@ -28,7 +28,7 @@
       (t (list-nth (- n 1) (cdr lst))))))
 
 ;; ==========================================
-;; 6.1.77: iko yaN aci
+;; 6.1.77: iko yaṇ aci
 ;; "Of IK [i u f x], [the replacement is] YAN [y v r l], before AC [vowels]"
 ;;
 ;; When a word ends in an IK vowel and the next word starts with
@@ -79,7 +79,7 @@
       (t final-sound))))
 
 ;; ==========================================
-;; 8.4.55: khari savarṇe (simplified)
+;; 8.4.55: khari ca (simplified)
 ;; "[Before] KHAR [voiceless], [a stop] becomes savarṇa [same-class voiceless]"
 ;;
 ;; When a voiced stop (JAS or JHASH) is followed by a voiceless
@@ -111,7 +111,7 @@
       (t final-sound))))
 
 ;; ==========================================
-;; 8.4.58: jhalāṃ jhaŚi (simplified)
+;; 8.4.53: jhalāṃ jaś jhaśi (simplified)
 ;; "JhaL [consonants] [before] JhaS [voiced stops] → [become voiced]"
 ;;
 ;; When a voiceless stop (KHAR member that is also in JAL) is followed
@@ -153,7 +153,7 @@
       ((and (or (in-jas? final-sound) (in-jhash? final-sound))
             (in-khar? next-sound))
        (stop-devoice final-sound))
-      ;; 8.4.58: voicing before voiced stops
+      ;; 8.4.53: voicing before voiced stops
       ((and (in-khar? final-sound)
             (member? final-sound (quote (k p t c w K P T C W)))
             (or (in-jas? next-sound) (in-jhash? next-sound)))

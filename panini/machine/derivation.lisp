@@ -15,7 +15,7 @@
 ;;      Class 8 (u):    same as class 5 (guṇa/yaṇ split)
 ;;   5. eco sandhi: e/o → ay/av before vowel (6.1.78)
 ;;   6. savarṇa dīrgha: two homogeneous vowels → long (6.1.101)
-;;   7. 8.4.55: jhalāṃ jhaśi — voiced → voiceless before voiceless
+;;   7. 8.4.55: khari ca — voiced → voiceless before voiceless
 ;;   8. concatenate
 ;;
 ;; Epistemic layer: ENGINEERING
@@ -26,10 +26,10 @@
 ;;   z=ś, S=ṣ, f=ṛ, R=ṇ (consonant), F=ṝ, A=ā, I=ī, U=ū
 ;;   Ṇic = (R i c): R=ṇ is ṇiṭ by 1.3.5, c=hal antyam by 1.3.3
 
-(load "panini/machine/ting.my")
+(load "panini/machine/ting.lisp")
 
 ;; ==========================================
-;; 7.3.101: vṛddhi — vikaraṇa final a→ā before 1st person tiṅ
+;; 7.3.101: ato dīrgho yañi (dīrgha, not vṛddhi) — vikaraṇa final a→ā before 1st person tiṅ
 ;; ==========================================
 
 (def first-person-ting?
@@ -161,7 +161,7 @@
        (append (apply-guṇa-last-vowel dhatu) vikarana-clean)))))
 
 ;; ==========================================
-;; Eco sandhi expansion (6.1.78: iko yaṇ aci)
+;; Eco sandhi expansion (6.1.78: eco'yavāyāvaḥ)
 ;; e/o + vowel → ay/av
 ;; ==========================================
 
@@ -187,7 +187,7 @@
           (t (car (cdr sounds)))))))))
 
 ;; ==========================================
-;; 6.1.101: akas savarṇe dīrghaḥ
+;; 6.1.101: akaḥ savarṇe dīrghaḥ
 ;; Two homogeneous adjacent vowels merge into the long form
 ;; a+a→ā, a+ā→ā, ā+a→ā, ā+ā→ā, i+i→ī, u+u→ū, etc.
 ;; ==========================================
@@ -234,7 +234,7 @@
         (savarṇa-pair? (car sounds) (car (cdr sounds))))*))
 
 ;; ==========================================
-;; 8.4.55: jjal-jhashi — voiced → voiceless before voiceless
+;; 8.4.55: khari ca — voiced → voiceless before voiceless
 ;;
 ;; Voiced consonant (jhal) before voiceless (khar) → devoiced
 ;; ==========================================
@@ -348,7 +348,7 @@
 ;; laṅ (imperfect)→ augment a- prefix
 ;;
 ;; 3.2.111: anadyatanaṃ laṅa (imperfect = not today)
-;; 6.1.3+: chordasŋ... aṅhād...→ augment a- prefixed to dhātuu
+;; 6.4.71 (luṅlaṅlṛṅkṣv aḍudāttaḥ): augment a- prefixed to dhātuu
 ;;
 ;; The augment a- is NOT part of the aṅga (no guṇa on it).
 ;; It is simply prepended to the final combined list.
@@ -652,7 +652,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
 ;; lṛṭ (future simple) derivations
 ;; 3.1.33: sya replaces vikaraṇa
 ;; 7.2.35: iṭ before sya (unless oral stop final)
-;; 8.4.63: s→ṣ after i/u/ṛ/r/k
+;; 8.3.57 (iṇkoḥ) context + 8.3.59 (ādeśapratyayayoḥ): s→ṣ after i/u/ṛ/r/k
 ;; ==========================================
 
 ;; iṭ insertion: check if stem ends in oral stop
@@ -678,7 +678,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
        (append (butlast stem) (quote (t))))
       (t stem))))
 
-;; s → ṣ after i/u/f/r/k (8.4.63)
+;; s → ṣ after i/u/f/r/k (8.3.57 iṇkoḥ context + 8.3.59 ādeśapratyayayoḥ)
 (def s-to-S-after-ruki
   (lambda (chars)
     (cond
@@ -732,7 +732,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
            (combined (append stem ting))
            ;; a+a → a coalescence
            (coalesced (coalesce-aa combined))
-           ;; a+e → e absorption (6.1.87) for 1sg
+           ;; a+e → e absorption (6.1.97 ato guṇe; Kāśikā: pace, yaje) for 1sg
            (absorbed (absorb-ae coalesced)))
       absorbed)))
 

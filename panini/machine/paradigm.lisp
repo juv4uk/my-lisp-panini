@@ -9,7 +9,7 @@
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: derivation.my (full pipeline)
 
-(load "panini/machine/derivation.my")
+(load "panini/machine/derivation.lisp")
 
 ;; ==========================================
 ;; Parasmaipada paradigm (9 forms)
@@ -105,16 +105,16 @@
 ;; These are NOT bugs — they are missing rules, documented honestly.
 ;;
 ;; GAP 1: jhi (3rd pl) — produces "pacajhi" instead of "pacanti"
-;;   Missing: 8.4.62 (jhaSAm jaS tribhiH) — JhaS consonants replaced
+;;   Missing: 8.4.62 is Jayo ho'nyatarasyAm in the registry, so this label is WRONG (intended rule unverified; jh→ant is probably 7.1.3) — JhaS consonants replaced
 ;;   by JaS in 3rd person plural. Also, jhi has complex it-lopa:
 ;;   the 'i' in jhi is NOT a hal (not final consonant), so it-lopa
 ;;   gives 'jh' which should become 'j' → then 'anti' not 'ajhi'.
 ;;   Requires: proper jhi handling + 8.4.62.
 ;;
 ;; GAP 2: gam (class 1) — produces "gamati" instead of "gacchati"
-;;   Missing: 8.2.30 (m → cch before vowel in specific contexts)
-;;   Actually: 7.3.77 (iko'ci) — gam gets guṇa/vṛddhi before vowel,
-;;   but the real rule is: gam → gacch (special stem formation)
+;;   Missing: 7.3.77 (izugamiyamAM CaH): before a sit affix, gam/is/yam get the substitute ccha (gam → gaccha).
+;;   (An earlier note here cited 8.2.30 and claimed gam gets guṇa/vṛddhi; 8.2.30 is coH kuH (c→k),
+;;   and Kāśikā on 7.3.77 gives ccha-substitution: icchati, gacchati, yacchati — not guṇa/vṛddhi.)
 ;;   This is an irregular stem change, not a regular sandhi.
 ;;
 ;; GAP 3: labh parasmaipada — produces "labhati" instead of "labhate"

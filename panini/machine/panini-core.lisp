@@ -33,7 +33,7 @@
 ;; It is NOT an authoritative source. Do NOT add entries here;
 ;; add them to registry/dhatu/*.yaml instead.
 ;; See: PANINI-MACHINE-DHATU-REGISTRY-SINGLE-SOURCE
-(load "panini/machine/yaml-parser.my")
+(load "panini/machine/yaml-parser.lisp")
 (def *test-dhatu-registry* (load-dhatu-registry "panini/registry/dhatu"))
 (def dhatu-registry *test-dhatu-registry*)
 

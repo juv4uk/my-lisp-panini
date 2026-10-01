@@ -15,7 +15,7 @@
 ;; ==========================================
 ;; Load dependencies
 ;; ==========================================
-(load "panini/machine/siva-sutras.my")
+(load "panini/machine/siva-sutras.lisp")
 
 ;; ==========================================
 ;; Class membership predicates
@@ -115,7 +115,7 @@
     (member? sound (quote (f F)))))
 
 ;; Guna-eligible: i I u U f F x X (short and long of i/u/f/x)
-;; Guna replaces these with e/o/ar/al respectively (1.1.2: aCo guṇaḥ)
+;; Guna replaces these with e/o/ar/al respectively (1.1.2: adeṅ guṇaḥ)
 (def guRa-eligible?
   (lambda (sound)
     (cond
@@ -149,7 +149,7 @@
 ;; Transformation helpers (canon-derived where possible)
 ;; ==========================================
 
-;; Guṇa grade (1.1.2: aCo guṇaḥ):
+;; Guṇa grade (1.1.2: adeṅ guṇaḥ):
 ;;   a → a, A → a, i/I → e, u/U → o, f/F → ar, x/X → al
 ;; This is a transformation, not a class membership — the mapping
 ;; itself is not expressible as a pratyāhāra, but the eligibility
