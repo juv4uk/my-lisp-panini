@@ -38,7 +38,7 @@
 
 (def test-sandhi-jhalam-jhashi
   (lambda ()
-    ;; 8.4.58: voiceless stops → voiced before JAS/JHASH
+    ;; 8.4.53: voiceless stops → voiced before JAS/JHASH
     (assert-equal (quote g) (sandhi-jhalam-jhashi (quote k) (quote d)) "jhal: k+d → g")
     (assert-equal (quote b) (sandhi-jhalam-jhashi (quote p) (quote g)) "jhal: p+g → b")
     ;; Not triggered: next not voiced stop
@@ -52,7 +52,7 @@
     (assert-equal (quote M) (apply-sandhi (quote m) (quote k)) "dispatch: m+k → M (8.3.23)")
     (assert-equal (quote y) (apply-sandhi (quote i) (quote a)) "dispatch: i+a → y (6.1.77)")
     (assert-equal (quote k) (apply-sandhi (quote g) (quote t)) "dispatch: g+t → k (8.4.55)")
-    (assert-equal (quote g) (apply-sandhi (quote k) (quote d)) "dispatch: k+d → g (8.4.58)")
+    (assert-equal (quote g) (apply-sandhi (quote k) (quote d)) "dispatch: k+d → g (8.4.53)")
     ;; No sandhi
     (assert-equal (quote a) (apply-sandhi (quote a) (quote k)) "dispatch: a+k → a (no sandhi)")))
 
