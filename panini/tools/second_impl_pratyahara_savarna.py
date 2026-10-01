@@ -32,6 +32,20 @@ for l, mk, _ in PATH:
         SOUNDS.append(l)
 assert len(SOUNDS) == 42
 
+
+# SLP1 -> IAST (lowercase, with diacritics) for the 42 sounds. upc14v2 changed its keys from SLP1 to
+# IAST (stage 2). The oracle stays SLP1 (my-lisp-panini contract, AGENTS section 2); this adapter is
+# applied only at the boundary, and compare() auto-detects which spelling the graph uses.
+SLP1_TO_IAST = {
+    'a': 'a', 'i': 'i', 'u': 'u', 'f': 'ṛ', 'x': 'ḷ', 'e': 'e', 'o': 'o', 'E': 'ai', 'O': 'au',
+    'h': 'h', 'y': 'y', 'v': 'v', 'r': 'r', 'l': 'l', 'Y': 'ñ', 'm': 'm', 'N': 'ṅ', 'R': 'ṇ', 'n': 'n',
+    'j': 'j', 'J': 'jh', 'b': 'b', 'B': 'bh', 'g': 'g', 'G': 'gh', 'k': 'k', 'K': 'kh', 'c': 'c', 'C': 'ch',
+    'w': 'ṭ', 'W': 'ṭh', 'q': 'ḍ', 'Q': 'ḍh', 't': 't', 'T': 'th', 'd': 'd', 'D': 'dh', 'p': 'p', 'P': 'ph',
+    'S': 'ś', 'z': 'ṣ', 's': 's',
+}
+IAST_TO_SLP1 = {v: k for k, v in SLP1_TO_IAST.items()}
+assert len(SLP1_TO_IAST) == 42 and len(IAST_TO_SLP1) == 42
+
 def start_positions(label):
     return [i for i, (l, mk, _) in enumerate(PATH) if l == label and not mk]
 
@@ -95,7 +109,12 @@ def compare(graph_dir):
     sys.path.insert(0, graph_dir)
     import upc14v2 as g
     S = g.SOUNDS
-    lab = g.LABELS_BY_CODE
+    iast = 'ṇ' in S            # stage-2 graph keys are IAST; before that they were SLP1
+    to_g = (lambda x: SLP1_TO_IAST[x]) if iast else (lambda x: x)
+    from_g = (lambda x: IAST_TO_SLP1[x]) if iast else (lambda x: x)
+    lab = {c: from_g(l) for c, l in g.LABELS_BY_CODE.items()}
+    S = {from_g(l): c for l, c in S.items()}      # keyed by the oracle's SLP1 labels
+    print('graph spelling:', 'IAST' if iast else 'SLP1')
     res = {'pratyahara_all': [], 'pratyahara_named': [], 'savarna': []}
     # --- every (start, start_occ, marker, nth) combination that exists in the path
     markers = sorted({l for l, mk, _ in PATH if mk})
@@ -105,7 +124,7 @@ def compare(graph_dir):
                 for nth in (1, 2):
                     exp = pratyahara(start, so, mk, nth)
                     try:
-                        got = [lab[c] for c in g.pratyahara(S[start], mk, nth, start_occurrence=so)]
+                        got = [lab[c] for c in g.pratyahara(S[start], to_g(mk), nth, start_occurrence=so)]
                     except Exception as e:
                         got = 'ERR:' + type(e).__name__
                     if exp is None and (got == 'ERR:GraphError' or (isinstance(got, str) and got.startswith('ERR'))):
@@ -114,7 +133,7 @@ def compare(graph_dir):
     for name, (st, mk, nth, so) in NAMED.items():
         exp = pratyahara(st, so, mk, nth)
         try:
-            got = [lab[c] for c in g.pratyahara(S[st], mk, nth, start_occurrence=so)]
+            got = [lab[c] for c in g.pratyahara(S[st], to_g(mk), nth, start_occurrence=so)]
         except Exception as e:
             got = 'ERR:' + type(e).__name__
         res['pratyahara_named'].append((name, exp, got, exp == got))
