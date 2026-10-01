@@ -105,6 +105,60 @@ def savarna_oracle(a, b, vartika=False):
         return None   # Kasika 1.1.9 gives each sandhyakshara its own 12 forms; e~ai / o~au is not stated
     return False
 
+
+# ---- savarna over length/nasal variants (Kasika 1.1.9, kAshikAvRRitti.txt 387-390) ----
+# a i u f: 18 varieties each = 3 lengths (short, long, pluta) x 3 accents x 2 nasality -> ONE class each.
+# x (l-vocalic): 12 varieties, NO long (txt 389) -> lengths {short, pluta}.
+# e o E O: 12 varieties each, NO short -> lengths {long, pluta}. Accents are not in the code (ignored).
+VARIANT_LENGTHS = {'a': (0, 1, 2), 'i': (0, 1, 2), 'u': (0, 1, 2), 'f': (0, 1, 2), 'x': (0, 2),
+                   'e': (1, 2), 'o': (1, 2), 'E': (1, 2), 'O': (1, 2)}
+
+def variants():
+    """[(base, length, nasal)] for every vowel variant the source names (accents ignored)."""
+    return [(b, ln, nz) for b, lns in VARIANT_LENGTHS.items() for ln in lns for nz in (0, 1)]
+
+def savarna_variant(x, y, vartika=False):
+    """Class = base sound (length and nasality never separate savarna; txt 387-390); f~x only by the vartika;
+    e~E and o~O undecided (None). Different bases: False."""
+    (bx, _, _), (by, _, _) = x, y
+    if bx == by:
+        return True
+    if {bx, by} == {'f', 'x'}:
+        return True if vartika else False
+    if {bx, by} in ({'e', 'E'}, {'o', 'O'}):
+        return None
+    return False
+
+def compare_variants(graph_dir):
+    sys.path.insert(0, graph_dir)
+    import upc14v2 as g
+    iast = 'ṇ' in g.SOUNDS
+    from_g = (lambda x: IAST_TO_SLP1[x]) if iast else (lambda x: x)
+    S = {from_g(l): c for l, c in g.SOUNDS.items()}
+    def code(v):
+        b, ln, nz = v
+        w = g.unpack(S[b])
+        return g.Vertex(w.place, nz, w.aperture, ln, w.voice, w.asp).code
+    vs = variants()
+    out = {'n': len(vs), 'pairs': 0, 'diff': [], 'none': 0, 'status_missing': not hasattr(g, 'savarna_status')}
+    for x, y in itertools.combinations(vs, 2):
+        for vt in (False, True):
+            exp = savarna_variant(x, y, vt)
+            try:
+                got = bool(g.savarna(code(x), code(y), vartika=vt))
+            except Exception as e:
+                got = 'ERR:' + type(e).__name__
+            out['pairs'] += 1
+            if exp is None:
+                out['none'] += 1
+            elif exp != got:
+                out['diff'].append((x, y, vt, exp, got))
+            if hasattr(g, 'savarna_status'):
+                st = g.savarna_status(code(x), code(y), vartika=vt)
+                if st != exp:
+                    out['diff'].append((x, y, vt, exp, 'status=' + repr(st)))
+    return out
+
 def compare(graph_dir):
     sys.path.insert(0, graph_dir)
     import upc14v2 as g
@@ -151,6 +205,11 @@ def main():
             print(k, ''.join(pratyahara(*[v[0], v[3], v[1], v[2]]) or ['?']))
         return
     gd = sys.argv[sys.argv.index('--graph') + 1]
+    if '--variants' in sys.argv:
+        v = compare_variants(gd)
+        print('variants: %d sounds, %d pair-comparisons (x vartika on/off), undecided-by-source %d, DIFFERENT %d' % (v['n'], v['pairs'], v['none'], len(v['diff'])))
+        for d in v['diff'][:40]: print('  DIFF', d)
+        return
     r = compare(gd)
     pa = r['pratyahara_all']; pn = r['pratyahara_named']; sv = r['savarna']
     print('pratyahara all combos: %d, equal %d, DIFFERENT %d' % (len(pa), sum(x[6] for x in pa), sum(not x[6] for x in pa)))
