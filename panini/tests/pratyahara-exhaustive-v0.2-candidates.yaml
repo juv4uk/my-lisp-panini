@@ -1,0 +1,105 @@
+# CANDIDATES for a future pratyahara-exhaustive v0.2 (#18). NOT a fixture: v0.1 is unchanged.
+# Not authoritative; nothing here settles the open hR semantics (decision: sdvova).
+#
+# Provenance of `expected_stream`:
+#   (a) the 14 sutras in pratyahara-exhaustive-v0.1.yaml (siva_sutras block), and
+#   (b) occurrence rules in juv4uk/shiva-sutras ksetra/astadhyayi/occurrence-resolution.yaml
+#       (upstream file, read at worktree HEAD ffd8813 on 2026-09-30; status there: formalized_by_tradition / functional_design;
+#        imported as EXPERIMENTAL, not as a claim).
+# Expected values were computed by panini/tools/pratyahara_candidates.py from (a)+(b) only;
+# the UPC-14 v2 graph was used ONLY for the comparison below.
+#
+# Comparison target: shiva-sutras prototype/upc14v2.py, g.pratyahara(start, marker, nth), at ffd8813.
+# Caveat: both sides scan the same linear sutra path with an occurrence choice, so agreement is
+# consistency evidence, not independent verification of the tradition.
+
+fixture_id: pratyahara-exhaustive-v0.2-candidates
+fixture_status: candidates-not-adopted
+representation: SLP1
+depends_on: pratyahara-exhaustive-v0.1.yaml (siva_sutras block)
+
+cases:
+  - id: in-vowels-semivowels-2nd-N
+    notation_slp1: iR
+    start_sound: i
+    end_marker: R
+    end_marker_occurrence: 2
+    expected_stream: [i, u, f, x, e, o, E, O, h, y, v, r, l]
+    source: "occurrence-resolution: rule_iR = always the second R (sutra 6)"
+    graph_comparison: same
+  - id: aN-first
+    notation_slp1: aR
+    start_sound: a
+    end_marker: R
+    end_marker_occurrence: 1
+    expected_stream: [a, i, u]
+    source: "occurrence-resolution: rule_aR = up to the first R (sutra 1)"
+    graph_comparison: same
+  - id: aN-second
+    notation_slp1: aR
+    start_sound: a
+    end_marker: R
+    end_marker_occurrence: 2
+    expected_stream: [a, i, u, f, x, e, o, E, O, h, y, v, r, l]
+    source: "occurrence-resolution: the yaml states a second-R exception; its cited rule is UNVERIFIED (see notes)"
+    graph_comparison: same
+  - id: has-first-h
+    notation_slp1: haS
+    start_sound: h
+    start_sutra: 5
+    end_marker: S
+    expected_stream: [h, y, v, r, l, Y, m, N, R, n, J, B, G, Q, D, j, b, g, q, d]
+    source: "occurrence-resolution: usage_first_h lists a w, aS, haS, iR"
+    graph_comparison: same
+  - id: jhas
+    notation_slp1: JaS
+    start_sound: J
+    end_marker: S
+    expected_stream: [J, B, G, Q, D, j, b, g, q, d]
+    source: "no ambiguity: single J, first S marker after it"
+    graph_comparison: same
+  - id: as
+    notation_slp1: aS
+    start_sound: a
+    end_marker: S
+    expected_stream: [a, i, u, f, x, e, o, E, O, h, y, v, r, l, Y, m, N, R, n, J, B, G, Q, D, j, b, g, q, d]
+    source: "occurrence-resolution: usage_first_h lists aS"
+    graph_comparison: same
+  - id: sal-second-h
+    notation_slp1: Sal
+    start_sound: S
+    start_sutra: 13
+    end_marker: l
+    expected_stream: [S, z, s, h]
+    source: "occurrence-resolution: usage_second_h lists Sal, val, ral, Jal"
+    graph_comparison: same
+  - id: jhal-second-h
+    notation_slp1: Jal
+    start_sound: J
+    end_marker: l
+    expected_stream: [J, B, G, Q, D, j, b, g, q, d, K, P, C, W, T, c, w, t, k, p, S, z, s, h]
+    source: "occurrence-resolution: usage_second_h lists Jal"
+    graph_comparison: same
+  - id: val-second-h
+    notation_slp1: val
+    start_sound: v
+    end_marker: l
+    expected_stream: [v, r, l, Y, m, N, R, n, J, B, G, Q, D, j, b, g, q, d, K, P, C, W, T, c, w, t, k, p, S, z, s, h]
+    source: "occurrence-resolution: usage_second_h lists val"
+    graph_comparison: same
+  - id: ral-second-h
+    notation_slp1: ral
+    start_sound: r
+    end_marker: l
+    expected_stream: [r, l, Y, m, N, R, n, J, B, G, Q, D, j, b, g, q, d, K, P, C, W, T, c, w, t, k, p, S, z, s, h]
+    source: "occurrence-resolution: usage_second_h lists ral"
+    graph_comparison: same
+
+comparison_summary:
+  cases: 10
+  same_as_graph: 10
+  divergent: 0
+
+notes:
+  - "aN-second: occurrence-resolution.yaml says the second-R use of aN is an exception 'in rule 8.3.32 (aRudit...)'. In panini/registry/sutras.lisp 8.3.32 = Namo hrasvAdaci NamuRnityam (no aN pratyahara in its Kasika text, KASIKA-8.3.32.yaml); the quoted 'aRudit' is sutra 1.1.69. So the yaml's rule number looks wrong or refers to something else. Case kept because the second-R sequence itself is derived from the sutra path; the tradition-side citation is UNVERIFIED. Not verified further."
+  - "Nothing here touches later-h-is-not-initial-h-for-hR; that semantics is an open decision for sdvova."

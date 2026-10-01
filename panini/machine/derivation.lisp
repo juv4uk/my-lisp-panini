@@ -15,7 +15,7 @@
 ;;      Class 8 (u):    same as class 5 (guṇa/yaṇ split)
 ;;   5. eco sandhi: e/o → ay/av before vowel (6.1.78)
 ;;   6. savarṇa dīrgha: two homogeneous vowels → long (6.1.101)
-;;   7. 8.4.55: jhalāṃ jhaśi — voiced → voiceless before voiceless
+;;   7. 8.4.55: khari ca — voiced → voiceless before voiceless
 ;;   8. concatenate
 ;;
 ;; Epistemic layer: ENGINEERING
@@ -161,7 +161,7 @@
        (append (apply-guṇa-last-vowel dhatu) vikarana-clean)))))
 
 ;; ==========================================
-;; Eco sandhi expansion (6.1.78: iko yaṇ aci)
+;; Eco sandhi expansion (6.1.78: eco'yavāyāvaḥ)
 ;; e/o + vowel → ay/av
 ;; ==========================================
 
@@ -187,7 +187,7 @@
           (t (car (cdr sounds)))))))))
 
 ;; ==========================================
-;; 6.1.101: akas savarṇe dīrghaḥ
+;; 6.1.101: akaḥ savarṇe dīrghaḥ
 ;; Two homogeneous adjacent vowels merge into the long form
 ;; a+a→ā, a+ā→ā, ā+a→ā, ā+ā→ā, i+i→ī, u+u→ū, etc.
 ;; ==========================================
@@ -234,7 +234,7 @@
         (savarṇa-pair? (car sounds) (car (cdr sounds))))*))
 
 ;; ==========================================
-;; 8.4.55: jjal-jhashi — voiced → voiceless before voiceless
+;; 8.4.55: khari ca — voiced → voiceless before voiceless
 ;;
 ;; Voiced consonant (jhal) before voiceless (khar) → devoiced
 ;; ==========================================
