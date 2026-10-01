@@ -24,7 +24,7 @@ def main() -> int:
     args = parser.parse_args()
     failures: list[str] = []
     seen = 0
-    for fixture in sorted(NEGATIVE_DIR.glob("*.my")):
+    for fixture in sorted(NEGATIVE_DIR.glob("*.lisp")):
         seen += 1
         result = subprocess.run(
             [str(args.runtime), str(fixture)],

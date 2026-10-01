@@ -4,7 +4,7 @@
 ;; Depends on: phonology.my
 ;; Sources: Aṣṭādhyāyī 3.1.68-81, 3.4.77-85, Kāśikā on 3.1.73
 
-(load "panini/machine/phonology.my")
+(load "panini/machine/phonology.lisp")
 
 ;; ==========================================
 ;; Tiṅ endings — laṭ (present, 3.4.77-70)

@@ -11,7 +11,7 @@
 ;; Epistemic layer: ENGINEERING
 ;; Depends on: derivation.my, phonology.my, ting.my
 
-(load "panini/machine/derivation.my")
+(load "panini/machine/derivation.lisp")
 
 ;; ==========================================
 ;; Trace step constructor

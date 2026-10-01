@@ -15,7 +15,7 @@
 ;; ==========================================
 ;; Load dependencies
 ;; ==========================================
-(load "panini/machine/siva-sutras.my")
+(load "panini/machine/siva-sutras.lisp")
 
 ;; ==========================================
 ;; Class membership predicates

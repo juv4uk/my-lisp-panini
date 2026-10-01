@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 PANINI = Path(__file__).resolve().parents[1]
-ENTRYPOINT = "panini/tests/machine-acceptance.my"
+ENTRYPOINT = "panini/tests/machine-acceptance.lisp"
 
 
 def main() -> int:
