@@ -29,7 +29,7 @@
 (load "panini/machine/ting.my")
 
 ;; ==========================================
-;; 7.3.101: vṛddhi — vikaraṇa final a→ā before 1st person tiṅ
+;; 7.3.101: ato dīrgho yañi (dīrgha, not vṛddhi) — vikaraṇa final a→ā before 1st person tiṅ
 ;; ==========================================
 
 (def first-person-ting?
@@ -348,7 +348,7 @@
 ;; laṅ (imperfect)→ augment a- prefix
 ;;
 ;; 3.2.111: anadyatanaṃ laṅa (imperfect = not today)
-;; 6.1.3+: chordasŋ... aṅhād...→ augment a- prefixed to dhātuu
+;; 6.4.71 (luṅlaṅlṛṅkṣv aḍudāttaḥ): augment a- prefixed to dhātuu
 ;;
 ;; The augment a- is NOT part of the aṅga (no guṇa on it).
 ;; It is simply prepended to the final combined list.
@@ -652,7 +652,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
 ;; lṛṭ (future simple) derivations
 ;; 3.1.33: sya replaces vikaraṇa
 ;; 7.2.35: iṭ before sya (unless oral stop final)
-;; 8.4.63: s→ṣ after i/u/ṛ/r/k
+;; 8.3.57 (iṇkoḥ) context + 8.3.59 (ādeśapratyayayoḥ): s→ṣ after i/u/ṛ/r/k
 ;; ==========================================
 
 ;; iṭ insertion: check if stem ends in oral stop
@@ -678,7 +678,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
        (append (butlast stem) (quote (t))))
       (t stem))))
 
-;; s → ṣ after i/u/f/r/k (8.4.63)
+;; s → ṣ after i/u/f/r/k (8.3.57 iṇkoḥ context + 8.3.59 ādeśapratyayayoḥ)
 (def s-to-S-after-ruki
   (lambda (chars)
     (cond
@@ -732,7 +732,7 @@ derive-abhavam    (lambda () (derive-verb-laN (quote (b h U)) 1 (quote mip))))
            (combined (append stem ting))
            ;; a+a → a coalescence
            (coalesced (coalesce-aa combined))
-           ;; a+e → e absorption (6.1.87) for 1sg
+           ;; a+e → e absorption (6.1.97 ato guṇe; Kāśikā: pace, yaje) for 1sg
            (absorbed (absorb-ae coalesced)))
       absorbed)))
 
