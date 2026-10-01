@@ -12,7 +12,7 @@ A "not found" means "not within size N", not "underivable". No lambda, no recurs
 |---|---|---|---|
 | atoms=4, strict COND | 6 and 7 | none: ATOM, CAR, CDR, EQ, CONS, COND all "not found" (1.2k–4.1k terms at N=6; 4.0k–21.4k at N=7) | exactly ONE: {QUOTE, ATOM, EQ, CONS, CAR, CDR, COND}; `()` is derivable (e.g. NIL = EQ('T,'A)) |
 | atoms=4, lazy COND | 6 | same: none derivable | same one subset |
-| atoms=2 ({NIL,T}), strict | 6 | none | TWO: {(), ATOM, EQ, CONS, CAR, CDR, COND} and {QUOTE, ATOM, EQ, CONS, CAR, CDR, COND} (T = ATOM(NIL), NIL = EQ('T,'T)... the pair `()`/QUOTE is interchangeable): an equivalence class, issue outcome 4 for that pair |
+| atoms=2 ({NIL,T}), strict | 6 | none | TWO: {(), ATOM, EQ, CONS, CAR, CDR, COND} and {QUOTE, ATOM, EQ, CONS, CAR, CDR, COND} (T = ATOM(NIL); NIL = ATOM(CONS('T,'T)); so `()` and QUOTE are interchangeable): an equivalence class, issue outcome 4 for that pair |
 
 Reading: in this finite model the six function seeds are pairwise independent (no one is rebuilt from the other five plus the
 constants); `()` is redundant when QUOTE exists and atoms A,B exist; with only the atoms NIL,T, `()` and QUOTE are
