@@ -78,11 +78,13 @@ NAMED = {
  'yR': ('y', 'R', 1, 1), 'ym': ('y', 'm', 1, 1), 'yy': ('y', 'y', 1, 1), 'yr': ('y', 'r', 1, 1),
  'vS': ('v', 'S', 1, 1), 'vl': ('v', 'l', 1, 1), 'rl': ('r', 'l', 1, 1), 'my': ('m', 'y', 1, 1),
  'Ym': ('Y', 'm', 1, 1), 'JS': ('J', 'S', 1, 1), 'Jz': ('J', 'S', 1, 1), 'Jy': ('J', 'y', 1, 1),
- 'Jr': ('J', 'r', 1, 1), 'Jl': ('J', 'l', 1, 1), 'BS': ('B', 'S', 1, 1), 'jS': ('j', 'S', 1, 1),
+ 'Jr': ('J', 'r', 1, 1), 'Jl': ('J', 'l', 1, 1), 'Bz': ('B', 'z', 1, 1), 'Nm': ('N', 'm', 1, 1), 'jS': ('j', 'S', 1, 1),
  'bS': ('b', 'S', 1, 1), 'Ky': ('K', 'y', 1, 1), 'Kr': ('K', 'r', 1, 1), 'Cv': ('C', 'v', 1, 1),
  'cy': ('c', 'y', 1, 1), 'cr': ('c', 'r', 1, 1), 'Sr': ('S', 'r', 1, 1), 'Sl': ('S', 'l', 1, 1),
  'hS': ('h', 'S', 1, 1), 'hl': ('h', 'l', 1, 1),
 }
+# bhaS is NOT a pratyahara (Kasika txt 126-135 lists six S-pratyaharas: aS haS vaS jaS jhaS baS); the correct name is bhaz (bh gh Dh dh; txt 118-124),
+# and Nm (ng nn n; 8.3.32, txt 113) exists next to Ym.
 # 'Jz' (jhaS-ṣ typo guard): there is no marker z after J except the sutra-9 marker z, so 'Jz' means J..z
 NAMED['Jz'] = ('J', 'z', 1, 1)
 
