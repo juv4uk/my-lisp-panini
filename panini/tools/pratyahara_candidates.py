@@ -58,8 +58,13 @@ def expected(start, start_sutra, marker, occ):
 
 def graph_stream(gdir, start, marker, occ):
     sys.path.insert(0, gdir)
+    sys.path.insert(0, HERE)
     import upc14v2 as g
-    return [g.LABELS_BY_CODE[c] for c in g.pratyahara(g.SOUNDS[start], marker, occ)]
+    from second_impl_pratyahara_savarna import SLP1_TO_IAST, IAST_TO_SLP1
+    iast = 'ṇ' in g.SOUNDS   # stage-2 graph keys are IAST; earlier they were SLP1
+    to_g = (lambda x: SLP1_TO_IAST[x]) if iast else (lambda x: x)
+    from_g = (lambda x: IAST_TO_SLP1[x]) if iast else (lambda x: x)
+    return [from_g(g.LABELS_BY_CODE[c]) for c in g.pratyahara(g.SOUNDS[to_g(start)], to_g(marker), occ)]
 
 def main():
     gdir = None
