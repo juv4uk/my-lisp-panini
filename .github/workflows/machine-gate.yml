@@ -26,7 +26,7 @@ jobs:
           workspaces: my-lisp-runtime
 
       - name: Build my-lisp binary
-        run: cargo build --release -p my-lisp-cli
+        run: cargo build --release -p sens-cli
         working-directory: my-lisp-runtime
 
       # The gate itself: fails on REPL diagnostics or nonzero exit.
