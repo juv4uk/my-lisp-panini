@@ -1,0 +1,351 @@
+path	line	pattern	class	bucket	snippet
+README.md	132	type-name	docs/history	historical-only	Ці функції є точними 8-бітними двійковими формами мови (`Sens8`). Не існує другого
+README.md	171	type-name	docs/history	historical-only	Українська — не лише мова README. Українські слова можуть бути source/UI-підказками до SID8 у [`lib/surface/semantic-registry.lisp`](lib/sur
+README.md	376	type-name	docs/history	historical-only	- [`crates/sens`](crates/sens) — канонічний Rust crate мови sens (Sens, Sens8, sens! macro);
+README.md	418	type-name	docs/history	historical-only	3. [`docs/language-core.md`](docs/language-core.md) — SID8-only архітектура ядра;
+README.md	438	type-name	docs/history	historical-only	`sens` (СЕНС) reserves exactly 256 language functions: `00000000..11111111` (`Sens8`). These exact 8-bit binary forms are the ontological co
+README.md	446	type-name	docs/history	historical-only	`sens` (СЕНС) reserviert genau 256 Sprachfunktionen: `00000000..11111111` (`Sens8`). Diese exakten 8-Bit-Binärformen bilden den ontologische
+language-contract.lisp	24	type-name	unknown	unknown	. "There is no second named function ontology. Runtime, compiler IR, contracts, backends and tooling must not introduce named identities bes
+language-contract.lisp	26	type-name	unknown	unknown	. "Human-language and symbolic surfaces are optional source/UI routing metadata only. A surface may resolve mechanically to Sid8; it never c
+language-contract.lisp	34	type-name	unknown	unknown	. "Core1/Core2/Core3/Core4 are law profiles over the same Sid8 identities. Profiles may differ outside the shared foundation, but they may n
+language-contract.lisp	36	type-name	unknown	unknown	. "Execution kernels may own native mechanisms and observations. They consume an already-selected Sid8 plus arguments/context and may return
+language-contract.lisp	42	type-name	unknown	unknown	. "Exactly eight bare 0/1 source characters are read directly into Sid8. The reader does not reinterpret them as decimal or binary numeric d
+language-contract.lisp	44	type-name	unknown	unknown	. "Dot and comma are equivalent decimal separators only for otherwise valid finite decimal/base-10 scientific numeric input. Non-numeric tok
+experiments/core4-predicate-answer-carrier-matrix.lisp	8	type-name	unknown	unknown	; - exact eight bare bits remain Sid8 and round-trip unchanged;
+experiments/gpu2-e1e3/witness.py	43	bitstring-8	unknown	unknown	BITS_RE = re.compile(r"(?i)\bbits?[\s=:]+([0-9a-f]{8})\b")
+knowledge/semantic-lineage-core-v1.lisp	32	type-name	unknown	unknown	(deliberate-differences "my-lisp adds exact SID8 function identities and richer explicit result domains downstream.")
+knowledge/semantic-lineage-core-v1.lisp	62	type-name	unknown	unknown	(deliberate-differences "None currently ratified beyond SID8 transport representation.")
+knowledge/semantic-lineage-core-v1.lisp	77	type-name	unknown	unknown	(deliberate-differences "Exact bare SID8 is the function identity after resolution.")
+knowledge/semantic-lineage-core-v1.lisp	152	type-name	unknown	unknown	(deliberate-differences "Bare SID8 source notation is part of current my-lisp transport identity, not a second name-based authority.")
+knowledge/semantic-lineage-core-v1.lisp	179	phrase-8bit	semantic-guard	unknown	(my-lisp-rationale "One exact 8-bit function-identity space lets independent substrates carry the same operation identity without copying ho
+knowledge/semantic-lineage-core-v1.lisp	180	type-name	unknown	unknown	(observable-law "After function resolution, semantic function identity is exactly one bare Sid8 token; quoted/string/decimal/host-name alias
+knowledge/semantic-lineage-core-v1.lisp	209	type-name	unknown	unknown	(my-lisp-rationale "The language owns binary/SID8 formation and manipulation as Lisp data rather than deriving semantic identity from a host
+knowledge/semantic-lineage-core-v1.lisp	210	type-name	unknown	unknown	(observable-law "Binary/SID8 operations preserve width, leading zeroes, and exact identity category.")
+knowledge/canon-authority-inventory.lisp	36	type-name	unknown	unknown	(authority (path "lib/surface/function-signatures.lisp") (mapping "sid->kind/form/arity/signature/documentation") (class function-table-meta
+knowledge/structure-not-ontology-inventory.lisp	4	type-name	unknown	unknown	; Canonical payload remains Function8 | Number | Text7.
+knowledge/guard-reference.lisp	801	type-name	unknown	unknown	(summary "Постійний закон власника: увесь наш код пишеться СЕНС-кодами (рівно 8 двійкових біт на функцію), і новий код не на СЕНС заборонено
+knowledge/guard-reference.lisp	811	type-name	unknown	unknown	(summary "Canon 0+7 (quote/atom/eq/cons/car/cdr/cond) НЕ був задуманий одразу як SID-простір -- SID прийшов пізніше як виправлення власної р
+benchmarks/sens-surface/function_table.py	22	bitstring-8	profiling/index optimization	backend-only-safe	m = re.match(r'\s*\("([01]{8})" ', line)
+benchmarks/agent-messages/results/20260930/p1-wire-as-transport.md	21	type-name	docs/history	historical-only	- **wire vs fasl:** розмір **×0.22**, decode трохи дорожчий, execute майже той самий — fasl платить за header/hash/f64/u32, не за Function8.
+benchmarks/agent-messages/results/20260930/p1-wire-as-transport.md	33	type-name	docs/history	historical-only	| ідентичність функції | Function8 (1 byte) | текстовий op `"+"` у JSON |
+benchmarks/agent-messages/results/20260930/p1-wire-as-transport.md	42	type-name	docs/history	historical-only	Після Control2 + Function8 + Number + Text7 + Predicate1 (#1694):
+tests/semantic-authority-reviews.lisp	10	type-name	test-only	can-remain-as-compatibility	; semantic identity changes from host numeric aliases to opaque exact 8-bit Sid8.
+tests/semantic-authority-reviews.lisp	40	type-name	test-only	can-remain-as-compatibility	; #1169 CLIPS SID8 boundary: reviewed removal of operator-text semantic dispatch.
+tests/semantic-authority-reviews.lisp	51	type-name	test-only	can-remain-as-compatibility	; #1173 SID8 identity-field migration: reviewed observer-only test updates.
+tests/semantic-authority-reviews.lisp	57	type-name	test-only	can-remain-as-compatibility	; #1001 Datalog direct-SID8 arithmetic: reviewed mechanism-only host mapping.
+tests/semantic-authority-reviews.lisp	58	type-name	test-only	can-remain-as-compatibility	; Exact SID8 chooses bounded native integer machinery; payload carries arguments
+tests/semantic-authority-reviews.lisp	65	type-name	test-only	can-remain-as-compatibility	; #1217 Common Lisp + semantic ABI: reviewed exact-SID8 mechanism binding.
+tests/semantic-authority-reviews.lisp	70	type-name	test-only	can-remain-as-compatibility	; #1218 Prolog + semantic ABI: reviewed exact-SID8 mechanism binding.
+tests/semantic-authority-reviews.lisp	76	type-name	test-only	can-remain-as-compatibility	; #1169 CLIPS + semantic ABI: reviewed exact-SID8 mechanism binding.
+tests/semantic-authority-reviews.lisp	82	type-name	test-only	can-remain-as-compatibility	; #1173 machine capability axis: reviewed observer-only SID8 migration.
+tests/semantic-authority-reviews.lisp	87	type-name	test-only	can-remain-as-compatibility	; #1173 semantic coordinate law/matrix: reviewed observer-only SID8 migration.
+tests/semantic-authority-reviews.lisp	92	type-name	test-only	can-remain-as-compatibility	; #1173 structure-core identity-field migration: observer requires exact Sid8.
+tests/semantic-authority-reviews.lisp	105	type-name	test-only	can-remain-as-compatibility	; #1325 SID8-only transition: existing eval mechanism becomes directly callable by existing SID 01001101.
+tests/semantic-authority-reviews.lisp	115	type-name	test-only	can-remain-as-compatibility	; #1327 Contract-9 cleanup: remove named CanonicalIdentity; function identity remains only Sid8.
+tests/semantic-authority-reviews.lisp	120	type-name	test-only	can-remain-as-compatibility	; #1344 Sens vocabulary foundation: exports Sens8, Sens, sens! alongside Sid8.
+tests/fixtures/island-lowering-1048-witness.lisp	2	type-name	test-only	can-remain-as-compatibility	; All admitted bounded-add transports carry arguments only under exact SID8 identity.
+tests/fixtures/semantic/predicate-1bit-v1.lisp	13	type-name	test-only	can-remain-as-compatibility	; Форми записані точними Function8/SpecialForm головами, без Symbol-авторитету.
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	17	type-name	docs/history	historical-only	| `parser.rs` token `len==8` лише `0/1` → `ExprKind::Sid(Sens8)` | 8 char source → packed | **reader surface** | OK — source/UI, не identity
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	18	type-name	docs/history	historical-only	| `sens.rs` `from_exact_bits` / `sens!` macro | 8 char → `Sens8(u8)` | **reader/macro surface** | OK — bridge only; identity = bits |
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	22	type-name	docs/history	historical-only	| `ExprKind::Call(Sens8, …)` після lower | 1 byte in AST | **core** | OK |
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	23	type-name	docs/history	historical-only	| `ExprKind::Sid(Sens8)` | typed | **core** | OK |
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	24	type-name	docs/history	historical-only	| `Value::Sid(Sens8)` / `as_sens8` | typed | **core** | OK |
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	25	type-name	docs/history	historical-only	| `Display` for `Sens8` → `{:08b}` | 8 char string | **projection** | OK — display ≠ identity |
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	27	type-name	docs/history	historical-only	| `sid.rs` deprecated `Sid8`/`sid!` | alias | **compat** | OK — deprecated until cml migrates |
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	33	type-name	docs/history	historical-only	1. **Семантичне ядро не тримає SENS як текст.** Після reader усе типізовано `Sens8` (1 байт). FASL і wire кодують `TAG_BINARY` + один байт.
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	36	type-name	docs/history	historical-only	4. **Немає** другого parallel ID layer у value/AST (немає string SID поруч із `Sens8` у `ExprKind` / `Value`).
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	42	type-name	docs/history	historical-only	- Printing Sens8 as eight binary digits for humans/logs.
+evidence/sens-no-text-surrogate-audit-2026-09-28.md	50	type-name	docs/history	historical-only	| `cml` ще може тягнути deprecated `Sid8` | `sid.rs` | зовнішній споживач; deprecate path already marked |
+evidence/sens-binary-transport-2026-09-28.md	11	type-name	docs/history	historical-only	- `ExprKind::Sid(Sens8)` / `Call(Sens8, …)` — 1 байт identity
+.github/workflows/sid8-only-ontology.yml	1	type-name	semantic-guard	unknown	name: SID8-only ontology
+.github/workflows/core1-sid8-bootstrap-self-carry.yml	1	type-name	semantic-guard	unknown	name: Core1 SID8 bootstrap self-carry
+.github/workflows/core1-sid8-bootstrap-self-carry.yml	29	bitstring-8	semantic-guard	unknown	! grep -E '"[01]{8}"' lib/core1-sid8-bootstrap-overlay.lisp
+.github/workflows/core1-sid8-bootstrap-self-carry.yml	30	bitstring-8	semantic-guard	unknown	! grep -E '\(QUOTE[[:space:]]+[01]{8}\)' lib/core1-sid8-bootstrap-overlay.lisp
+.github/workflows/core1-sid8-bootstrap-self-carry.yml	31	bitstring-8	semantic-guard	unknown	! grep -E '\(CONS[[:space:]]+\(CONS[[:space:]]+[01]{8}' lib/core1-sid8-bootstrap-overlay.lisp
+.github/workflows/core1-sid8-bootstrap-self-carry.yml	33	type-name	semantic-guard	unknown	- name: Checkout reader-corrected SID8 S0
+.github/workflows/core1-sid8-bootstrap-self-carry.yml	54	type-name	semantic-guard	unknown	- name: Execute direct Core1 SID8 self-carry witness
+.github/workflows/sid8-issue-lifecycle-guard.yml	1	type-name	semantic-guard	unknown	name: SID8 issue lifecycle guard
+.github/workflows/sid8-issue-lifecycle-guard.yml	16	type-name	semantic-guard	unknown	- name: Reopen permanent SID8-only issue
+.github/workflows/sid8-issue-lifecycle-guard.yml	23	type-name	semantic-guard	unknown	gh issue comment "$ISSUE" --repo "$REPO" --body "Lifecycle guard: this SID8-only constitutional issue is permanent. Closing it only records 
+.github/workflows/core1-s2-compiler.yml	30	type-name	semantic-guard	unknown	- name: Checkout typed-SID8 S0
+.github/workflows/core1-s2-compiler.yml	50	type-name	semantic-guard	unknown	- name: Build typed-SID8 S0
+.github/workflows/core1-compiler-sid-resolver.yml	1	type-name	semantic-guard	unknown	name: Core1 compiler SID8 resolver
+.github/workflows/core1-compiler-sid-resolver.yml	20	type-name	semantic-guard	unknown	name: Core1 compiler resolver delegates to admitted SID8
+.github/workflows/core1-compiler-sid-resolver.yml	40	type-name	semantic-guard	unknown	- name: Checkout typed-SID8 historical S0
+.github/workflows/core1-compiler-sid-resolver.yml	50	type-name	semantic-guard	unknown	- name: Build typed-SID8 historical S0
+.github/workflows/core1-s0.yml	36	type-name	semantic-guard	unknown	- name: Checkout pinned typed-SID8 S0 seed
+.github/workflows/core1-s0.yml	62	type-name	semantic-guard	unknown	- name: Build pinned typed-SID8 seed in pinned Guix closure
+.github/workflows/ci.yml	102	type-name	semantic-guard	unknown	if grep -R -n --include='*.rs' 'Value::SemanticRef\|SemanticRef(Sid8)\|SemanticRef(u8)' crates; then
+.github/workflows/ci.yml	103	type-name	semantic-guard	unknown	echo "ERROR: SID identity across Rust crates must use only Value::Sid(Sid8)" >&2
+.github/workflows/kernel-abi-transport-boundary.yml	49	type-name	semantic-guard	unknown	test "$got" = "(kernel-abi-transport-boundary-ok (kernels 4) (language-type Sens8) (abi-wrapper SemanticId))"
+.github/workflows/kernel-abi-transport-boundary.yml	58	type-name	semantic-guard	unknown	if grep -Eq 'Sens8|Sid8|sens::|use[[:space:]]+sens|semantic_registry|CanonicalIdentity' "$abi_source"; then
+.github/workflows/kernel-abi-transport-boundary.yml	69	type-name	semantic-guard	unknown	if grep -Eq 'Sens8|Sid8|sens::|use[[:space:]]+sens|semantic_registry|CanonicalIdentity' "$source"; then
+lib/island-lowering.lisp	8	type-name	unknown	unknown	; Prolog goal: exact SID8 plus the selected mechanism already owns that choice.
+lib/island-lowering.lisp	12	type-name	unknown	unknown	; only as exact SID8 + arguments; the adapter builds private native syntax after
+lib/core1-sid8-bootstrap-overlay.lisp	1	type-name	unknown	unknown	; Core1 bootstrap SID8 self-carry overlay.
+lib/core1-sid8-bootstrap-overlay.lisp	4	type-name	unknown	unknown	; Load lib/core1.lisp first, then this file only on the SID8-aware bootstrap S0.
+lib/core1-sid8-bootstrap-overlay.lisp	7	type-name	unknown	unknown	;   exact typed SID8 compiler-output values -> self-evaluating values in C1-EVAL
+lib/core1-sid8-bootstrap-overlay.lisp	30	type-name	unknown	unknown	; a typed, admitted SID8 value carries itself instead of entering lexical
+lib/core2.lisp	8	type-name	unknown	unknown	;   ATOM      -> shared Function8 law
+lib/core2.lisp	9	type-name	unknown	unknown	;   EQ        -> shared Function8 law
+lib/macro.lisp	1	phrase-8bit	semantic-guard	unknown	; lib/macro.lisp — bootstrap derivation on exact 8-bit function identities.
+lib/core1-compiler-sid-resolver.lisp	1	type-name	unknown	unknown	; #1180 — Core1 compiler-facing SID8 resolver.
+lib/core1-compiler-sid-resolver.lisp	8	type-name	unknown	unknown	;   admitted Core1 primitive surface -> exact bare SID8
+crates/sens/tests/sens_host_registration_admission_1406.rs	9	type-name	test-only	can-remain-as-compatibility	Sens8, Session, Span, Value,
+crates/sens/tests/sens_host_registration_admission_1406.rs	12	type-name	test-only	can-remain-as-compatibility	struct RegistrationGuard(Sens8);
+crates/sens/tests/sens_host_registration_admission_1406.rs	21	type-name	test-only	can-remain-as-compatibility	_sens: Sens8,
+crates/sens/tests/x86_64_lisp_encoder.rs	662	len-eq-8	test-only	can-remain-as-compatibility	if imm.len() != 8 {
+crates/sens/tests/sens_exactly_eight_bits.rs	5	type-name	test-only	can-remain-as-compatibility	//! 1. пам'ять: `Sens8` — рівно 1 байт; зведений виклик тримає функцію в 1 байті;
+crates/sens/tests/sens_exactly_eight_bits.rs	15	type-name	test-only	can-remain-as-compatibility	use sens::{lower_program, parse, ExprKind, Sens8};
+crates/sens/tests/sens_exactly_eight_bits.rs	61	type-name	test-only	can-remain-as-compatibility	assert_eq!(std::mem::size_of::<Sens8>(), 1, "функція СЕНС має займати рівно 1 байт");
+crates/sens/tests/sens_exactly_eight_bits.rs	102	len-eq-8	test-only	can-remain-as-compatibility	if bits.len() != 8 {
+crates/sens/tests/non_sens_code_inventory.rs	127	len-eq-8	test-only	can-remain-as-compatibility	token.len() == 8 && token.bytes().all(|b| b == b'0' || b == b'1')
+crates/sens/tests/uk_docs_surface_model.rs	57	len-eq-8	test-only	can-remain-as-compatibility	(bits.len() == 8 && bits.bytes().all(|byte| matches!(byte, b'0' | b'1')))
+crates/sens/tests/sens_foundation.rs	3	type-name	test-only	can-remain-as-compatibility	//! Validates that `Sens8` and the `sens!` macro provide the canonical
+crates/sens/tests/sens_foundation.rs	5	type-name	test-only	can-remain-as-compatibility	//! compatible with existing `Sens8` mechanisms while establishing the
+crates/sens/tests/sens_foundation.rs	8	type-name	test-only	can-remain-as-compatibility	use ::sens::{sens, Sens, Sens8};
+crates/sens/tests/sens_foundation.rs	20	type-name	test-only	can-remain-as-compatibility	let s: Sens8 = sens!(00000001);
+crates/sens/tests/sens_foundation.rs	22	type-name	test-only	can-remain-as-compatibility	let back: Sens8 = s_alias;
+crates/sens/tests/sens_foundation.rs	29	type-name	test-only	can-remain-as-compatibility	let legacy: ::sens::Sid8 = ::sens::sid!(00000001);
+crates/sens/tests/canon_immutability_meta.rs	67	len-eq-8	test-only	can-remain-as-compatibility	let is_code = name.len() == 8 && name.bytes().all(|b| b == b'0' || b == b'1');
+crates/sens/tests/semantic_coordinate_join_2.rs	6	type-name	test-only	can-remain-as-compatibility	use sens::{eval_program, load_core_library, parse, Expr, ExprKind, Session, Sens8};
+crates/sens/tests/semantic_coordinate_join_2.rs	65	type-name	test-only	can-remain-as-compatibility	wanted_sid: Sens8,
+crates/sens/tests/semantic_coordinate_join_2.rs	96	type-name	test-only	can-remain-as-compatibility	other => panic!("kernel witness SID must be exact bare Sens8, got {other:?}"),
+crates/sens/tests/semantic_coordinate_join_2.rs	159	type-name	test-only	can-remain-as-compatibility	fn math_coordinate(session: &mut Session, sid: Sens8) -> String {
+crates/sens/tests/semantic_coordinate_join_2.rs	169	type-name	test-only	can-remain-as-compatibility	fn machine_coordinate(session: &mut Session, sid: Sens8) -> String {
+crates/sens/tests/semantic_coordinate_join_2.rs	200	type-name	test-only	can-remain-as-compatibility	// EQ : Function8 execution witness + bounded machine compare.
+crates/sens/tests/sens_self_carry_1397.rs	4	type-name	test-only	can-remain-as-compatibility	ErrorKind, Sens8, Session, Value,
+crates/sens/tests/sens_self_carry_1397.rs	44	type-name	test-only	can-remain-as-compatibility	fn poison_surfaces_for(session: &mut Session, function: Sens8) -> usize {
+crates/sens/tests/semantic_coordinate_join.rs	6	type-name	test-only	can-remain-as-compatibility	use sens::{eval_program, load_core_library, parse, Expr, ExprKind, Session, Sens8};
+crates/sens/tests/semantic_coordinate_join.rs	8	type-name	test-only	can-remain-as-compatibility	const CAR_SID: Sens8 = sens::sens!(00000101);
+crates/sens/tests/semantic_coordinate_join.rs	34	type-name	test-only	can-remain-as-compatibility	fn kernel_names_for_sid(source: &str, wanted_sid: Sens8) -> HashSet<String> {
+crates/sens/tests/semantic_coordinate_join.rs	52	type-name	test-only	can-remain-as-compatibility	let mut sid: Option<Sens8> = None;
+crates/sens/tests/semantic_coordinate_join.rs	62	type-name	test-only	can-remain-as-compatibility	other => panic!("kernel witness SID must be exact bare Sens8, got {other:?}"),
+crates/sens/tests/semantic_coordinate_join.rs	107	type-name	test-only	can-remain-as-compatibility	fn kernel_statuses_for_sid(source: &str, wanted_sid: Sens8) -> Vec<(String, String)> {
+crates/sens/tests/semantic_coordinate_join.rs	133	type-name	test-only	can-remain-as-compatibility	other => panic!("kernel witness SID must be exact bare Sens8, got {other:?}"),
+crates/sens/tests/semantic_coordinate_join.rs	190	type-name	test-only	can-remain-as-compatibility	fn math_coordinate_value(session: &mut Session, sid: Sens8) -> String {
+crates/sens/tests/semantic_coordinate_join.rs	200	type-name	test-only	can-remain-as-compatibility	fn machine_coordinate_value(session: &mut Session, sid: Sens8) -> String {
+crates/sens/tests/rivnopravnist_mov.rs	33	len-eq-8	test-only	can-remain-as-compatibility	bits.len() == 8 && bits.bytes().all(|byte| matches!(byte, b'0' | b'1')),
+crates/sens/tests/rivnopravnist_mov.rs	130	type-name	test-only	can-remain-as-compatibility	"bare human surface must not become Function8 during evaluation"
+crates/sens/tests/rivnopravnist_mov.rs	134	type-name	test-only	can-remain-as-compatibility	.expect("bare exact Function8 remains a binary value")
+crates/sens/tests/semantic_coordinate_law_axis.rs	24	type-name	test-only	can-remain-as-compatibility	"{label} is evidence/data, not a Function8 identity"
+crates/sens/tests/witness_authority.rs	9	type-name	test-only	can-remain-as-compatibility	Sens8,
+crates/sens/tests/witness_authority.rs	40	type-name	test-only	can-remain-as-compatibility	fn alist_sid(entries: &[Expr], key: &str) -> Option<Sens8> {
+crates/sens/tests/witness_authority.rs	53	type-name	test-only	can-remain-as-compatibility	other => panic!("{key} must be exact bare Sens8, got {other:?}"),
+crates/sens/tests/witness_authority.rs	171	type-name	test-only	can-remain-as-compatibility	.expect("every structure-core row must carry exact bare Sens8 identity");
+crates/sens/tests/witness_authority.rs	720	type-name	test-only	can-remain-as-compatibility	let mut sid: Option<Sens8> = None;
+crates/sens/tests/witness_authority.rs	729	type-name	test-only	can-remain-as-compatibility	other => panic!("semantic sid must be exact bare Sens8, got {other:?}"),
+crates/sens/tests/witness_authority.rs	758	type-name	test-only	can-remain-as-compatibility	let mut probe_id: Option<Sens8> = None;
+crates/sens/tests/witness_authority.rs	783	type-name	test-only	can-remain-as-compatibility	"semantic witness probe-id must be exact bare Sens8, got {other:?}"
+crates/sens/tests/i5_6400_machine_profile.rs	62	len-eq-8	test-only	can-remain-as-compatibility	if id.len() != 8 || !id.bytes().all(|byte| matches!(byte, b'0' | b'1')) {
+crates/sens/tests/semantic_coordinate_matrix_845.rs	10	type-name	test-only	can-remain-as-compatibility	use sens::{parse, Expr, ExprKind, Sens8};
+crates/sens/tests/semantic_coordinate_matrix_845.rs	43	type-name	test-only	can-remain-as-compatibility	fn matrix_sources_and_scope() -> (String, String, String, String, Vec<Sens8>) {
+crates/sens/tests/semantic_coordinate_matrix_845.rs	92	type-name	test-only	can-remain-as-compatibility	other => panic!("scope SID must be exact bare Sens8, got {other:?}"),
+crates/sens/tests/semantic_coordinate_matrix_845.rs	106	type-name	test-only	can-remain-as-compatibility	fn law_axis_has_row(source: &str, wanted_sid: Sens8) -> bool {
+crates/sens/tests/semantic_coordinate_matrix_845.rs	134	type-name	test-only	can-remain-as-compatibility	fn source_has_bare_sid(source: &str, sid: Sens8) -> bool {
+crates/sens/tests/semantic_coordinate_matrix_845.rs	138	type-name	test-only	can-remain-as-compatibility	fn machine_axis_has_row(source: &str, wanted_sid: Sens8) -> bool {
+crates/sens/tests/semantic_coordinate_matrix_845.rs	193	type-name	test-only	can-remain-as-compatibility	fn kernel_map_has_sid(source: &str, wanted_sid: Sens8) -> bool {
+crates/sens/tests/semantic_coordinate_matrix_845.rs	287	type-name	test-only	can-remain-as-compatibility	const LAMBDA_SID: Sens8 = sens::sens!(00001000);
+crates/sens/tests/backend_not_on_sid_gap.rs	13	type-name	test-only	can-remain-as-compatibility	//! spelling of the calling symbol — never through `Sens8`.
+crates/sens/tests/backend_not_on_sid_gap.rs	96	type-name	test-only	can-remain-as-compatibility	no Sens8 lexical form of its own"
+crates/sens/tests/backend_not_on_sid_gap.rs	101	type-name	test-only	can-remain-as-compatibility	// Sens8-keyed semantic registry at all — only through the separate
+crates/sens/tests/backend_not_on_sid_gap.rs	108	type-name	test-only	can-remain-as-compatibility	registry, not via any Sens8 route"
+crates/sens/tests/macro_generated_heads_1485.rs	39	type-name	test-only	can-remain-as-compatibility	fn sens_for_admitted_surface(surface: &str) -> Option<sens::Sens8> {
+crates/sens/src/presentation.rs	7	type-name	unknown	unknown	use crate::{semantic_registry, ErrorKind, Exactness, LanguageError, NumericBuffer, Sens8, Value};
+crates/sens/src/presentation.rs	29	type-name	unknown	unknown	fn uk_semantic_name(semantic_id: Sens8) -> String {
+crates/sens/src/syntax.rs	2	type-name	parser/AST shape	must-change-before-variable-width	use crate::Sens8;
+crates/sens/src/syntax.rs	52	type-name	parser/AST shape	must-change-before-variable-width	Sid(Sens8),
+crates/sens/src/syntax.rs	73	type-name	parser/AST shape	must-change-before-variable-width	/// Виклик функції СЕНС: функція займає рівно 1 байт (`Sens8`), без
+crates/sens/src/syntax.rs	78	type-name	parser/AST shape	must-change-before-variable-width	/// SENS call: the function slot is exactly one byte (`Sens8`), no name
+crates/sens/src/syntax.rs	80	type-name	parser/AST shape	must-change-before-variable-width	Call(Sens8, Rc<[Expr]>),
+crates/sens/src/syntax.rs	95	type-name	parser/AST shape	must-change-before-variable-width	const _: () = assert!(std::mem::size_of::<Sens8>() == 1);
+crates/sens/src/syntax.rs	240	type-name	parser/AST shape	must-change-before-variable-width	ExprKind::Sid(crate::Sens8::from_packed_byte(value))
+crates/sens/src/syntax.rs	569	type-name	parser/AST shape	must-change-before-variable-width	ExprKind::Sid(crate::Sens8::from_packed_byte(value))
+crates/sens/src/lib.rs	36	type-name	unknown	unknown	/// Runtime/source semantics use `Sens8`. The `u8` implementation exists
+crates/sens/src/lib.rs	42	type-name	unknown	unknown	fn into_projection_sid(self) -> super::Sens8;
+crates/sens/src/lib.rs	45	type-name	unknown	unknown	impl ProjectionSidInput for super::Sens8 {
+crates/sens/src/lib.rs	46	type-name	unknown	unknown	fn into_projection_sid(self) -> super::Sens8 {
+crates/sens/src/lib.rs	52	type-name	unknown	unknown	fn into_projection_sid(self) -> super::Sens8 {
+crates/sens/src/lib.rs	53	type-name	unknown	unknown	super::Sens8::from_packed_byte(self)
+crates/sens/src/lib.rs	72	type-name	unknown	unknown	pub fn semantic_id_for_admitted_surface(name: &str) -> Option<super::Sens8> {
+crates/sens/src/lib.rs	78	type-name	unknown	unknown	/// Runtime/source semantics use opaque `Sens8`; this function deliberately
+crates/sens/src/lib.rs	85	type-name	unknown	unknown	.map(super::Sens8::packed_byte)
+crates/sens/src/lib.rs	119	type-name	unknown	unknown	pub use sid::Sid8;
+crates/sens/src/lib.rs	120	type-name	unknown	unknown	pub use sens::{Sens, Sens8};
+crates/sens/src/lib.rs	175	type-name	unknown	unknown	/// Generated runtime projection of admitted surface spellings to opaque Sens8
+crates/sens/src/lib.rs	270	type-name	unknown	unknown	// HashMap, not BTreeMap: Sens8 is deliberately not Ord (identity
+crates/sens/src/lib.rs	453	type-name	unknown	unknown	pub fn surface_has_sid(name: &str, sid: Sens8) -> bool {
+crates/sens/src/parser.rs	459	len-eq-8	parser/AST shape	must-change-before-variable-width	if token.len() == 8 && token.bytes().all(|byte| matches!(byte, b'0' | b'1')) {
+crates/sens/src/parser.rs	460	type-name	parser/AST shape	must-change-before-variable-width	let sid = crate::Sens8::from_exact_bits(token)
+crates/sens/src/language_items.rs	13	type-name	unknown	unknown	use crate::{semantic_registry, Sens8};
+crates/sens/src/language_items.rs	52	type-name	unknown	unknown	pub semantic_id: Option<Sens8>,
+crates/sens/src/language_items.rs	67	type-name	unknown	unknown	stable_surfaces: impl Fn(Sens8) -> Vec<&'static str>,
+crates/sens/src/language_items.rs	68	type-name	unknown	unknown	admitted_surfaces: impl Fn(Sens8) -> Vec<&'static str>,
+crates/sens/src/language_items.rs	72	type-name	unknown	unknown	let semantic_id = Sens8::from_packed_byte(row.semantic_id);
+crates/sens/src/language_items.rs	91	type-name	unknown	unknown	pub(crate) fn signature_kind(semantic_id: Sens8) -> Option<LanguageItemKind> {
+crates/sens/src/language_items.rs	115	type-name	unknown	unknown	let sid = Sens8::from_packed_byte(byte);
+crates/sens/src/value.rs	2	type-name	unknown	unknown	use crate::{Environment, Exactness, Expr, Sens8};
+crates/sens/src/value.rs	493	type-name	unknown	unknown	Sid(Sens8),
+crates/sens/src/value.rs	625	type-name	unknown	unknown	pub fn as_sens8(&self) -> Option<crate::Sens8> {
+crates/sens/src/value.rs	633	type-name	unknown	unknown	pub fn as_sid8(&self) -> Option<crate::Sens8> {
+crates/sens/src/semantic_registry.rs	11	type-name	runtime dispatch mechanism	can-remain-as-compatibility	//! opaque Sens8 immediately; runtime registry APIs never expose decimal IDs.
+crates/sens/src/semantic_registry.rs	15	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::Sens8;
+crates/sens/src/semantic_registry.rs	23	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) type SemanticId = Sens8;
+crates/sens/src/semantic_registry.rs	35	type-name	runtime dispatch mechanism	can-remain-as-compatibility	.map(|row| Sens8::from_packed_byte(row.semantic_id))
+crates/sens/src/semantic_registry.rs	61	type-name	runtime dispatch mechanism	can-remain-as-compatibility	insert_surface_mapping(&mut index, surface.name, Sens8::from_packed_byte(row.semantic_id));
+crates/sens/src/sens.rs	21	type-name	unknown	unknown	pub struct Sens8(pub(crate) u8);
+crates/sens/src/sens.rs	23	type-name	unknown	unknown	pub type Sens = Sens8;
+crates/sens/src/sens.rs	25	type-name	unknown	unknown	impl Sens8 {
+crates/sens/src/sens.rs	36	len-eq-8	unknown	unknown	bytes.len() == 8,
+crates/sens/src/sens.rs	55	type-name	unknown	unknown	/// Reader-side construction of Sens8 from exactly eight 0/1 source characters.
+crates/sens/src/sens.rs	58	len-eq-8	unknown	unknown	if bytes.len() != 8 {
+crates/sens/src/sens.rs	93	type-name	unknown	unknown	impl fmt::Display for Sens8 {
+crates/sens/src/sens.rs	99	type-name	unknown	unknown	impl fmt::Debug for Sens8 {
+crates/sens/src/sens.rs	101	type-name	unknown	unknown	write!(f, "Sens8({self})")
+crates/sens/src/sens.rs	114	type-name	unknown	unknown	const SENS: $crate::Sens8 =
+crates/sens/src/sens.rs	115	type-name	unknown	unknown	$crate::Sens8::__from_macro_bits(stringify!($bits));
+crates/sens/src/sens.rs	128	type-name	unknown	unknown	assert_eq!(format!("{s:?}"), "Sens8(00001100)");
+crates/sens/src/sens.rs	134	type-name	unknown	unknown	Sens8::from_exact_bits("00001100"),
+crates/sens/src/sens.rs	137	type-name	unknown	unknown	assert_eq!(Sens8::from_exact_bits("0000110"), None);
+crates/sens/src/sens.rs	138	type-name	unknown	unknown	assert_eq!(Sens8::from_exact_bits("000011000"), None);
+crates/sens/src/sens.rs	139	type-name	unknown	unknown	assert_eq!(Sens8::from_exact_bits("00001200"), None);
+crates/sens/src/sens.rs	140	type-name	unknown	unknown	assert_eq!(Sens8::from_exact_bits("0b001100"), None);
+crates/sens/src/sens.rs	141	type-name	unknown	unknown	assert_eq!(Sens8::from_exact_bits("0000_1100"), None);
+crates/sens/src/sens.rs	147	type-name	unknown	unknown	assert_eq!(Sens8::from_packed_byte(s.packed_byte()), s);
+crates/sens/src/sens.rs	157	type-name	unknown	unknown	let s = Sens8::from_packed_byte(byte);
+crates/sens/src/sid.rs	1	type-name	unknown	unknown	//! Застарілі назви коробки Sens8 — лише для зовнішніх споживачів (juv4uk/cml).
+crates/sens/src/sid.rs	3	type-name	unknown	unknown	//! Власник, 2026-09-26: єдина назва 1-байтової коробки функцій — `Sens8`
+crates/sens/src/sid.rs	4	type-name	unknown	unknown	//! (макрос `sens!`). Код `sens` старих назв не використовує; `Sid8` і `sid!`
+crates/sens/src/sid.rs	5	type-name	unknown	unknown	//! лишаються позначеними `#[deprecated]`, доки `cml` не перейде на `Sens8`.
+crates/sens/src/sid.rs	7	type-name	unknown	unknown	use crate::sens::Sens8;
+crates/sens/src/sid.rs	9	type-name	unknown	unknown	#[deprecated(note = "назва коробки — Sens8 (sens!); Sid8 лишено лише для cml")]
+crates/sens/src/sid.rs	10	type-name	unknown	unknown	pub type Sid8 = Sens8;
+crates/sens/src/environment.rs	242	type-name	unknown	unknown	pub(crate) fn code_slot(&self, sid: crate::Sens8) -> Option<Value> {
+crates/sens/src/environment.rs	247	type-name	unknown	unknown	pub(crate) fn bind_code_slot_once(&self, sid: crate::Sens8, value: Value) -> bool {
+crates/sens/src/eval/builtins.rs	120	type-name	runtime dispatch mechanism	can-remain-as-compatibility	name: crate::Sens8,
+crates/sens/src/eval/necessary_forms.rs	9	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::Sens8;
+crates/sens/src/eval/necessary_forms.rs	21	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) fn identity_for_semantic_id(semantic_id: Sens8) -> Option<NecessaryFormIdentity> {
+crates/sens/src/eval/canon.rs	3	type-name	runtime dispatch mechanism	can-remain-as-compatibility	//! Contract 9 / #1325: function identity is only Sens8. This module may record
+crates/sens/src/eval/canon.rs	8	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::{semantic_registry, Environment, ErrorKind, LanguageError, Sens8, Span, Value};
+crates/sens/src/eval/canon.rs	18	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub sid: Sens8,
+crates/sens/src/eval/canon.rs	23	type-name	runtime dispatch mechanism	can-remain-as-compatibility	/// need special evaluator handling. The rows are keyed only by Sens8.
+crates/sens/src/eval/canon.rs	34	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) fn route_kind_for_sid(sid: Sens8) -> Option<SidRouteKind> {
+crates/sens/src/eval/canon.rs	46	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) fn routed_sid_for_surface(surface: &str) -> Option<Sens8> {
+crates/sens/src/eval/canon.rs	56	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) fn surface_has_sid(surface: &str, sid: Sens8) -> bool {
+crates/sens/src/eval/canon.rs	74	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn immutable_surface_error(surface: &str, sid: Sens8, span: Span) -> LanguageError {
+crates/sens/src/eval/canon.rs	84	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) fn ensure_bindable_sid(sid: Sens8, span: Span) -> Result<(), LanguageError> {
+crates/sens/src/eval/canon.rs	95	type-name	runtime dispatch mechanism	can-remain-as-compatibility	sid: crate::Sens8,
+crates/sens/src/eval/canon.rs	115	array-256	runtime dispatch mechanism	can-remain-as-compatibility	const PRIMITIVE_TABLE: [Option<PrimitiveFn>; 256] = {
+crates/sens/src/eval/canon.rs	116	array-256	runtime dispatch mechanism	can-remain-as-compatibility	let mut table: [Option<PrimitiveFn>; 256] = [None; 256];
+crates/sens/src/eval/canon.rs	272	type-name	runtime dispatch mechanism	can-remain-as-compatibility	/// Mechanism bridge selected only by Sens8.
+crates/sens/src/eval/canon.rs	274	type-name	runtime dispatch mechanism	can-remain-as-compatibility	sid: Sens8,
+crates/sens/src/eval/canon.rs	298	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub(crate) fn has_primitive(sid: Sens8) -> bool {
+crates/sens/src/eval/lower.rs	18	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::Sens8;
+crates/sens/src/eval/lower.rs	21	type-name	runtime dispatch mechanism	can-remain-as-compatibility	const QUOTE: Sens8 = crate::sens!(00000001);
+crates/sens/src/eval/lower.rs	22	type-name	runtime dispatch mechanism	can-remain-as-compatibility	const COND: Sens8 = crate::sens!(00000111);
+crates/sens/src/eval/lower.rs	29	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn head_sid(head: &Expr) -> Option<Sens8> {
+crates/sens/src/eval/lower.rs	38	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn immutable_surface_sid(name: &str) -> Option<Sens8> {
+crates/sens/src/eval/closures.rs	6	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::{Closure, Environment, ErrorKind, Expr, ExprKind, LanguageError, Sens8, Span, Value};
+crates/sens/src/eval/closures.rs	229	type-name	runtime dispatch mechanism	can-remain-as-compatibility	const EVAL: Sens8 = crate::sens!(01001101);
+crates/sens/src/eval/closures.rs	231	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn sid_head(sid: Sens8, environment: &Environment) -> Head {
+crates/sens/src/eval/mod.rs	30	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::{parse, Environment, ErrorKind, Expr, ExprKind, LanguageError, Session, Sens8, Span, Value};
+crates/sens/src/eval/mod.rs	214	type-name	runtime dispatch mechanism	can-remain-as-compatibility	head_sid: Option<Sens8>,
+crates/sens/src/eval/mod.rs	298	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn binary_head_sid(expression: &Expr) -> Option<Sens8> {
+crates/sens/src/eval/capabilities.rs	16	type-name	runtime dispatch mechanism	can-remain-as-compatibility	use crate::{Environment, ErrorKind, Expr, LanguageError, Sens8, Span, Value};
+crates/sens/src/eval/capabilities.rs	41	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn(Sens8, &[Value], &Environment, Span) -> Result<Value, LanguageError>;
+crates/sens/src/eval/capabilities.rs	68	type-name	runtime dispatch mechanism	can-remain-as-compatibility	fn sens_registry() -> &'static RwLock<HashMap<Sens8, SensHostFn>> {
+crates/sens/src/eval/capabilities.rs	69	type-name	runtime dispatch mechanism	can-remain-as-compatibility	static REGISTRY: OnceLock<RwLock<HashMap<Sens8, SensHostFn>>> = OnceLock::new();
+crates/sens/src/eval/capabilities.rs	104	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub fn register_sens_capability(sens: Sens8, handler: SensHostFn) {
+crates/sens/src/eval/capabilities.rs	113	type-name	runtime dispatch mechanism	can-remain-as-compatibility	pub fn unregister_sens_capability(sens: Sens8) {
+crates/sens/src/eval/capabilities.rs	200	type-name	runtime dispatch mechanism	can-remain-as-compatibility	sens: Sens8,
+crates/sens/src/eval/capabilities.rs	301	type-name	runtime dispatch mechanism	can-remain-as-compatibility	sens: Sens8,
+crates/sens/src/eval/special_forms/core.rs	187	type-name	runtime dispatch mechanism	can-remain-as-compatibility	operator: crate::Sens8,
+crates/wsm-clips-kernel/tests/c_abi_semantic_witness.rs	192	type-name	test-only	can-remain-as-compatibility	"raw native Eval observation must stay outside the semantic SID8 ABI"
+crates/wsm-clips-kernel/src/lib.rs	728	type-name	unknown	unknown	/// Exact SID8 selects the admitted mechanism before private native syntax is built.
+crates/sens-lsp/src/guard_knowledge.rs	171	type-name	unknown	unknown	fn head_is_sid(expr: &Expr, sid: sens::Sens8) -> bool {
+crates/sens-cli/tests/uk_surface_audit_projection.rs	23	len-eq-8	test-only	can-remain-as-compatibility	(code.len() == 8 && code.bytes().all(|b| b == b'0' || b == b'1'))
+crates/sens-cli/src/bin/sens-to-sens.rs	2	type-name	unknown	unknown	installed_capabilities, parse, semantic_registry_export, Expr, ExprKind, Sens8,
+crates/sens-cli/src/bin/sens-to-sens.rs	37	type-name	unknown	unknown	fn head_kind(sens: Sens8) -> HeadKind {
+crates/sens-cli/src/bin/sens-to-sens.rs	57	type-name	unknown	unknown	fn target_sens(sens: Sens8) -> Sens8 {
+crates/sens-cli/src/bin/sens-to-sens.rs	75	type-name	unknown	unknown	) -> Option<(Option<&'a str>, Sens8)> {
+crates/sens-cli/src/bin/sens-to-sens.rs	92	type-name	unknown	unknown	fn push_head_edit(head: &Expr, sens: Sens8, analysis: &mut Analysis) {
+contracts/core4-predicate-answer-boundary.lisp	10	phrase-8bit	semantic-guard	unknown	; into an 8-bit function and never turns an 8-bit function into ().
+contracts/core1-s3-compiler-prelude.lisp	30	type-name	unknown	unknown	; "fallback" тут означає заборонений Sens8 -> surface -> evaluator lookup.
+contracts/core1-s3-compiler-prelude.lisp	31	type-name	unknown	unknown	; Прямий language-defined Sens8 slot (#1455; формулювання з #1458) є
+contracts/kernel-abi-transport-boundary.lisp	1	type-name	unknown	unknown	; #1117 — language Sens8 vs kernel ABI coordinate boundary.
+contracts/kernel-abi-transport-boundary.lisp	5	type-name	unknown	unknown	; the language's Sens8 type and may not become a reverse semantic authority.
+contracts/kernel-abi-transport-boundary.lisp	9	type-name	unknown	unknown	(language-identity-type Sens8)
+contracts/core1-historical-sid-map.lisp	5	type-name	unknown	unknown	; Authority: the SENS code (Sens8) owns identity; a historical name never
+contracts/answer-contract.lisp	12	type-name	unknown	unknown	; Function8. No rich classifier record is a predicate answer.
+contracts/datalog-math-capability-1001.lisp	1	type-name	unknown	unknown	; #1001 — Datalog integer execution capability under exact SID8 identity.
+scripts/check_semantic_registry.py	11	bitstring-8	runtime dispatch mechanism	can-remain-as-compatibility	SID_TOKEN = re.compile(r"^[01]{8}$")
+scripts/generate-meta-eval-evidence.py	66	len-eq-8	unknown	unknown	elif tokens[0] == "row" and len(tokens) == 8:
+scripts/test-current-semantic-slice.sh	187	type-name	unknown	unknown	# bounded-add transports carry arguments only; operation identity remains SID8.
+scripts/check-core1-compiler-sid-resolver.lisp	1	type-name	unknown	unknown	; #1180 — Lisp-owned checker for the Core1 compiler SID8 resolver.
+scripts/translate-program.py	18	bitstring-8	unknown	unknown	ENTRY = re.compile(r'^\s*\(([01]{8})\s+(.*)\)\s*$')
+scripts/generate-ukrainian-api.py	28	bitstring-8	unknown	unknown	r'^\s*\(doc\s+(\S+)\s+([01]{8})\s+(\S+)\s+"((?:\\.|[^"\\])*)"\s+"((?:\\.|[^"\\])*)"\)\s*$'
+scripts/generate-ukrainian-api.py	31	bitstring-8	unknown	unknown	ROW_RE = re.compile(r'^\s*\(([01]{8})\s')
+scripts/migrate-english-predicates-question-mark.py	30	bitstring-8	unknown	unknown	pat = re.compile(r"\(([01]{8}) \(en ([^()\s]+|\(\))\) \(ук ([^()\s]+|\(\))\) "
+scripts/sid8-only-ontology-guard.sh	4	type-name	unknown	unknown	# #1325/#1331: current normative identity vocabulary must stay SID8-only.
+scripts/sid8-only-ontology-guard.sh	5	type-name	unknown	unknown	# This phase guards the active contract/core/readme/Sid8/reader/bootstrap slice.
+scripts/sid8-only-ontology-guard.sh	18	type-name	unknown	unknown	[[ -f "$file" ]] || { echo "SID8-ONLY guard: missing $file" >&2; exit 1; }
+scripts/sid8-only-ontology-guard.sh	28	type-name	unknown	unknown	[[ -f "$file" ]] || { echo "SID8-ONLY guard: missing tooling identity file $file" >&2; exit 1; }
+scripts/sid8-only-ontology-guard.sh	31	type-name	unknown	unknown	echo 'SID8-ONLY violation: stale SID-as-text tooling helper name' >&2
+scripts/sid8-only-ontology-guard.sh	57	type-name	unknown	unknown	echo "SID8-ONLY violation: forbidden named/alternate function ontology: $pattern" >&2
+scripts/sid8-only-ontology-guard.sh	64	type-name	unknown	unknown	echo 'SID8-ONLY violation: apostrophe reader no longer emits SID 00000001 directly' >&2
+scripts/sid8-only-ontology-guard.sh	70	type-name	unknown	unknown	echo 'SID8-ONLY violation: Contract 9 function-space law missing' >&2
+scripts/sid8-only-ontology-guard.sh	78	type-name	unknown	unknown	echo 'SID8-ONLY ontology guard: PASS'
+scripts/sid-binary-identity-guard.sh	4	type-name	unknown	unknown	# #1098: active semantic Rust code must treat SID as exact Sid8 identity.
+scripts/sid-binary-identity-guard.sh	52	type-name	unknown	unknown	direct_sid8="$(grep -REn '(Sid8|Sens8)\((0b[01_]+|[0-9]+|"[^"]*")\)' crates/sens/src \
+scripts/sid-binary-identity-guard.sh	55	type-name	unknown	unknown	printf 'SID-BINARY-IDENTITY violation: direct Sid8/Sens8 constructor outside sid.rs/sens.rs\n%s\n' \
+scripts/sid-binary-identity-guard.sh	62	bitstring-8	unknown	unknown	'\(sid[[:space:]]*\.[[:space:]]*"[01]{8}"\)' \
+scripts/public_api_inventory.py	33	bitstring-8	unknown	unknown	DEFINE_SIGNATURE_ROW = re.compile(r"^\s*\(([01]{8})\s+\(kind syntax\)\s+\(form define\)")
+scripts/public_api_inventory.py	34	bitstring-8	unknown	unknown	DEFMACRO_SIGNATURE_ROW = re.compile(r"^\s*\(([01]{8})\s+\(kind macro\).*\(sig \"\(defmacro ")
+scripts/check-meta-eval-evidence.py	98	len-eq-8	unknown	unknown	if len(tokens) != 8:
+scripts/semantic-ownership.py	42	type-name	unknown	unknown	SID8 = re.compile(r"^[01]{8}$")
+scripts/semantic-ownership.py	43	bitstring-8	unknown	unknown	QUOTED_SID8_OWNERSHIP = re.compile(r'^\(ownership\s+\S+\s+"[01]{8}"(?:\s|\))')
+scripts/semantic-ownership.py	94	type-name	unknown	unknown	f"{MAP_PATH}:{number}: semantic identity must be exact bare SID8, not a quoted String"
+scripts/semantic-ownership.py	115	len-eq-8	unknown	unknown	if len(tokens) != 8:
+scripts/semantic-ownership.py	170	type-name	unknown	unknown	if not SID8.fullmatch(row.semantic_id):
+scripts/semantic-ownership.py	195	len-eq-8	unknown	unknown	if len(tokens) != 8:
+scripts/check_trilingual_surface.py	19	bitstring-8	unknown	unknown	ENTRY = re.compile(r"^\s*\(([01]{8})\s+(.*)\)\s*$")
+scripts/numeric_source_inventory.py	25	bitstring-8	unknown	unknown	SENS_FUNCTION = re.compile(r"^[01]{8}$")
+scripts/check-kernel-abi-transport-boundary.lisp	103	type-name	unknown	unknown	(00000001 (language-identity-type Sens8)))
+scripts/check-kernel-abi-transport-boundary.lisp	179	type-name	unknown	unknown	(language-type Sens8)
+docs/upc8-fpga-economics-and-optimization.md	152	array-256	docs/history	historical-only	| Direct-code feature ROM | 256 entries × 16 feature bits | 4,096 bits |
+docs/upc8-fpga-economics-and-optimization.md	153	array-256	docs/history	historical-only	| Direct-code feature ROM | 256 entries × 32 feature bits | 8,192 bits |
+docs/language-core.md	1	type-name	docs/history	historical-only	# my-lisp language core — SID8-only
+docs/language-core.md	23	type-name	docs/history	historical-only	Exactly eight bare 0/1 source characters are read directly into Sens8.
+docs/language-core.md	25	type-name	docs/history	historical-only	00001100  -> Sens8 00001100
+docs/language-core.md	47	type-name	docs/history	historical-only	Sens8
+docs/language-core.md	54	type-name	docs/history	historical-only	Runtime and compiler logic must operate on Sens8 after source/UI routing.
+docs/language-core.md	60	type-name	docs/history	historical-only	Sens8
+docs/language-core.md	76	type-name	docs/history	historical-only	Sens8 and cannot redefine what that SID is.
+docs/language-core.md	83	type-name	docs/history	historical-only	Compiler IR provenance may carry Sens8 and mechanism/profile facts. It must not
+docs/language-core.md	102	type-name	docs/history	historical-only	- #1325 — permanent SID8-only language law
+docs/language-core.md	125	type-name	docs/history	historical-only	they conflict with the SID8-only function-space law.
+docs/research/2026-09-26-sens-reality-after-1477.md	31	type-name	docs/history	historical-only	`ExprKind::Call(Sens8, Rc<[Expr]>)`
+docs/research/2026-09-26-sens-reality-after-1477.md	98	type-name	docs/history	historical-only	| exact-SENS compact function identity | **present** — `Sens8` is 1 byte |
+docs/research/2026-09-26-sens-self-carry-1397.md	33	type-name	docs/history	historical-only	`Value::Sid(Sens8)` і вимагає, щоб payload дорівнював `sens!(00000101)`.
+docs/research/2026-09-26-sens-self-carry-1397.md	120	type-name	docs/history	historical-only	- повертати deprecated `Sid8` як мовну онтологію;
+docs/research/2026-09-29-symbol-role-inventory-1696.uk.md	22	type-name	docs/history	historical-only	| **F** | людська назва функції → Function8 |
+docs/research/2026-09-29-symbol-role-inventory-1696.uk.md	46	type-name	docs/history	historical-only	2. **Ролі G у #1696 немає, а місць із нею 8** (`def` вимагає `Symbol` як ім'я, `core.rs:74`; голе слово обчислюється як глобальна змінна з о
+docs/research/2026-09-29-surface-bypass-audit.md	17	type-name	docs/history	historical-only	This path allows **any admitted English surface name** (e.g., `+`, `-`, `car`, `cdr`, `map`, `filter`, `string-length`, etc.) to execute dir
+docs/research/1556-sens-runtime-lookup-inventory.lisp	8	type-name	docs/history	historical-only	(Sens8-bytes 1)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	19	type-name	docs/history	historical-only	(key exact-Sens8-packed-byte)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	28	type-name	docs/history	historical-only	(key exact-Sens8-packed-byte-minus-one)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	36	type-name	docs/history	historical-only	(current byte-direct-to-Sens8)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	45	type-name	docs/history	historical-only	(key exact-Sens8-packed-byte)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	55	type-name	docs/history	historical-only	(current HashMap-Sens8-function-pointer)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	56	type-name	docs/history	historical-only	(key exact-Sens8)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	67	type-name	docs/history	historical-only	(key exact-Sens8-packed-byte)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	78	type-name	docs/history	historical-only	(key exact-Sens8-packed-byte)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	86	type-name	docs/history	historical-only	(key exact-Sens8-packed-byte)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	93	type-name	docs/history	historical-only	(target surface-to-Sens8-resolution)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	95	type-name	docs/history	historical-only	(current HashMap-surface-Sens8)
+docs/research/1556-sens-runtime-lookup-inventory.lisp	99	type-name	docs/history	historical-only	(reason "pre-resolution human spelling lookup is not an exact-Sens8 address-space problem")
+docs/research/1556-sens-runtime-lookup-inventory.lisp	112	type-name	docs/history	historical-only	"do not replace a sparse or cold lookup with a 256-slot table merely because Sens8 is one byte")
+docs/research/2026-09-29-eval-expr-boundary-inventory-1766.uk.md	44	type-name	docs/history	historical-only	3. **Значенневий варіант уже існує, але порожній:** `SensHostFn = fn(Sens8, &[Value], &Environment, Span)` отримує готові значення. **У виро
+docs/research/2026-09-29-binary-widths-3-6.md	88	type-name	docs/history	historical-only	Повний scan бібліотеки знайшов приблизно 17 527 точних Function8 token проти приблизно 6 917 lexical refs. Навіть якщо повністю ігнорувати N
+docs/research/2026-09-29-binary-widths-3-6.md	102	type-name	docs/history	historical-only	raw Function8 / Text7 / Number elements inside the region
+docs/reports/claude-opus-5.5-errors-2026-09-26-27.uk.md	166	phrase-8bit	docs/history	historical-only	an 8-bit function;
