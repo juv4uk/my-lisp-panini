@@ -1,0 +1,2 @@
+Adversarial probe for SENS #2415 (D7): can a digit cell of a Text7 value act as a Number? Not part of SENS: copy `d7_probe.rs` into a LOCAL checkout of juv4uk/sens as `crates/sens/tests/d7_probe.rs` (checked at SENS main e0a6074) and run
+`cargo test --offline -p sens --test d7_probe -- --nocapture`. It defines a Text7 of digit cells (0x3b, 0x3a) and evaluates 40 expressions mixing it with Numbers (core library loaded).
