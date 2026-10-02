@@ -139,21 +139,25 @@ print('       info  Sanskrit -> uk:', mism)
 for t in ("п'ять", 'п’ять', 'пʼять', 'п`ять', "'кіт'", "кіт'", "'", "м'я"):
     r = enc(t, 'uk'); print(f'       info  uk {t!r}: {r[0]}', r[1] if r[0] == 'ok' else r[1])
 a1, a2, a3, a4 = (enc(x, 'uk') for x in ("п'ять", 'п’ять', 'пʼять', 'п`ять'))
-report("uk: the four apostrophe spellings ' ’ ʼ ` give the same cells", a1 == a2 == a3 == a4, f'{a1[1]} / {a2[1]} / {a3[1]} / {a4[1]}')
-bad = [t for t in ("п'ять", 'п’ять') if enc(t, 'uk')[0] != 'ok']
+report("uk: the three apostrophe spellings ' ’ ʼ give the same cells", a1 == a2 == a3, f'{a1[1]} / {a2[1]} / {a3[1]}')
+report("uk: backtick is NOT an apostrophe (a sign cell + a new word), by policy after PR #100", a4[0] != 'ok' or a4[1] != a1[1], f'{a4}')
 print('       info  uk apostrophe renders back as:', T.render(a1[1], 'uk'), '(’ and ʼ inputs become the ASCII apostrophe)')
-r = enc("k't", 'sa-iast')
-try: out = T.render(r[1], 'uk'); back = enc(out, 'uk'); report("a sa-iast word with the ASCII sign ' between two letters renders in uk to something uk can read back", back == r, f"sa-iast k't {r[1]} -> uk {out!r} -> uk encode {back[0]} {back[1] if back[0] == 'refused' else back[1]}")
-except L.LangError as e: report("sa-iast k't renders in uk", False, str(e)[:80])
+r = enc("к'т", 'uk')
+try: out = T.render(r[1], 'uk'); back = enc(out, 'uk'); report("uk: ASCII ' between two consonant letters is the sign cell and round-trips", r[0] == 'ok' and back == r and 121 in r[1], f"к'т {r[1]} -> {out!r} -> {back[1]}")
+except L.LangError as e: report("uk: к'т renders", False, str(e)[:80])
+r2 = enc("k't", 'sa-iast')
+report("sa-iast: ASCII ' inside a word is refused (the avagraha is written ’)", r2[0] == 'refused', str(r2))
 av_iast, ap_iast = enc('so’ham', 'sa-iast'), enc("so'ham", 'sa-iast')
-report("sa-iast: avagraha ’ (U+2019) and the ASCII apostrophe ' in the same Sanskrit word are the SAME cell", av_iast == ap_iast, f"so’ham {av_iast} / so'ham {ap_iast}")
+report("sa-iast: so’ham (U+2019) is accepted and so'ham (ASCII ') is refused, so one identity", av_iast[0] == 'ok' and ap_iast[0] == 'refused', f"so’ham {av_iast[0]} / so'ham {ap_iast}")
 report('sa-iast: "||" (two ASCII pipes) is not silently the double daṇḍa, and "|" is not the daṇḍa', enc('||', 'sa-iast') != enc('॥', 'sa-iast') and enc('|', 'sa-iast') != enc('।', 'sa-iast'), f"{enc('||', 'sa-iast')[1]} vs {enc('॥', 'sa-iast')[1]}")
 shared_signs = [s for s, c in L.SIGN_CELL.items()]
 bad = []
 for s in shared_signs:
     for lay, left, right in (('uk', 'к', 'т'), ('sa-iast', 'k', 't'), ('sa-deva', 'क', 'त'), ('sa-cyr', 'к', 'т')):
         t = left + s + right; r = enc(t, lay)
-        if r[0] != 'ok': bad.append((lay, repr(s), r[1])); continue
+        if r[0] != 'ok':
+            if s == "'" and lay != 'uk': continue                    # by policy: ASCII ' inside a Sanskrit word is refused (avagraha = U+2019)
+            bad.append((lay, repr(s), r[1])); continue
         try: back = T.render(r[1], lay)
         except L.LangError as e: bad.append((lay, repr(s), 'render ' + str(e)[:40])); continue
         if enc(back, lay) != r: bad.append((lay, repr(s), 'round trip', repr(back)))
