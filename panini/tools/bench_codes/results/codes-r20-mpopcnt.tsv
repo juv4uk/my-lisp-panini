@@ -1,0 +1,29 @@
+workload	op	lane	n_sounds	I_setup	I_per_sound	I_net_of_copy	lane_description	R=20
+uk	enc	N	61242	1153553	5.000336370464714	0.0	copy loop (baseline, subtracted)
+uk	enc	A	61242	1214798	6.000352699128049	1.0000163286633352	A table: cell = table[sound]; dec 128-entry inverse
+uk	enc	B	61242	5685463	79.00036902779138	74.00003265732667	B linear M: 7 parity rows; dec 128-entry inverse (fail-closed)
+uk	enc	T	61242	1582250	12.000385356454721	7.0000489859900075	B linear M via two 128-entry split tables; dec as B
+uk	enc	S	61242	5685463	79.00036902779138	74.00003265732667	B linear M rows; dec = SEARCH over the sound set (no inverse table)
+uk	enc	C	61242	1214813	6.000352699128049	1.0000163286633352	C raw UPC-14, 2 bytes; dec 16384-entry direct table
+uk	enc	Q	61242	1214813	6.000352699128049	1.0000163286633352	C raw UPC-14, 2 bytes; dec binary search over the sorted codes
+uk	dec	N	61242	1459785	5.000384540021554	0.0	copy loop (baseline, subtracted)
+uk	dec	A	61242	1765998	9.000384540021553	3.999999999999999	A table: cell = table[sound]; dec 128-entry inverse
+uk	dec	B	61242	6236663	9.000384540021553	3.999999999999999	B linear M: 7 parity rows; dec 128-entry inverse (fail-closed)
+uk	dec	T	61242	2133450	9.000384540021553	3.999999999999999	B linear M via two 128-entry split tables; dec as B
+uk	dec	S	61242	22295651	271.2221931027726	266.22180856275105	B linear M rows; dec = SEARCH over the sound set (no inverse table)
+uk	dec	C	61242	2072223	14.000384540021553	9.0	C raw UPC-14, 2 bytes; dec 16384-entry direct table
+uk	dec	Q	61242	5534550	70.53555648084648	65.53517194082492	C raw UPC-14, 2 bytes; dec binary search over the sorted codes
+sa	enc	N	18542	512958	5.0011109912630785	0.0	copy loop (baseline, subtracted)
+sa	enc	A	18542	531503	6.001164922877791	1.0000539316147128	A table: cell = table[sound]; dec 128-entry inverse
+sa	enc	B	18542	1885086	79.0012188544925	74.00010786322943	B linear M: 7 parity rows; dec 128-entry inverse (fail-closed)
+sa	enc	T	18542	642773	12.001272786107217	7.000161794844138	B linear M via two 128-entry split tables; dec as B
+sa	enc	S	18542	1885086	79.0012188544925	74.00010786322943	B linear M rows; dec = SEARCH over the sound set (no inverse table)
+sa	enc	C	18542	531536	6.001164922877791	1.0000539316147128	C raw UPC-14, 2 bytes; dec 16384-entry direct table
+sa	enc	Q	18542	531536	6.001164922877791	1.0000539316147128	C raw UPC-14, 2 bytes; dec binary search over the sorted codes
+sa	dec	N	18542	605708	5.00127008952648	0.0	copy loop (baseline, subtracted)
+sa	dec	A	18542	698421	9.00127008952648	4.0	A table: cell = table[sound]; dec 128-entry inverse
+sa	dec	B	18542	2051986	9.00127008952648	4.0	B linear M: 7 parity rows; dec 128-entry inverse (fail-closed)
+sa	dec	T	18542	809673	9.00127008952648	4.0	B linear M via two 128-entry split tables; dec as B
+sa	dec	S	18542	6245466	235.16241775428756	230.16114766476107	B linear M rows; dec = SEARCH over the sound set (no inverse table)
+sa	dec	C	18542	791146	14.00127008952648	9.0	C raw UPC-14, 2 bytes; dec 16384-entry direct table
+sa	dec	Q	18542	1853345	71.28737730557653	66.28610721605004	C raw UPC-14, 2 bytes; dec binary search over the sorted codes
