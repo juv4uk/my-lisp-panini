@@ -28,7 +28,7 @@ for d in range(10):
     print(f'     digit {d} -> cell {dig[d]:#04x}: pinned table says status={p["status"]} name={p["name"]!r} spellings(iast/deva/uk)=({p["sa-iast"]!r},{p["sa-deva"]!r},{p["uk"]!r})')
 taken = [d for d in dig if pin[dig[d]]['status'] == 'assigned']
 print('     digits whose cell is ASSIGNED (not reserved) in the pinned table:', [(d, hex(dig[d]), pin[dig[d]]['sa-iast']) for d in taken])
-check('9 of 10 digit cells are reserved in the pinned table; digit 7 sits on the pinned cell of h (v3 moved h to 0x21)', taken == [7] and pin[dig[7]]['sa-iast'] == 'h' and [r for r in rows if r['sound'] == 'h'][0]['bits'] == '0100001')
+check('no digit cell is ASSIGNED in the pinned table (all ten are reserved there)', not taken and all(pin[dig[d]]['status'] == 'reserved' for d in dig))
 
 # spelling: my own codec from the TSV, then the subject
 cols = {'sa-iast': 'sa-iast', 'sa-deva': 'sa-deva', 'sa-cyr': 'sa-cyr', 'uk': 'uk'}
